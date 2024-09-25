@@ -5,14 +5,15 @@ import { HiOutlineSquare3Stack3D, HiOutlineUserCircle } from "react-icons/hi2";
 import { LuHeart } from "react-icons/lu";
 import { BsBagX } from "react-icons/bs";
 import { MdOutlineShoppingBag } from "react-icons/md";
+import { IoBagHandleOutline } from "react-icons/io5";
 
 function NavAllItems() {
 
   const iconMap = {
-    house: <GiChickenLeg  />,
+    house: <GiChickenLeg />,
     box: <HiOutlineSquare3Stack3D />,
-    bagshopping: <MdOutlineShoppingBag  />,
-    user: <HiOutlineUserCircle  />,
+    bagshopping: <IoBagHandleOutline />,
+    user: <HiOutlineUserCircle />,
   };
 
   return (
