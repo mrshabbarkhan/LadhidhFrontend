@@ -8,17 +8,19 @@ function TrendProducts() {
   const { products, isLoading } = useProducts();
   return (
     <section className="sm:mb-12">
-      <h1 className="text-xl font-semibold sm:mb-3 py-3 sm:py-5">Products on Trend</h1>
+      <h1 className="text-xl font-semibold sm:mb-3 py-3 sm:py-5">
+        Products on Trend
+      </h1>
       {isLoading ? (
         <Loader className={"h-40 w-full"} />
       ) : (
-        <div className="flex gap-2 flex-wrap justify-start w-full ">
+        <div className="flex flex-wrap gap-x-4 gap-y-8 justify-start w-full">
           {products?.map((dts, index) => {
             return (
               <Card
                 key={index}
                 product={dts}
-                isOnTrand = {true}
+                isOnTrand={true}
                 redirect={navigateToProductList}
               />
             );

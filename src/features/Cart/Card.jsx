@@ -15,12 +15,12 @@ function Card({ product, isOnTrand, redirect }) {
   };
 
   const sectionStyle = isOnTrand
-    ? "min-w-[18rem] sm:min-w-[16rem] m-auto"
+    ? "min-w-[18rem] sm:min-w-[16rem] "
     : "min-w-[12rem] sm:min-w-[16rem]";
   const imgStyle = isOnTrand ? "h-36 w-36" : "h-28 w-28";
 
   return (
-    <section className={` max-w-[16rem] ${sectionStyle} sm:min-w-[16rem] mb-3 text-wrap rounded-xl p-4 pb-2 bg-white shadow-md`}>
+    <section className={` max-w-[16rem] ${sectionStyle} m-auto sm:m-0 sm:min-w-[16rem] mb-3 text-wrap rounded-xl p-4 pb-2 bg-white shadow-md`}>
       <div className="bg-gray-50 rounded-xl cursor-pointer">
         <img
           src={img}

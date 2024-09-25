@@ -26,7 +26,7 @@ function AppLayout() {
           </InnerNavbar>
         )}
 
-        <main className="pt-5">
+        <main className="sm:pt-5">
           <Outlet />
         </main>
         

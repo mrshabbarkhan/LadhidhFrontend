@@ -9,14 +9,14 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 function NavAllItems() {
 
   const iconMap = {
-    house: <GiChickenLeg className="text-sm" />,
-    box: <HiOutlineSquare3Stack3D className="text-sm" />,
-    bagshopping: <MdOutlineShoppingBag className="text-sm" />,
-    user: <HiOutlineUserCircle className="text-sm" />,
+    house: <GiChickenLeg  />,
+    box: <HiOutlineSquare3Stack3D />,
+    bagshopping: <MdOutlineShoppingBag  />,
+    user: <HiOutlineUserCircle  />,
   };
 
   return (
-    <div className=" grid grid-cols-4 transition ">
+    <div className=" grid grid-cols-4 transition py-2">
       {NavItems.map((route, index) => (
         <NavLink
           key={index}
@@ -28,9 +28,9 @@ function NavAllItems() {
           }
         >
           <span className="">{iconMap[route.class]}</span>
-          <span className="hover:cursor-pointer text-sm leading-6 font-semibold">
+          {/* <span className="hover:cursor-pointer text-sm leading-6 font-semibold">
             {route.tittle}
-          </span>
+          </span> */}
         </NavLink>
       ))}
     </div>

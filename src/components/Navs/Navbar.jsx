@@ -11,8 +11,8 @@ function Navbar() {
   const { user } = useLocalStorage();
   return (
     <section className="glassmorphism fixed right-0 left-0 top-0 z-20">
-      <header className="bg-cover w-full h-20 shadow-md">
-        <div className="absolute top-0 right-0 w-full pt-4 px-2 md:px-24 lg:px-36">
+      <header className="bg-cover w-full h-16 sm:h-20 shadow-md">
+        <div className="absolute top-0 right-0 w-full pt-2 sm:pt-4 px-2 md:px-24 lg:px-36">
           <div className="flex items-center gap-10">
             <h1 className="font-bold text-3xl">
               <span className="text-red-600">L</span>adh
