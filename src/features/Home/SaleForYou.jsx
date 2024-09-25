@@ -14,7 +14,7 @@ function SaleForYou() {
 
   return (
     <section className="mt-3 sm:mt-6 font-semibold text-lg w-full">
-      <h1 className="mb-2 text-xl py-1 sm:py-3">Sale for you</h1>
+      <h1 className="mb-2 text-xl py-1 sm:py-3 relative">Sale for you </h1>
       {isLoading ? (
         <Loader className={"h-40 w-full"} />
       ) : (

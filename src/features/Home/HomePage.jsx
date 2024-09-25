@@ -15,11 +15,13 @@ function HomePage() {
 
   return (
     <>
-        <LandingPage/>
+      <LandingPage />
       <div className="pt-5 relative overflow-hidden">
         <Category heading={"Shop by Categories"} btn={"view all"}>
           {categories?.map((dts) => (
-            <Categories product={dts} key={dts._id}
+            <Categories
+              product={dts}
+              key={dts._id}
               redirect={navigateCategories}
             />
           ))}

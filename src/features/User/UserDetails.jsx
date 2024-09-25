@@ -17,7 +17,7 @@ function UserDetails({seterFn, user }) {
             <p className="text-sm text-slate-400">{number}</p>
           </span>
         </div>
-          <i onClick={()=>seterFn(true)} className="fa-regular fa-pen-to-square"></i>
+          <i onClick={()=>seterFn(true)} className="fa-regular fa-pen-to-square m-2 cursor-pointer"></i>
       </div>
     );
 }

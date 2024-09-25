@@ -7,7 +7,7 @@ function OfferForYou() {
 
   return (
     <section className="sm:mt-8 overflow-hidden">
-      <h1 className="font-semibold text-xl py-2 sm:py-4">Offer for you</h1>
+      <h1 className="font-semibold text-xl py-2 sm:py-4 relative">Offer for you </h1>
       {isPending ? (
         <Loader className={"h-40 w-full"} />
       ) : (

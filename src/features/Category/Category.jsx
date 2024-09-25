@@ -11,7 +11,7 @@ function Category({ children, heading, btn }) {
     <section className="relative sm:mt-6">
       {heading && (
         <div className="flex justify-between items-center">
-          <h1 className="font-semibold text-xl">{heading}</h1>
+          <h1 className="font-semibold text-xl relative">{heading}  </h1>
           {btn && (
             <button
               onClick={() => navigate("/category")}

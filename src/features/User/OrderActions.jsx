@@ -8,25 +8,25 @@ function OrderActions() {
       <>
         <span>
           <Link to={"/orders"}>
-          <div className="w-fit p-3 rounded-full bg-primary m-auto">
-            <MyOrderSvg />
-          </div>
-          <p>My Order</p>
+            <div className="w-fit p-2 sm:p-3 rounded-full bg-primary m-auto ">
+              <MyOrderSvg />
+            </div>
+            <p className="text-sm sm:text-md">My Order</p>
           </Link>
         </span>
         <span>
           <Link to={"/favorites"}>
-          <div className="w-fit p-3 rounded-full bg-primary m-auto">
-            <MyWishlistSvg />
-          </div>
-          <p>My Wishlist</p>
+            <div className="w-fit p-2 sm:p-3 rounded-full bg-primary m-auto">
+              <MyWishlistSvg />
+            </div>
+            <p className="text-sm sm:text-md">My Wishlist</p>
           </Link>
         </span>
         <span>
-          <div className="w-fit p-3 rounded-full bg-primary m-auto">
+          <div className="w-fit p-2 sm:p-3 rounded-full bg-primary m-auto">
             <ReturnPrSvg />
           </div>
-          <p>Return Pr.</p>
+          <p className="text-sm sm:text-md">Return Pr.</p>
         </span>
       </>
     );
