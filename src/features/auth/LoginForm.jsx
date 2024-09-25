@@ -82,11 +82,12 @@ const LoginForm = ({ setRegister }) => {
 
           {/* Submit Button */}
           <button
-            type="submit"
+              type="submit"
+              style={{ cursor : isPending ? "not-allowed" : "pointer"}}
             disabled={isPending}
             className="w-full py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition duration-300 font-semibold"
           >
-            Login
+            {isPending ? "Submiting..." : "Login"}
           </button>
         </form>
       )}

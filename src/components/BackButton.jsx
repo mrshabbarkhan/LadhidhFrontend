@@ -4,7 +4,7 @@ function BackButton({ children }) {
   const navigate = useNavigate();
   return (
     <button
-      className="font-semibold text-lg sticky top-10 z-10 flex items-center gap-2"
+      className="font-semibold text-xl sticky top-10 z-10 flex items-center gap-2"
       onClick={() => navigate(-1)}
     >
       <i className="fa-solid fa-arrow-left"></i>

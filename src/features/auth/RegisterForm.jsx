@@ -42,7 +42,7 @@ function RegisterForm({ setRegister }) {
       <form onSubmit={handleVerify}>
         <div className="mb-4">
           <label
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-md font-medium 0  hover:under mb-1"
             htmlFor="name"
           >
             Name
@@ -61,7 +61,7 @@ function RegisterForm({ setRegister }) {
 
         <div className="mb-4">
           <label
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-md font-medium 0  hover:under mb-1"
             htmlFor="number"
           >
             Contact
@@ -80,7 +80,7 @@ function RegisterForm({ setRegister }) {
 
         <div className="mb-4">
           <label
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-md font-medium 0  hover:under mb-1"
             htmlFor="email"
           >
             Enter your email here
@@ -97,28 +97,9 @@ function RegisterForm({ setRegister }) {
           />
         </div>
 
-        {/* <div className="mb-4">
-          <label
-            className="block text-sm font-medium text-gray-700 mb-1"
-            htmlFor="Addres"
-          >
-            Address
-          </label>
-          <input
-            id="Addres"
-            type="text"
-            value={formData.Addres}
-            onChange={handleChange}
-            placeholder="Geeta Bhawan, Indore"
-            className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-            required
-            autoComplete="off"
-          />
-        </div> */}
-
         <div className="mb-4">
           <label
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-md font-medium 0  hover:under mb-1"
             htmlFor="password"
           >
             Password
@@ -137,16 +118,17 @@ function RegisterForm({ setRegister }) {
 
         <button
           type="submit"
+          style={{ cursor: isPending ? "not-allowed" : "pointer" }}
           disabled={isPending}
           className="w-full py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition duration-300 font-semibold"
         >
-          Register
+          {isPending ? "Submiting..." : "Register"}
         </button>
       </form>
 
       <p
         onClick={() => setRegister(false)}
-        className="mt-6 text-center text-sm text-gray-600 hover:underline"
+        className="mt-6 text-center text-md text-gray-600  hover:underline"
       >
         Already have an account?
         <button

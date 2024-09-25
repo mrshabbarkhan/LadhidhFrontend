@@ -15,8 +15,8 @@ function Navbar() {
         <div className="absolute top-0 right-0 w-full pt-2 sm:pt-4 px-2 md:px-24 lg:px-36">
           <div className="flex items-center gap-10">
             <h1 className="font-bold text-3xl">
-              <span className="text-red-600">L</span>adh
-              <span className="text-red-600">i</span>dh
+              <span className="text-primary">L</span>adh
+              <span className="text-primary">i</span>dh
             </h1>
             {/* <img className="w-16" src={logoImage} alt="" /> */}
             <div className="ml-2 flex items-center justify-between w-full">

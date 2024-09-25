@@ -12,7 +12,7 @@ function Categories({ product, redirect }) {
 
   return (
     <div
-      className=""
+      className="cursor-pointer"
       onClick={() => navigate(`${redirect}`)}
     >
     <img
