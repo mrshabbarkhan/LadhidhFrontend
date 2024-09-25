@@ -71,7 +71,7 @@ function AddressForm({ editableAddress, handleSubmit, showFn }) {
           onClick={() => showFn(false)}
           className="text-black absolute right-10 top-4"
         >
-          <i className="fa-regular fa-circle-xmark text-lg"></i>
+          <i className="fa-regular fa-circle-xmark text-lg cursor-pointer"></i>
         </div>
         <form onSubmit={handleFormSubmit}>
           <div className="col-span-full">
@@ -177,7 +177,7 @@ function AddressForm({ editableAddress, handleSubmit, showFn }) {
           <div className="mt-4">
             <button
               type="submit"
-              className="w-full bg-indigo-600 text-white py-2 rounded-md font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 flex items-center justify-center gap-2"
+              className="w-full bg-primary text-white py-2 rounded-md font-medium hover:bg-primary-dark focus:outline-none  flex items-center justify-center gap-2"
             >
               <>
                 {(isLoading || isPending) && <Spinner className="border-white"/>}

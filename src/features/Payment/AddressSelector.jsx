@@ -5,36 +5,35 @@ import { useLocalStorage } from "../auth/LocalStorageContext";
 import { useDeleteAddress } from "./useDeleteAddress";
 
 function AddressSelector() {
-  const [selectedAddressIndex, setSelectedAddressIndex] = useState(null); // Use index to track selected address
+  const [selectedAddressIndex, setSelectedAddressIndex] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [editableAddress, setEditableAddress] = useState(null);
 
   const { updateAddress } = useDeliveryAddress();
-  const {deleteAddress} = useDeleteAddress()
-  const { user } = useLocalStorage()
+  const { deleteAddress } = useDeleteAddress();
+  const { user } = useLocalStorage();
 
   const addresses = user?.address || [];
-  
+
   const handleAddressChange = (e) => {
-    const selectedIndex = parseInt(e.target.value); // Get the index from the event
-    const selected = addresses[selectedIndex]; // Use the index to find the selected address
-    setSelectedAddressIndex(selectedIndex); // Set the index as selected
+    const selectedIndex = parseInt(e.target.value);
+    const selected = addresses[selectedIndex];
+    setSelectedAddressIndex(selectedIndex);
     updateAddress(selected);
   };
 
   const handleEdit = (index) => {
-    setEditableAddress(addresses[index]); // Set the selected address for editing
-    setShowForm(true);  // Show the address form
+    setEditableAddress(addresses[index]);
+    setShowForm(true);
   };
 
   const handleNewAddress = (formData) => {
-    setEditableAddress(null); // Set to null to ensure the form is empty
-    setShowForm(true);   // Show the address form
-
+    setEditableAddress(null);
+    setShowForm(true);
   };
 
   return (
-    <div className="overflow-auto ax-h-96 min-h-40">
+    <div className="overflow-auto max-h-96 min-h-40">
       <h1 className="font-medium">Your Address</h1>
       <form>
         {addresses.map((address, index) => (
@@ -42,7 +41,7 @@ function AddressSelector() {
             key={index}
             className={`my-2 p-3 rounded-lg border ${
               selectedAddressIndex === index
-                ? "bg-blue-100 border-blue-500" // Highlight selected address
+                ? "bg-slate-100 border-gray-200 border-2"
                 : "bg-white border-gray-300"
             }`}
           >
@@ -50,35 +49,42 @@ function AddressSelector() {
               type="radio"
               id={`address-${index}`}
               name="address"
-              value={index} // Assign index as value
-              checked={selectedAddressIndex === index} // Check by index comparison
-              onChange={handleAddressChange} // Handle the change event
-              className="mr-2 accent-blue-500" // Custom styling for the radio button
+              value={index}
+              checked={selectedAddressIndex === index}
+              onChange={handleAddressChange}
+              className="mr-2 checked:accent-primary cursor-pointer"
             />
-            <label htmlFor={`address-${index}`} className="font-medium">
+            <label
+              htmlFor={`address-${index}`}
+              className="font-medium cursor-pointer ml-2"
+            >
               {address.addressLine1}, {address.addressLine2}, {address.city},{" "}
               {address.state}, {address.zipCode}
             </label>
-            <button
-              type="button"
-              onClick={() => deleteAddress(address._id)}
-              className="float-end ml-5 border px-2 font-medium text-blue-500 border-blue-500 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            >
-              Delete
-            </button>
-            <button
-              type="button" // Change button type to avoid form submission
-              onClick={() => handleEdit(index)} // Edit button passes the index of the address
-              className="float-end ml-5 border px-2 font-medium text-blue-500 border-blue-500 rounded hover:bg-blue-500 hover:text-white transition-colors"
-            >
-              Edit
-            </button>
+
+            {/* Responsive button group */}
+            <div className="flex flex-col sm:flex-row justify-start mt-2 sm:mt-2 ml-2">
+              <button
+                type="button"
+                onClick={() => deleteAddress(address._id)}
+                className="mb-2 sm:mb-0 sm:ml-5 border px-2 font-medium bg-primary-dark text-white rounded hover:bg-primary-dark hover:text-white transition-colors"
+              >
+                Delete
+              </button>
+              <button
+                type="button"
+                onClick={() => handleEdit(index)}
+                className="sm:ml-5 border px-2 font-medium   rounded bg-primary-dark text-white transition-colors"
+              >
+                Edit
+              </button>
+            </div>
           </div>
         ))}
         <button
           type="button"
           onClick={handleNewAddress}
-          className="border px-2 py-1 font-medium text-blue-500 border-blue-500 rounded hover:bg-blue-500 hover:text-white transition-colors"
+          className="border px-2 py-1 font-medium text-primary border-primary rounded hover:bg-primary-dark hover:text-white transition-colors"
         >
           + Add new
         </button>
@@ -103,7 +109,7 @@ function AddressSelector() {
         <AddressForm
           showFn={setShowForm}
           editableAddress={editableAddress}
-          handleSubmit={editableAddress ? handleEdit : handleNewAddress} // Pass the appropriate handler
+          handleSubmit={editableAddress ? handleEdit : handleNewAddress}
         />
       )}
     </div>

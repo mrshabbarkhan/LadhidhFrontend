@@ -22,7 +22,7 @@ const Accordion = ({
         className="w-full flex justify-between items-center py-2 focus:outline-none "
         onClick={onSelect} // Trigger onSelect when clicked
       >
-        <span className="text-sm font-semibold">
+        <span className="text-md font-semibold px-4">
           <i className={icon}></i>
           {title}
         </span>
@@ -35,14 +35,14 @@ const Accordion = ({
       {/* Content only shows when selected */}
       <div
         ref={contentRef}
-        className="transition-max-height duration-200 ease-in-out overflow-hidden"
-        style={{
-          maxHeight: isSelected
-            ? `${contentRef.current.scrollHeight}px`
-            : "0px",
-        }}
+        className="transition-max-height duration-200 ease-in-out overflow-hidden min-h-fit"
+        // style={{
+        //   maxHeight: isSelected
+        //     ? `${contentRef.current.scrollHeight}px`
+        //     : "0px",
+        // }}
       >
-        <div className="pb-2 pl-5 text-sm text-gray-600">
+        <div className="pb-2 sm:pl-5 text-sm text-gray-600 ">
           {content ? <p>{content || element}</p> : <AddressLayout />}
         </div>
       </div>

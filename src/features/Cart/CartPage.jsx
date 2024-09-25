@@ -89,7 +89,7 @@ function CartPage() {
         </div>
       </div>
 
-       <section className="w-full fixed bottom-0 left-0 md:px-24 lg:px-48 overflow-hidden text-xs sm:text-sm bg-white ">
+       <section className="w-full fixed bottom-0 left-0 md:px-24 lg:px-36 overflow-hidden text-xs sm:text-sm bg-white ">
           <CheckOutFooter qty={updatedCart.length} total={subtotal} />
       </section>
     </>

@@ -98,7 +98,7 @@ function RoutesWrapper() {
 function App() {
   return (
     <Provider store={store}>
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<Loader className={"h-96"} />}>
         <RoutesWrapper />
       </Suspense>
       <Toaster />
