@@ -41,9 +41,9 @@ function BannerPage() {
       ></input>
       <label
         htmlFor="fileInput"
-        className="bg-blue-500 inline-flex items-center px-3 py-0.5 mx-2 rounded-full hover:bg-blue-700 text-white cursor-pointer"
+        className="bg-primary inline-flex items-center px-3 py-0.5 mx-2 rounded-full hover:bg-primary-dark text-white cursor-pointer"
       >
-        {addingBanner ? <Spinner /> : "Add"}
+        {addingBanner ? <Spinner className="border-white" /> : "Add"}
       </label>
 
       <div className="flex flex-wrap gap-10 mt-2 ">

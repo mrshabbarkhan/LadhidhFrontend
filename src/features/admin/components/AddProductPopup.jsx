@@ -64,7 +64,7 @@ export default function AddProductPopup() {
     <>
       <button
         onClick={togglePopup}
-        className="px-4 py-1.5  bg-blue-500 font-medium text-white rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+        className="px-4 py-1.5  bg-primary font-medium text-white rounded-full hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-blue-300"
       >
         Add
       </button>

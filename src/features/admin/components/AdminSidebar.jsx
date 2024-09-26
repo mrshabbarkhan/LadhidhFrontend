@@ -13,14 +13,14 @@ const AdminSidebar = () => {
   }
 
   return (
-    <nav className="author-box h-screen w-52 bg-gray-200 relative overflow-hidden ">
+    <nav className="author-box h-screen w-52 bg-gray-100 relative overflow-hidden ">
       <ul className="flex flex-col  gap-4 text-left pl-5 pt-5 text-lg text-white">
         <NavLink
           to={"/"}
-          className=" w-full px-2 py-1 rounded-l-lg text-black flex items-center text-white-600"
+          className=" w-full  py-1 rounded-l-lg text-black flex items-center text-white-600 "
         >
           <span>
-            <i className="fa-solid fa-home mr-2 text-blue-500"></i>Home
+            <i className="fa-solid fa-home mr-2 "></i>Home
           </span>
         </NavLink>
 
@@ -31,7 +31,7 @@ const AdminSidebar = () => {
             ` ${
               isActive
                 ? "bg-white w-full px-2 py-1 rounded-l-xl flex items-center text-gray-900"
-                : "text-gray-500"
+                : "text-black"
             }`
           }
         >
@@ -45,7 +45,7 @@ const AdminSidebar = () => {
             ` ${
               isActive
                 ? "bg-white w-full px-2 py-1 rounded-l-xl flex items-center text-gray-900"
-                : "text-gray-500"
+                : "text-black"
             }`
           }
         >
@@ -59,7 +59,7 @@ const AdminSidebar = () => {
             ` ${
               isActive
                 ? "bg-white w-full px-2 py-1 rounded-l-xl flex items-center text-gray-900"
-                : "text-gray-500"
+                : "text-black"
             }`
           }
         >
@@ -74,7 +74,7 @@ const AdminSidebar = () => {
             ` ${
               isActive
                 ? "bg-white w-full px-2 py-1 rounded-l-xl flex items-center text-gray-900"
-                : "text-gray-500"
+                : "text-black"
             }`
           }
         >
@@ -89,7 +89,7 @@ const AdminSidebar = () => {
             ` ${
               isActive
                 ? "bg-white w-full px-2 py-1 rounded-l-xl flex items-center text-gray-900"
-                : "text-gray-500"
+                : "text-black"
             }`
           }
         >
@@ -100,7 +100,7 @@ const AdminSidebar = () => {
 
         <NavLink
           to={"/"}
-          className="bg-red-500 w-full px-2 py-1 rounded-l-lg flex items-center text-white-600 absolute bottom-5"
+          className="bg-primary-dark w-full px-2 py-1 rounded-l-lg flex items-center text-white-600 absolute bottom-5"
         >
           <li>
             <div

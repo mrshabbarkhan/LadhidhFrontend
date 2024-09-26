@@ -6,7 +6,7 @@ function LogoutSvg() {
         height="24px"
         viewBox="0 0 24 24"
         width="24px"
-        className="fill-gray-300"
+        className="fill-white"
       >
         <g></g>
         <g>
