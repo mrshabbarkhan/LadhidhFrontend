@@ -10,7 +10,7 @@
 }
 
 *::selection {
-  background-color: #d11243;
+  background-color: #FE1313;
   color: white;
 }
 
@@ -76,7 +76,7 @@
 .three-body {
   --uib-size: 35px;
   --uib-speed: 0.8s;
-  --uib-color: #d11243;
+  --uib-color: #FE1313;
   position: relative;
   display: inline-block;
   height: var(--uib-size);

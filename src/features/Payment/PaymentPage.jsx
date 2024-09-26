@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Accordion from "./Accordion";
 import { useDeliveryAddress } from "./DeliveryAddressContext";
+import { useAddress } from "./useAddress";
 
 // import CreditDebit from "./components/CreditDebit";
 // import GooglePay from "./components/GooglePay";
@@ -8,7 +9,8 @@ import { useDeliveryAddress } from "./DeliveryAddressContext";
 // import Wallet from "./components/Wallet";
 
 function PaymentPage() {
-    const { address } = useDeliveryAddress()
+  const { address } = useDeliveryAddress()
+  const {} = useAddress()
   const [selectedAccordion, setSelectedAccordion] = useState(null); // State to track selected accordion
 
   const data = [

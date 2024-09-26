@@ -8,10 +8,13 @@ export function useUpdateAddress() {
   const { mutate: updateAddress, isPending , isSuccess} = useMutation({
     mutationFn: editAddress,
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey : ['address']
+      })
       toast.success("Address updated");
     },
     onError: (err) => {
-      toast.error("oops something went wrong"), console.log(err);
+      toast.error("Please try later..."), console.log(err);
     },
   });
 

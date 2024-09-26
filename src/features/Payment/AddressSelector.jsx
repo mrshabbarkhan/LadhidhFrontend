@@ -3,6 +3,8 @@ import AddressForm from "./AddressForm";
 import { useDeliveryAddress } from "./DeliveryAddressContext";
 import { useLocalStorage } from "../auth/LocalStorageContext";
 import { useDeleteAddress } from "./useDeleteAddress";
+import { useAddress } from "./useAddress";
+import { useUpdateAddress } from "./useUpdateAddress";
 
 function AddressSelector() {
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(null);
@@ -10,10 +12,10 @@ function AddressSelector() {
   const [editableAddress, setEditableAddress] = useState(null);
 
   const { updateAddress } = useDeliveryAddress();
-  const { deleteAddress } = useDeleteAddress();
-  const { user } = useLocalStorage();
+  const { deleteAddress, isPending } = useDeleteAddress();
 
-  const addresses = user?.address || [];
+  const {address} = useAddress()
+  const {addresses=[]} = address || [];
 
   const handleAddressChange = (e) => {
     const selectedIndex = parseInt(e.target.value);
@@ -36,7 +38,7 @@ function AddressSelector() {
     <div className="overflow-auto max-h-96 min-h-40">
       <h1 className="font-medium">Your Address</h1>
       <form>
-        {addresses.map((address, index) => (
+        {addresses?.map((address, index) => (
           <div
             key={index}
             className={`my-2 p-3 rounded-lg border ${
@@ -69,7 +71,7 @@ function AddressSelector() {
                 onClick={() => deleteAddress(address._id)}
                 className="mb-2 sm:mb-0 sm:ml-5 border px-2 font-medium bg-primary-dark text-white rounded hover:bg-primary-dark hover:text-white transition-colors"
               >
-                Delete
+                {isPending ? "Delete..." :"Delete"}
               </button>
               <button
                 type="button"
@@ -84,7 +86,7 @@ function AddressSelector() {
         <button
           type="button"
           onClick={handleNewAddress}
-          className="border px-2 py-1 font-medium text-primary border-primary rounded hover:bg-primary-dark hover:text-white transition-colors"
+          className="border px-2 py-1 mt-2 font-medium text-primary border-primary rounded hover:bg-primary-dark hover:text-white transition-colors"
         >
           + Add new
         </button>

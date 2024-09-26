@@ -1,4 +1,3 @@
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { removeAddress } from "../services/apiAddress";
 import toast from "react-hot-toast";
@@ -12,6 +11,9 @@ export function useDeleteAddress() {
   } = useMutation({
     mutationFn: removeAddress,
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["address"],
+      });
       toast.success("Address deleted");
     },
     onError: (err) => {

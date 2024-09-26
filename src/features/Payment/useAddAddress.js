@@ -7,6 +7,9 @@ export function useAddAddress() {
   const { mutate: addNewAddress, isPending: isLoading, isSuccess } = useMutation({
     mutationFn: addAddress,
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["address"],
+      });
       toast.success("Address Added");
     },
     onError: (err) => {

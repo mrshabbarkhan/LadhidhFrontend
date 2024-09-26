@@ -66,6 +66,7 @@ function CartPage() {
               img={dts.product.img}
               title={dts.product.title}
               price={dts.product.price}
+              discount= {dts.product.discount}
               id={dts.product._id}
               pack={dts.product.pack}
               onQtyChange={handleQtyChange} // Pass the handler

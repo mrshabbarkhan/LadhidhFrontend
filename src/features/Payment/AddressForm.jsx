@@ -39,7 +39,13 @@ function AddressForm({ editableAddress, handleSubmit, showFn }) {
         zipCode: "",
       });
     }
-  }, [editableAddress]);
+  }, [editableAddress, isUpdated, isSuccess]);
+
+  useEffect(() =>{
+    if (isSuccess || isUpdated) {
+        showFn(false); // Close the form after submission
+      }
+  },[isSuccess , isUpdated])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,14 +59,10 @@ function AddressForm({ editableAddress, handleSubmit, showFn }) {
     e.preventDefault();
     if (editableAddress) {
       updateAddress({ ...formData, addressId: editableAddress._id });
-      if (isUpdated) {
-        showFn(false); // Close the form after submission
-      }
+     
     } else {
       addNewAddress({ ...formData, country: "india" });
-      if (isSuccess) {
-        showFn(false); // Close the form after submission
-      }
+      
     }
   };
 
