@@ -17,7 +17,7 @@ function AppLayout() {
 
   return (
     <>
-      <div className="pt-16 px-2 md:px-24 lg:px-36 reletive top-0 overflow-hidden mb-20 ">
+      <div className="pt-16 px-2 md:px-24 lg:px-36 reletive top-0 overflow-hidden">
         {isHomePage ? (
           <Navbar />
         ) : (
@@ -26,7 +26,7 @@ function AppLayout() {
           </InnerNavbar>
         )}
 
-        <main className="sm:pt-5">
+        <main className="sm:pt-5 ">
           <Outlet />
         </main>
         

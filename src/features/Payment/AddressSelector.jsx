@@ -1,10 +1,8 @@
 import { useState } from "react";
 import AddressForm from "./AddressForm";
 import { useDeliveryAddress } from "./DeliveryAddressContext";
-import { useLocalStorage } from "../auth/LocalStorageContext";
 import { useDeleteAddress } from "./useDeleteAddress";
 import { useAddress } from "./useAddress";
-import { useUpdateAddress } from "./useUpdateAddress";
 
 function AddressSelector() {
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(null);
@@ -29,7 +27,7 @@ function AddressSelector() {
     setShowForm(true);
   };
 
-  const handleNewAddress = (formData) => {
+  const handleNewAddress = () => {
     setEditableAddress(null);
     setShowForm(true);
   };
@@ -43,7 +41,7 @@ function AddressSelector() {
             key={index}
             className={`my-2 p-3 rounded-lg border ${
               selectedAddressIndex === index
-                ? "bg-slate-100 border-gray-200 border-2"
+                ? "bg-slate-100"
                 : "bg-white border-gray-300"
             }`}
           >
@@ -69,14 +67,15 @@ function AddressSelector() {
               <button
                 type="button"
                 onClick={() => deleteAddress(address._id)}
-                className="mb-2 sm:mb-0 sm:ml-5 border px-2 font-medium bg-primary-dark text-white rounded hover:bg-primary-dark hover:text-white transition-colors"
+                style={{ cursor: isPending ? "not-allowed" : "pointer"}}
+                className="mb-2 sm:mb-0 sm:ml-5 border px-2 py-0.5 font-medium bg-primary-dark text-white rounded hover:bg-primary-dark hover:text-white transition-colors"
               >
-                {isPending ? "Delete..." :"Delete"}
+                Delete
               </button>
               <button
                 type="button"
                 onClick={() => handleEdit(index)}
-                className="sm:ml-5 border px-2 font-medium   rounded bg-primary-dark text-white transition-colors"
+                className="sm:ml-5 border px-2 font-medium rounded bg-primary-dark text-white transition-colors"
               >
                 Edit
               </button>
@@ -95,7 +94,7 @@ function AddressSelector() {
       <div className="mt-4">
         <p className="font-medium">Selected Address:</p>
         {selectedAddressIndex !== null ? (
-          <p className="text-gray-700 font-semibold">
+          <p className="font-semibold text-black text-md">
             {addresses[selectedAddressIndex].addressLine1},{" "}
             {addresses[selectedAddressIndex].addressLine2},{" "}
             {addresses[selectedAddressIndex].city},{" "}

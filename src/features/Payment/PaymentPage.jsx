@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Accordion from "./Accordion";
 import { useDeliveryAddress } from "./DeliveryAddressContext";
 import { useAddress } from "./useAddress";
+import { usePlacedOrder } from "../Order/usePlacedOrder";
 
 // import CreditDebit from "./components/CreditDebit";
 // import GooglePay from "./components/GooglePay";
@@ -10,8 +11,10 @@ import { useAddress } from "./useAddress";
 
 function PaymentPage() {
   const { address } = useDeliveryAddress()
-  const {} = useAddress()
-  const [selectedAccordion, setSelectedAccordion] = useState(null); // State to track selected accordion
+  const { } = useAddress()
+  const {postOrder, isPending, isSuccess} = usePlacedOrder()
+
+  const [selectedAccordion, setSelectedAccordion] = useState(null); 
 
   const data = [
     {
@@ -22,12 +25,19 @@ function PaymentPage() {
   ];
 
   const handleSelectAccordion = (id) => {
-    setSelectedAccordion(id); // Set the selected accordion by id
+    setSelectedAccordion(id); 
   };
 
-  const handleSubmit = (formData) => {
-    console.log(formData);
-  };
+  const handleSubmit = () => {
+    const formData = {
+      shippingAddress: address,
+      paymentMethod: "Cod",
+    };
+
+    if (address) {
+      postOrder(formData)
+    }
+  }
 
   return (
       <div>
@@ -41,14 +51,13 @@ function PaymentPage() {
               icon={item.icon}
               element={item.element}
               isSelected={selectedAccordion === item.id} // Check if this accordion is selected
-              onSelect={() => handleSelectAccordion(item.id)} // Set as selected when clicked
-              handleSubmit={handleSubmit}
+              onSelect={() => handleSelectAccordion(item.id)} 
             />
           ))}
         </div>
         {address && <div className="w-full bg-white text-center z-30 px-2 py-3 fixed bottom-0 left-0">
-          <div className="z-30 bg-primary hover:bg-primary-dark cursor-pointer text-md font-semibold py-2 max-w-5xl rounded-xl m-auto text-white">
-            Checkout
+          <div onClick={handleSubmit} className="z-30 bg-primary hover:bg-primary-dark cursor-pointer text-md font-semibold py-2 max-w-5xl rounded-xl m-auto text-white">
+            {isPending ? "Placing your Order..."  : "Checkout"}
           </div>
         </div>}
       </div>

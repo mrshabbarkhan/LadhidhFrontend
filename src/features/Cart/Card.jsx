@@ -20,7 +20,9 @@ function Card({ product, isOnTrand, redirect }) {
   const imgStyle = isOnTrand ? "h-36 w-36" : "h-28 w-28";
 
   return (
-    <section className={` max-w-[16rem] ${sectionStyle} m-auto sm:m-0 sm:min-w-[16rem] mb-3 text-wrap rounded-xl p-4 pb-2 bg-white shadow-md`}>
+    <section
+      className={` max-w-[16rem] ${sectionStyle} m-auto sm:m-0 sm:min-w-[16rem] mb-3 text-wrap rounded-xl p-4 pb-2 bg-white shadow-md`}
+    >
       <div className="bg-gray-50 rounded-xl cursor-pointer">
         <img
           src={img}
@@ -39,12 +41,14 @@ function Card({ product, isOnTrand, redirect }) {
         )}
         <div className="flex justify-between items-center mt-2">
           <span className="flex gap-2 items-center">
-            <h1 className="text-xl text-red-700 font-medium">
+            <h1 className="text-xl text-primary font-medium">
               &#x20B9; {price}
             </h1>
-            {isOnTrand && <span className=" sm:inline line-through text-gray-500 font-medium">
-              &#8377;{oldPrice || null}
-            </span>}
+            {isOnTrand && (
+              <span className=" sm:inline line-through text-gray-500 font-medium">
+                &#8377;{oldPrice || null}
+              </span>
+            )}
           </span>
           <AddToButton {...product} redirect={"/cart"} />
         </div>

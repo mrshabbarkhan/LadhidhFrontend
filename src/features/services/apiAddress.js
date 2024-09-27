@@ -6,7 +6,6 @@ const base_url = "/api/user/";
 export const getAddress = async () => {
   const options = getHeader();
   const res = await axios.get(base_url + "Address", options);
-  console.log(res.data)
   return res.data;
 };
 

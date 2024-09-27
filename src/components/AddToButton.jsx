@@ -33,7 +33,7 @@ function AddToButton({ redirect = "/cart", ...props }) {
       onClick={handleClick}
       className="border border-primary text-sm font-semibold px-3 py-1 rounded-lg hover:text-white hover:bg-primary-dark transition flex justify-center"
     >
-      {isLoading ? <Spinner /> : "Add"}
+      {isLoading ? <Spinner className="border-white" /> : "Add"}
     </button>
   );
 }

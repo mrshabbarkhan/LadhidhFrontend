@@ -74,7 +74,7 @@ function CartPage() {
           ))
           .reverse()}
 
-      <div className="p-3 rounded-lg border-2 border-dashed border-primary">
+      <div className="p-3 rounded-lg border-2 border-dashed border-primary mb-20">
         <h1 className="font-semibold text-lg">Bill Details</h1>
         <div className="flex justify-between">
           <p>Subtotal</p>

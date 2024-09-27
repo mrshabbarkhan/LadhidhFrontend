@@ -31,7 +31,7 @@ function ProfilePage() {
           <section className="flex items-center justify-around py-6 rounded-xl my-4 Profile_List">
             <OrderActions />
           </section>
-          <section>
+          <section className="mb-20">
             <UserFooter />
           </section>
         </>

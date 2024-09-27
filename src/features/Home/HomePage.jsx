@@ -7,6 +7,7 @@ import TrendProducts from "./TrendProducts";
 import { useCategory } from "../admin/page/Categories/useCategory";
 
 import LandingPage from "./LandingPage";
+import Footer from "./Footer";
 
 function HomePage() {
   const navigateCategories = "/category";
@@ -30,6 +31,7 @@ function HomePage() {
         <SaleForYou />
         <TrendProducts />
         <NavigationBar />
+        <Footer/>
       </div>
     </>
   );

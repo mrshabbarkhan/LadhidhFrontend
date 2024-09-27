@@ -23,7 +23,7 @@ function UserFooter() {
             <i className="fa fa-angle-right"></i>
           </span>
         </div> */}
-      <div className="flex items-center gap-3 border-b py-3">
+      <div className="flex items-center gap-3 border-b py-3 ">
         <OrderBagSvg />
         <span className="flex justify-between items-center grow">
           <span>
