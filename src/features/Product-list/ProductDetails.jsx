@@ -2,12 +2,11 @@ import { useState } from "react";
 import FreeDevSvg from "../../assets/ui/FreeDevSvg";
 import StarSvg from "../../assets/ui/StarSvg";
 import {  useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useAddCart } from "../Cart/useAddCart";
 
 function ProductDetails() {
   const [tempQty, setTempQty] = useState(1);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { product } = useSelector((state) => state.productDetails);
@@ -28,8 +27,8 @@ function ProductDetails() {
 
   return (
     <>
-      <div className=" absolute top-6 left-0 right-0 object-cover pt-12">
-        <img className="w-auto mx-auto h-[50vh]  opacity-85 " src={img} alt="" />
+      <div className=" absolute top-6 left-0 right-0 object-cover pt-12 bg-gray-100">
+        <img className="w-auto mx-auto h-[50vh] drop-shadow-2xl" src={img} alt="" />
         <section className="bg-white h-52 pt-2 px-2 md:px-24 lg:px-48 reletive top-0 overflow-hidden pb-80 md:pb-56">
           <h1 className="font-semibold text-xl">{product.tittle|| product.title}</h1>
           <div className="flex items-center gap-3 font-semibold">
