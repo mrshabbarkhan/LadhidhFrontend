@@ -10,12 +10,17 @@
 }
 
 *::selection {
+
   background-color: #FE1313;
   color: white;
 }
 
 *::-webkit-scrollbar {
   display: none;
+}
+
+h1,h2,h3,p{
+  cursor: default;
 }
 
 .categories_img img {

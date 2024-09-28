@@ -31,16 +31,16 @@ function EditUserDetails({ user, onSubmit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="mb-16">
       <div className="">
-        {isInPaymentPage || <div className="pb-5">
+        {isInPaymentPage || <div className="">
           <p className="mt-1 text-center font-semibold text-sm leading-6 text-gray-600">
             This information will be displayed publicly so be careful what you
             share.
           </p>
         </div>}
 
-        <div className="border-b border-gray-900/10 pb-12">
+        <div className=" pb-12">
           {isInPaymentPage || (
             <>
               <h2 className="text-base font-semibold leading-7 text-gray-900">
@@ -217,7 +217,7 @@ function EditUserDetails({ user, onSubmit }) {
         </div>
       </div>
 
-      <div className="mt-6 flex items-center justify-end gap-x-6">
+      <div className="mt-4 flex items-center justify-end gap-x-6">
         <button
           onClick={() => {}}
           type="button"

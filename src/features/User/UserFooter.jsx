@@ -6,35 +6,34 @@ import RewardSvg from "../../assets/ui/RewardSvg";
 import WalletSvg from "../../assets/ui/WalletSvg";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "../auth/LocalStorageContext";
+import { IoBagHandleOutline } from "react-icons/io5";
+import { LuMapPin } from "react-icons/lu";
+import { RiMapPin2Line } from "react-icons/ri";
+import { GoBell } from "react-icons/go";
 
 function UserFooter() {
-
-  const { user } = useLocalStorage()
+  const { user } = useLocalStorage();
 
   return (
     <>
-      {/* <div className="flex items-center gap-3 border-b py-4">
-          <RewardSvg />
-          <span className="flex justify-between items-center grow">
-            <span >
-              <h1 className="font-medium text-lg">Rewards</h1>
-              <p className="text-sm text-slate-400">Get Exiting rewards</p>
-            </span>
-            <i className="fa fa-angle-right"></i>
-          </span>
-        </div> */}
-      <div className="flex items-center gap-3 border-b py-3 ">
-        <OrderBagSvg />
+      <Link
+        to={"/profile/orders"}
+        className="flex items-center gap-3 border-b py-3 cursor-pointer"
+      >
+        <IoBagHandleOutline className="text-2xl" />
         <span className="flex justify-between items-center grow">
           <span>
-            <h1 className="font-medium text-lg">Orders</h1>
-            <p className="text-sm text-slate-400">Order Placed: 1</p>
+            <h1 className="font-medium text-lg cursor-pointer">Orders</h1>
+            <p className="text-sm text-slate-400 cursor-pointer">
+              Order Placed: 1
+            </p>
           </span>
           <i className="fa fa-angle-right"></i>
         </span>
-      </div>
-      <div className="flex items-center gap-3 border-b py-3">
-        <AddressSvg />
+      </Link>
+
+      <Link to={"/profile/address"} className="flex items-center gap-3 border-b py-3">
+        <RiMapPin2Line className="text-2xl " />
         <span className="flex justify-between items-center grow">
           <span>
             <h1 className="font-medium text-lg">Address</h1>
@@ -42,19 +41,10 @@ function UserFooter() {
           </span>
           <i className="fa fa-angle-right"></i>
         </span>
-      </div>
-      {/* <div className="flex items-center gap-3 border-b py-3">
-          <WalletSvg/> 
-          <span className="flex justify-between items-center grow">
-            <span >
-              <h1 className="font-medium text-lg">Wallet</h1>
-              <p className="text-sm text-slate-400">Add Cash+</p>
-            </span>
-            <i className="fa fa-angle-right"></i>
-          </span>
-        </div> */}
+      </Link>
+
       <div className="flex items-center gap-3 border-b py-3">
-        <NotifiactionSvg />
+        <GoBell className="text-xl" />
         <span className="flex justify-between items-center grow">
           <span>
             <h1 className="font-medium text-lg">Notification</h1>
@@ -64,18 +54,20 @@ function UserFooter() {
         </span>
       </div>
 
-     {user?.isAdmin && <Link to={"/admin"}>
-      <div className="flex items-center gap-3 border-b py-3">
-        <MdOutlineDashboardCustomize className="text-gray-300" />
-        <span className="flex justify-between items-center grow">
-          <span>
-            <h1 className="font-medium text-lg">Dashboard</h1>
-            <p className="text-sm text-slate-400">Hello ladhidh </p>
-          </span>
-          <i className="fa fa-angle-right"></i>
-        </span>
-      </div>
-      </Link>}
+      {user?.isAdmin && (
+        <Link to={"/admin"}>
+          <div className="flex items-center gap-3 border-b py-3">
+            <MdOutlineDashboardCustomize className=" text-2xl" />
+            <span className="flex justify-between items-center grow">
+              <span>
+                <h1 className="font-medium text-lg">Dashboard</h1>
+                <p className="text-sm text-slate-400">Hello ladhidh </p>
+              </span>
+              <i className="fa fa-angle-right"></i>
+            </span>
+          </div>
+        </Link>
+      )}
     </>
   );
 }

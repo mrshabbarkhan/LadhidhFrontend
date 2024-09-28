@@ -15,6 +15,7 @@ function ProductDetails() {
   const { price, oldPrice, img } = product;
 
   async function handleCart() {
+
     const formData = {
       productId: product.id || product._id,
       quantity: tempQty,
@@ -28,9 +29,24 @@ function ProductDetails() {
   return (
     <>
       <div className=" absolute top-6 left-0 right-0 object-cover pt-12 bg-gray-100">
-        <img className="w-auto mx-auto h-[50vh] drop-shadow-2xl" src={img} alt="" />
+        <img
+          className="w-auto mx-auto h-[50vh] drop-shadow-2xl"
+          src={img}
+          alt="product-details"
+        />
         <section className="bg-white h-52 pt-2 px-2 md:px-24 lg:px-48 reletive top-0 overflow-hidden pb-80 md:pb-56">
-          <h1 className="font-semibold text-xl">{product.tittle|| product.title}</h1>
+          <h1 className="font-semibold text-xl">
+            {product.tittle || product.title}
+          </h1>
+          <p className="leading-5 mb-4">
+            Experience the premium quality and tenderness of our Fresh Chicken
+            Breast Fillets, perfect for your everyday cooking needs. Sourced
+            from healthy, farm-raised chickens, these boneless fillets are 100%
+            natural, antibiotic-free, and expertly cut to provide the best
+            flavor and texture in every bite. Whether you're grilling, baking,
+            or pan-frying, our chicken breast is versatile, lean, and packed
+            with protein to keep your meals healthy and delicious.
+          </p>
           <div className="flex items-center gap-3 font-semibold">
             <span className="flex items-center gap-1">
               <StarSvg /> 4.6
@@ -42,7 +58,7 @@ function ProductDetails() {
               <FreeDevSvg /> Free Delivery
             </span>
           </div>
-          <div className="text-sm pt-4 ">Price</div>
+          <p className="text-sm pt-4 ">Price</p>
           <div className="flex items-center justify-between ">
             <div className="flex items-center gap-2">
               <h1 className="text-2xl text-primary font-bold">
@@ -55,7 +71,7 @@ function ProductDetails() {
             <div className="flex items-center">
               <span
                 onClick={() => setTempQty(tempQty > 1 ? tempQty - 1 : tempQty)}
-                className="bg-primary text-white px-3 font-semibold text-lg rounded-lg"
+                className="bg-primary cursor-pointer text-white px-3 font-semibold text-lg rounded-lg"
               >
                 -
               </span>
@@ -64,7 +80,7 @@ function ProductDetails() {
               </span>
               <span
                 onClick={() => setTempQty(tempQty + 1)}
-                className="bg-primary text-white px-2 font-semibold text-lg rounded-lg"
+                className="bg-primary cursor-pointer text-white px-2 font-semibold text-lg rounded-lg"
               >
                 +
               </span>

@@ -8,29 +8,29 @@ function AddressSelector() {
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [editableAddress, setEditableAddress] = useState(null);
-
-  const { updateAddress } = useDeliveryAddress();
-  const { deleteAddress, isPending } = useDeleteAddress();
-
-  const {address} = useAddress()
-  const {addresses=[]} = address || [];
-
-  const handleAddressChange = (e) => {
-    const selectedIndex = parseInt(e.target.value);
-    const selected = addresses[selectedIndex];
-    setSelectedAddressIndex(selectedIndex);
-    updateAddress(selected);
-  };
-
-  const handleEdit = (index) => {
-    setEditableAddress(addresses[index]);
-    setShowForm(true);
-  };
-
-  const handleNewAddress = () => {
-    setEditableAddress(null);
-    setShowForm(true);
-  };
+  
+    const { updateAddress } = useDeliveryAddress();
+    const { deleteAddress, isPending } = useDeleteAddress();
+  
+    const {address} = useAddress()
+    const {addresses=[]} = address || [];
+  
+    const handleAddressChange = (e) => {
+      const selectedIndex = parseInt(e.target.value);
+      const selected = addresses[selectedIndex];
+      setSelectedAddressIndex(selectedIndex);
+      updateAddress(selected);
+    };
+  
+    const handleEdit = (index) => {
+      setEditableAddress(addresses[index]);
+      setShowForm(true);
+    };
+  
+    const handleNewAddress = () => {
+      setEditableAddress(null);
+      setShowForm(true);
+    };
 
   return (
     <div className="overflow-auto max-h-96 min-h-40">
@@ -38,7 +38,7 @@ function AddressSelector() {
       <form>
         {addresses?.map((address, index) => (
           <div
-            key={index}
+            key={address._id}
             className={`my-2 p-3 rounded-lg border ${
               selectedAddressIndex === index
                 ? "bg-slate-100"

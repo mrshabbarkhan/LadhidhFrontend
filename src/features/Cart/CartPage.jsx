@@ -47,16 +47,19 @@ function CartPage() {
 
   if (!updatedCart?.length) {
     return (
+      <>
       <img
         className="m-auto mt-10"
         src="src\assets\empty-cart.gif"
         alt="cart is empty"
-      />
+        />
+        <h1 className="text-center mt-20 text-xl font-semibold">Your cart is empty</h1>
+        </>
     );
   }
 
   return (
-    <>
+    <section>
       {updatedCart.length &&
         updatedCart
           ?.map((dts, index) => (
@@ -93,7 +96,7 @@ function CartPage() {
        <section className="w-full fixed bottom-0 left-0 md:px-24 lg:px-36 overflow-hidden text-xs sm:text-sm bg-white ">
           <CheckOutFooter qty={updatedCart.length} total={subtotal} />
       </section>
-    </>
+    </section>
   );
 }
 

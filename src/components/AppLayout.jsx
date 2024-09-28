@@ -1,4 +1,4 @@
-import { Outlet, useLocation, useNavigation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./Navs/Navbar";
 import InnerNavbar from "./Navs/InnerNavbar";
 import NavigationBar from "./Navs/NavigationBar";
@@ -11,9 +11,10 @@ function AppLayout() {
   const pathName3 = location.pathname === "/cart" && "Cart";
   const pathName4 = location.pathname === "/profile" && "Profile";
   const pathName5 = location.pathname === "/product-list" && "Product List";
-  const pathName6 = location.pathname === "/orders" && "Orders";
+  const pathName6 = location.pathname === "/profile/orders" && "Orders";
   const pathName7 = location.pathname === "/payment" && "Payment";
   const pathName8 = location.pathname.startsWith("/product-list") && "Product-list";
+  const pathname9 = location.pathname ==="/profile/address" && "Address"
 
   return (
     <>
@@ -22,7 +23,7 @@ function AppLayout() {
           <Navbar />
         ) : (
           <InnerNavbar>
-            {pathName1 || pathName2 || pathName3 || pathName4 || pathName5 || pathName6 || pathName7 || pathName8}
+            {pathName1 || pathName2 || pathName3 || pathName4 || pathName5 || pathName6 || pathName7 || pathName8 || pathname9}
           </InnerNavbar>
         )}
 

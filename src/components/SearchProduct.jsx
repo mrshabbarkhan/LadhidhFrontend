@@ -47,7 +47,7 @@ function SearchProduct() {
   );
 
   return (
-    <div className="text-center w-72  m-auto   ">
+    <div className="text-center w-72  m-auto ">
       <div className="border-2 pl-2 w-full h-9 rounded-xl flex items-center  focus-within:border-primary overflow-hidden relative">
         <SearchSvg />
         <div className="w-full ">

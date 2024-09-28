@@ -3,6 +3,8 @@ import BackButton from "../BackButton";
 import ShoppingCart from "../ShoppingCart";
 import { useDispatch, useSelector } from "react-redux";
 import { addToFavorite, removeFromFavorite } from "../../features/Favorites/favoriteSlice";
+import { useLocalStorage } from "../../features/auth/LocalStorageContext";
+import { AiOutlineLogout } from "react-icons/ai";
 
 function InnerNavbar({ children }) {
   const location = useLocation();
@@ -12,6 +14,7 @@ function InnerNavbar({ children }) {
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.productDetails);
   const { favoriteProducts } = useSelector((state) => state.favoriteProducts);
+  const {user, logOutUser } = useLocalStorage();
 
   const isInFavoriteProduct = favoriteProducts.some(
     (item) => item._id === product._id
@@ -38,17 +41,22 @@ function InnerNavbar({ children }) {
           </div>
           <i
             onClick={() => handleFavorite()}
-            className={`fa-${
+            className={`cursor-pointer fa-${
               isInFavoriteProduct ? "solid" : "regular"
             } fa-heart ${
-              isInFavoriteProduct ? "text-red-500" : "text-white"
+              isInFavoriteProduct ? "text-primary" : "text-white"
             } bg-black/30  px-1.5 rounded-full text-lg`}
           ></i>
         </div>
       ) : (
         <BackButton>{children}</BackButton>
       )}
-      <div>{pathName4 && <ShoppingCart />}</div>
+      <div className="flex items-center">
+        {user && pathName4 && <span className="text-lg mx-4 flex items-center gap-2" onClick={() => logOutUser()}>
+          <AiOutlineLogout className="text-xl" /> logout
+        </span>}
+        {pathName4 && <ShoppingCart />}
+      </div>
     </nav>
   );
 }

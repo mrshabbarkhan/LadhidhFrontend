@@ -35,7 +35,7 @@ function Card({ product, isOnTrand, redirect }) {
         <h1 className="mt-2 text-lg leading-6 font-semibold">{title}</h1>
         <p className="text-xs font-medium text-primary py-2">{pack}</p>
         {discount && (
-          <p className="text-xs font-light">
+          <p className="text-xs ">
             FLAT {discount}% off Code: {code}
           </p>
         )}

@@ -30,13 +30,12 @@ function TrendProducts() {
         <Loader className="h-40 w-full" />
       ) : (
         <div
-          data-aos="fade-up"
-          className="flex flex-wrap gap-x-4 gap-y-8 justify-start w-full"
+          className="flex flex-wrap gap-x-4 gap-y-4 justify-start w-full"
         >
-          {products.map((dts, index) => (
+          {products.map((product) => (
             <Card
-              key={dts.id} // Prefer using product.id as the key
-              product={dts}
+              key={product._id} 
+              product={product}
               isOnTrand={true}
               redirect={navigateToProductList}
             />

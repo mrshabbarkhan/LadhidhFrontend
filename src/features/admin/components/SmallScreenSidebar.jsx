@@ -6,13 +6,13 @@ const SmallScreenSidebar = ({ on, setOn }) => {
   return (
     <>
       <div
-        className={`dark-overlay ${on && "active"}`}
+        className={`dark-overlay active fixed h-full w-full bg-black`}
         onClick={() => setOn(!on)}
       ></div>
       <div
         className={`sidebar fixed inset-y-0 left-0 w-[200px] z-[999999] transition-all duration-500 ${
           on ? "flex" : "hidden"
-        } flex-col overflow-y-scroll bg-white`}
+        } flex-col overflow-y-scroll`}
         onClick={() => setOn(!on)}
       >
         <AdminSidebar />

@@ -24,6 +24,7 @@ import { Toaster } from "react-hot-toast";
 import AuthButton from "./features/auth/AuthButton";
 import { useLocalStorage } from "./features/auth/LocalStorageContext";
 import { DeliveryAddressProvider } from "./features/Payment/DeliveryAddressContext";
+import UserAddress from "./features/User/UserAddress";
 
 const HomePage = lazy(() => import("./features/Home/HomePage"));
 const CategoryPage = lazy(() => import("./features/Category/CategoryPage"));
@@ -54,9 +55,10 @@ function RoutesWrapper() {
         { path: "/profile", element: <ProfilePage /> },
         { path: "/product-list/:id", element: <ProductListPage /> },
         { path: "/product-details", element: <ProductDetails /> },
-        { path: "/orders", element: <OrderPage /> },
+        { path: "/profile/orders", element: <OrderPage /> },
+        { path: "/profile/address", element: <UserAddress /> },
         {
-          path: "/payment",
+          path: "/payment" ,
           element: (
             <DeliveryAddressProvider>
               <PaymentPage />

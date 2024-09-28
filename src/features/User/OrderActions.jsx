@@ -7,7 +7,7 @@ function OrderActions() {
     return (
       <>
         <span>
-          <Link to={"/orders"}>
+          <Link to={"/profile/orders"}>
             <div className="w-fit p-2 sm:p-3 rounded-full bg-primary m-auto ">
               <MyOrderSvg />
             </div>

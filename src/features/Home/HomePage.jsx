@@ -19,10 +19,10 @@ function HomePage() {
       <LandingPage />
       <div className="pt-5 relative overflow-hidden">
         <Category heading={"Shop by Categories"} btn={"view all"}>
-          {categories?.map((dts) => (
+          {categories?.map((category) => (
             <Categories
-              product={dts}
-              key={dts._id}
+              product={category}
+              key={category._id}
               redirect={navigateCategories}
             />
           ))}

@@ -21,7 +21,7 @@ function ProfilePage() {
   }
 
   return (
-    <div>
+    <div >
       {user ? (
         <>
           <div className="flex gap-5">

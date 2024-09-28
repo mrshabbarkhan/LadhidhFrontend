@@ -121,11 +121,18 @@ function Footer() {
 
         {/* Footer Bottom */}
         <div className="text-center text-sm space-y-4">
-          <p>&copy; 2021 Ladhidh Pvt Ltd. All Rights Reserved.</p>
+          <p>&copy; 2024 Ladhidh Pvt Ltd. All Rights Reserved.</p>
           <p className="text-sm text-gray-400">
-            "Crafted by Aimfortech, delivering a delicious e-commerce experience
-            that brings fresh flavors to your doorstep with cutting-edge
-            technology."
+            "Crafted by{" "}
+            <a
+              href="http://aimfortech.com/"
+              target="_blank"
+              className="bg-primary p-1 text-white rounded-md"
+            >
+              Aimfortech
+            </a>{" "}
+            , delivering a delicious e-commerce experience that brings fresh
+            flavors to your doorstep with cutting-edge technology."
           </p>
         </div>
       </div>
