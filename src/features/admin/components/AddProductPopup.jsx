@@ -52,6 +52,18 @@ export default function AddProductPopup() {
     data.append("description", formData.description);
 
     addNewProduct(data);
+
+    setFormData({
+      pack: "single pack",
+      title: "",
+      code: "",
+      price: "",
+      discount: "",
+      category: "Fish & Seafood",
+      quantity: "",
+      description: "",
+    });
+
   };
 
   useEffect(() => {
@@ -80,7 +92,7 @@ export default function AddProductPopup() {
               <h2 className="text-xl font-semibold text-gray-800 mb-4">
                 Add New Product
               </h2>
-              <div onClick={togglePopup} className="absolute top-2 right-5">
+              <div onClick={togglePopup} className="absolute top-2 right-5 cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
               </div>
               <form onSubmit={handleSubmit}>

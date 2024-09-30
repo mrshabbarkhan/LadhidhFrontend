@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDeleteCart } from "./useDeleteCart";
 import Spinner from "../../components/Spinner";
 import { useCart } from "./useCart";
+import { useAOS } from "../../hooks/useAOS";
 
 function CartList({ id, img, qty = 1, title, price, pack, discount ,onQtyChange }) {
   const { cartItems } = useCart()
@@ -14,8 +15,9 @@ function CartList({ id, img, qty = 1, title, price, pack, discount ,onQtyChange 
       const filterd = cartItems.find((item) => item.product._id == id);
       return filterd ? filterd.quantity : qty;
     })
-  },[cartItems])
-
+  }, [cartItems])
+  
+  useAOS(id)
 
   const { removeCart, isPending } = useDeleteCart();
 
@@ -39,7 +41,7 @@ function CartList({ id, img, qty = 1, title, price, pack, discount ,onQtyChange 
   };
 
   return (
-    <div className="mb-5 Favorites_List drop-shadow-lg flex p-2 rounded-lg">
+    <div data-aos="fade-up" className="mb-5 Favorites_List drop-shadow-lg flex p-2 rounded-lg">
       <div className="grow flex flex-col justify-between">
         <div>
           <h1 className="mt-2 text-md  leading-6 font-medium">{title}</h1>
@@ -56,7 +58,7 @@ function CartList({ id, img, qty = 1, title, price, pack, discount ,onQtyChange 
           className="border shadow w-fit py-0.5 px-2 rounded-lg hover:text-white hover:bg-primary transition-all cursor-pointer"
         >
           {isPending ? (
-            <Spinner />
+            <Spinner className="my-1" />
           ) : (
             <i className="fa fa-trash-alt text-xl"></i>
           )}

@@ -4,7 +4,7 @@ import { useUpdateProduct } from "./useUpdateProduct";
 import Spinner from "../../../../components/Spinner";
 
 
-export default function EditProductPopup({ setShow, product}) {
+export default function EditProductPopup({ setShow, product }) {
   const [image, setImage] = useState(null);
 
   const { _id } = product;
@@ -77,7 +77,7 @@ export default function EditProductPopup({ setShow, product}) {
           <div className="fixed inset-0 flex items-center justify-center z-50 ">
             <div className="bg-white relative rounded-lg p-6 w-full max-w-xl shadow-lg max-h-80 overflow-auto">
               <h2 className="text-xl font-semibold text-gray-800 mb-4">
-                Add New Product
+                Update Product
               </h2>
               <div onClick={togglePopup} className="absolute top-2 right-5">
                 <i class="fa-solid fa-xmark"></i>

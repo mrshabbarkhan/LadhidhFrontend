@@ -28,13 +28,17 @@ function ProductDetails() {
 
   return (
     <>
-      <div className=" absolute top-6 left-0 right-0 object-cover pt-12 bg-gray-100">
+      <div
+        data-aos="fade-up"
+        className=" overflow-y-auto absolute top-6 left-0 right-0 object-cover pt-12 bg-gray-100"
+      >
         <img
           className="w-auto mx-auto h-[50vh] drop-shadow-2xl"
           src={img}
           alt="product-details"
         />
-        <section className="bg-white h-52 pt-2 px-2 md:px-24 lg:px-48 reletive top-0 overflow-hidden pb-80 md:pb-56">
+
+        <section className="mb-40 bg-white h-52 pt-2 px-2 md:px-24 lg:px-48 reletive top-0 overflow-hidden pb-80 md:pb-56">
           <h1 className="font-semibold text-xl">
             {product.tittle || product.title}
           </h1>
@@ -88,6 +92,7 @@ function ProductDetails() {
           </div>
         </section>
       </div>
+
       <div className="w-full bg-white text-center z-30 px-2  py-3 fixed bottom-0 left-0">
         <div
           onClick={() => handleCart()}

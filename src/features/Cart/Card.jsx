@@ -1,11 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import AddToButton from "../../components/AddToButton";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToProductDetails } from "../Product-list/productDetailSlice";
+
+import { useAOS } from "../../hooks/useAOS";
 
 function Card({ product, isOnTrand, redirect }) {
   const { img, pack, title, discount, code, price } = product;
   const oldPrice = Math.floor(price / (1 - discount / 100));
+
+  useAOS(product)
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -21,6 +25,7 @@ function Card({ product, isOnTrand, redirect }) {
 
   return (
     <section
+      data-aos="fade-up"
       className={` max-w-[16rem] ${sectionStyle} m-auto sm:m-0 sm:min-w-[16rem] mb-3 text-wrap rounded-xl p-4 pb-2 bg-white shadow-md`}
     >
       <div className="bg-gray-50 rounded-xl cursor-pointer">

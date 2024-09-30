@@ -1,49 +1,56 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import AppLayout from "./components/AppLayout";
 import { lazy, Suspense } from "react";
 import { Provider } from "react-redux";
 import store from "./store";
-import PageNotFound from "./components/PageNotFound";
-import AdminLayout from "./features/admin/components/AdminLayout";
-const DashboardPage = lazy(() =>
-  import("./features/admin/page/dashboard/DashboardPage")
-);
-const ProductPage = lazy(() =>
-  import("./features/admin/page/products/ProductPage")
-);
-const CategoriesPage = lazy(() =>
-  import("./features/admin/page/Categories/CategoriesPage")
-);
-const UsersPage = lazy(() => import("./features/admin/page/users/UsersPage"));
-const BannerPage = lazy(() =>
-  import("./features/admin/page/banners/BannerPage")
-);
-import ProtectedRoute from "./features/admin/components/ProtectedRoute";
 import Loader from "./components/Loader";
+import PageNotFound from "./components/PageNotFound";
 import { Toaster } from "react-hot-toast";
-import AuthButton from "./features/auth/AuthButton";
+import AppLayout from "./components/AppLayout";
+import AdminLayout from "./features/admin/components/AdminLayout";
+import ProtectedRoute from "./features/admin/components/ProtectedRoute";
 import { useLocalStorage } from "./features/auth/LocalStorageContext";
 import { DeliveryAddressProvider } from "./features/Payment/DeliveryAddressContext";
-import UserAddress from "./features/User/UserAddress";
 
+// Lazy loaded components
 const HomePage = lazy(() => import("./features/Home/HomePage"));
 const CategoryPage = lazy(() => import("./features/Category/CategoryPage"));
 const FavoritesPage = lazy(() => import("./features/Favorites/FavoritesPage"));
 const CartPage = lazy(() => import("./features/Cart/CartPage"));
 const ProfilePage = lazy(() => import("./features/User/ProfilePage"));
-const ProductListPage = lazy(() =>
-  import("./features/Product-list/ProductListPage")
-);
-const ProductDetails = lazy(() =>
-  import("./features/Product-list/ProductDetails")
-);
+const ProductListPage = lazy(() =>import("./features/Product-list/ProductListPage"));
+const ProductDetails = lazy(() =>import("./features/Product-list/ProductDetails"));
 const OrderPage = lazy(() => import("./features/Order/OrderPage"));
 const PaymentPage = lazy(() => import("./features/Payment/PaymentPage"));
+const DashboardPage = lazy(() =>import("./features/admin/page/dashboard/DashboardPage"));
+const ProductPage = lazy(() =>import("./features/admin/page/products/ProductPage"));
+const CategoriesPage = lazy(() =>import("./features/admin/page/Categories/CategoriesPage"));
+const UsersPage = lazy(() => import("./features/admin/page/users/UsersPage"));
+const BannerPage = lazy(() =>import("./features/admin/page/banners/BannerPage"));
+const UserAddress = lazy(()=>import("../src/features/User/UserAddress"))
 
 function RoutesWrapper() {
   const { user } = useLocalStorage();
 
-  const combinedRoutes = [
+  const adminRoutes = user?.isAdmin
+    ? [
+        {
+          path: "/admin",
+          element: (
+            <ProtectedRoute isAdmin={user.isAdmin} element={<AdminLayout />} />
+          ),
+          children: [
+            { index: true, element: <DashboardPage /> },
+            { path: "products", element: <ProductPage /> },
+            { path: "category", element: <CategoriesPage /> },
+            { path: "users", element: <UsersPage /> },
+            { path: "banners", element: <BannerPage /> },
+          ],
+          errorElement: <PageNotFound />,
+        },
+      ]
+    : [];
+
+  const userRoutes = [
     {
       path: "/",
       element: <AppLayout />,
@@ -58,7 +65,7 @@ function RoutesWrapper() {
         { path: "/profile/orders", element: <OrderPage /> },
         { path: "/profile/address", element: <UserAddress /> },
         {
-          path: "/payment" ,
+          path: "/payment",
           element: (
             <DeliveryAddressProvider>
               <PaymentPage />
@@ -68,29 +75,9 @@ function RoutesWrapper() {
       ],
       errorElement: <PageNotFound />,
     },
-
-    ...(user?.isAdmin
-      ? [
-          {
-            path: "/admin",
-            element: (
-              <ProtectedRoute
-                isAdmin={user?.isAdmin}
-                element={<AdminLayout />}
-              />
-            ),
-            children: [
-              { index: true, element: <DashboardPage /> },
-              { path: "/admin/products", element: <ProductPage /> },
-              { path: "/admin/category", element: <CategoriesPage /> },
-              { path: "/admin/users", element: <UsersPage /> },
-              { path: "/admin/banners", element: <BannerPage /> },
-            ],
-            errorElement: <PageNotFound />,
-          },
-        ]
-      : []),
   ];
+
+  const combinedRoutes = [...userRoutes, ...adminRoutes];
 
   const router = createBrowserRouter(combinedRoutes);
 

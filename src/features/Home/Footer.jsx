@@ -43,26 +43,17 @@ function Footer() {
                   Why Ladhidh?
                 </a>
               </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Refer & Earn
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Ladhidh Cash & Cash+
-                </a>
-              </li>
-              <li>
+        
+              {/* <li>
                 <a href="#" className="hover:underline">
                   Careers
                 </a>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <a href="#" className="hover:underline">
                   Blog
                 </a>
-              </li>
+              </li> */}
               <li>
                 <a href="#" className="hover:underline">
                   FAQ

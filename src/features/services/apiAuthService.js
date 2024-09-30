@@ -8,7 +8,6 @@ const getOtp = async (email) => {
 };
 
 const register = async (formData) => {
-  console.log(formData)
   const response = await axios.post(base_url + "register", formData);
   return response.data;
 };

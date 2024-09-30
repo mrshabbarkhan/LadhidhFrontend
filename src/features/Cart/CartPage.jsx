@@ -1,5 +1,5 @@
 import CartList from "./CartList";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Loader from "../../components/Loader";
 import AuthButton from "../auth/AuthButton";
 import CheckOutFooter from "../../components/CheckOutFooter";
@@ -8,21 +8,20 @@ import { useCart } from "./useCart";
 import toast from "react-hot-toast";
 
 function CartPage() {
-
   const [updatedCart, setUpdatedCart] = useState([]); // Store updated quantities
 
   const { user } = useLocalStorage();
   const { cartItems, isPending: isLoading } = useCart();
 
   useEffect(() => {
-      setUpdatedCart(cartItems);
+    setUpdatedCart(cartItems);
   }, [cartItems]);
 
   useEffect(() => {
     if (!user) {
-      toast.error("Please log in")
+      toast.error("Please log in");
     }
-  },[user])
+  }, [user]);
 
   const handleQtyChange = (id, newQty) => {
     setUpdatedCart((prevCart) =>
@@ -37,6 +36,25 @@ function CartPage() {
     0
   );
 
+  const memoizedUpdatedCart = useMemo(() => {
+    return updatedCart
+      ?.map((dts, index) => (
+        <CartList
+          qty={dts.quantity}
+          key={index}
+          img={dts.product.img}
+          title={dts.product.title}
+          price={dts.product.price}
+          discount={dts.product.discount}
+          id={dts.product._id}
+          pack={dts.product.pack}
+          onQtyChange={handleQtyChange} // Pass the handler
+        />
+      ))
+      .reverse();
+  }, [updatedCart]);
+
+
   if (isLoading) {
     return <Loader className={"h-80"} />;
   }
@@ -48,34 +66,22 @@ function CartPage() {
   if (!updatedCart?.length) {
     return (
       <>
-      <img
-        className="m-auto mt-10"
-        src="src\assets\empty-cart.gif"
-        alt="cart is empty"
+        <img
+          className="m-auto mt-10"
+          src="src/assets/empty-cart.gif"
+          alt="cart is empty"
         />
-        <h1 className="text-center mt-20 text-xl font-semibold">Your cart is empty</h1>
-        </>
+        <h1 className="text-center mt-20 text-xl font-semibold">
+          Your cart is empty
+        </h1>
+      </>
     );
   }
 
   return (
     <section>
-      {updatedCart.length &&
-        updatedCart
-          ?.map((dts, index) => (
-            <CartList
-              qty={dts.quantity}
-              key={index}
-              img={dts.product.img}
-              title={dts.product.title}
-              price={dts.product.price}
-              discount= {dts.product.discount}
-              id={dts.product._id}
-              pack={dts.product.pack}
-              onQtyChange={handleQtyChange} // Pass the handler
-            />
-          ))
-          .reverse()}
+
+      {memoizedUpdatedCart}
 
       <div className="p-3 rounded-lg border-2 border-dashed border-primary mb-20">
         <h1 className="font-semibold text-lg">Bill Details</h1>
@@ -93,8 +99,8 @@ function CartPage() {
         </div>
       </div>
 
-       <section className="w-full fixed bottom-0 left-0 md:px-24 lg:px-36 overflow-hidden text-xs sm:text-sm bg-white ">
-          <CheckOutFooter qty={updatedCart.length} total={subtotal} />
+      <section className="w-full fixed bottom-0 left-0 md:px-24 lg:px-36 overflow-hidden text-xs sm:text-sm bg-white ">
+        <CheckOutFooter qty={updatedCart?.length} total={subtotal} />
       </section>
     </section>
   );
