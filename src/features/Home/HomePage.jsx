@@ -1,7 +1,8 @@
 import { lazy, Suspense, useMemo } from "react";
 import { useCategory } from "../admin/page/Categories/useCategory";
-import LandingPage from "./LandingPage";
+
 import Loader from "../../components/Loader";
+const LandingPage = lazy(() => import("./LandingPage")); 
 
 const NavigationBar = lazy(() => import("../../components/Navs/NavigationBar"));
 const Categories = lazy(() => import("../Category/Categories"));
@@ -12,7 +13,7 @@ const TrendProducts = lazy(() => import("./TrendProducts"));
 const Footer = lazy(() => import("./Footer"));
 
 function HomePage() {
-  const navigateCategories = "/category";
+ 
   const { categories } = useCategory();
 
   const memoizedCategories = useMemo(
@@ -21,10 +22,9 @@ function HomePage() {
         <Categories
           product={category}
           key={category._id}
-          redirect={navigateCategories}
         />
       )),
-    [categories, navigateCategories]
+    [categories]
   );
 
   return (
@@ -37,9 +37,9 @@ function HomePage() {
           </Category>
         </Suspense>
 
-        <Suspense fallback={<Loader />}>
+        {/* <Suspense fallback={<Loader />}>
           <OfferForYou />
-        </Suspense>
+        </Suspense> */}
 
         <Suspense fallback={<Loader />}>
           <SaleForYou />

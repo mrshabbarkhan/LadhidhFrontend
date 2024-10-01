@@ -1,5 +1,5 @@
-import DialSvg from "../../assets/ui/DialSvg"
-import EmailSvg from "../../assets/ui/EmailSvg"
+import { MdMarkEmailRead } from "react-icons/md";
+import { LuPhoneCall } from "react-icons/lu";
 
 function UserDetails({seterFn, user }) {
   const { name, email, number } = user
@@ -9,15 +9,18 @@ function UserDetails({seterFn, user }) {
         <div>
           <h1 className="text-xl font-medium">{name}</h1>
           <span className="flex items-center gap-1">
-            <EmailSvg />
+            <MdMarkEmailRead className="text-primary" />
             <p className="text-sm text-slate-400">{email}</p>
           </span>
           <span className="flex items-center gap-1 mt-2">
-            {number&&<DialSvg />}
+            {number && <LuPhoneCall className="text-primary" />}
             <p className="text-sm text-slate-400">{number}</p>
           </span>
         </div>
-          <i onClick={()=>seterFn(true)} className="fa-regular fa-pen-to-square m-2 cursor-pointer"></i>
+        <i
+          onClick={() => seterFn(true)}
+          className="fa-regular fa-pen-to-square m-2 cursor-pointer"
+        ></i>
       </div>
     );
 }

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import FreeDevSvg from "../../assets/ui/FreeDevSvg";
 import StarSvg from "../../assets/ui/StarSvg";
 import {  useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAddCart } from "../Cart/useAddCart";
+import { TbTruckDelivery } from "react-icons/tb";
 
 function ProductDetails() {
   const [tempQty, setTempQty] = useState(1);
@@ -59,7 +59,7 @@ function ProductDetails() {
               <i className="fa-regular fa-clock text-primary"></i>6 - 7 min
             </span>
             <span className="flex items-center text-primary gap-1">
-              <FreeDevSvg /> Free Delivery
+              <TbTruckDelivery className="text-lg" /> Free Delivery
             </span>
           </div>
           <p className="text-sm pt-4 ">Price</p>

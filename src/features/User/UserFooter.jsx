@@ -1,13 +1,7 @@
 import { MdOutlineDashboardCustomize } from "react-icons/md";
-import AddressSvg from "../../assets/ui/AddressSvg";
-import NotifiactionSvg from "../../assets/ui/NotifiactionSvg";
-import OrderBagSvg from "../../assets/ui/OrderBagSvg";
-import RewardSvg from "../../assets/ui/RewardSvg";
-import WalletSvg from "../../assets/ui/WalletSvg";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "../auth/LocalStorageContext";
 import { IoBagHandleOutline } from "react-icons/io5";
-import { LuMapPin } from "react-icons/lu";
 import { RiMapPin2Line } from "react-icons/ri";
 import { GoBell } from "react-icons/go";
 

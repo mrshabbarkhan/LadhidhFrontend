@@ -1,12 +1,13 @@
 import { useState } from "react";
 import EditProductPopup from "./EditProductPopup";
 import { useDeleteProduct } from "./useDeleteProduct";
+import Spinner from "../../../../components/Spinner";
 
 function ProductCard({ info }) {
   const { img, pack, title, discount, code, price, oldPrice, _id } = info;
   const [showEditProduct, setShowEditProduct] = useState(false);
 
-  const { removeProduct } = useDeleteProduct();
+  const { removeProduct,isLoading } = useDeleteProduct();
 
   const handleDelete = (id) => {
     removeProduct(id);
@@ -53,7 +54,7 @@ function ProductCard({ info }) {
               onClick={() => handleDelete(_id)}
               className="border shadow w-fit py-.5 px-1.5 rounded-lg hover:text-white hover:bg-primary-dark transition-all cursor-pointer"
             >
-              <i className="fa fa-trash-alt "></i>
+             {isLoading ? <Spinner/> : <i className="fa fa-trash-alt "></i>}
             </div>
           </span>
         </div>

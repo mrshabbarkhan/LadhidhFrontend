@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import { useLocation } from "react-router-dom";
 
 function EditUserDetails({ user, onSubmit }) {
@@ -12,8 +11,7 @@ function EditUserDetails({ user, onSubmit }) {
     email: user.email || "",
     number: user.number || "",
     Addres: user.Addres || "",
-    oldPassword: "",
-    password: "",
+   
   });
 
   const handleChange = (e) => {
@@ -33,17 +31,19 @@ function EditUserDetails({ user, onSubmit }) {
   return (
     <form onSubmit={handleSubmit} className="mb-16">
       <div className="">
-        {isInPaymentPage || <div className="">
-          <p className="mt-1 text-center font-semibold text-sm leading-6 text-gray-600">
-            This information will be displayed publicly so be careful what you
-            share.
-          </p>
-        </div>}
+        {isInPaymentPage || (
+          <div className="">
+            {/* <p className="mt-1 text-center font-semibold text-sm leading-6 text-gray-600">
+              This information will be displayed publicly so be careful what you
+              share.
+            </p> */}
+          </div>
+        )}
 
         <div className=" pb-12">
           {isInPaymentPage || (
             <>
-              <h2 className="text-base font-semibold leading-7 text-gray-900">
+              <h2 className="text-lg font-semibold leading-4 ">
                 Personal Information
               </h2>
               <p className="mt-1 text-sm leading-6 text-gray-600">
@@ -56,9 +56,9 @@ function EditUserDetails({ user, onSubmit }) {
             <div className="sm:col-span-3">
               <label
                 htmlFor="firstName"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 "
               >
-                {isInPaymentPage ? "Full Name " : "First name"}
+                Full Name
               </label>
               <div className="mt-2">
                 <input
@@ -68,35 +68,15 @@ function EditUserDetails({ user, onSubmit }) {
                   value={formData.firstName}
                   onChange={handleChange}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
 
-           {isInPaymentPage || <div className="sm:col-span-3">
-              <label
-                htmlFor="lastName"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Last name
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="lastName"
-                  id="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>}
-
             <div className="sm:col-span-4">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 "
               >
                 Email address
               </label>
@@ -108,7 +88,7 @@ function EditUserDetails({ user, onSubmit }) {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -116,7 +96,7 @@ function EditUserDetails({ user, onSubmit }) {
             <div className="sm:col-span-4">
               <label
                 htmlFor="number"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 "
               >
                 Contact Number
               </label>
@@ -129,7 +109,7 @@ function EditUserDetails({ user, onSubmit }) {
                   onChange={handleChange}
                   required
                   maxLength={10}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -137,7 +117,7 @@ function EditUserDetails({ user, onSubmit }) {
             <div className="col-span-full">
               <label
                 htmlFor="streetAddress"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 "
               >
                 Street address
               </label>
@@ -149,7 +129,7 @@ function EditUserDetails({ user, onSubmit }) {
                   value={formData.streetAddress}
                   onChange={handleChange}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -157,7 +137,7 @@ function EditUserDetails({ user, onSubmit }) {
             <div className="sm:col-span-2 sm:col-start-1">
               <label
                 htmlFor="city"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 "
               >
                 City
               </label>
@@ -169,7 +149,7 @@ function EditUserDetails({ user, onSubmit }) {
                   value={formData.city}
                   onChange={handleChange}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
@@ -177,7 +157,7 @@ function EditUserDetails({ user, onSubmit }) {
             <div className="sm:col-span-2">
               <label
                 htmlFor="region"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-sm font-medium leading-6 "
               >
                 State / Province
               </label>
@@ -189,28 +169,33 @@ function EditUserDetails({ user, onSubmit }) {
                   value={formData.region}
                   onChange={handleChange}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
             </div>
 
-            <div className="sm:col-span-2">
+            <div className="sm:col-span-2 mt-2">
               <label
-                htmlFor="postalCode"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                htmlFor="zipCode"
+                className="block text-sm font-medium leading-6 "
               >
-                ZIP / Postal code
+                ZIP / Postal Code
               </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="postalCode"
-                  id="postalCode"
-                  value={formData.postalCode}
+              <div className="mb-2">
+                <select
+                  name="zipCode"
+                  id="zipCode"
+                  value={formData.zipCode}
                   onChange={handleChange}
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
+                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 accent-primary placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                >
+                  <option value="">Select ZIP Code</option>{" "}
+                  {/* Placeholder option */}
+                  <option value="393001">393001</option>
+                  <option value="393002">393002</option>
+                  <option value="393010">393010</option>
+                </select>
               </div>
             </div>
           </div>
@@ -221,7 +206,7 @@ function EditUserDetails({ user, onSubmit }) {
         <button
           onClick={() => {}}
           type="button"
-          className="text-sm font-semibold leading-6 text-gray-900"
+          className="text-sm font-semibold leading-6 "
         >
           Cancel
         </button>

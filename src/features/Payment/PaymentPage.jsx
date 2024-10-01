@@ -4,9 +4,12 @@ import { useDeliveryAddress } from "./DeliveryAddressContext";
 import { useAddress } from "./useAddress";
 import { usePlacedOrder } from "../Order/usePlacedOrder";
 import OrderSuccess from "../Order/OrderSuccess";
+import { useSelector } from "react-redux";
 
 function PaymentPage() {
   const { address } = useDeliveryAddress();
+  const { localCart } = useSelector(state => state.cart)
+  
   const {} = useAddress();
   const {
     postOrder,
@@ -33,15 +36,20 @@ function PaymentPage() {
     const formData = {
       shippingAddress: address,
       paymentMethod: "Cod",
+      products: localCart.map(c => ({
+          productId: c.product._id,
+          quantity: c.quantity.toString(),
+        }))
     };
 
     if (address) {
       postOrder(formData);
+      console.log(formData)
     }
   };
 
   return (
-    <div>
+    <div className="mb-20">
       {isSuccess && orderDetails ? (
         <OrderSuccess order={orderDetails.order} />
       ) : (

@@ -1,15 +1,9 @@
-import ComponentsSvg from "../../assets/ui/ComponentsSvg";
-import HomeSvg from "../../assets/ui/HomeSvg";
-import LogoutSvg from "../../assets/ui/LogoutSvg";
-import ProfileSvg from "../../assets/ui/ProfileSvg";
 import UserImage from "../../assets/images/avatar/5.jpg";
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "../../features/auth/LocalStorageContext";
 import { GiChickenLeg } from "react-icons/gi";
-import { FaRegUserCircle } from "react-icons/fa";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { HiOutlineSquare3Stack3D, HiOutlineUserCircle } from "react-icons/hi2";
-import { RiAdminLine } from "react-icons/ri";
 import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { AiOutlineLogout } from "react-icons/ai";
 
@@ -24,7 +18,7 @@ function SideBar({ on, setOn }) {
         onClick={() => setOn(!on)}
       ></div>
       <div
-        className={`fixed inset-y-0 left-0 h-[100vh] w-[260px] z-[999999] transition-all duration-500  ${
+        className={`fixed inset-y-0 left-0 h-[100vh] w-[260px] z-[999999] transition-all duration-2000  ${
           on ? "flex" : "hidden"
         } flex-col overflow-y-scroll bg-white`}
         onClick={() => setOn(!on)}

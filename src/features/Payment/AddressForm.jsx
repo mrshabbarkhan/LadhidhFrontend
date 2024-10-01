@@ -15,7 +15,7 @@ function AddressForm({ editableAddress, handleSubmit, showFn }) {
     addressLine1: "",
     addressLine2: "",
     city: "",
-    state: "",
+    state:  "",
     zipCode: "",
   });
 
@@ -27,7 +27,7 @@ function AddressForm({ editableAddress, handleSubmit, showFn }) {
         addressLine2: editableAddress.addressLine2 || "",
         city: editableAddress.city || "",
         state: editableAddress.state || "",
-        zipCode: editableAddress.zipCode || "",
+        zipCode: editableAddress.zipCode || "Gujrat",
       });
     } else {
       // Reset the form for adding a new address
@@ -35,7 +35,7 @@ function AddressForm({ editableAddress, handleSubmit, showFn }) {
         addressLine1: "",
         addressLine2: "",
         city: "",
-        state: "",
+        state: "" || "Gujrat",
         zipCode: "",
       });
     }
@@ -164,15 +164,20 @@ function AddressForm({ editableAddress, handleSubmit, showFn }) {
               ZIP / Postal Code
             </label>
             <div className="mb-2">
-              <input
-                type="text"
+              <select
                 name="zipCode"
                 id="zipCode"
                 value={formData.zipCode}
                 onChange={handleChange}
                 required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 accent-primary placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              >
+                <option value="">Select ZIP Code</option>{" "}
+                {/* Placeholder option */}
+                <option value="393001">393001</option>
+                <option value="393002">393002</option>
+                <option value="393010">393010</option>
+              </select>
             </div>
           </div>
 
@@ -182,7 +187,9 @@ function AddressForm({ editableAddress, handleSubmit, showFn }) {
               className="w-full bg-primary text-white py-2 rounded-md font-medium hover:bg-primary-dark focus:outline-none  flex items-center justify-center gap-2"
             >
               <>
-                {(isLoading || isPending) && <Spinner className="border-white"/>}
+                {(isLoading || isPending) && (
+                  <Spinner className="border-white" />
+                )}
                 {editableAddress ? "Update Address" : "Add Address"}
               </>
             </button>

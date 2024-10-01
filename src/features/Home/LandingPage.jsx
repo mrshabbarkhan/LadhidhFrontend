@@ -1,48 +1,43 @@
-import { useEffect } from "react";
-import AOS from "aos";
 import "aos/dist/aos.css";
-import landingImage from "../../../public/03.png";
-import { BiImageAdd } from "react-icons/bi";
-import { useLocalStorage } from "../auth/LocalStorageContext";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import { Autoplay, Pagination,  } from "swiper/modules";
+import { useBanners } from "../admin/page/banners/useBanners";
+import Loader from "../../components/Loader";
 
 function LandingPage() {
 
-  const {user} = useLocalStorage()
-
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true, 
-    });
-  }, [])
+  const { banners, isPending } = useBanners();
 
   return (
-    <section className="relative">
-      <div
-        className="relative overflow-auto flex items-center justify-center "
-        data-aos="fade-in" // AOS animation for the container
+    <section className="relative ">
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Autoplay, Pagination]}
+        className="mySwiper"
       >
-        <img
-          className="h-28 sm:h-[50vh] object-cover sm:object-fill object-center"
-          src={landingImage}
-          alt="Landing"
-          data-aos="zoom-in" // AOS animation for the image
-        />
-      </div>
-      {user?.isAdmin && (
-        <span className="absolute right-0 top-0 text-2xl drop-shadow-md cursor-pointer">
-          <input type="file" id="landingImage" className="hidden" />
-          <label
-            htmlFor="landingImage"
-            className="custom-file-label relative group cursor-pointer"
-          >
-            <BiImageAdd/>
-            <span className="tooltip-text absolute -bottom-12 right-10 hidden group-hover:block bg-black text-white text-xs rounded py-1 px-2">
-              width- 900px, height- 250px
-            </span>
-          </label>
-        </span>
-      )}
+        {isPending ? (
+          <Loader />
+        ) : (
+          banners.map((banner) => (
+            <SwiperSlide key={banner._id}>
+              <img className="object-cover m-auto object-center h-40 sm:h-[50vh]" src={banner.Img} alt="" />
+            </SwiperSlide>
+          ))
+        )}
+      </Swiper>
     </section>
   );
 }

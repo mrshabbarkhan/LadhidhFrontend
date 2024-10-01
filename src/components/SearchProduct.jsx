@@ -69,14 +69,14 @@ function SearchProduct() {
         )}
       </div>
       {searchTerm && (
-        <ul className="transition-all overflow-auto z-20 rounded-b-md px-2 py-1 bg-white/90 text-black absolute top-14 w-80">
+        <ul className="transition-all overflow-auto z-20 rounded-b-md px-2 py-1 bg-white/90  absolute top-14 w-80">
           {filteredProducts?.map((data, index) => (
             <li
               onClick={() => handleClick(data)}
               key={index}
-              className="py-1 px-2 rounded-md text-left font-medium mb-3 cursor-pointer"
+              className="py-1 px-2 rounded-md text-left font-medium mb-3 "
             >
-              <h1>{data.title}</h1>
+              <h1 className="cursor-pointer">{data.title}</h1>
             </li>
           ))}
         </ul>

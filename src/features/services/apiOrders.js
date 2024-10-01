@@ -13,3 +13,18 @@ export const placeOrder = async (formData) => {
     throw error; 
   }
 };
+
+
+export const getPreviousOrder = async () => {
+
+  try {
+    const options = getHeader();
+    const res = await axios.get(`${base_url}/getOrders`, options);
+ 
+    return res.data.orders || res.data; 
+  } catch (error) {
+    console.error("API Error:", error);
+    throw error;
+  }
+};
+

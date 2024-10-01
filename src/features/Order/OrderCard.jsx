@@ -1,13 +1,13 @@
 import img from "../../assets/images/product/1.jpg";
 
-function OrderCard({}) {
+function OrderCard({order}) {
   return (
     <section className="flex justify-between my-6">
       <div className="flex gap-5">
-        <img className="w-20 rounded-xl" src={img} alt="" />
+        <img className="w-20 rounded-xl" src={order.img} alt="" />
         <div >
           <h1 className="font-semibold text-primary ">The Meat Shop</h1>
-          <p className="text-sm leading-3 font-semibold">Fish + Fish Skinless + Cleaned Prawns</p>
+          <p className="text-sm leading-3 font-semibold">{order.title}</p>
           <p className="mt-3">07 Items</p>
         </div>
       </div>

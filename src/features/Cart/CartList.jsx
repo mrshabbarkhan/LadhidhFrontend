@@ -6,7 +6,10 @@ import { useAOS } from "../../hooks/useAOS";
 
 function CartList({ id, img, qty = 1, title, price, pack, discount ,onQtyChange }) {
   const { cartItems } = useCart()
+  const { removeCart, isPending } = useDeleteCart();
   const [tempQty, setTempQty] = useState(qty)
+
+  useAOS(id)
 
   const oldPrice = Math.floor(price / (1 - discount / 100));
 
@@ -17,10 +20,6 @@ function CartList({ id, img, qty = 1, title, price, pack, discount ,onQtyChange 
     })
   }, [cartItems])
   
-  useAOS(id)
-
-  const { removeCart, isPending } = useDeleteCart();
-
 
   const handleIncrease = () => {
     const newQty = tempQty + 1;
@@ -55,10 +54,10 @@ function CartList({ id, img, qty = 1, title, price, pack, discount ,onQtyChange 
         </div>
         <div
           onClick={handleDelete}
-          className="border shadow w-fit py-0.5 px-2 rounded-lg hover:text-white hover:bg-primary transition-all cursor-pointer"
+          className="border shadow w-fit py-0.5 px-2 rounded-lg text-black hover:text-white hover:bg-primary transition-all cursor-pointer"
         >
           {isPending ? (
-            <Spinner className="my-1" />
+            <Spinner className="my-1 border-black" />
           ) : (
             <i className="fa fa-trash-alt text-xl"></i>
           )}

@@ -63,19 +63,19 @@ function AddressSelector() {
             </label>
 
             {/* Responsive button group */}
-            <div className="flex flex-col sm:flex-row justify-start mt-2 sm:mt-2 ml-2">
+            <div className="flex items-center  mt-2 sm:mt-2 ml-2">
               <button
                 type="button"
                 onClick={() => deleteAddress(address._id)}
                 style={{ cursor: isPending ? "not-allowed" : "pointer"}}
-                className="mb-2 sm:mb-0 sm:ml-5 border px-2 py-0.5 font-medium bg-primary-dark text-white rounded hover:bg-primary-dark hover:text-white transition-colors"
+                className="sm:mb-0 sm:ml-5 border px-2 py-0.5 font-medium bg-primary-dark text-white rounded hover:bg-primary-dark hover:text-white transition-colors"
               >
                 Delete
               </button>
               <button
                 type="button"
                 onClick={() => handleEdit(index)}
-                className="sm:ml-5 border px-2 font-medium rounded bg-primary-dark text-white transition-colors"
+                className="sm:ml-5 border px-2 font-medium py-0.5 rounded bg-primary-dark text-white transition-colors"
               >
                 Edit
               </button>

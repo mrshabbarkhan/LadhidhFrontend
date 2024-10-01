@@ -17,14 +17,14 @@ function Categories({ product, redirect }) {
 
   return (
     <div
-      className="cursor-pointer "
-      onClick={() => navigate(`${redirect}`)}
+      className="cursor-pointer"
+      onClick={() => navigate(`/product-list/${product.cat_id}`)}
       data-aos="fade-up"
       data-aos-anchor="#example-anchor"
-      data-aos-duration="1000" 
+      data-aos-duration="1000"
     >
       <img
-        className={`${isInCategoryPage} sm:h-24 sm:w-24 object-center m-auto sm:min-h-24 sm:min-w-24 drop-shadow-xl`}
+        className={`${isInCategoryPage} bg-black rounded-full overflow-visible sm:h-24 sm:w-24 object-center m-auto sm:min-h-24 sm:min-w-24 drop-shadow-xl`}
         src={product?.img}
         alt={product?.name}
       />

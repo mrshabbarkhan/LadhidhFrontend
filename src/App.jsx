@@ -26,7 +26,8 @@ const ProductPage = lazy(() =>import("./features/admin/page/products/ProductPage
 const CategoriesPage = lazy(() =>import("./features/admin/page/Categories/CategoriesPage"));
 const UsersPage = lazy(() => import("./features/admin/page/users/UsersPage"));
 const BannerPage = lazy(() =>import("./features/admin/page/banners/BannerPage"));
-const UserAddress = lazy(()=>import("../src/features/User/UserAddress"))
+const UserAddress = lazy(() => import("../src/features/User/UserAddress"))
+
 
 function RoutesWrapper() {
   const { user } = useLocalStorage();

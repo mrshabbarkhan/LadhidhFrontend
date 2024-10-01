@@ -6,8 +6,8 @@ export function usePlacedOrder() {
   const {
     mutate: postOrder,
     isPending,
-      isSuccess,
-    data
+    isSuccess,
+    data,
   } = useMutation({
     mutationFn: placeOrder,
     onSuccess: (data) => {
