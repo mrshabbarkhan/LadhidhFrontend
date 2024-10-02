@@ -1,4 +1,3 @@
-import Map from "../../assets/ui/Map";
 import MenuSvg from "../../assets/ui/MenuSvg";
 import AuthButton from "../../features/auth/AuthButton";
 import SideBar from "./SideBar";
@@ -13,21 +12,21 @@ function Navbar() {
   return (
     <section className="glassmorphism fixed right-0 left-0 top-0 z-20">
       <header className="bg-cover w-full h-16 sm:h-20 shadow-md">
-        <div className="absolute top-0 right-0 w-full pt-2 sm:pt-4 px-2 md:px-24 lg:px-36">
-          <div className="flex items-center sm:gap-10 gap-10">
+        <div className="absolute top-0 right-0 w-full pt-3 sm:pt-4 px-2 md:px-24 lg:px-36">
+          <div className="flex items-center  w-full relative  sm:gap-10 ">
             <h1 className="font-bold text-3xl">
               <span className="text-primary">L</span>adh
               <span className="text-primary">i</span>dh
             </h1>
             {/* <img className="w-16" src={logoImage} alt="" /> */}
             <div className="ml-2 flex items-center justify-between w-full">
-              <span className="leading-4 max-w-80 flex gap-3 items-center">
+              <span className="leading-4 max-w-80 hidden sm:flex gap-3 items-center">
                 {/* <Map /> */}
                 <LuMapPin className="min-w-5  text-xl object-cover" />
                 <Location />
               </span>
-              <div className=" items-center gap-4 hidden sm:flex">
-                <SearchProduct />
+              <div className=" items-center gap-4 flex absolute right-0 sm:static">
+                <SearchProduct className={"hidden sm:block"} />
                 {!user ? (
                   <AuthButton />
                 ) : (

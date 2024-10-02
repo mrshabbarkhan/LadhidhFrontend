@@ -13,13 +13,10 @@ function RegisterForm({ setRegister }) {
   const [formData, setFormData] = useState({
     name: "",
     number: "",
-    // Addres: "",
     password: "",
     email: "",
-    // otp: "",
   });
 
-  // Handle input change for all form fields
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prev) => ({

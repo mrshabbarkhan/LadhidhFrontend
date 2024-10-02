@@ -7,9 +7,11 @@ import BackButton from "../../components/BackButton";
 function AuthButton({ onClickOverlyHide = false }) {
   const [showForm, setShowForm] = useState(true);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
+
   const location = useLocation()
   const isInCart = location.pathname == "/cart"
   const isInProfile = location.pathname == "/profile"
+
   const handleClick = (e) => {
     if (!onClickOverlyHide) {
       if (e.target.className.includes("overley")) {
@@ -17,6 +19,7 @@ function AuthButton({ onClickOverlyHide = false }) {
       }
     }
   };
+
   return (
     <>
       <span
@@ -24,7 +27,6 @@ function AuthButton({ onClickOverlyHide = false }) {
         className="flex items-center gap-2 text-xl border-2 h-9 w-9 rounded-full cursor-pointer"
       >
         <i className="fa-solid fa-user m-auto"></i>
-        {/* <h1>Login</h1> */}
       </span>
       {showForm && (
         <div

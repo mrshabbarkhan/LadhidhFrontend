@@ -2,14 +2,11 @@ import { useState, useEffect } from "react";
 import { useAddAddress } from "./useAddAddress";
 import { useUpdateAddress } from "./useUpdateAddress";
 import Spinner from "../../components/Spinner";
-import { useLogin } from "../auth/useLogin";
-import { useLocalStorage } from "../auth/LocalStorageContext";
 
-function AddressForm({ editableAddress, handleSubmit, showFn }) {
+function AddressForm({ editableAddress, showFn }) {
   const { addNewAddress, isLoading, isSuccess } = useAddAddress();
   const { updateAddress, isPending, isSuccess: isUpdated } = useUpdateAddress();
-  const { loginUser } = useLogin()
-  const {user} = useLocalStorage()
+
 
   const [formData, setFormData] = useState({
     addressLine1: "",
@@ -19,7 +16,6 @@ function AddressForm({ editableAddress, handleSubmit, showFn }) {
     zipCode: "",
   });
 
-  // Populate form fields if editableAddress is provided
   useEffect(() => {
     if (editableAddress) {
       setFormData({
@@ -43,7 +39,7 @@ function AddressForm({ editableAddress, handleSubmit, showFn }) {
 
   useEffect(() =>{
     if (isSuccess || isUpdated) {
-        showFn(false); // Close the form after submission
+        showFn(false); 
       }
   },[isSuccess , isUpdated])
 

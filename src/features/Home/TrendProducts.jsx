@@ -17,7 +17,7 @@ function TrendProducts() {
       {isLoading ? (
         <Loader className="h-40 w-full" />
       ) : (
-        <div className="flex flex-wrap gap-x-4 xl:gap-x-14 gap-y-4  w-full">
+        <div className="flex flex-wrap gap-x-4 max-xl:gap-x-14  gap-y-4 w-full">
           {products.map((product) => (
             <Card
               key={product._id}

@@ -1,9 +1,5 @@
 import React, { useRef } from "react";
-import EditUserDetails from "../User/EditUserDetails";
-import { useSelector } from "react-redux";
-import AddressLayout from "./AddressLayout";
-import { useLocalStorage } from "../auth/LocalStorageContext";
-import { useAddress } from "./useAddress";
+import AddressSelector from "./AddressSelector";
 
 const Accordion = ({
   title,
@@ -12,7 +8,6 @@ const Accordion = ({
   element,
   isSelected,
   onSelect,
-  handleSubmit,
 }) => {
   const contentRef = useRef(null);
 
@@ -20,7 +15,7 @@ const Accordion = ({
     <div className="Favorites_List rounded-xl my-5 px-2 transition-all ">
       <div
         className="w-full flex justify-between items-center py-2 focus:outline-none "
-        onClick={onSelect} // Trigger onSelect when clicked
+        onClick={onSelect} 
       >
         <span className="text-md font-semibold px-4">
           <i className={icon}></i>
@@ -28,23 +23,18 @@ const Accordion = ({
         </span>
         <input
           type="radio"
-          checked={isSelected} // Radio button is checked if accordion is selected
-          onChange={onSelect} // Trigger selection when the radio button changes
+          checked={isSelected} 
+          onChange={onSelect} 
         />
       </div>
-      {/* Content only shows when selected */}
+      
       <div
         ref={contentRef}
         className="transition-max-height duration-200 ease-in-out overflow-hidden min-h-fit"
-        // style={{
-        //   maxHeight: isSelected
-        //     ? `${contentRef.current.scrollHeight}px`
-        //     : "0px",
-        // }}
       >
-        <div className="pb-2 sm:pl-5 text-sm text-gray-600 ">
-          {content ? <p>{content || element}</p> : <AddressLayout />}
-        </div>
+        {isSelected && <div className="pb-2 sm:pl-5 text-sm text-gray-600 ">
+          {content ? <p>{content || element}</p> : <AddressSelector />}
+        </div>}
       </div>
     </div>
   );

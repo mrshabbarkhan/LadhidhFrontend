@@ -19,7 +19,6 @@ const LoginForm = ({ setRegister }) => {
 
   const [formData, setFormData] = useState({
     password: "",
-    // email: "",
     number:"",
   });
 
@@ -55,7 +54,7 @@ const LoginForm = ({ setRegister }) => {
               type="tel"
               value={formData.number}
               onChange={handleChange}
-              placeholder="Enter your email"
+              placeholder="Enter your Number"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-700 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
               required
             />

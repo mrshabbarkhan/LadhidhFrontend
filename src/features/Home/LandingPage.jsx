@@ -33,7 +33,7 @@ function LandingPage() {
         ) : (
           banners.map((banner) => (
             <SwiperSlide key={banner._id}>
-              <img className="object-cover m-auto object-center h-40 sm:h-[50vh]" src={banner.Img} alt="" />
+              <img className=" m-auto object-center h-36 sm:h-[50vh]" src={banner.Img} alt="" />
             </SwiperSlide>
           ))
         )}

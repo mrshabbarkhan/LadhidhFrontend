@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPreviousOrder } from "../services/apiOrders";
+import { getAllOrders } from "../services/apiOrders";
 
 export function useOrders() {
   const {
@@ -9,7 +9,7 @@ export function useOrders() {
     error,
   } = useQuery({
     queryKey: ["orders"],
-    queryFn: getPreviousOrder,
+    queryFn: getAllOrders,
   });
 
   if (isError) {

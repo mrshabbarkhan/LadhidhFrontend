@@ -1,22 +1,13 @@
 import OrderCard from "./OrderCard";
-import { useOrders } from "./useOrders";
 
 function OrderPage() {
-
- const { orders, isLoading, isError } = useOrders();
-
- if (isLoading) return <p>Loading...</p>;
- if (isError) return <p>Failed to load orders.</p>;
 
   return (
     <>
       <div className="relative">
         <h1 className="font-semibold">Today</h1>
-        {orders?.map(order => {
-          return <OrderCard order={order} />;
-       }) }
-        <h1 className="font-semibold">This Month</h1>
         <OrderCard />
+        <h1 className="font-semibold">This Month</h1>
         <OrderCard />
         <OrderCard />
       </div>

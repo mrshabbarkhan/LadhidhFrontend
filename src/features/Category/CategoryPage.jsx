@@ -7,7 +7,7 @@ function CategoryPage({ onClick }) {
   const { categories} = useCategory()
   
   return (
-    <section className="grid grid-cols-3 gap-y-6 sm:grid-cols-5 justify-between">
+    <section className="pt-5 grid grid-cols-3 gap-y-6 sm:grid-cols-5 justify-between">
         {categories?.map((dts, index) => (
           <Categories product={dts}
             key={index}

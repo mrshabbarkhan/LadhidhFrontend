@@ -10,6 +10,7 @@ import AdminLayout from "./features/admin/components/AdminLayout";
 import ProtectedRoute from "./features/admin/components/ProtectedRoute";
 import { useLocalStorage } from "./features/auth/LocalStorageContext";
 import { DeliveryAddressProvider } from "./features/Payment/DeliveryAddressContext";
+import RiderPage from "./features/admin/page/RiderPage/RiderPage";
 
 // Lazy loaded components
 const HomePage = lazy(() => import("./features/Home/HomePage"));
@@ -45,6 +46,7 @@ function RoutesWrapper() {
             { path: "category", element: <CategoriesPage /> },
             { path: "users", element: <UsersPage /> },
             { path: "banners", element: <BannerPage /> },
+            { path: "riders", element: <RiderPage /> },
           ],
           errorElement: <PageNotFound />,
         },

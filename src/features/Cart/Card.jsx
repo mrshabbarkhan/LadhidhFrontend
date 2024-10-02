@@ -36,14 +36,14 @@ function Card({ product, isOnTrand, redirect }) {
           onClick={handleClick}
         />
       </div>
-      <div className="px-2 mt-1">
+      <div className="px-2 mt-1 flex flex-col justify-between ">
         <h1 className="mt-2 text-lg leading-6 font-semibold">{title}</h1>
-        <p className="text-xs font-medium text-primary py-2">{pack}</p>
-        {discount && (
-          <p className="text-xs ">
+        <p className="text-xs font-medium text-primary py-2 leading-3">{pack}</p>
+        {discount ? (
+          <p className="text-xs leading-3">
             FLAT {discount}% off Code: {code}
           </p>
-        )}
+        ): <p className="mt-3"></p>}
         <div className="flex justify-between items-center mt-2">
           <span className="flex gap-2 items-center">
             <h1 className="text-xl text-primary font-medium">

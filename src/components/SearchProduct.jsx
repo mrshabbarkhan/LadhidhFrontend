@@ -9,7 +9,7 @@ import { addToProductDetails } from "../features/Product-list/productDetailSlice
 import { useNavigate } from "react-router-dom";
 import { useProducts } from "../features/admin/page/products/useProducts";
 
-function SearchProduct() {
+function SearchProduct({className}) {
     const dispatch = useDispatch();
     const navigate = useNavigate()
   const debouncedTerm = useSelector((state) => state.search.debouncedTerm);
@@ -47,7 +47,7 @@ function SearchProduct() {
   );
 
   return (
-    <div className="text-center w-72  m-auto ">
+    <div className={`text-center w-72  m-auto ${className} `}>
       <div className="border-2 pl-2 w-full h-9 rounded-xl flex items-center  focus-within:border-primary overflow-hidden relative">
         <SearchSvg />
         <div className="w-full ">
