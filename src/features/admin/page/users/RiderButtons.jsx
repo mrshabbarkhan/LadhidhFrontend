@@ -1,9 +1,12 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useToggleRider } from "../RiderPage/useToggleRider";
 import { useAssignOrder } from "../../../Order/useAssignOrder";
 import Spinner from "../../../../components/Spinner";
+import { removeFromSelectedOrder } from "../../../Order/orderSlice";
 
 function RiderButtons({ user }) {
+
+  const dispatch = useDispatch()
 
   const { changeRole } = useToggleRider()
   const { postAssignOrder, isPending, isSuccess } = useAssignOrder();
@@ -21,7 +24,11 @@ function RiderButtons({ user }) {
       order: selectedOrder._id,
       user : user._id
     }
-    postAssignOrder(order)
+    postAssignOrder(order, {
+      onSuccess: () => {
+        dispatch(removeFromSelectedOrder())
+      }
+    })
   }
 
     return (

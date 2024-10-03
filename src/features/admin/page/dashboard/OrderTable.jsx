@@ -80,7 +80,7 @@ const OrderTable = () => {
                 </td>
                 <td className="px-4 py-2">₹{order.totalPrice || "0"}</td>
               </tr>
-            ))
+            )).reverse()
           ) : (
             <tr>
               <td

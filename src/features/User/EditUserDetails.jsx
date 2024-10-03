@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useLocalStorage } from "../auth/LocalStorageContext";
+import { useUpdateUser } from "../auth/useUpdateUser";
 
 function EditUserDetails({ user, onSubmit }) {
-  const {pathname} = useLocation()
-  const isInPaymentPage = pathname == "/payment"
-  
+  const { pathname } = useLocation();
+  const isInPaymentPage = pathname == "/payment";
+  const { user: localUser } = useLocalStorage()
+  const {updateUser, isPending} = useUpdateUser()
+
   const [formData, setFormData] = useState({
     firstName: user.name || "",
     lastName: user.lastName || "",
     email: user.email || "",
     number: user.number || "",
     Addres: user.Addres || "",
-   
   });
 
   const handleChange = (e) => {
@@ -25,7 +28,7 @@ function EditUserDetails({ user, onSubmit }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log("Form data submitted: ", formData);
-    onSubmit(formData)
+    updateUser(user._id)
   };
 
   return (
@@ -111,91 +114,6 @@ function EditUserDetails({ user, onSubmit }) {
                   maxLength={10}
                   className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-              </div>
-            </div>
-
-            <div className="col-span-full">
-              <label
-                htmlFor="streetAddress"
-                className="block text-sm font-medium leading-6 "
-              >
-                Street address
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="streetAddress"
-                  id="streetAddress"
-                  value={formData.streetAddress}
-                  onChange={handleChange}
-                  required
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-2 sm:col-start-1">
-              <label
-                htmlFor="city"
-                className="block text-sm font-medium leading-6 "
-              >
-                City
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="city"
-                  id="city"
-                  value={formData.city}
-                  onChange={handleChange}
-                  required
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-2">
-              <label
-                htmlFor="region"
-                className="block text-sm font-medium leading-6 "
-              >
-                State / Province
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="region"
-                  id="region"
-                  value={formData.region}
-                  onChange={handleChange}
-                  required
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-2 mt-2">
-              <label
-                htmlFor="zipCode"
-                className="block text-sm font-medium leading-6 "
-              >
-                ZIP / Postal Code
-              </label>
-              <div className="mb-2">
-                <select
-                  name="zipCode"
-                  id="zipCode"
-                  value={formData.zipCode}
-                  onChange={handleChange}
-                  required
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 accent-primary placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                >
-                  <option value="">Select ZIP Code</option>{" "}
-                  {/* Placeholder option */}
-                  <option value="393001">393001</option>
-                  <option value="393002">393002</option>
-                  <option value="393010">393010</option>
-                </select>
               </div>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getHeader } from "../../utils/headersUtils";
 
 const base_url = "/api/user/";
 
@@ -17,10 +18,22 @@ const login = async (formData) => {
   return response.data;
 };
 
+const editUser = async (id) => {
+  try {
+    const options = getHeader();
+    const response = await axios.put(`${base_url}${id}`, options);
+    return response.data;
+  } catch (error) {
+   console.log("Error updating user:", error);
+   throw error;
+  }
+};
+
 const authServices = {
   getOtp,
   register,
   login,
+  editUser,
 };
 
 export default authServices;

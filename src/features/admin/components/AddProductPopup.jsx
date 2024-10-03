@@ -23,6 +23,7 @@ export default function AddProductPopup() {
     category: "Fish & Seafood",
     quantity: "",
     description: "",
+    hsn : ""
   });
 
   const handleImages = (e) => {
@@ -50,6 +51,7 @@ export default function AddProductPopup() {
     data.append("cat_id", formData.category);
     data.append("quantity", formData.quantity);
     data.append("description", formData.description);
+    data.append("hsn", formData.hsn);
 
     addNewProduct(data);
 
@@ -62,6 +64,7 @@ export default function AddProductPopup() {
       category: "Fish & Seafood",
       quantity: "",
       description: "",
+      hsn : ""
     });
 
   };
@@ -123,6 +126,21 @@ export default function AddProductPopup() {
                     type="text"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
                     required
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <label className="block text-gray-600 text-sm mb-1">
+                    HSN No.
+                  </label>
+                  <input
+                    id="hsn"
+                    value={formData.hsn}
+                    onChange={handleChange}
+                    type="number"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+                    required
+                    minLength={6}
                   />
                 </div>
 

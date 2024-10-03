@@ -44,7 +44,6 @@ function PaymentPage() {
 
     if (address) {
       postOrder(formData);
-      console.log(formData)
     }
   };
 

@@ -72,6 +72,7 @@ function RegisterForm({ setRegister }) {
             className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             required
             maxLength={10}
+            minLength={10}
           />
         </div>
 

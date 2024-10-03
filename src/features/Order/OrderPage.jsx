@@ -2,17 +2,20 @@ import OrderCard from "./OrderCard";
 import { useUserOrder } from "./useUserOrder";
 
 function OrderPage() {
-
-  const {order} = useUserOrder()
+  const { order } = useUserOrder();
 
   return (
-    <>
-      <div className="relative">
-        <h1 className="font-semibold">Your Recents Orders</h1>
-       {order?.length && order.map(order=><OrderCard order={order} />)}
-      </div>
+    <div className="relative">
+      <h1 className="font-semibold">Your Recent Orders</h1>
 
-    </>
+      {Array.isArray(order) && order.length > 0 ? (
+        order.map((singleOrder) => (
+          <OrderCard key={singleOrder._id} order={singleOrder} />
+        ))
+      ) : (
+        <h1>No Orders Found</h1>
+      )}
+    </div>
   );
 }
 
