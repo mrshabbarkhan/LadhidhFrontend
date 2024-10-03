@@ -3,12 +3,14 @@ import Loader from "../../../../components/Loader";
 import SearchBar from "../../components/SearchBar";
 import { useRider } from "./useRider"
 import RiderButtons from "../users/RiderButtons";
+import SelectedOrder from "./SelectedOrder";
 
 function RiderPage() {
 
     const {riders, isLoading} = useRider()
     
-     const debouncedTerm = useSelector((state) => state.search.debouncedTerm);
+  const debouncedTerm = useSelector((state) => state.search.debouncedTerm);
+  
 
      const filteredProducts = riders?.filter((user) =>
        user.number?.toLowerCase().includes(debouncedTerm.toLowerCase())
@@ -26,6 +28,9 @@ function RiderPage() {
            </h1>
            <SearchBar placeholder={"serach by number...."} />
          </div>
+         
+         <SelectedOrder/>
+         
          <div className="flex flex-wrap gap-6 ">
            {riders?.length &&
              filteredProducts?.map((customer) => (

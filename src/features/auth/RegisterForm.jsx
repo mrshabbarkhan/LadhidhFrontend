@@ -109,6 +109,7 @@ function RegisterForm({ setRegister }) {
             placeholder="Enter your password"
             className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             required
+            minLength={6}
             autoComplete="off"
           />
         </div>

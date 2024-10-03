@@ -52,9 +52,14 @@ function InnerNavbar({ children }) {
         <BackButton>{children}</BackButton>
       )}
       <div className="flex items-center">
-        {user && pathName4 && <span className="text-lg mx-4 flex items-center gap-2" onClick={() => logOutUser()}>
-          <AiOutlineLogout className="text-xl" /> logout
-        </span>}
+        {user && pathName4 && (
+          <span
+            className="text-lg mx-4 flex items-center gap-2 cursor-pointer"
+            onClick={() => logOutUser()}
+          >
+            <AiOutlineLogout className="text-xl " /> logout
+          </span>
+        )}
         {pathName4 && <ShoppingCart />}
       </div>
     </nav>
