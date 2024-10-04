@@ -68,14 +68,14 @@ function AddressSelector() {
                 type="button"
                 onClick={() => deleteAddress(address._id)}
                 style={{ cursor: isPending ? "not-allowed" : "pointer"}}
-                className="sm:mb-0 sm:ml-5 border px-2 py-0.5 font-medium bg-primary-dark text-white rounded hover:bg-primary-dark hover:text-white transition-colors"
+                className="sm:mb-0 sm:ml-5 border px-2 py-0.5 font-medium bg-primary-dark text-white rounded hover:scale-90 hover:bg-primary-dark hover:text-white transition-colors"
               >
                 Delete
               </button>
               <button
                 type="button"
                 onClick={() => handleEdit(index)}
-                className="sm:ml-5 border px-2 font-medium py-0.5 rounded bg-primary-dark text-white transition-colors"
+                className="sm:ml-5 border px-2 font-medium py-0.5 rounded bg-primary-dark text-white transition-colors hover:scale-90"
               >
                 Edit
               </button>
@@ -85,7 +85,7 @@ function AddressSelector() {
         <button
           type="button"
           onClick={handleNewAddress}
-          className="border px-2 py-1 mt-2 font-medium text-primary border-primary rounded hover:bg-primary-dark hover:text-white transition-colors"
+          className="border px-2 py-1 mt-2 font-medium text-primary border-primary rounded hover:bg-primary-dark hover:scale-90 hover:text-white transition-colors"
         >
           + Add new
         </button>

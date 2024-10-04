@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
   return (
-    <footer className="bg-gray-100 text-black py-8 sm:py-12">
+    <footer className="bg-gray-100 text-black py-8 sm:py-12 mb-10 sm:mb-0">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5 sm:gap-8">
           {/* Experience Ladhidh App */}
@@ -39,11 +41,11 @@ function Footer() {
             <h2 className="font-semibold mb-4">USEFUL LINKS</h2>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="hover:underline">
+                <Link to={"whyLadhidh"} className="hover:underline">
                   Why Ladhidh?
-                </a>
+                </Link>
               </li>
-        
+
               {/* <li>
                 <a href="#" className="hover:underline">
                   Careers
@@ -55,19 +57,19 @@ function Footer() {
                 </a>
               </li> */}
               <li>
-                <a href="#" className="hover:underline">
+                <Link to={"FAQs"} className="hover:underline">
                   FAQ
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:underline">
+                <Link to={"terms-and-conditions"} className="hover:underline">
                   T&C
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:underline">
+                <Link to={"privacy-policy"} className="hover:underline">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

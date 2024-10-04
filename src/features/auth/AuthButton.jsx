@@ -25,7 +25,7 @@ function AuthButton({ onClickOverlyHide = false }) {
     <>
       <span
         onClick={() => setShowForm(!showForm)}
-        className="flex items-center gap-2 text-xl border-2 h-9 w-9 rounded-full cursor-pointer"
+        className="flex items-center gap-2 text-xl border-2 h-9 w-9 rounded-full cursor-pointer hover:scale-95"
       >
         <HiOutlineUserCircle className="text-6xl" />
       </span>

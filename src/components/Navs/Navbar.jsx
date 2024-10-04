@@ -30,7 +30,7 @@ function Navbar() {
                 {!user ? (
                   <AuthButton />
                 ) : (
-                  <div className="border-2 p-0.5 rounded-lg hover:border-primary">
+                  <div className="border-2 p-0.5 rounded-lg  ">
                     <MenuSvg Component={SideBar} />
                   </div>
                 )}

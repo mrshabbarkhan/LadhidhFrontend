@@ -32,7 +32,7 @@ function Card({ product, isOnTrand, redirect }) {
         <img
           src={img}
           alt={title}
-          className={`object-cover object-center m-auto ${imgStyle} sm:w-40 sm:h-40 rounded-t-xl`}
+          className={`object-cover object-center m-auto ${imgStyle} sm:w-40 sm:h-40 rounded-t-xl hover:scale-90`}
           onClick={handleClick}
         />
       </div>

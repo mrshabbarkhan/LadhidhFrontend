@@ -28,7 +28,7 @@ function Category({ children, heading, btn }) {
       {isPending ? (
         <Loader className={"h-40 w-full"} />
       ) : (
-        <div className="categories_img h-32 overflow-y-hidden p_text flex items-center gap-x-16 w-full sm:px-4  sm:mt-6 overflow-auto">
+        <div className="categories_img h-32 overflow-y-hidden p_text flex items-center gap-x-10 sm:gap-x-16 w-full sm:px-4 sm:mt-6 overflow-auto">
           {children}
         </div>
       )}

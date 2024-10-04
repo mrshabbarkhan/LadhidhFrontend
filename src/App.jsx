@@ -11,6 +11,10 @@ import ProtectedRoute from "./features/admin/components/ProtectedRoute";
 import { useLocalStorage } from "./features/auth/LocalStorageContext";
 import { DeliveryAddressProvider } from "./features/Payment/DeliveryAddressContext";
 import RiderPage from "./features/admin/page/RiderPage/RiderPage";
+import TermsAndConditions from "./features/Policy/TermsAndConditions";
+import PrivacyPolicy from "./features/Policy/PrivacyPolicy";
+import FAQ from "./features/Policy/FAQ";
+import WhyLadhidh from "./features/Policy/WhyLadhidh";
 
 // Lazy loaded components
 const HomePage = lazy(() => import("./features/Home/HomePage"));
@@ -67,6 +71,10 @@ function RoutesWrapper() {
         { path: "/product-details", element: <ProductDetails /> },
         { path: "/profile/orders", element: <OrderPage /> },
         { path: "/profile/address", element: <UserAddress /> },
+        { path: "/terms-and-conditions", element: <TermsAndConditions /> },
+        { path: "/privacy-policy", element: <PrivacyPolicy /> },
+        { path: "/FAQs", element: <FAQ /> },
+        { path: "/whyLadhidh", element: <WhyLadhidh /> },
         {
           path: "/payment",
           element: (

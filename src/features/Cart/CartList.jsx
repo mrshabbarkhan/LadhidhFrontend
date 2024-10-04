@@ -40,7 +40,10 @@ function CartList({ id, img, qty = 1, title, price, pack, discount ,onQtyChange 
   };
 
   return (
-    <div data-aos="fade-up" className="mb-5 Favorites_List drop-shadow-lg flex p-2 rounded-lg">
+    <div
+      data-aos="fade-up"
+      className="mb-5 Favorites_List drop-shadow-lg flex p-2 rounded-lg"
+    >
       <div className="grow flex flex-col justify-between">
         <div>
           <h1 className="mt-2 text-md  leading-6 font-medium">{title}</h1>
@@ -54,12 +57,12 @@ function CartList({ id, img, qty = 1, title, price, pack, discount ,onQtyChange 
         </div>
         <div
           onClick={handleDelete}
-          className="border shadow w-fit py-0.5 px-2 rounded-lg text-black hover:text-white hover:bg-primary transition-all cursor-pointer"
+          className="border shadow w-fit py-0.5 px-2 rounded-lg text-black hover:text-white hover:bg-primary  transition-size cursor-pointer"
         >
           {isPending ? (
             <Spinner className="my-1 border-black" />
           ) : (
-            <i className="fa fa-trash-alt text-xl"></i>
+            <i className="fa fa-trash-alt text-xl hover:scale-75"></i>
           )}
         </div>
       </div>
@@ -68,14 +71,14 @@ function CartList({ id, img, qty = 1, title, price, pack, discount ,onQtyChange 
         <div className="flex justify-between">
           <button
             onClick={handleIncrease}
-            className="border border-primary px-2 rounded-lg hover:text-white hover:bg-primary transition font-semibold"
+            className="border border-primary px-2 rounded-lg hover:text-white hover:bg-primary hover:scale-90 transition font-semibold"
           >
             +
           </button>
           <h1 className="font-semibold">{tempQty}</h1>
           <button
             onClick={handleDecrease}
-            className="border border-primary px-2 rounded-lg hover:text-white hover:bg-primary transition font-semibold"
+            className="border border-primary px-2 rounded-lg hover:text-white hover:bg-primary hover:scale-90 transition font-semibold"
           >
             -
           </button>

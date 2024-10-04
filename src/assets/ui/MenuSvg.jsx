@@ -12,7 +12,7 @@ function MenuSvg({ Component }) {
       {isOnAdmin ? (
         <i className="fa-solid fa-bars text-xl mx-2"></i>
       ) : (
-        <HiBars3BottomRight className="text-2xl text-gray-500" />
+        <HiBars3BottomRight className="text-2xl text-gray-500 hover:scale-90" />
       )}
       {on && <Component on={on} setOn={setOn} />}
     </div>
