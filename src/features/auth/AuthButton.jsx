@@ -3,6 +3,7 @@ import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import { useLocation } from "react-router-dom";
 import BackButton from "../../components/BackButton";
+import { HiOutlineUserCircle } from "react-icons/hi2";
 
 function AuthButton({ onClickOverlyHide = false }) {
   const [showForm, setShowForm] = useState(true);
@@ -26,7 +27,7 @@ function AuthButton({ onClickOverlyHide = false }) {
         onClick={() => setShowForm(!showForm)}
         className="flex items-center gap-2 text-xl border-2 h-9 w-9 rounded-full cursor-pointer"
       >
-        <i className="fa-solid fa-user m-auto"></i>
+        <HiOutlineUserCircle className="text-6xl" />
       </span>
       {showForm && (
         <div

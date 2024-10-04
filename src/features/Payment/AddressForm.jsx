@@ -87,7 +87,7 @@ function AddressForm({ editableAddress, showFn }) {
                 value={formData.addressLine1}
                 onChange={handleChange}
                 required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2  focus:ring-black/30 focus:border-black/30 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -107,7 +107,7 @@ function AddressForm({ editableAddress, showFn }) {
                 value={formData.addressLine2}
                 onChange={handleChange}
                 required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2  focus:ring-black/30 focus:border-black/30 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -127,7 +127,7 @@ function AddressForm({ editableAddress, showFn }) {
                 value={formData.city}
                 onChange={handleChange}
                 required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2  focus:ring-black/30 focus:border-black/30 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -147,7 +147,7 @@ function AddressForm({ editableAddress, showFn }) {
                 value={formData.state}
                 // onChange={handleChange}
                 required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2  focus:ring-black/30 focus:border-black/30 sm:text-sm sm:leading-6"
               />
             </div>
           </div>
@@ -166,7 +166,7 @@ function AddressForm({ editableAddress, showFn }) {
                 value={formData.zipCode}
                 onChange={handleChange}
                 required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 accent-primary placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 accent-primary placeholder:text-gray-400 focus:ring-2  focus:ring-black/30 focus:border-black/30 sm:text-sm sm:leading-6"
               >
                 <option value="">Select ZIP Code</option>{" "}
                 {/* Placeholder option */}

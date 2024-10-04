@@ -4,7 +4,7 @@ import { useLocalStorage } from "../../features/auth/LocalStorageContext";
 import { GiChickenLeg } from "react-icons/gi";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { HiOutlineSquare3Stack3D, HiOutlineUserCircle } from "react-icons/hi2";
-import { MdOutlineAdminPanelSettings } from "react-icons/md";
+import { MdLogout, MdOutlineAdminPanelSettings } from "react-icons/md";
 import { AiOutlineLogout } from "react-icons/ai";
 import NavItem from "../NavItem";
 
@@ -18,18 +18,18 @@ function SideBar({ on, setOn }) {
         onClick={() => setOn(!on)}
       ></div>
       <div
-        className={`fixed inset-y-0 left-0 h-[100vh] w-[260px] z-[999999] transition-all duration-2000 ${
+        className={`fixed inset-y-0 left-0 h-[100vh] w-[260px] sm:w-[260px] z-[999999] transition-all duration-2000 ${
           on ? "flex" : "hidden"
         } flex-col overflow-y-scroll bg-white`}
         onClick={() => setOn(!on)}
       >
         <Link to={"/profile"}>
           <div className="author-box flex items-center bg-primary p-4">
-            <div className="dz-media border-2 rounded-full w-12 h-12 overflow-hidden object-cover object-center mr-3">
+            <div className="dz-media border-2 rounded-full h-10 w-12 overflow-hidden object-cover object-center mr-3">
               <img src={UserImage} alt="" className="rounded-full" />
             </div>
             <div className="dz-info">
-              <h5 className="name text-white mb-0 font-bold text-xl leading-5">
+              <h5 className="name text-white mb-0 font-bold text-xl leading-5 line-clamp-1">
                 {user?.name || "Logged in"}
               </h5>
               <div className="text-white text-sm w-40 line-clamp-1">
@@ -77,7 +77,7 @@ function SideBar({ on, setOn }) {
                 onClick={logOutUser}
               >
                 <span className="dz-icon mr-4 text-xl">
-                  <AiOutlineLogout />
+                  <MdLogout />
                 </span>
                 <span className="font-medium text-lg">Logout</span>
               </button>

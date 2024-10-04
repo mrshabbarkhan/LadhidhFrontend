@@ -55,7 +55,7 @@ const LoginForm = ({ setRegister }) => {
               value={formData.number}
               onChange={handleChange}
               placeholder="Enter your Number"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-700 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-700 focus:ring-1 focus:ring-black/30 focus:border-black/30"
               required
             />
           </div>
@@ -74,15 +74,15 @@ const LoginForm = ({ setRegister }) => {
               value={formData.password}
               onChange={handleChange}
               placeholder="Enter your password"
-              className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-1 focus:ring-black/30 focus:border-black/30"
               required
             />
           </div>
 
           {/* Submit Button */}
           <button
-              type="submit"
-              style={{ cursor : isPending ? "not-allowed" : "pointer"}}
+            type="submit"
+            style={{ cursor: isPending ? "not-allowed" : "pointer" }}
             disabled={isPending}
             className="w-full py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition duration-300 font-semibold"
           >

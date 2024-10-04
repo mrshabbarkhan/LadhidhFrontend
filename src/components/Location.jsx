@@ -78,9 +78,9 @@ useEffect(() => {
           onClick={(e) =>
             e.target.className.includes("overley") && setToggle(false)
           }
-          className="absolute h-screen top-0 left-0  z-30 w-full flex pt-16 sm:pt-20 px-2 md:px-24 lg:px-36 justify-center overley bg-black/30 "
+          className=" fixed h-screen top-0 left-0  z-30 w-full flex pt-16 sm:pt-20 px-2 md:px-24 lg:px-36 justify-center overley bg-black/30 "
         >
-          <div className="w-full overley">
+          <div className="w-full overley ">
             <span className="flex bg-white p-1 items-center  pl-2 rounded-t-lg gap-2  text-black">
               <SearchSvg />
               <input

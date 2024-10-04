@@ -24,7 +24,7 @@ function ProfilePage() {
     <div >
       {user ? (
         <>
-          <div className="flex gap-5">
+          <div className="flex gap-5 items-center sm:items-start">
             <UserAvatar />
             <UserDetails seterFn={setShowEditForm} user={user} />
           </div>

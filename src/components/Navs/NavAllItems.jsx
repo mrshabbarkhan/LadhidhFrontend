@@ -6,18 +6,19 @@ import { LuHeart } from "react-icons/lu";
 import { BsBagX } from "react-icons/bs";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { IoBagHandleOutline } from "react-icons/io5";
+import { RxStack } from "react-icons/rx";
 
 function NavAllItems() {
 
   const iconMap = {
     house: <GiChickenLeg />,
-    box: <HiOutlineSquare3Stack3D />,
+    box: <RxStack />,
     bagshopping: <IoBagHandleOutline />,
     user: <HiOutlineUserCircle />,
   };
 
   return (
-    <div className=" grid grid-cols-4 transition py-2">
+    <div className=" grid grid-cols-4 transition pt-2">
       {NavItems.map((route, index) => (
         <NavLink
           key={index}
@@ -29,9 +30,9 @@ function NavAllItems() {
           }
         >
           <span className="">{iconMap[route.class]}</span>
-          {/* <span className="hover:cursor-pointer text-sm leading-6 font-semibold">
+          <span className="hover:cursor-pointer text-sm leading-6 font-semibold">
             {route.tittle}
-          </span> */}
+          </span>
         </NavLink>
       ))}
     </div>

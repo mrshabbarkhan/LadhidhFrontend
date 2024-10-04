@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useOrders } from "../../../Order/useOrders";
 import { useAssignOrder } from "../../../Order/useAssignOrder";
 import { addToSelectedOrder } from "../../../Order/orderSlice";
+import OrderBill from "../../../Order/OrderBill";
 
 const OrderTable = () => {
   const dispatch = useDispatch();
+
+  const [showBill, setShowBill] = useState(false);
+  const [selectedBillOrder, setSelectedBillOrder] = useState(null); 
 
   const { orders, isLoading, isError } = useOrders();
   const { selectedOrder } = useSelector((state) => state.order);
@@ -26,6 +30,12 @@ const OrderTable = () => {
     dispatch(addToSelectedOrder(order));
   };
 
+  const handleViewOrder = (order) => {
+    console.log(order)
+    setSelectedBillOrder(order); 
+    setShowBill(true); 
+  };
+
   return (
     <div className="overflow-x-auto rounded-md">
       <table className="min-w-full table-auto border-collapse">
@@ -33,7 +43,7 @@ const OrderTable = () => {
           <tr className="bg-red-100">
             <th className="py-2">S.No</th>
             <th className="px-4 py-2">OrderId</th>
-            <th className="px-4 py-2">Payment Method</th>
+            <th className="px-4 py-2">View Details</th>
             <th className="px-4 py-2">Order Date</th>
             <th className="px-4 py-2">Assign Rider</th>
             <th className="px-4 py-2">Status</th>
@@ -42,45 +52,54 @@ const OrderTable = () => {
         </thead>
         <tbody>
           {filterOrderById?.length ? (
-            filterOrderById.map((order, index) => (
-              <tr key={index} className="text-center">
-                <td className="py-2 border">{index + 1}</td>
-                <td className="px-4 py-2 line-clamp-1">{order._id || "N/A"}</td>
-                <td className="px-4 py-2">{order.paymentMethod || "N/A"}</td>
-                <td className="px-4 py-2">
-                  {order.createdAt
-                    ? new Date(order.createdAt).toLocaleDateString()
-                    : "N/A"}
-                </td>
-                <td className="px-4 py-2">
-                  <button
-                    onClick={() => handleSelect(order)}
-                    className="text-sm sm:text-base mr-2 rounded-md"
+            filterOrderById
+              .map((order, index) => (
+                <tr key={index} className="text-center">
+                  <td className="py-2 border">{index + 1}</td>
+                  <td className="px-4 py-2 line-clamp-1">
+                    {order._id || "N/A"}
+                  </td>
+                  <td
+                    onClick={() => handleViewOrder(order)}
+                    className="px-4 py-2 cursor-pointer hover:underline"
                   >
-                    {selectedOrder?._id === order._id ? (
-                      <span className="bg-green-500 text-white px-5 rounded-md py-1 border">
-                        Selected
-                      </span>
-                    ) : (
-                      <span className="bg-gray-300 px-2 py-1 rounded-md">
-                        Select Order
-                      </span>
-                    )}
-                  </button>
-                </td>
-                <td className="px-4 py-2">
-                  <span
-                    className={`inline-block px-3 py-1 rounded-lg text-white ${
-                      statusColors[order.paymentStatus?.toLowerCase()] ||
-                      "bg-gray-300"
-                    }`}
-                  >
-                    {order.paymentStatus?.toLowerCase() || "N/A"}
-                  </span>
-                </td>
-                <td className="px-4 py-2">₹{order.totalPrice || "0"}</td>
-              </tr>
-            )).reverse()
+                    View Order
+                  </td>
+                  <td className="px-4 py-2">
+                    {order.createdAt
+                      ? new Date(order.createdAt).toLocaleDateString()
+                      : "N/A"}
+                  </td>
+                  <td className="px-4 py-2">
+                    <button
+                      onClick={() => handleSelect(order)}
+                      className="text-sm sm:text-base mr-2 rounded-md"
+                    >
+                      {selectedOrder?._id === order._id ? (
+                        <span className="bg-green-500 text-white px-5 rounded-md py-1 border">
+                          Selected
+                        </span>
+                      ) : (
+                        <span className="bg-gray-300 px-2 py-1 rounded-md">
+                          Select Order
+                        </span>
+                      )}
+                    </button>
+                  </td>
+                  <td className="px-4 py-2">
+                    <span
+                      className={`inline-block px-3 py-1 rounded-lg text-white ${
+                        statusColors[order.paymentStatus?.toLowerCase()] ||
+                        "bg-gray-300"
+                      }`}
+                    >
+                      {order.paymentStatus?.toLowerCase() || "N/A"}
+                    </span>
+                  </td>
+                  <td className="px-4 py-2">₹{order.totalPrice || "0"}</td>
+                </tr>
+              ))
+              .reverse()
           ) : (
             <tr>
               <td
@@ -93,6 +112,10 @@ const OrderTable = () => {
           )}
         </tbody>
       </table>
+
+      {showBill && selectedBillOrder && (
+        <OrderBill order={selectedBillOrder} showFn={setShowBill} />
+      )}
     </div>
   );
 };

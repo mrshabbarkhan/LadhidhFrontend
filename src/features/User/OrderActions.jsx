@@ -1,23 +1,23 @@
 import { Link } from "react-router-dom";
-import MyOrderSvg from "../../assets/ui/MyOrderSvg";
-import MyWishlistSvg from "../../assets/ui/MyWishlistSvg";
 import ReturnPrSvg from "../../assets/ui/ReturnPrSvg";
+import { TbTruckDelivery } from "react-icons/tb";
+import { FiHeart } from "react-icons/fi";
 
 function OrderActions() {
     return (
       <>
         <span>
           <Link to={"/profile/orders"}>
-            <div className="w-fit p-2 sm:p-3 rounded-full bg-primary m-auto ">
-              <MyOrderSvg />
+            <div className="w-fit p-1 sm:p-2 rounded-full bg-primary m-auto text-white text-2xl">
+              <TbTruckDelivery />
             </div>
             <p className="text-sm sm:text-md">My Order</p>
           </Link>
         </span>
         <span>
           <Link to={"/favorites"}>
-            <div className="w-fit p-2 sm:p-3 rounded-full bg-primary m-auto">
-              <MyWishlistSvg />
+            <div className="w-fit p-1.5 sm:p-2 rounded-full bg-primary m-auto text-white text-xl sm:text-xl">
+              <FiHeart />
             </div>
             <p className="text-sm sm:text-md">My Wishlist</p>
           </Link>

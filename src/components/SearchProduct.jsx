@@ -8,10 +8,11 @@ import { useEffect } from "react";
 import { addToProductDetails } from "../features/Product-list/productDetailSlice";
 import { useNavigate } from "react-router-dom";
 import { useProducts } from "../features/admin/page/products/useProducts";
+import { FiSearch } from "react-icons/fi";
 
-function SearchProduct({className}) {
-    const dispatch = useDispatch();
-    const navigate = useNavigate()
+function SearchProduct({ className }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const debouncedTerm = useSelector((state) => state.search.debouncedTerm);
   const searchTerm = useSelector((state) => state.search.searchTerm);
   const { products } = useProducts();
@@ -30,10 +31,10 @@ function SearchProduct({className}) {
     dispatch(setSearchTerm(e.target.value));
   };
 
-  const handleClick = async(product) => {
+  const handleClick = async (product) => {
     try {
-        await dispatch(addToProductDetails(product));
-        navigate("/product-details");
+      await dispatch(addToProductDetails(product));
+      navigate("/product-details");
     } catch (error) {}
     handleClear();
   };
@@ -48,8 +49,8 @@ function SearchProduct({className}) {
 
   return (
     <div className={`text-center w-72  m-auto ${className} `}>
-      <div className="border-2 pl-2 w-full h-9 rounded-xl flex items-center  focus-within:border-primary overflow-hidden relative">
-        <SearchSvg />
+      <div className="border-2 pl-2 w-full h-9 rounded-xl flex items-center  focus-within:border-black/30 overflow-hidden relative">
+        <FiSearch className="text-xl" />
         <div className="w-full ">
           <input
             type="text"

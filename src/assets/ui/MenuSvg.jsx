@@ -8,7 +8,7 @@ function MenuSvg({ Component }) {
   const isOnAdmin = path.pathname.startsWith("/admin")
   const [on, setOn] = useState(false)
   return (
-    <div onClick={() => setOn(!on)}  className="cursor-pointer">
+    <div onClick={() => setOn(!on)}  className="cursor-pointer ">
       {isOnAdmin ? (
         <i className="fa-solid fa-bars text-xl mx-2"></i>
       ) : (

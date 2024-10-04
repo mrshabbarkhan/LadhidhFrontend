@@ -18,10 +18,12 @@ const login = async (formData) => {
   return response.data;
 };
 
-const editUser = async (id) => {
+const editUser = async (newForm) => {
+  const { _id, ...rest } = newForm
+ 
   try {
     const options = getHeader();
-    const response = await axios.put(`${base_url}${id}`, options);
+    const response = await axios.put(`${base_url}${_id}`, rest,  options);
     return response.data;
   } catch (error) {
    console.log("Error updating user:", error);

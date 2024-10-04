@@ -1,20 +1,20 @@
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
-import { useLocalStorage } from "../auth/LocalStorageContext";
+import { useEffect, useState } from "react";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { useUpdateUser } from "../auth/useUpdateUser";
+import Spinner from "../../components/Spinner";
 
-function EditUserDetails({ user, onSubmit }) {
+function EditUserDetails({ user, seterFn }) {
   const { pathname } = useLocation();
-  const isInPaymentPage = pathname == "/payment";
-  const { user: localUser } = useLocalStorage()
-  const {updateUser, isPending} = useUpdateUser()
+  const navigate = useNavigate();
+  const isInPaymentPage = pathname === "/payment";
+
+  const { updateUser, isPending, isSuccess } = useUpdateUser();
 
   const [formData, setFormData] = useState({
-    firstName: user.name || "",
-    lastName: user.lastName || "",
+    name: user.name || "",
     email: user.email || "",
     number: user.number || "",
-    Addres: user.Addres || "",
+    addresses: Array.isArray(user.addresses) ? user.addresses : [{}],
   });
 
   const handleChange = (e) => {
@@ -25,114 +25,203 @@ function EditUserDetails({ user, onSubmit }) {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // console.log("Form data submitted: ", formData);
-    updateUser(user._id)
+  const handleAddressChange = (index, e) => {
+    const { name, value } = e.target;
+    const updatedAddresses = [...formData.addresses];
+    updatedAddresses[index] = {
+      ...updatedAddresses[index],
+      [name]: value,
+    };
+    setFormData({
+      ...formData,
+      addresses: updatedAddresses,
+    });
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const updatedData = { ...formData, _id: user._id };
+    try {
+      await updateUser(updatedData);
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(-1);
+    }
+  }, [isSuccess, navigate]);
+
   return (
-    <form onSubmit={handleSubmit} className="mb-16">
-      <div className="">
-        {isInPaymentPage || (
-          <div className="">
-            {/* <p className="mt-1 text-center font-semibold text-sm leading-6 text-gray-600">
-              This information will be displayed publicly so be careful what you
-              share.
-            </p> */}
-          </div>
+    <form onSubmit={handleSubmit} className="mb-20 mt-5 max-w-4xl mx-auto">
+      <div className="pb-12">
+        {!isInPaymentPage && (
+          <>
+            <h2 className="text-lg font-semibold leading-4">
+              Personal Information
+            </h2>
+            <p className="mt-1 text-sm leading-6 text-gray-600">
+              Use a permanent address where you can receive mail.
+            </p>
+          </>
         )}
 
-        <div className=" pb-12">
-          {isInPaymentPage || (
-            <>
-              <h2 className="text-lg font-semibold leading-4 ">
-                Personal Information
-              </h2>
-              <p className="mt-1 text-sm leading-6 text-gray-600">
-                Use a permanent address where you can receive mail.
-              </p>
-            </>
-          )}
-
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="firstName"
-                className="block text-sm font-medium leading-6 "
-              >
-                Full Name
-              </label>
-              <div className="mt-2">
-                <input
-                  type="text"
-                  name="firstName"
-                  id="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  required
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-4">
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium leading-6 "
-              >
-                Email address
-              </label>
-              <div className="mt-2">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-4">
-              <label
-                htmlFor="number"
-                className="block text-sm font-medium leading-6 "
-              >
-                Contact Number
-              </label>
-              <div className="mt-2">
-                <input
-                  id="number"
-                  name="number"
-                  type="tel"
-                  value={formData.number}
-                  onChange={handleChange}
-                  required
-                  maxLength={10}
-                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
+        <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2">
+          {/* Name Field */}
+          <div className="col-span-full sm:col-span-1">
+            <label htmlFor="name" className="block text-sm font-medium">
+              Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="block w-full rounded-md border-gray-300 py-1.5 shadow-sm focus:ring-2 focus:ring-black/30"
+            />
           </div>
+
+          {/* Email Field */}
+          <div className="col-span-full sm:col-span-1">
+            <label htmlFor="email" className="block text-sm font-medium">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="block w-full rounded-md border-gray-300 py-1.5 shadow-sm focus:ring-2 focus:ring-black/30"
+            />
+          </div>
+
+          {/* Number Field */}
+          <div className="col-span-full sm:col-span-1">
+            <label htmlFor="number" className="block text-sm font-medium">
+              Number
+            </label>
+            <input
+              type="text"
+              name="number"
+              value={formData.number}
+              onChange={handleChange}
+              required
+              className="block w-full rounded-md border-gray-300 py-1.5 shadow-sm focus:ring-2 focus:ring-black/30"
+            />
+          </div>
+
+          {/* Address Fields */}
+          {formData.addresses.map((address, index) => (
+            <div key={index} className="col-span-full">
+              <div className="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2">
+                {/* Street Address */}
+                <div className="sm:col-span-1">
+                  <label
+                    htmlFor={`addressLine1-${index}`}
+                    className="block text-sm font-medium"
+                  >
+                    Street Address
+                  </label>
+                  <input
+                    type="text"
+                    id={`addressLine1-${index}`}
+                    name="addressLine1"
+                    value={address.addressLine1 || ""}
+                    onChange={(e) => handleAddressChange(index, e)}
+                    placeholder="Street 120"
+                    required
+                    className="block w-full rounded-md border-gray-300 py-1.5 shadow-sm focus:ring-2 focus:ring-black/30"
+                  />
+                </div>
+
+                {/* City */}
+                <div className="sm:col-span-1">
+                  <label
+                    htmlFor={`city-${index}`}
+                    className="block text-sm font-medium"
+                  >
+                    City
+                  </label>
+                  <input
+                    type="text"
+                    id={`city-${index}`}
+                    name="city"
+                    value={address.city || ""}
+                    placeholder="Ankleshwar "
+                    onChange={(e) => handleAddressChange(index, e)}
+                    required
+                    className="block w-full rounded-md border-gray-300 py-1.5 shadow-sm focus:ring-2 focus:ring-black/30"
+                  />
+                </div>
+
+                {/* State */}
+                <div className="sm:col-span-1">
+                  <label
+                    htmlFor={`state-${index}`}
+                    className="block text-sm font-medium"
+                  >
+                    State
+                  </label>
+                  <input
+                    type="text"
+                    id={`state-${index}`}
+                    name="state"
+                    value={address.state || ""}
+                    placeholder="Gujrat"
+                    onChange={(e) => handleAddressChange(index, e)}
+                    required
+                    className="block w-full rounded-md border-gray-300 py-1.5 shadow-sm focus:ring-2 focus:ring-black/30"
+                  />
+                </div>
+
+                {/* Zip Code */}
+                <div className="sm:col-span-1">
+                  <label
+                    htmlFor={`zipCode-${index}`}
+                    className="block text-sm font-medium"
+                  >
+                    Zip Code
+                  </label>
+                  <select
+                    id={`zipCode-${index}`}
+                    name="zipCode"
+                    value={address.zipCode || ""}
+                    onChange={(e) => handleAddressChange(index, e)}
+                    required
+                    className="block w-full rounded-md border-gray-300 py-1.5 shadow-sm focus:ring-2 focus:ring-black/30"
+                  >
+                    <option value="" disabled>
+                      Select a zip code
+                    </option>
+                    <option value="393001">393001</option>
+                    <option value="393002">393002</option>
+                    <option value="393010">393010</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
+      {/* Submit Button */}
       <div className="mt-4 flex items-center justify-end gap-x-6">
         <button
-          onClick={() => {}}
+          onClick={() => seterFn(false)}
           type="button"
-          className="text-sm font-semibold leading-6 "
+          className="text-sm font-semibold"
         >
           Cancel
         </button>
         <button
           type="submit"
-          className="rounded-md bg-primary px-3.5 py-1.5 text-sm font-semibold text-white shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-900/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-black/30"
         >
-          Save
+          {isPending ? <Spinner /> : "Save"}
         </button>
       </div>
     </form>
@@ -140,3 +229,4 @@ function EditUserDetails({ user, onSubmit }) {
 }
 
 export default EditUserDetails;
+

@@ -11,9 +11,12 @@ function TrendProducts() {
 
   return (
     <section className="sm:mb-12">
-      <h1 className="text-xl font-semibold sm:mb-3 py-3 sm:py-5">
-        Products on Trend
-      </h1>
+      <div className="my-10">
+        <h1 className=" font-semibold text-xl sm:text-2xl  text-primary leading-5">
+          Products on Trend
+        </h1>
+        <p className="font-medium text-md">Trending Products You'll Love</p>
+      </div>
       {isLoading ? (
         <Loader className="h-40 w-full" />
       ) : (

@@ -40,7 +40,7 @@ function OrderBill({ order, showFn }) {
               <div className="flex items-center">
                 <img
                   src={item.product.img}
-                  alt={item.product.title}
+                  alt={"product"}
                   className="w-16 h-16 object-cover rounded-lg mr-4"
                 />
                 <h1 className="mr-2">{item.product.title}</h1>

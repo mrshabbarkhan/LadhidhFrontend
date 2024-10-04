@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToFavorite, removeFromFavorite } from "../../features/Favorites/favoriteSlice";
 import { useLocalStorage } from "../../features/auth/LocalStorageContext";
 import { AiOutlineLogout } from "react-icons/ai";
+import { MdLogout } from "react-icons/md";
 
 function InnerNavbar({ children }) {
   const location = useLocation();
@@ -51,13 +52,14 @@ function InnerNavbar({ children }) {
       ) : (
         <BackButton>{children}</BackButton>
       )}
-      <div className="flex items-center">
+      <div className="flex items-center sm:gap-5">
         {user && pathName4 && (
           <span
-            className="text-lg mx-4 flex items-center gap-2 cursor-pointer"
+            className="text-xl mx-4 flex items-center gap-2 cursor-pointer"
             onClick={() => logOutUser()}
           >
-            <AiOutlineLogout className="text-xl " /> logout
+            <MdLogout className="text-xl" />
+            logout
           </span>
         )}
         {pathName4 && <ShoppingCart />}

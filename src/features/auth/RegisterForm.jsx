@@ -50,7 +50,7 @@ function RegisterForm({ setRegister }) {
             value={formData.name}
             onChange={handleChange}
             placeholder="Full name"
-            className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-1  focus:ring-black/30 focus:border-black/30"
             required
             autoComplete="off"
           />
@@ -69,7 +69,7 @@ function RegisterForm({ setRegister }) {
             value={formData.contact}
             onChange={handleChange}
             placeholder="+91 1234567890"
-            className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-1  focus:ring-black/30 focus:border-black/30"
             required
             maxLength={10}
             minLength={10}
@@ -89,7 +89,7 @@ function RegisterForm({ setRegister }) {
             value={formData.email}
             onChange={handleChange}
             placeholder="Email here"
-            className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-1  focus:ring-black/30 focus:border-black/30"
             required
             autoComplete="off"
           />
@@ -108,7 +108,7 @@ function RegisterForm({ setRegister }) {
             value={formData.password}
             onChange={handleChange}
             placeholder="Enter your password"
-            className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-1  focus:ring-black/30 focus:border-black/30"
             required
             minLength={6}
             autoComplete="off"

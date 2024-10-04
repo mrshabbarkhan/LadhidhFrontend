@@ -1,5 +1,6 @@
 import { MdMarkEmailRead } from "react-icons/md";
 import { LuPhoneCall } from "react-icons/lu";
+import { BiSolidEdit } from "react-icons/bi";
 
 function UserDetails({seterFn, user }) {
   const { name, email, number } = user
@@ -17,10 +18,12 @@ function UserDetails({seterFn, user }) {
             <p className="text-sm text-slate-400">{number}</p>
           </span>
         </div>
-        <i
+        <span
           onClick={() => seterFn(true)}
-          className="fa-regular fa-pen-to-square m-2 cursor-pointer"
-        ></i>
+          className="text-xl m-2 cursor-pointer absolute right-0 sm:static"
+        >
+          <BiSolidEdit />
+        </span>
       </div>
     );
 }

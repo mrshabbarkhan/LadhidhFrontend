@@ -18,7 +18,7 @@ function AppLayout() {
 
   return (
     <>
-      <div className="pt-16 px-2 md:px-24 lg:px-36 reletive top-0 overflow-hidden">
+      <div className="pt-16 pl-2 md:px-24 lg:px-36 reletive top-0 overflow-hidden">
         {isHomePage ? (
           <Navbar />
         ) : (
