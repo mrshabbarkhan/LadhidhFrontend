@@ -38,16 +38,10 @@ function CartPage() {
 
   const memoizedUpdatedCart = useMemo(() => {
     return updatedCart
-      ?.map((dts, index) => (
+      ?.map((product, index) => (
         <CartList
-          qty={dts.quantity}
+          product={product}
           key={index}
-          img={dts.product.img}
-          title={dts.product.title}
-          price={dts.product.price}
-          discount={dts.product.discount}
-          id={dts.product._id}
-          pack={dts.product.pack}
           onQtyChange={handleQtyChange} // Pass the handler
         />
       ))

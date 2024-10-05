@@ -4,12 +4,23 @@ import Spinner from "../../components/Spinner";
 import { useCart } from "./useCart";
 import { useAOS } from "../../hooks/useAOS";
 
-function CartList({ id, img, qty = 1, title, price, pack, discount ,onQtyChange }) {
-  const { cartItems } = useCart()
-  const { removeCart, isPending } = useDeleteCart();
-  const [tempQty, setTempQty] = useState(qty)
+function CartList({ product, onQtyChange }) {
+  const {
+    _id:id,
+    img,
+    qty = 1,
+    title,
+    price,
+    pack,
+    discount,
+    inStock,
+  } = product.product;
 
-  useAOS(id)
+  const { cartItems } = useCart();
+  const { removeCart, isPending } = useDeleteCart();
+  const [tempQty, setTempQty] = useState(qty);
+
+  useAOS(id);
 
   const oldPrice = Math.floor(price / (1 - discount / 100));
 
@@ -17,9 +28,8 @@ function CartList({ id, img, qty = 1, title, price, pack, discount ,onQtyChange 
     setTempQty(() => {
       const filterd = cartItems.find((item) => item.product._id == id);
       return filterd ? filterd.quantity : qty;
-    })
-  }, [cartItems])
-  
+    });
+  }, [cartItems]);
 
   const handleIncrease = () => {
     const newQty = tempQty + 1;
@@ -31,7 +41,7 @@ function CartList({ id, img, qty = 1, title, price, pack, discount ,onQtyChange 
     if (tempQty > 1) {
       const newQty = tempQty - 1;
       setTempQty(newQty);
-      onQtyChange(id, newQty); 
+      onQtyChange(id, newQty);
     }
   };
 
@@ -67,7 +77,11 @@ function CartList({ id, img, qty = 1, title, price, pack, discount ,onQtyChange 
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <img className="w-24 rounded-lg object-cover" src={img} alt={title} />
+        <div className="relative w-fit ">
+          <img className={`w-24 rounded-lg object-cover ${inStock || "opacity-40"}`} src={img} alt={title} />
+          {inStock || <span className="absolute top-0 w-24 h-full rounded-full font-medium flex items-center">Out of Stock</span>}
+        </div>
+
         <div className="flex justify-between">
           <button
             onClick={handleIncrease}

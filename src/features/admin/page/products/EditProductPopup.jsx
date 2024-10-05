@@ -4,14 +4,13 @@ import { useUpdateProduct } from "./useUpdateProduct";
 import Spinner from "../../../../components/Spinner";
 import { RxCrossCircled } from "react-icons/rx";
 
-
 export default function EditProductPopup({ setShow, product }) {
   const [image, setImage] = useState(null);
 
   const { _id } = product;
 
   const { categories } = useCategory();
-  const {editSingleProduct,isLoading, isSuccess} = useUpdateProduct()
+  const { editSingleProduct, isLoading, isSuccess } = useUpdateProduct();
 
   const togglePopup = () => {
     setShow(false);
@@ -21,9 +20,9 @@ export default function EditProductPopup({ setShow, product }) {
     pack: "single pack",
     title: product.title || "",
     code: product.code || "",
-    price:product.price || "",
+    price: product.price || "",
     discount: product.discount || "",
-    category: product.category || "Fish & Seafood",
+    category: product.cat_id || "Fish & Seafood",
     quantity: product.quantity || "",
     description: product.description || "",
     hsn: product.hsn || "",
@@ -51,24 +50,24 @@ export default function EditProductPopup({ setShow, product }) {
     data.append("code", formData.code);
     data.append("price", formData.price);
     data.append("discount", formData.discount);
-    data.append("cat_id", product.cat_id);
+    data.append("cat_id", formData.category);
     data.append("quantity", formData.quantity);
     data.append("description", formData.description);
     data.append("hsn", formData.hsn);
 
     const submitedData = {
       _id,
-      data
-    }
+      data,
+    };
 
-    editSingleProduct(submitedData)
+    editSingleProduct(submitedData);
   };
 
   useEffect(() => {
     if (isSuccess) {
-      togglePopup()
+      togglePopup();
     }
-  },[isSuccess])
+  }, [isSuccess]);
 
   return (
     <>
@@ -82,7 +81,10 @@ export default function EditProductPopup({ setShow, product }) {
             <h2 className="text-xl font-semibold text-gray-800 mb-4">
               Update Product
             </h2>
-            <div onClick={togglePopup} className="absolute top-5 right-5 cursor-pointer text-xl">
+            <div
+              onClick={togglePopup}
+              className="absolute top-5 right-5 cursor-pointer text-xl"
+            >
               <RxCrossCircled />
             </div>
             <form onSubmit={handleSubmit}>
@@ -225,7 +227,7 @@ export default function EditProductPopup({ setShow, product }) {
                 >
                   {categories?.map((category) => (
                     <>
-                      <option key={categories._id} value={`${category.cat_id}`}>
+                      <option key={categories._id} value={category.cat_id}>
                         {category.name}
                       </option>
                     </>

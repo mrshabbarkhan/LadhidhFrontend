@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+
 import FavoriteList from "../Favorites/FavoriteList";
 import { useParams } from "react-router-dom";
 import { useProducts } from "../admin/page/products/useProducts";
@@ -15,16 +15,10 @@ function ProductListPage() {
 
   return (
     <>
-      {filterByCatId?.map((dtl, index) => (
+      {filterByCatId?.map((product, index) => (
         <FavoriteList
-          key={index}
-          id={dtl._id}
-          img={dtl.img}
-          pack={dtl.pack}
-          tittle={dtl.title}
-          discount={dtl.discount}
-          code={dtl.code}
-          price={dtl.price}
+          key={product._id}
+          product ={product}
         />
       ))}
     </>

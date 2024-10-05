@@ -4,10 +4,12 @@ import RegisterForm from "./RegisterForm";
 import { useLocation } from "react-router-dom";
 import BackButton from "../../components/BackButton";
 import { HiOutlineUserCircle } from "react-icons/hi2";
+import OTPForm from "./OTPForm";
 
 function AuthButton({ onClickOverlyHide = false }) {
   const [showForm, setShowForm] = useState(true);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
+  const [showOTPForm, setShowOTPForm] = useState(false)
 
   const location = useLocation()
   const isInCart = location.pathname == "/cart"
@@ -20,6 +22,12 @@ function AuthButton({ onClickOverlyHide = false }) {
       }
     }
   };
+
+  const resetStates = () => {
+    setShowForm(!showForm)
+    setShowOTPForm(false)
+    setShowRegisterForm(false)
+  }
 
   return (
     <>
@@ -37,10 +45,10 @@ function AuthButton({ onClickOverlyHide = false }) {
           <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-8 relative ">
             {!onClickOverlyHide && (
               <div
-                onClick={() => setShowForm(!showForm)}
+                onClick={resetStates}
                 className="text-black absolute right-10 top-7 hover:cursor-pointer"
               >
-                <i class="fa-regular fa-circle-xmark text-lg"></i>
+                <i className="fa-regular fa-circle-xmark text-lg"></i>
               </div>
             )}
             {(isInCart || isInProfile) && (
@@ -49,9 +57,12 @@ function AuthButton({ onClickOverlyHide = false }) {
               </div>
             )}
             {showRegisterForm ? (
-              <RegisterForm setRegister={setShowRegisterForm} />
+              <RegisterForm showRegistration={setShowRegisterForm} />
             ) : (
-              <LoginForm setRegister={setShowRegisterForm} />
+              <LoginForm
+                showRegistration={setShowRegisterForm}
+                setOTP={setShowOTPForm}
+              />
             )}
           </div>
         </div>

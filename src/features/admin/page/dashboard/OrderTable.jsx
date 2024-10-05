@@ -31,7 +31,6 @@ const OrderTable = () => {
   };
 
   const handleViewOrder = (order) => {
-    console.log(order)
     setSelectedBillOrder(order); 
     setShowBill(true); 
   };

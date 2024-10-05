@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useRegister } from "./useRegister";
+import OTPForm from "./OTPForm";
 
-function RegisterForm({ setRegister }) {
+function RegisterForm({ showRegistration }) {
   const { registerUser, isPending, isSuccess } = useRegister();
+  const [showOTPForm, setShowOTPForm] = useState(true)
 
   useEffect(() => {
     if (isSuccess) {
@@ -29,6 +31,10 @@ function RegisterForm({ setRegister }) {
     e.preventDefault();
     registerUser(formData);
   };
+
+  if (showOTPForm) {
+    return <OTPForm fromLogin={false} />
+  }
 
   return (
     <>
@@ -126,7 +132,7 @@ function RegisterForm({ setRegister }) {
       </form>
 
       <p
-        onClick={() => setRegister(false)}
+        onClick={() => showRegistration(false)}
         className="mt-6 text-center text-md text-gray-600  hover:underline"
       >
         Already have an account?

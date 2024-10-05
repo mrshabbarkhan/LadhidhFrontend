@@ -12,6 +12,7 @@ function SaleForYou() {
     (product) => product.discount > showOnlyGreaterDisc
   );
 
+
   useAOS(products);
 
   return (

@@ -16,11 +16,17 @@ export const allCartItmes = async () => {
 };
 
 export const removeFromCart = async (formData) => {
-  const options = getHeader()
-  const res = await axios.delete(base_url + "/remove", {
-    ...options,
-    data: { productId: formData },
-  });
 
-  return res.data;
+  try {
+    const options = getHeader()
+    const res = await axios.delete(base_url + "/remove", {
+      ...options,
+      data: { productId: formData },
+    });
+  
+    return res.data;  
+  } catch (error) {
+    console.log(error)
+    throw new Error("Delete Fail", error)
+  }
 };

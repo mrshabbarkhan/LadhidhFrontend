@@ -1,14 +1,26 @@
+import { useDispatch } from "react-redux";
 import AddToButton from "../../components/AddToButton";
+import { addToProductDetails } from "../Product-list/productDetailSlice";
+import { useNavigate } from "react-router-dom";
+import OutOfStock from "../../components/OutOfStock";
 
-function FavoriteList(props) {
-  const { img, pack, tittle, discount, code, price } = props
+function FavoriteList({ product }) {
+  const { img, pack, title, discount, code, price, inStock } = product;
   const oldPrice = Math.floor(price / (1 - discount / 100));
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleViewDetails = () => {
+    dispatch(addToProductDetails(product));
+    navigate("/product-details");
+  };
 
   return (
     <div className="mb-5 Favorites_List drop-shadow-lg flex p-2 rounded-lg">
       <div className="grow ">
         <h1 className="mt-2 text-md text-gray-800 leading-6 font-medium">
-          {tittle}
+          {title}
         </h1>
         {discount && (
           <p className="text-xs mt-2 text-orange-500">
@@ -24,10 +36,20 @@ function FavoriteList(props) {
           </span>
         </div>
         <p className="text-xs font-medium text-primary-dark">{pack}</p>
+        <button
+          onClick={handleViewDetails}
+          className="text-sm hover:scale-90 mt-5 border p-1"
+        >
+          View Details
+        </button>
       </div>
       <div className="flex flex-col gap-2">
         <img className="w-24 rounded-lg object-cover" src={img} alt="" />
-        <AddToButton {...props} />
+        {inStock ? (
+          <AddToButton {...product} redirect={"/cart"} />
+        ) : (
+          <OutOfStock product={product} />
+        )}
       </div>
     </div>
   );

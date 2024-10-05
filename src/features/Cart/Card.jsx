@@ -4,12 +4,13 @@ import { useDispatch } from "react-redux";
 import { addToProductDetails } from "../Product-list/productDetailSlice";
 
 import { useAOS } from "../../hooks/useAOS";
+import OutOfStock from "../../components/OutOfStock";
 
 function Card({ product, isOnTrand, redirect }) {
-  const { img, pack, title, discount, code, price } = product;
+  const { img, pack, title, discount, code, price, inStock } = product;
   const oldPrice = Math.floor(price / (1 - discount / 100));
 
-  useAOS(product)
+  useAOS(product);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ function Card({ product, isOnTrand, redirect }) {
 
   const sectionStyle = isOnTrand
     ? "min-w-[18rem] sm:min-w-[16rem] "
-    : "min-w-[12rem] sm:min-w-[16rem]";
+    : "min-w-[14rem] sm:min-w-[16rem]";
   const imgStyle = isOnTrand ? "h-36 w-36" : "h-28 w-28";
 
   return (
@@ -38,12 +39,16 @@ function Card({ product, isOnTrand, redirect }) {
       </div>
       <div className="px-2 mt-1 flex flex-col justify-between ">
         <h1 className="mt-2 text-lg leading-6 font-semibold">{title}</h1>
-        <p className="text-xs font-medium text-primary py-2 leading-3">{pack}</p>
+        <p className="text-xs font-medium text-primary py-2 leading-3">
+          {pack}
+        </p>
         {discount ? (
           <p className="text-xs leading-3">
             FLAT {discount}% off Code: {code}
           </p>
-        ): <p className="mt-3"></p>}
+        ) : (
+          <p className="mt-3"></p>
+        )}
         <div className="flex justify-between items-center mt-2">
           <span className="flex gap-2 items-center">
             <h1 className="text-xl text-primary font-medium">
@@ -55,7 +60,11 @@ function Card({ product, isOnTrand, redirect }) {
               </span>
             )}
           </span>
-          <AddToButton {...product} redirect={"/cart"} />
+          {inStock ? (
+            <AddToButton {...product} redirect={"/cart"} />
+          ) : (
+            <OutOfStock product={product} />
+          )}
         </div>
       </div>
     </section>

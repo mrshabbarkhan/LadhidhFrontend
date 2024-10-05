@@ -14,7 +14,7 @@ export function useAddProduct() {
     },
     onError: (err) => {
       toast.error("Something went wrong");
-      console.log(err);
+      console.log("adding product", err);
     },
   });
 

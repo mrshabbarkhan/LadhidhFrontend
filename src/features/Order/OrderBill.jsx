@@ -15,11 +15,13 @@ function OrderBill({ order, showFn }) {
           Order ID: <span className="font-semibold">{order._id}</span>
         </p>
         <p>
-          Status:{" "}
+          Status:
           <span className="font-semibold text-red-500">
             {order.paymentStatus.toLowerCase()}
           </span>
-        </p>
+      </p>
+
+        <p>Pickup Password : {order?.pickupPassword}</p>
 
         {/* Shipping Address */}
         <p className="mt-4">Shipping Address:</p>
@@ -44,8 +46,11 @@ function OrderBill({ order, showFn }) {
                   className="w-16 h-16 object-cover rounded-lg mr-4"
                 />
                 <h1 className="mr-2">{item.product.title}</h1>
-                <span className="text-gray-400"> x {item.quantity}</span> 
-                <span className="ml-2 text-gray-400"> HSN : {item?.product.hsn}</span>
+                <span className="text-gray-400"> x {item.quantity}</span>
+                <span className="ml-2 text-gray-400">
+                  {" "}
+                  HSN : {item?.product.hsn}
+                </span>
               </div>
               <div className="float-end ">
                 <span className="font-semibold">₹{item.price.toFixed(2)}</span>

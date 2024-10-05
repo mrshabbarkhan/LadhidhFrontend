@@ -13,12 +13,12 @@ function Category({ children, heading, btn }) {
         <div className="flex justify-between items-start">
           <div>
             <h1 className="font-semibold text-xl sm:text-2xl relative leading-5 text-primary">{heading} </h1>
-            <p className="">Freshest meats and much more!</p>
+            <p className="line-clamp-1">Freshest meats and much more!</p>
           </div>
           {btn && (
             <button
               onClick={() => navigate("/category")}
-              className=" hover:underline px-1 rounded-md"
+              className=" hover:underline px-1 rounded-md line-clamp-1"
             >
               View All
             </button>

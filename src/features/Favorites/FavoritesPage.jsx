@@ -15,17 +15,10 @@ function FavoritesPage() {
 
   return (
     <>
-      {favoriteProducts.map((dtl, index) => (
+      {favoriteProducts.map((prod, index) => (
         <FavoriteList
-          key={index}
-          id={dtl.id}
-          img={dtl.img}
-          pack={dtl.pack}
-          tittle={dtl.tittle}
-          discount={dtl.discount}
-          code={dtl.code}
-          price={dtl.price}
-          oldPrice={dtl.oldPrice}
+          key={prod._id}
+          product={prod}
         />
       ))}
     </>
