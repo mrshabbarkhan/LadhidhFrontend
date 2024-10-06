@@ -4,18 +4,20 @@ import { useBanners } from "./useBanners";
 import { useDeleteBanner } from "./useDeleteBanner";
 import Spinner from "../../../../components/Spinner";
 import { useAddBaner } from "./useAddBanner";
+import { IoMdTrash } from "react-icons/io";
+import { FaTrashCan } from "react-icons/fa6";
 
 function BannerPage() {
   const { banners, isPending } = useBanners();
   const { addNewBanner, isPending: addingBanner } = useAddBaner();
   const { removeBanner } = useDeleteBanner();
 
-  const [deletingBannerId, setDeletingBannerId] = useState(null); 
+  const [deletingBannerId, setDeletingBannerId] = useState(null);
 
   const handleDelete = (id) => {
-    setDeletingBannerId(id); 
+    setDeletingBannerId(id);
     removeBanner(id, {
-      onSettled: () => setDeletingBannerId(null), 
+      onSettled: () => setDeletingBannerId(null),
     });
   };
 
@@ -51,25 +53,23 @@ function BannerPage() {
       </label>
 
       <div className="flex flex-wrap gap-10 mt-2 ">
-        {banners
-          ?.map((banner) => (
-            <div key={banner._id} className="relative">
-              <img className="rounded-md h-40 w-80" src={banner.Img} alt="" />
-              <span className="absolute bottom-2 right-2 flex space-x-2 float-end mt-2">
-                <div
-                  onClick={() => handleDelete(banner._id)}
-                  className="bg-white border shadow w-fit py-.5 px-1.5 rounded-lg hover:text-white hover:bg-primary-dark transition-all cursor-pointer"
-                >
-                  {deletingBannerId === banner._id ? ( 
-                    <Spinner />
-                  ) : (
-                    <i className="fa fa-trash-alt"></i>
-                  )}
-                </div>
-              </span>
-            </div>
-          ))
-          .reverse()}
+        {banners?.map((banner) => (
+          <div key={banner._id} className="relative border-2">
+            <img className="rounded-md  object-cover" src={banner.Img} alt="" />
+            <span className="absolute bottom-2 right-2 flex space-x-2 float-end mt-2">
+              <div
+                onClick={() => handleDelete(banner._id)}
+                className="glassmorphism border shadow w-fit py-.5 px-1.5 rounded-lg hover:text-white hover:bg-primary-dark transition-all cursor-pointer"
+              >
+                {deletingBannerId === banner._id ? (
+                  <Spinner />
+                ) : (
+                  <FaTrashCan className="m-1" />
+                )}
+              </div>
+            </span>
+          </div>
+        ))}
       </div>
     </>
   );

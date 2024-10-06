@@ -5,10 +5,10 @@ import {
   setSearchTerm,
 } from "../features/admin/page/searchSlice";
 import { useEffect } from "react";
-import { addToProductDetails } from "../features/Product-list/productDetailSlice";
 import { useNavigate } from "react-router-dom";
 import { useProducts } from "../features/admin/page/products/useProducts";
 import { FiSearch } from "react-icons/fi";
+import { MdOutlineCancel } from "react-icons/md";
 
 function SearchProduct({ className }) {
   const dispatch = useDispatch();
@@ -32,10 +32,7 @@ function SearchProduct({ className }) {
   };
 
   const handleClick = async (product) => {
-    try {
-      await dispatch(addToProductDetails(product));
-      navigate("/product-details");
-    } catch (error) {}
+    navigate(`/product-details/${product._id}`);
     handleClear();
   };
 
@@ -65,19 +62,21 @@ function SearchProduct({ className }) {
             onClick={handleClear}
             className="absolute top-4 right-4 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
           >
-            <i className="fa-regular fa-circle-xmark"></i>
+            <MdOutlineCancel />
           </button>
         )}
       </div>
       {searchTerm && (
-        <ul className="transition-all overflow-auto z-20 rounded-b-md px-2 py-1 bg-white border border-t-0 shadow-lg absolute top-16 w-80 h-72 min-h-72">
+        <ul className="transition-all overflow-auto z-20 rounded-b-md px-2 py-1 bg-white border border-t-0 shadow-lg absolute top-16 w-80 h-fit min-h-fit max-h-72">
           {filteredProducts?.map((data, index) => (
             <li
               onClick={() => handleClick(data)}
               key={index}
               className="py-1 px-2 rounded-md text-left font-medium"
             >
-              <h1 className="cursor-pointer rounded-md py-2 hover:bg-primary hover:px-2 hover:text-white">{data.title}</h1>
+              <h1 className="cursor-pointer rounded-md py-2 hover:bg-primary hover:px-2 hover:text-white">
+                {data.title}
+              </h1>
             </li>
           ))}
         </ul>

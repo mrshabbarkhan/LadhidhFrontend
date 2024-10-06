@@ -2,6 +2,16 @@ const base_url = "/api/admin/";
 import axios from "axios";
 import { getHeader } from "../../utils/headersUtils";
 
+export const getSingleProduct = async (id) => {
+  try {
+    const options = getHeader();
+    const res = await axios.get(`/api/user/products/${id}`, options);
+    return res.data;
+  } catch (error) {
+    throw new Error(error.response.message);
+  }
+};
+
 export const getAllProducts = async () => {
   const response = await axios.get(base_url + "products");
   return response.data;
@@ -26,13 +36,16 @@ export const deleteProducts = async (id) => {
 };
 
 export const toggleStock = async (id) => {
-
   try {
-    const options = getHeader()
-    const response = await axios.put("/api/admin/products/toggleStock", {id}, options);
+    const options = getHeader();
+    const response = await axios.put(
+      "/api/admin/products/toggleStock",
+      { id },
+      options
+    );
     return response.data;
   } catch (error) {
-    console.log(error)
-    throw new Error(error)
+    console.log(error);
+    throw new Error(error);
   }
 };

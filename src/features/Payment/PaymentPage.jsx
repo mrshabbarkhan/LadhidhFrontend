@@ -8,8 +8,8 @@ import { useSelector } from "react-redux";
 
 function PaymentPage() {
   const { address } = useDeliveryAddress();
-  const { localCart } = useSelector(state => state.cart)
-  
+  const { localCart } = useSelector((state) => state.cart);
+
   const {} = useAddress();
   const {
     postOrder,
@@ -36,10 +36,10 @@ function PaymentPage() {
     const formData = {
       shippingAddress: address,
       paymentMethod: "Cod",
-      products: localCart.map(c => ({
-          productId: c.product._id,
-          quantity: c.quantity.toString(),
-        }))
+      products: localCart.map((c) => ({
+        productId: c.product._id,
+        quantity: c.quantity.toString(),
+      })),
     };
 
     if (address) {
@@ -53,8 +53,8 @@ function PaymentPage() {
         <OrderSuccess order={orderDetails.order} />
       ) : (
         <>
-          <h1 className="font-semibold text-lg">Select Payment Mode</h1>
-          <div className="mb-20">
+          <h1 className="font-semibold text-lg mt-5">Select Payment Mode</h1>
+          <div className="mb-20 ">
             {data.map((item) => (
               <Accordion
                 key={item.id}

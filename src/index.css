@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,12 +8,10 @@
   font-family: "Lato", sans-serif;
   padding: 0%;
   margin: 0%;
-  transition: all 0.2s;
 }
 
 *::selection {
-
-  background-color: #FE1313;
+  background-color: #fe1313;
   color: white;
 }
 
@@ -19,7 +19,10 @@
   display: none;
 }
 
-h1,h2,h3,p{
+h1,
+h2,
+h3,
+p {
   cursor: default;
 }
 
@@ -81,7 +84,7 @@ h1,h2,h3,p{
 .three-body {
   --uib-size: 35px;
   --uib-speed: 0.8s;
-  --uib-color: #FE1313;
+  --uib-color: #fe1313;
   position: relative;
   display: inline-block;
   height: var(--uib-size);

@@ -1,19 +1,15 @@
-import { useDispatch } from "react-redux";
 import AddToButton from "../../components/AddToButton";
-import { addToProductDetails } from "../Product-list/productDetailSlice";
 import { useNavigate } from "react-router-dom";
 import OutOfStock from "../../components/OutOfStock";
 
 function FavoriteList({ product }) {
-  const { img, pack, title, discount, code, price, inStock } = product;
+  const { img, pack, title, discount, code, price, inStock, _id } = product;
   const oldPrice = Math.floor(price / (1 - discount / 100));
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleViewDetails = () => {
-    dispatch(addToProductDetails(product));
-    navigate("/product-details");
+    navigate(`/product-details/${_id}`);
   };
 
   return (

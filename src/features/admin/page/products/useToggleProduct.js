@@ -11,9 +11,10 @@ export function useToggleProduct() {
             queryClient.invalidateQueries({
                 queryKey : ["products"]
             })
-            toast.success("toggle success")
+            toast.success("Stock Toggle Changed")
         },
         onError: (error) => {
+            toast.error("Something happens wrong")
             console.log("Toggle Error", error)
         }
     })

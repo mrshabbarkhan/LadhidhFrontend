@@ -1,22 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import AddToButton from "../../components/AddToButton";
-import { useDispatch } from "react-redux";
-import { addToProductDetails } from "../Product-list/productDetailSlice";
 
 import { useAOS } from "../../hooks/useAOS";
 import OutOfStock from "../../components/OutOfStock";
 
 function Card({ product, isOnTrand, redirect }) {
-  const { img, pack, title, discount, code, price, inStock } = product;
+  const { img, pack, title, discount, code, price, inStock, _id } = product;
   const oldPrice = Math.floor(price / (1 - discount / 100));
 
   useAOS(product);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
   const handleClick = () => {
-    dispatch(addToProductDetails(product));
-    navigate(redirect);
+    navigate(`/product-details/${_id}`);
   };
 
   const sectionStyle = isOnTrand

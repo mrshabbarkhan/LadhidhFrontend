@@ -30,11 +30,11 @@ const CategoriesPage = () => {
           <AddCategoryPopup />
         </div>
       </div>
-      <div className="categories_img  p_text flex justify-center sm:justify-start  flex-wrap  gap-x-20  gap-y-8 sm:px-4 mt-8">
+      <div className="categories_img  p_text flex justify-center sm:justify-start flex-wrap sm:gap-x-10 gap-y-3 sm:gap-y-8 sm:px-4 mt-8">
         {filterbyCategory?.length ? (
-          filterbyCategory.map((dts, index) => (
+          filterbyCategory.map((dts) => (
             <CategoryCardForAdmin
-              key={index}
+              key={dts._id}
               id={dts._id}
               img={dts.img}
               title={dts.name}

@@ -3,10 +3,17 @@ import { useDeleteCart } from "./useDeleteCart";
 import Spinner from "../../components/Spinner";
 import { useCart } from "./useCart";
 import { useAOS } from "../../hooks/useAOS";
+import { FaRegTrashAlt } from "react-icons/fa";
+import {
+  FaRegTrashCan,
+  FaTrash,
+  FaTrashArrowUp,
+  FaTrashCan,
+} from "react-icons/fa6";
 
 function CartList({ product, onQtyChange }) {
   const {
-    _id:id,
+    _id: id,
     img,
     qty = 1,
     title,
@@ -67,19 +74,29 @@ function CartList({ product, onQtyChange }) {
         </div>
         <div
           onClick={handleDelete}
-          className="border shadow w-fit py-0.5 px-2 rounded-lg text-black hover:text-white hover:bg-primary  transition-size cursor-pointer"
+          className="border shadow w-fit  px-1 rounded-lg text-black hover:text-white hover:bg-primary  transition-size cursor-pointer"
         >
           {isPending ? (
             <Spinner className="my-1 border-black" />
           ) : (
-            <i className="fa fa-trash-alt text-xl hover:scale-75"></i>
+            <FaTrashArrowUp className="text-xl my-0.5" />
           )}
         </div>
       </div>
       <div className="flex flex-col gap-2">
         <div className="relative w-fit ">
-          <img className={`w-24 rounded-lg object-cover ${inStock || "opacity-40"}`} src={img} alt={title} />
-          {inStock || <span className="absolute top-0 w-24 h-full rounded-full font-medium flex items-center">Out of Stock</span>}
+          <img
+            className={`w-24 rounded-lg object-cover ${
+              inStock || "opacity-40"
+            }`}
+            src={img}
+            alt={title}
+          />
+          {inStock || (
+            <span className="absolute top-0 w-24 h-full rounded-full font-medium flex items-center">
+              Out of Stock
+            </span>
+          )}
         </div>
 
         <div className="flex justify-between">

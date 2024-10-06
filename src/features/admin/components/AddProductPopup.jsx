@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useCategory } from "../page/Categories/useCategory";
 import { useAddProduct } from "../page/products/useAddProduct";
 import Spinner from "../../../components/Spinner";
+import { MdCancel } from "react-icons/md";
 
 export default function AddProductPopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +24,7 @@ export default function AddProductPopup() {
     category: "Fish & Seafood",
     quantity: "",
     description: "",
-    hsn : ""
+    hsn: "",
   });
 
   const handleImages = (e) => {
@@ -64,16 +65,15 @@ export default function AddProductPopup() {
       category: "Fish & Seafood",
       quantity: "",
       description: "",
-      hsn : ""
+      hsn: "",
     });
-
   };
 
   useEffect(() => {
     if (isSuccess) {
-      togglePopup()
+      togglePopup();
     }
-  },[isSuccess])
+  }, [isSuccess]);
 
   return (
     <>
@@ -95,8 +95,11 @@ export default function AddProductPopup() {
               <h2 className="text-xl font-semibold text-gray-800 mb-4">
                 Add New Product
               </h2>
-              <div onClick={togglePopup} className="absolute top-2 right-5 cursor-pointer">
-                <i class="fa-solid fa-xmark"></i>
+              <div
+                onClick={togglePopup}
+                className="absolute top-6 right-5 cursor-pointer"
+              >
+                <MdCancel className="text-xl" />
               </div>
               <form onSubmit={handleSubmit}>
                 {/* Image Upload */}
@@ -237,10 +240,7 @@ export default function AddProductPopup() {
                   >
                     {categories?.map((category) => (
                       <>
-                        <option
-                          key={categories._id}
-                          value={`${category.cat_id}`}
-                        >
+                        <option key={category._id} value={`${category.cat_id}`}>
                           {category.name}
                         </option>
                       </>
@@ -269,7 +269,11 @@ export default function AddProductPopup() {
                     type="submit"
                     className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
                   >
-                    {isLoading ? <Spinner className={"border-white"} /> : "Submit"}
+                    {isLoading ? (
+                      <Spinner className={"border-white"} />
+                    ) : (
+                      "Submit"
+                    )}
                   </button>
                   <button
                     type="button"

@@ -4,34 +4,30 @@ import { addLocalCart } from "../features/Cart/cartSlice";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
+import { IoIosArrowForward } from "react-icons/io";
 
 function CheckOutFooter({ qty, total, cart }) {
-  const dispatch = useDispatch()
-  const [hasFalse, sethasFalse] =  useState(false)
+  const dispatch = useDispatch();
+  const [hasFalse, sethasFalse] = useState(false);
 
-
-  const {cartItems} = useCart()
-  if (!cartItems.length) {
-    return null;
-  }
+  const { cartItems } = useCart();
 
   useEffect(() => {
-    const notInStock = cartItems.find(cart => cart.product.inStock === false)
-    
-    if (notInStock) {
-      toast.error(`${notInStock.product.title} is out of stock`)
-      sethasFalse(true)
-    } else {
-      sethasFalse(false)
-    }
-    
-  }, [cartItems])
-  
-  if (hasFalse) {
-    return null
-  }
+    if (!cartItems.length) return;
 
-  
+    const notInStock = cartItems.find((cart) => cart.product.inStock === false);
+
+    if (notInStock) {
+      toast.error(`${notInStock.product.title} is out of stock`);
+      sethasFalse(true);
+    } else {
+      sethasFalse(false);
+    }
+  }, [cartItems]);
+
+  if (hasFalse) {
+    return null;
+  }
 
   const handleLocalCart = () => {
     dispatch(addLocalCart(cart));
@@ -47,7 +43,7 @@ function CheckOutFooter({ qty, total, cart }) {
         <div className="flex gap-2 items-center">
           <span className="text-lg">Checkout</span>
           <span>
-            <i className="fa fa-angle-right"></i>
+            <IoIosArrowForward className="text-lg" />
           </span>
         </div>
       </div>

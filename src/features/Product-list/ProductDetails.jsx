@@ -1,36 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StarSvg from "../../assets/ui/StarSvg";
-import {  useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useAddCart } from "../Cart/useAddCart";
 import { TbTruckDelivery } from "react-icons/tb";
+import { useSingleProduct } from "../admin/page/products/useSingleProduct";
+import Loader from "../../components/Loader";
+import { FaRegClock } from "react-icons/fa6";
 
 function ProductDetails() {
   const [tempQty, setTempQty] = useState(1);
   const navigate = useNavigate();
 
-  const { product } = useSelector((state) => state.productDetails);
-  const { addToCart } = useAddCart()
- 
+  const { id } = useParams();
+
+  const { product, isSuccess, singleProduct } = useSingleProduct();
+  const { addToCart } = useAddCart();
+
+  useEffect(() => {
+    singleProduct(id);
+  }, [id]);
+
+  if (!isSuccess) {
+    return <Loader className={"h-96"} />;
+  }
+
   const { price, oldPrice, img } = product;
 
   async function handleCart() {
-
     const formData = {
       productId: product.id || product._id,
       quantity: tempQty,
     };
 
-      addToCart(formData);
-      navigate("/cart");
-    
+    addToCart(formData);
+    navigate("/cart");
   }
 
   return (
     <>
       <div
         data-aos="fade-up"
-        className=" overflow-y-auto absolute top-6 left-0 right-0 object-cover pt-12 bg-gray-100"
+        className="lg:mx-48 rounded-lg overflow-y-auto absolute top-12 left-0 right-0 object-cover pt-12 bg-gray-100 flex flex-col justfiy-center"
       >
         <img
           className="w-auto mx-auto h-[50vh] drop-shadow-2xl"
@@ -38,7 +49,7 @@ function ProductDetails() {
           alt="product-details"
         />
 
-        <section className="mb-40 bg-white h-52 pt-2 px-2 md:px-24 lg:px-48 reletive top-0 overflow-hidden pb-80 md:pb-56">
+        <section className="mb-16 bg-white pt-2 px-2 reletive top-0 overflow-hidden ">
           <h1 className="font-semibold text-xl">
             {product.tittle || product.title}
           </h1>
@@ -56,7 +67,7 @@ function ProductDetails() {
               <StarSvg /> 4.6
             </span>
             <span className="flex items-center border-x-2 px-2 gap-2">
-              <i className="fa-regular fa-clock text-primary"></i>6 - 7 min
+              <FaRegClock className="text-primary" />6 - 7 min
             </span>
             <span className="flex items-center text-primary gap-1">
               <TbTruckDelivery className="text-lg" /> Free Delivery
@@ -93,7 +104,7 @@ function ProductDetails() {
         </section>
       </div>
 
-      <div className="w-full bg-white text-center z-30 px-2  py-3 fixed bottom-0 left-0">
+      <div className="w-full bg-white text-center z-30 px-2  py-3 fixed bottom-0 left-0 cursor-pointer">
         <div
           onClick={() => handleCart()}
           className="z-30 bg-primary text-md font-semibold py-2 max-w-5xl rounded-xl m-auto text-white"

@@ -1,32 +1,54 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import BackButton from "../BackButton";
 import ShoppingCart from "../ShoppingCart";
 import { useDispatch, useSelector } from "react-redux";
-import { addToFavorite, removeFromFavorite } from "../../features/Favorites/favoriteSlice";
+import {
+  addToFavorite,
+  removeFromFavorite,
+} from "../../features/Favorites/favoriteSlice";
 import { useLocalStorage } from "../../features/auth/LocalStorageContext";
-import { AiOutlineLogout } from "react-icons/ai";
 import { MdLogout } from "react-icons/md";
+import { useProducts } from "../../features/admin/page/products/useProducts";
+import { FaHeart, FaRegHeart } from "react-icons/fa6";
+import { useSingleProduct } from "../../features/admin/page/products/useSingleProduct";
+import { useEffect, useState } from "react";
 
 function InnerNavbar({ children }) {
   const location = useLocation();
   const pathName4 = location.pathname === "/profile" && "Profile";
-  const pathName5 = location.pathname === "/product-details";
-  
-  const dispatch = useDispatch();
-  const { product } = useSelector((state) => state.productDetails);
-  const { favoriteProducts } = useSelector((state) => state.favoriteProducts);
-  const {user, logOutUser } = useLocalStorage();
+  const pathName5 = location.pathname.startsWith("/product-details");
 
-  const isInFavoriteProduct = favoriteProducts.some(
-    (item) => item._id === product._id
-  );
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { product, singleProduct, isPending, isSuccess, isIdle } =
+    useSingleProduct();
+  const { id } = useParams();
+
+  const { favoriteProducts } = useSelector((state) => state.favoriteProducts);
+  const { user, logOutUser } = useLocalStorage();
+
+  useEffect(() => {
+    if (id) {
+      singleProduct(id);
+    }
+  }, [id]);
+
+  const isInFavoriteProduct =
+    favoriteProducts.length > 0 &&
+    favoriteProducts.some((item) => item._id === product?._id);
 
   const handleFavorite = () => {
-     if (isInFavoriteProduct) {
-       dispatch(removeFromFavorite(product));
-     } else {
-       dispatch(addToFavorite(product)); 
-     }
+    if (isInFavoriteProduct) {
+      dispatch(removeFromFavorite(product));
+    } else {
+      dispatch(addToFavorite(product));
+    }
+  };
+
+  const handleLogOut = () => {
+    logOutUser();
+    navigate("/");
   };
 
   return (
@@ -35,28 +57,28 @@ function InnerNavbar({ children }) {
         pathName5 ? "" : "opacity-100 bg-white border-b"
       }`}
     >
-      {pathName5 ? (
+      {pathName5 && isSuccess ? (
         <div className="flex justify-between items-center w-full">
-          <div className="font-bold w-fit  bg-black/30  text-center py-1 px-1.5 rounded-full text-white border-none flex justify-between">
+          <div className="font-bold w-fit  text-center py-1 px-1.5 rounded-full border-none flex justify-between">
             <BackButton>{children}</BackButton>
           </div>
-          <i
+          <div
             onClick={() => handleFavorite()}
-            className={`cursor-pointer fa-${
-              isInFavoriteProduct ? "solid" : "regular"
-            } fa-heart ${
+            className={`bg-black/30 py-1.5 px-1.5 rounded-full text-xl cursor-pointer ${
               isInFavoriteProduct ? "text-primary" : "text-white"
-            } bg-black/30  px-1.5 rounded-full text-lg`}
-          ></i>
+            }`}
+          >
+            {isInFavoriteProduct ? <FaHeart /> : <FaRegHeart />}
+          </div>
         </div>
       ) : (
         <BackButton>{children}</BackButton>
       )}
-      <div className="flex items-center sm:gap-5">
+      <div className="flex items-center sm:gap-3">
         {user && pathName4 && (
           <span
             className="text-xl mx-4 flex items-center gap-2 cursor-pointer"
-            onClick={() => logOutUser()}
+            onClick={handleLogOut}
           >
             <MdLogout className="text-xl" />
             logout

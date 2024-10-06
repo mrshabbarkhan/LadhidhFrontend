@@ -8,7 +8,7 @@ function RiderButtons({ user }) {
 
   const dispatch = useDispatch()
 
-  const { changeRole } = useToggleRider()
+  const { changeRole,isPending:isLoading } = useToggleRider()
   const { postAssignOrder, isPending, isSuccess } = useAssignOrder();
 
   const { selectedOrder } = useSelector((state) => state.order);
@@ -35,11 +35,17 @@ function RiderButtons({ user }) {
       <div className="mt-4">
         {user?.isRider ? (
           <>
-            <button onClick={()=>handleAssingOrder()} className="border p-1 text-sm sm:text-base px-2 hover:bg-green-500 hover:text-white mr-2 ">
-              {isPending ? <Spinner/>  : "Assing Order"}
+            <button
+              onClick={() => handleAssingOrder()}
+              className="border p-1 text-sm sm:text-base px-2 hover:bg-green-500 hover:text-white mr-2 "
+            >
+              {isPending ? <Spinner /> : "Assing Order"}
             </button>
-            <button onClick={()=>handleChangeRole(user._id)} className="border p-1 text-sm sm:text-base px-2 text-white mr-2 bg-primary-dark hover:bg-primary-light">
-              Remove Rider
+            <button
+              onClick={() => handleChangeRole(user._id)}
+              className="border p-1 text-sm sm:text-base px-2 text-white mr-2 bg-primary-dark hover:bg-primary-light"
+            >
+              {isLoading ? <Spinner /> : "Remove Rider"}
             </button>
           </>
         ) : (
@@ -47,8 +53,11 @@ function RiderButtons({ user }) {
             <button className="border p-1 text-sm sm:text-base px-2 bg-gray-50 mr-2 hover:bg-gray-200">
               View Details
             </button>
-            <button onClick={()=>handleChangeRole(user._id)} className="border p-1 text-sm sm:text-base px-2 bg-gray-50 hover:bg-gray-200">
-              Make Rider
+            <button
+              onClick={() => handleChangeRole(user._id)}
+              className="border p-1 text-sm sm:text-base px-2 bg-gray-50 hover:bg-gray-200"
+            >
+              {isLoading ? <Spinner /> : "Make Rider"}
             </button>
           </>
         )}

@@ -1,6 +1,6 @@
 import { RxCrossCircled } from "react-icons/rx";
 
-function OrderBill({ order, showFn }) {
+function OrderBill({ order, showFn, showPickup = true }) {
   return (
     <section className="bg-black/20 flex justify-center h-[100vh] fixed top-0 left-0 right-0  ">
       <div className="bg-gray-100 p-4 rounded-lg border border-gray-300 w-full max-w-3xl m-auto overflow-scroll relative">
@@ -19,9 +19,9 @@ function OrderBill({ order, showFn }) {
           <span className="font-semibold text-red-500">
             {order.paymentStatus.toLowerCase()}
           </span>
-      </p>
+        </p>
 
-        <p>Pickup Password : {order?.pickupPassword}</p>
+        {showPickup ? <p>Pickup Password : {order?.pickupPassword}</p> : null}
 
         {/* Shipping Address */}
         <p className="mt-4">Shipping Address:</p>

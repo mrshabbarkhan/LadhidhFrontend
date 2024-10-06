@@ -5,15 +5,16 @@ import { useLocation } from "react-router-dom";
 import BackButton from "../../components/BackButton";
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import OTPForm from "./OTPForm";
+import { MdCancel } from "react-icons/md";
 
 function AuthButton({ onClickOverlyHide = false }) {
   const [showForm, setShowForm] = useState(true);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
-  const [showOTPForm, setShowOTPForm] = useState(false)
+  const [showOTPForm, setShowOTPForm] = useState(false);
 
-  const location = useLocation()
-  const isInCart = location.pathname == "/cart"
-  const isInProfile = location.pathname == "/profile"
+  const location = useLocation();
+  const isInCart = location.pathname == "/cart";
+  const isInProfile = location.pathname == "/profile";
 
   const handleClick = (e) => {
     if (!onClickOverlyHide) {
@@ -24,10 +25,10 @@ function AuthButton({ onClickOverlyHide = false }) {
   };
 
   const resetStates = () => {
-    setShowForm(!showForm)
-    setShowOTPForm(false)
-    setShowRegisterForm(false)
-  }
+    setShowForm(!showForm);
+    setShowOTPForm(false);
+    setShowRegisterForm(false);
+  };
 
   return (
     <>
@@ -46,9 +47,9 @@ function AuthButton({ onClickOverlyHide = false }) {
             {!onClickOverlyHide && (
               <div
                 onClick={resetStates}
-                className="text-black absolute right-10 top-7 hover:cursor-pointer"
+                className="text-black absolute right-8 top-5 hover:cursor-pointer"
               >
-                <i className="fa-regular fa-circle-xmark text-lg"></i>
+                <MdCancel className="text-xl" />
               </div>
             )}
             {(isInCart || isInProfile) && (

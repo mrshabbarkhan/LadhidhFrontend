@@ -1,3 +1,4 @@
+import { FaArrowLeftLong } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
 function BackButton({ children }) {
@@ -7,8 +8,8 @@ function BackButton({ children }) {
       className="font-semibold text-xl sticky top-10 z-10 flex items-center gap-2"
       onClick={() => navigate(-1)}
     >
-      <i className="fa-solid fa-arrow-left"></i>
-      {children}
+      <FaArrowLeftLong />
+      {children || "Back"}
     </button>
   );
 }

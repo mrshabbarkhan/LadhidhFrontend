@@ -3,29 +3,38 @@ import { useDeleteProduct } from "./useDeleteProduct";
 import Spinner from "../../../../components/Spinner";
 import { useState } from "react";
 import { useToggleProduct } from "./useToggleProduct";
+import { FaRegEdit } from "react-icons/fa";
+import { FaTrashCan } from "react-icons/fa6";
 
 function ProductCard({ info }) {
-  const { img, cat_id, pack, title, discount, code, price, oldPrice, _id, inStock } =
-    info;
+  const {
+    img,
+    cat_id,
+    pack,
+    title,
+    discount,
+    code,
+    price,
+    oldPrice,
+    _id,
+    inStock,
+  } = info;
   const { removeProduct, isLoading } = useDeleteProduct();
   const { toggleStatus, isPending } = useToggleProduct();
 
-  const [showEditProduct, setShowEditProduct] = useState(false)
-  
+  const [showEditProduct, setShowEditProduct] = useState(false);
 
   const [localInStock, setLocalInStock] = useState(inStock);
 
   const handleDelete = (id) => {
     removeProduct(id);
-
   };
-  
 
   const handleStockToggle = () => {
     const newInStockStatus = !localInStock;
-    setLocalInStock(newInStockStatus); 
+    setLocalInStock(newInStockStatus);
 
-    toggleStatus(_id)
+    toggleStatus(_id);
   };
 
   if (showEditProduct) {
@@ -61,9 +70,7 @@ function ProductCard({ info }) {
         {/* Stock toggle switch */}
         <div className="flex justify-between items-center mt-3">
           <label className="flex items-center space-x-3">
-            <span className="text-sm text-gray-700">
-              In Stock
-            </span>
+            <span className="text-sm text-gray-700">In Stock</span>
             <div
               className={`relative inline-block w-10 h-5 px-0.5 cursor-pointer rounded-full 
               ${localInStock ? "bg-primary-dark" : "bg-gray-400"}`}
@@ -79,15 +86,15 @@ function ProductCard({ info }) {
           <span className="flex space-x-2">
             <div
               onClick={() => setShowEditProduct(true)}
-              className="border shadow w-fit py-.5 px-1.5 rounded-lg hover:text-white hover:bg-primary-dark transition-all cursor-pointer"
+              className="border shadow w-fit p-1.5 rounded-lg hover:text-white hover:bg-primary-dark transition-all cursor-pointer"
             >
-              <i className="fa-solid fa-pen-to-square"></i>
+              <FaRegEdit />
             </div>
             <div
               onClick={() => handleDelete(_id)}
-              className="border shadow w-fit py-.5 px-1.5 rounded-lg hover:text-white hover:bg-primary-dark transition-all cursor-pointer"
+              className="border shadow w-fit p-1.5 rounded-lg hover:text-white hover:bg-primary-dark transition-all cursor-pointer"
             >
-              {isLoading ? <Spinner /> : <i className="fa fa-trash-alt "></i>}
+              {isLoading ? <Spinner /> : <FaTrashCan />}
             </div>
           </span>
         </div>

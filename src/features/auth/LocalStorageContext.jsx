@@ -4,6 +4,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 const LocalStorageContext = createContext();
 
 export const LocalStorageProvider = ({ children }) => {
+
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem("user");
     return storedUser ? JSON.parse(storedUser) : null;

@@ -14,17 +14,17 @@ import { useLocalStorage } from "../auth/LocalStorageContext";
 function ProfilePage() {
   const { user } = useLocalStorage();
   const [showRegisterForm, setShowRegisterForm] = useState(false);
-  const [showEditForm, setShowEditForm] = useState(false)
+  const [showEditForm, setShowEditForm] = useState(false);
 
   if (user && showEditForm) {
     return <EditUserDetails user={user} seterFn={setShowEditForm} />;
   }
 
   return (
-    <div >
+    <div>
       {user ? (
         <>
-          <div className="flex gap-5 items-center sm:items-start">
+          <div className="flex flex-col gap-5 items-center sm:items-start sm:flex-row">
             <UserAvatar />
             <UserDetails seterFn={setShowEditForm} user={user} />
           </div>

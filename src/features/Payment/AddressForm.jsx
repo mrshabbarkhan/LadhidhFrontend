@@ -2,17 +2,17 @@ import { useState, useEffect } from "react";
 import { useAddAddress } from "./useAddAddress";
 import { useUpdateAddress } from "./useUpdateAddress";
 import Spinner from "../../components/Spinner";
+import { MdCancel } from "react-icons/md";
 
 function AddressForm({ editableAddress, showFn }) {
   const { addNewAddress, isLoading, isSuccess } = useAddAddress();
   const { updateAddress, isPending, isSuccess: isUpdated } = useUpdateAddress();
 
-
   const [formData, setFormData] = useState({
     addressLine1: "",
     addressLine2: "",
     city: "",
-    state:  "",
+    state: "",
     zipCode: "",
   });
 
@@ -37,11 +37,11 @@ function AddressForm({ editableAddress, showFn }) {
     }
   }, [editableAddress, isUpdated, isSuccess]);
 
-  useEffect(() =>{
+  useEffect(() => {
     if (isSuccess || isUpdated) {
-        showFn(false); 
-      }
-  },[isSuccess , isUpdated])
+      showFn(false);
+    }
+  }, [isSuccess, isUpdated]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,10 +55,8 @@ function AddressForm({ editableAddress, showFn }) {
     e.preventDefault();
     if (editableAddress) {
       updateAddress({ ...formData, addressId: editableAddress._id });
-     
     } else {
       addNewAddress({ ...formData, country: "india" });
-      
     }
   };
 
@@ -67,9 +65,9 @@ function AddressForm({ editableAddress, showFn }) {
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-8 relative">
         <div
           onClick={() => showFn(false)}
-          className="text-black absolute right-10 top-4"
+          className="text-black absolute right-8 top-4 cursor-pointer"
         >
-          <i className="fa-regular fa-circle-xmark text-lg cursor-pointer"></i>
+          <MdCancel className="text-xl" />
         </div>
         <form onSubmit={handleFormSubmit}>
           <div className="col-span-full">

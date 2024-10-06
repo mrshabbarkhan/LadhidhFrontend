@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setDebouncedTerm, setSearchTerm } from "../page/searchSlice";
+import { MdOutlineCancel } from "react-icons/md";
 
 export default function SearchBar({ placeholder }) {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ export default function SearchBar({ placeholder }) {
           onClick={handleClear}
           className="absolute top-5 right-4 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
         >
-          <i className="fa-regular fa-circle-xmark"></i>
+          <MdOutlineCancel className="text-lg cursor-pointer" />
         </button>
       )}
     </div>

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import ReturnPrSvg from "../../assets/ui/ReturnPrSvg";
 import { TbTruckDelivery } from "react-icons/tb";
 import { FiHeart } from "react-icons/fi";
+import { MdOutlineHelpOutline } from "react-icons/md";
 
 function OrderActions() {
     return (
@@ -23,10 +24,10 @@ function OrderActions() {
           </Link>
         </span>
         <span>
-          <div className="w-fit p-2 sm:p-3 rounded-full bg-primary m-auto">
-            <ReturnPrSvg />
+          <div className="w-fit p-1.5 sm:p-2 rounded-full text-white text-xl sm:text-2xl bg-primary m-auto">
+            <MdOutlineHelpOutline />
           </div>
-          <p className="text-sm sm:text-md">Return Pr.</p>
+          <p className="text-sm sm:text-md">Support</p>
         </span>
       </>
     );

@@ -10,7 +10,6 @@ import AdminLayout from "./features/admin/components/AdminLayout";
 import ProtectedRoute from "./features/admin/components/ProtectedRoute";
 import { useLocalStorage } from "./features/auth/LocalStorageContext";
 import { DeliveryAddressProvider } from "./features/Payment/DeliveryAddressContext";
-import RiderPage from "./features/admin/page/RiderPage/RiderPage";
 import TermsAndConditions from "./features/Policy/TermsAndConditions";
 import PrivacyPolicy from "./features/Policy/PrivacyPolicy";
 import FAQ from "./features/Policy/FAQ";
@@ -22,17 +21,32 @@ const CategoryPage = lazy(() => import("./features/Category/CategoryPage"));
 const FavoritesPage = lazy(() => import("./features/Favorites/FavoritesPage"));
 const CartPage = lazy(() => import("./features/Cart/CartPage"));
 const ProfilePage = lazy(() => import("./features/User/ProfilePage"));
-const ProductListPage = lazy(() =>import("./features/Product-list/ProductListPage"));
-const ProductDetails = lazy(() =>import("./features/Product-list/ProductDetails"));
+const ProductListPage = lazy(() =>
+  import("./features/Product-list/ProductListPage")
+);
+const ProductDetails = lazy(() =>
+  import("./features/Product-list/ProductDetails")
+);
 const OrderPage = lazy(() => import("./features/Order/OrderPage"));
 const PaymentPage = lazy(() => import("./features/Payment/PaymentPage"));
-const DashboardPage = lazy(() =>import("./features/admin/page/dashboard/DashboardPage"));
-const ProductPage = lazy(() =>import("./features/admin/page/products/ProductPage"));
-const CategoriesPage = lazy(() =>import("./features/admin/page/Categories/CategoriesPage"));
+const DashboardPage = lazy(() =>
+  import("./features/admin/page/dashboard/DashboardPage")
+);
+const ProductPage = lazy(() =>
+  import("./features/admin/page/products/ProductPage")
+);
+const CategoriesPage = lazy(() =>
+  import("./features/admin/page/Categories/CategoriesPage")
+);
 const UsersPage = lazy(() => import("./features/admin/page/users/UsersPage"));
-const BannerPage = lazy(() =>import("./features/admin/page/banners/BannerPage"));
-const UserAddress = lazy(() => import("../src/features/User/UserAddress"))
-
+const BannerPage = lazy(() =>
+  import("./features/admin/page/banners/BannerPage")
+);
+const UserAddress = lazy(() => import("../src/features/User/UserAddress"));
+const RiderPage = lazy(() =>
+  import("./features/admin/page/RiderPage/RiderPage")
+);
+const Requests = lazy(() => import("./features/admin/page/requests/Requests"));
 
 function RoutesWrapper() {
   const { user } = useLocalStorage();
@@ -51,6 +65,7 @@ function RoutesWrapper() {
             { path: "users", element: <UsersPage /> },
             { path: "banners", element: <BannerPage /> },
             { path: "riders", element: <RiderPage /> },
+            { path: "requests", element: <Requests /> },
           ],
           errorElement: <PageNotFound />,
         },
@@ -68,7 +83,7 @@ function RoutesWrapper() {
         { path: "/cart", element: <CartPage /> },
         { path: "/profile", element: <ProfilePage /> },
         { path: "/product-list/:id", element: <ProductListPage /> },
-        { path: "/product-details", element: <ProductDetails /> },
+        { path: "/product-details/:id", element: <ProductDetails /> },
         { path: "/profile/orders", element: <OrderPage /> },
         { path: "/profile/address", element: <UserAddress /> },
         { path: "/terms-and-conditions", element: <TermsAndConditions /> },

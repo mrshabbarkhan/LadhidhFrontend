@@ -7,14 +7,15 @@ import { LuUsers2 } from "react-icons/lu";
 import { IoImageOutline, IoListOutline } from "react-icons/io5";
 import { LiaProductHunt } from "react-icons/lia";
 import { GoHomeFill } from "react-icons/go";
+import { TbBellSearch } from "react-icons/tb";
 
 const AdminSidebar = () => {
   const { logOutUser } = useLocalStorage()
   const navigate = useNavigate()
 
   const handleLogout = () => {
+    logOutUser()
     navigate("/")
-     logOutUser()
   }
 
   return (
@@ -129,6 +130,27 @@ const AdminSidebar = () => {
             Riders
           </span>
         </NavLink>
+
+        <NavLink
+          to={"/admin/requests"}
+          className={({ isActive }) =>
+            ` ${
+              isActive
+                ? "bg-white w-full px-2 py-1 rounded-l-xl flex items-center text-gray-900"
+                : "text-black"
+            }`
+          }
+        >
+          <span className="flex items-center gap-2">
+            <span>
+              <TbBellSearch />
+            </span>
+            Requests
+          </span>
+        </NavLink>
+
+
+        {/* Loggout */}
 
         <NavLink
           to={"/"}

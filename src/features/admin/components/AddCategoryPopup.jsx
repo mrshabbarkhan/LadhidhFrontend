@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAddCategory } from "../page/Categories/useAddCategory";
 import Spinner from "../../../components/Spinner";
+import { MdCancel } from "react-icons/md";
 
 function AddCategoryPopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,9 +45,9 @@ function AddCategoryPopup() {
 
   useEffect(() => {
     if (isSuccess) {
-    setIsOpen(!isOpen);
+      setIsOpen(!isOpen);
     }
-  },[isSuccess])
+  }, [isSuccess]);
 
   return (
     <>
@@ -68,8 +69,11 @@ function AddCategoryPopup() {
               <h2 className="text-xl font-semibold text-gray-800 mb-4">
                 Add New Category
               </h2>
-              <div onClick={togglePopup} className="absolute top-2 right-5">
-                <i className="fa-solid fa-xmark"></i>
+              <div
+                onClick={togglePopup}
+                className="absolute top-6 right-5 cursor-pointer"
+              >
+                <MdCancel className="text-xl" />
               </div>
               <form onSubmit={handleSubmit}>
                 {/* Product Name */}
@@ -107,7 +111,11 @@ function AddCategoryPopup() {
                     type="submit"
                     className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
                   >
-                    {isPending ? <Spinner className={"border-white"} /> : "Submit"}
+                    {isPending ? (
+                      <Spinner className={"border-white"} />
+                    ) : (
+                      "Submit"
+                    )}
                   </button>
                   <button
                     type="button"

@@ -4,6 +4,7 @@ import { useLocalStorage } from "../auth/LocalStorageContext";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { RiMapPin2Line } from "react-icons/ri";
 import { GoBell } from "react-icons/go";
+import { IoIosArrowForward } from "react-icons/io";
 
 function UserFooter() {
   const { user } = useLocalStorage();
@@ -19,21 +20,26 @@ function UserFooter() {
           <span>
             <h1 className="font-medium text-lg cursor-pointer">Orders</h1>
             <p className="text-sm text-slate-400 cursor-pointer">
-              Order Placed: 1
+              Click to see orders
             </p>
           </span>
-          <i className="fa fa-angle-right"></i>
+          <IoIosArrowForward />
         </span>
       </Link>
 
-      <Link to={"/profile/address"} className="flex items-center gap-3 border-b py-3">
+      <Link
+        to={"/profile/address"}
+        className="flex items-center gap-3 border-b py-3 cursor-pointer"
+      >
         <RiMapPin2Line className="text-2xl " />
         <span className="flex justify-between items-center grow">
           <span>
-            <h1 className="font-medium text-lg">Address</h1>
-            <p className="text-sm text-slate-400">Sector E, R.K. Puram,Kota</p>
+            <h1 className="font-medium text-lg cursor-pointer">Address</h1>
+            <p className="text-sm text-slate-400 cursor-pointer">
+              Add new address
+            </p>
           </span>
-          <i className="fa fa-angle-right"></i>
+          <IoIosArrowForward />
         </span>
       </Link>
 
@@ -42,9 +48,11 @@ function UserFooter() {
         <span className="flex justify-between items-center grow">
           <span>
             <h1 className="font-medium text-lg">Notification</h1>
-            <p className="text-sm text-slate-400">3 unread notification</p>
+            <p className="text-sm text-slate-400 leading-3">
+              No notification yet
+            </p>
           </span>
-          <i className="fa fa-angle-right"></i>
+          <IoIosArrowForward />
         </span>
       </div>
 
@@ -57,7 +65,7 @@ function UserFooter() {
                 <h1 className="font-medium text-lg">Dashboard</h1>
                 <p className="text-sm text-slate-400">Hello ladhidh </p>
               </span>
-              <i className="fa fa-angle-right"></i>
+              <IoIosArrowForward />
             </span>
           </div>
         </Link>

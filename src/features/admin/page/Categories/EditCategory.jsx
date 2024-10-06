@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useUpdateCategory } from "./useUpdateCategory";
 import Spinner from "../../../../components/Spinner";
+import { MdCancel } from "react-icons/md";
 
 function EditCategory({ title, id, setShowPopup, showPopup }) {
   const [image, setImage] = useState(null);
@@ -25,17 +26,17 @@ function EditCategory({ title, id, setShowPopup, showPopup }) {
 
     const formData = {
       id,
-      data
-    }
+      data,
+    };
 
     editSingleCategory(formData);
   };
 
   useEffect(() => {
     if (isSuccess) {
-      setShowPopup(!showPopup)
+      setShowPopup(!showPopup);
     }
-  },[isSuccess])
+  }, [isSuccess]);
 
   return (
     <>
@@ -48,8 +49,11 @@ function EditCategory({ title, id, setShowPopup, showPopup }) {
             <h2 className="text-xl font-semibold text-gray-800 mb-4">
               Edit Category
             </h2>
-            <div onClick={togglePopup} className="absolute top-2 right-5">
-              <i class="fa-solid fa-xmark"></i>
+            <div
+              onClick={togglePopup}
+              className="absolute top-5 right-5 cursor-pointerain"
+            >
+              <MdCancel className="text-xl" />
             </div>
             <form onSubmit={handleSubmit}>
               {/* Product Name */}
@@ -87,7 +91,7 @@ function EditCategory({ title, id, setShowPopup, showPopup }) {
                   type="submit"
                   className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
                 >
-                  {isPending ? <Spinner className="border-white"/> :"Submit"}
+                  {isPending ? <Spinner className="border-white" /> : "Submit"}
                 </button>
                 <button
                   type="button"
