@@ -2,7 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useAddCart } from "../features/Cart/useAddCart";
 import Spinner from "./Spinner";
 import { useLocalStorage } from "../features/auth/LocalStorageContext";
-import toast from "react-hot-toast";
+import toast, { LoaderIcon } from "react-hot-toast";
+import { isPending } from "@reduxjs/toolkit";
+import { LuLoader2 } from "react-icons/lu";
 
 function AddToButton({ redirect = "/cart", ...props }) {
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ function AddToButton({ redirect = "/cart", ...props }) {
         },
       });
     } else {
-     return toast.error("Please log in first");
+      return toast.error("Please log in first");
     }
   };
 
@@ -32,7 +34,7 @@ function AddToButton({ redirect = "/cart", ...props }) {
       onClick={handleClick}
       className={`border border-primary ${
         isLoading && "bg-primary-dark"
-      } text-sm font-semibold px-3 py-1 rounded-lg hover:text-white hover:scale-95 hover:bg-primary-dark transition flex justify-center`}
+      } text-sm font-semibold px-3 py-1 rounded-lg  hover:text-white hover:scale-95 hover:bg-primary-dark transition flex justify-center`}
     >
       {isLoading ? <Spinner className="border-white" /> : "Add"}
     </button>

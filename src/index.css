@@ -78,6 +78,11 @@ p {
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
 }
 
+/* Active bullet style */
+.swiper-pagination-bullet-active {
+  background-color: #fe1313 !important;
+}
+
 /* ////////////// Loader /////////////// */
 
 /* From Uiverse.io by G4b413l */

@@ -19,7 +19,7 @@ function OutOfStock({ product }) {
   return (
     <button
       onClick={handleClick}
-      className={`border border-primary  text-sm font-semibold px-3 py-1 rounded-lg hover:text-white hover:scale-95 hover:bg-primary-dark transition flex justify-center`}
+      className={`border border-primary line-clamp-1 whitespace-nowrap text-xs sm:text-sm font-semibold px-3 py-1 rounded-lg hover:text-white hover:scale-95 hover:bg-primary-dark transition flex justify-center`}
     >
       {isPending ? "Notify..." : "Notify me"}
     </button>

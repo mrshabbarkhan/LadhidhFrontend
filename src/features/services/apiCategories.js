@@ -8,8 +8,13 @@ export const addCategory = async (formData) => {
 };
 
 export const getAllCategory = async () => {
-  const response = await axios.get(base_url + "category");
-  return response.data;
+  try {
+    const response = await axios.get(base_url + "category");
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Error Getting CatProd", error);
+  }
 };
 
 export const deleteCategory = async (id) => {
@@ -18,6 +23,9 @@ export const deleteCategory = async (id) => {
 };
 
 export const editCategory = async (formData) => {
-  const response = await axios.put(base_url + `category/${formData.id}`, formData.data);
+  const response = await axios.put(
+    base_url + `category/${formData.id}`,
+    formData.data
+  );
   return response.data;
 };

@@ -7,6 +7,8 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { useSingleProduct } from "../admin/page/products/useSingleProduct";
 import Loader from "../../components/Loader";
 import { FaRegClock } from "react-icons/fa6";
+import SaleForYou from "../Home/SaleForYou";
+import YouMight from "../../components/YouMight";
 
 function ProductDetails() {
   const [tempQty, setTempQty] = useState(1);
@@ -25,7 +27,9 @@ function ProductDetails() {
     return <Loader className={"h-96"} />;
   }
 
-  const { price, oldPrice, img } = product;
+  const { price, discount, img } = product;
+
+  const oldPrice = Math.floor(price / (1 - discount / 100));
 
   async function handleCart() {
     const formData = {
@@ -38,22 +42,26 @@ function ProductDetails() {
   }
 
   return (
-    <>
+    <section className="">
       <div
         data-aos="fade-up"
-        className="lg:mx-48 rounded-lg overflow-y-auto absolute top-12 left-0 right-0 object-cover pt-12 bg-gray-100 flex flex-col justfiy-center"
+        className="rounded-lg flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10 mb-10 bg-red-100 px-0 sm:p-6"
       >
-        <img
-          className="w-auto mx-auto h-[50vh] drop-shadow-2xl"
-          src={img}
-          alt="product-details"
-        />
+        {/* Image Section */}
+        <div className="lg:w-1/3">
+          <img
+            className="w-full h-auto drop-shadow-2xl object-cover"
+            src={img}
+            alt="product-details"
+          />
+        </div>
 
-        <section className="mb-16 bg-white pt-2 px-2 reletive top-0 overflow-hidden ">
-          <h1 className="font-semibold text-xl">
+        {/* Text Section */}
+        <section className="lg:w-1/2 bg-white p-4 rounded-lg shadow-lg">
+          <h1 className="font-semibold text-xl mb-4">
             {product.tittle || product.title}
           </h1>
-          <p className="leading-5 mb-4">
+          <p className="leading-6 mb-4 ">
             Experience the premium quality and tenderness of our Fresh Chicken
             Breast Fillets, perfect for your everyday cooking needs. Sourced
             from healthy, farm-raised chickens, these boneless fillets are 100%
@@ -62,27 +70,30 @@ function ProductDetails() {
             or pan-frying, our chicken breast is versatile, lean, and packed
             with protein to keep your meals healthy and delicious.
           </p>
-          <div className="flex items-center gap-3 font-semibold">
+
+          <div className="flex items-center gap-3 font-semibold mb-4">
             <span className="flex items-center gap-1">
               <StarSvg /> 4.6
             </span>
             <span className="flex items-center border-x-2 px-2 gap-2">
-              <FaRegClock className="text-primary" />6 - 7 min
+              <FaRegClock className="text-primary" /> 6 - 7 min
             </span>
             <span className="flex items-center text-primary gap-1">
               <TbTruckDelivery className="text-lg" /> Free Delivery
             </span>
           </div>
-          <p className="text-sm pt-4 ">Price</p>
-          <div className="flex items-center justify-between ">
+
+          <p className="text-sm pt-4">Price</p>
+          <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <h1 className="text-2xl text-primary font-bold">
                 &#x20B9; {price}
               </h1>
               <span className="line-through text-gray-500 font-medium text-lg">
-                {oldPrice}
+                &#8377; {oldPrice}
               </span>
             </div>
+
             <div className="flex items-center">
               <span
                 onClick={() => setTempQty(tempQty > 1 ? tempQty - 1 : tempQty)}
@@ -104,7 +115,10 @@ function ProductDetails() {
         </section>
       </div>
 
-      <div className="w-full bg-white text-center z-30 px-2  py-3 fixed bottom-0 left-0 cursor-pointer">
+      <YouMight />
+
+      {/* Add to Cart Button */}
+      <div className="w-full bg-white text-center z-30 px-2 py-3 fixed bottom-0 left-0 cursor-pointer">
         <div
           onClick={() => handleCart()}
           className="z-30 bg-primary text-md font-semibold py-2 max-w-5xl rounded-xl m-auto text-white"
@@ -112,7 +126,7 @@ function ProductDetails() {
           ADD TO CART
         </div>
       </div>
-    </>
+    </section>
   );
 }
 

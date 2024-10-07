@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="bg-gray-100 text-black py-8 sm:py-12 mb-10 sm:mb-0">
+    <footer className="bg-slate-50 text-black py-8 sm:py-12 mb-10 sm:mb-0 rounded-md">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5 sm:gap-8">
           {/* Experience Ladhidh App */}

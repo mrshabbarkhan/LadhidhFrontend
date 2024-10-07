@@ -4,7 +4,7 @@ import AddToButton from "../../components/AddToButton";
 import { useAOS } from "../../hooks/useAOS";
 import OutOfStock from "../../components/OutOfStock";
 
-function Card({ product, isOnTrand, redirect }) {
+function Card({ product, isOnTrand }) {
   const { img, pack, title, discount, code, price, inStock, _id } = product;
   const oldPrice = Math.floor(price / (1 - discount / 100));
 
@@ -24,9 +24,9 @@ function Card({ product, isOnTrand, redirect }) {
   return (
     <section
       data-aos="fade-up"
-      className={` max-w-[16rem] ${sectionStyle} m-auto sm:m-0 sm:min-w-[16rem] mb-3 text-wrap rounded-xl p-4 pb-2 bg-white shadow-md`}
+      className={` max-w-[16rem] ${sectionStyle} m-auto sm:m-0 sm:min-w-[16rem] mb-3 text-wrap rounded-xl p-4 pb-2 bg-white `}
     >
-      <div className="bg-gray-50 rounded-xl cursor-pointer">
+      <div className="bg-red-50 rounded-xl cursor-pointer transition-transform ">
         <img
           src={img}
           alt={title}
@@ -46,16 +46,16 @@ function Card({ product, isOnTrand, redirect }) {
         ) : (
           <p className="mt-3"></p>
         )}
-        <div className="flex justify-between items-center mt-2">
+        <div className="flex  justify-between items-center mt-2">
           <span className="flex gap-2 items-center">
             <h1 className="text-xl text-primary font-medium">
               &#x20B9; {price}
             </h1>
-            {isOnTrand && (
+            {
               <span className=" sm:inline line-through text-gray-500 font-medium">
                 &#8377;{oldPrice || null}
               </span>
-            )}
+            }
           </span>
           {inStock ? (
             <AddToButton {...product} redirect={"/cart"} />

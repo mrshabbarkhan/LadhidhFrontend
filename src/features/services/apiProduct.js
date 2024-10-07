@@ -17,6 +17,17 @@ export const getAllProducts = async () => {
   return response.data;
 };
 
+export const getProdByCat = async (_id) => {
+  try {
+    const response = await axios.post("/api/user/products/categoryProducts", {
+      cat_id: _id,
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 export const addProducts = async (formData) => {
   const response = await axios.post(base_url + "products", formData);
   return response.data;

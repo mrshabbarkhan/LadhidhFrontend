@@ -3,13 +3,7 @@ import { useDeleteCart } from "./useDeleteCart";
 import Spinner from "../../components/Spinner";
 import { useCart } from "./useCart";
 import { useAOS } from "../../hooks/useAOS";
-import { FaRegTrashAlt } from "react-icons/fa";
-import {
-  FaRegTrashCan,
-  FaTrash,
-  FaTrashArrowUp,
-  FaTrashCan,
-} from "react-icons/fa6";
+import { FaTrashArrowUp } from "react-icons/fa6";
 
 function CartList({ product, onQtyChange }) {
   const {

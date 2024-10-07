@@ -1,25 +1,30 @@
-
 import FavoriteList from "../Favorites/FavoriteList";
 import { useParams } from "react-router-dom";
 import { useProducts } from "../admin/page/products/useProducts";
+import { useCatProduct } from "../admin/page/products/useCatProduct";
+import { useEffect } from "react";
+import Loader from "../../components/Loader";
 
 function ProductListPage() {
-  const { products } = useProducts()
-  const param = useParams()
+  const { fetchProducts, catProducts, isPending } = useCatProduct();
+  const { id } = useParams();
 
-  const filterByCatId = products?.filter(item => item.cat_id === param.id)
-  
-  if (!filterByCatId.length >0) {
-    return <h1 className="text-center text-lg">No Item Found</h1>
+  useEffect(() => {
+    fetchProducts(id);
+  }, []);
+
+  if (isPending) {
+    return <Loader />;
+  }
+
+  if (!catProducts?.length > 0) {
+    return <h1 className="text-center text-lg">No Item Found</h1>;
   }
 
   return (
     <>
-      {filterByCatId?.map((product, index) => (
-        <FavoriteList
-          key={product._id}
-          product ={product}
-        />
+      {catProducts?.map((product) => (
+        <FavoriteList key={product._id} product={product} />
       ))}
     </>
   );

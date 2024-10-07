@@ -48,7 +48,6 @@ function CartPage() {
       .reverse();
   }, [updatedCart]);
 
-
   if (isLoading) {
     return <Loader className={"h-80"} />;
   }
@@ -74,7 +73,6 @@ function CartPage() {
 
   return (
     <section>
-
       {memoizedUpdatedCart}
 
       <div className="p-3 rounded-lg border-2 border-dashed border-primary mb-20">
@@ -93,8 +91,12 @@ function CartPage() {
         </div>
       </div>
 
-      <section  className="w-full fixed bottom-0 left-0 md:px-24 lg:px-36 overflow-hidden text-xs sm:text-sm bg-white">
-        <CheckOutFooter qty={updatedCart?.length} total={subtotal} cart={updatedCart} />
+      <section className="w-full fixed bottom-0 left-0 md:px-24 lg:px-48 overflow-hidden text-xs sm:text-sm bg-white">
+        <CheckOutFooter
+          qty={updatedCart?.length}
+          total={subtotal}
+          cart={updatedCart}
+        />
       </section>
     </section>
   );

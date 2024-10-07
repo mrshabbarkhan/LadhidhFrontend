@@ -6,7 +6,6 @@ import Loader from "../../components/Loader";
 import { useProducts } from "../admin/page/products/useProducts";
 
 function TrendProducts() {
-  const navigateToProductList = "/product-details";
   const { products = [], isLoading } = useProducts();
 
   return (
@@ -22,12 +21,7 @@ function TrendProducts() {
       ) : (
         <div className="flex flex-wrap gap-x-4 max-xl:gap-x-14  gap-y-4 w-full">
           {products.map((product) => (
-            <Card
-              key={product._id}
-              product={product}
-              isOnTrand={true}
-              redirect={navigateToProductList}
-            />
+            <Card key={product._id} product={product} isOnTrand={true} />
           ))}
         </div>
       )}

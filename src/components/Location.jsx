@@ -7,28 +7,26 @@ import toast from "react-hot-toast";
 function Location() {
   const [location, setLocation] = useState("Fetching location...");
   const [manualLocation, setManualLocation] = useState(() => {
-    const storedLocation = localStorage.getItem("location")
-    return storedLocation ? JSON.parse(storedLocation) : null
-  })
+    const storedLocation = localStorage.getItem("location");
+    return storedLocation ? JSON.parse(storedLocation) : null;
+  });
   const [searchQry, setSearchQry] = useState("");
   const [toggle, setToggle] = useState(false);
   const debounceRef = useRef(null);
   const [searchData, setSearchData] = useState(null);
 
-  const { data, isPending, error } = useGeoLocation()
+  const { data, isPending, error } = useGeoLocation();
 
-useEffect(() => {
-  if (manualLocation) {
-    setLocation(manualLocation); 
-  } else if (data) {
-    setLocation(data); 
-  }
-}, [data, manualLocation]);
-  
-
+  useEffect(() => {
+    if (manualLocation) {
+      setLocation(manualLocation);
+    } else if (data) {
+      setLocation(data);
+    }
+  }, [data, manualLocation]);
 
   if (error) {
-    toast.error("couldn't get location")
+    toast.error("couldn't get location");
   }
 
   const debouncedSearchByLocation = useCallback(async (query) => {
@@ -56,13 +54,12 @@ useEffect(() => {
   };
 
   const handleLiClick = (location) => {
-    setManualLocation(location)
-    localStorage.setItem("location", JSON.stringify(location))
+    setManualLocation(location);
+    localStorage.setItem("location", JSON.stringify(location));
     setToggle(false);
     setSearchQry("");
     setSearchData(null);
   };
-
 
   return (
     <div>
@@ -78,7 +75,7 @@ useEffect(() => {
           onClick={(e) =>
             e.target.className.includes("overley") && setToggle(false)
           }
-          className=" fixed h-screen top-0 left-0  z-30 w-full flex pt-16 sm:pt-20 px-2 md:px-24 lg:px-36 justify-center overley bg-black/30 "
+          className=" fixed h-screen top-0 left-0  z-30 w-full flex pt-16 sm:pt-20 px-2 md:px-24 lg:px-60 justify-center overley bg-black/30 "
         >
           <div className="w-full overley ">
             <span className="flex bg-white p-1 items-center  pl-2 rounded-t-lg gap-2  text-black">

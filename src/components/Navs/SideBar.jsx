@@ -3,9 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../../features/auth/LocalStorageContext";
 import { GiChickenLeg } from "react-icons/gi";
 import { IoBagHandleOutline } from "react-icons/io5";
-import { HiOutlineSquare3Stack3D, HiOutlineUserCircle } from "react-icons/hi2";
+import { HiOutlineUserCircle } from "react-icons/hi2";
 import { MdLogout, MdOutlineAdminPanelSettings } from "react-icons/md";
-import { AiOutlineLogout } from "react-icons/ai";
 import NavItem from "../NavItem";
 import { RxStack } from "react-icons/rx";
 
