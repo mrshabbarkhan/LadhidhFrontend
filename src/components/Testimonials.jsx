@@ -1,8 +1,8 @@
-import img1 from "../../public/01.png";
-import img2 from "../../public/02.png";
-import img3 from "../../public/04.png";
-import img4 from "../../public/05.png";
-import img5 from "../../public/06.png";
+import img1 from "/01.png";
+import img2 from "/02.png";
+import img3 from "/04.png";
+import img4 from "/05.png";
+import img5 from "/06.png";
 
 const data = [img1, img2, img3, img4, img5];
 
