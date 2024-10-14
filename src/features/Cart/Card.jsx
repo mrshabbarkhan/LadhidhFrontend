@@ -17,26 +17,31 @@ function Card({ product, isOnTrand }) {
   };
 
   const sectionStyle = isOnTrand
-    ? "min-w-[18rem] sm:min-w-[16rem] "
-    : "min-w-[14rem] sm:min-w-[16rem]";
-  const imgStyle = isOnTrand ? "h-36 w-36" : "h-28 w-28";
+    ? "sm:min-w-[14rem] min-w-[14rem]  " // Use responsive sizes
+    : "sm:min-w-[14rem] min-w-[14rem]"; // Smaller width for regular cards
+
+  const imgStyle = isOnTrand
+    ? "h-28 w-28 sm:h-28 sm:w-28" // Responsive image size
+    : "h-28 w-28 sm:h-28 sm:w-28";
 
   return (
     <section
       data-aos="fade-up"
-      className={` max-w-[16rem] ${sectionStyle} m-auto sm:m-0 sm:min-w-[16rem] mb-3 text-wrap rounded-xl p-4 pb-2 bg-white `}
+      onClick={handleClick}
+      className={`max-w-[16rem] ${sectionStyle} m-auto mb-3 text-wrap rounded-xl p-4 pb-2 bg-white transition-all duration-300 hover:shadow-xl cursor-pointer`} // Adjust with hover effects
     >
-      <div className="bg-red-50 rounded-xl cursor-pointer transition-transform ">
+      <div className="bg-red-50 rounded-xl cursor-pointer">
         <img
           src={img}
           alt={title}
-          className={`object-cover object-center m-auto ${imgStyle} sm:w-40 sm:h-40 rounded-t-xl hover:scale-90`}
-          onClick={handleClick}
+          className={`object-cover object-center m-auto ${imgStyle} sm:w-40 sm:h-40 rounded-t-xl hover:scale-95 transition-transform duration-200`}
         />
       </div>
-      <div className="px-2 mt-1 flex flex-col justify-between ">
-        <h1 className="mt-2 text-lg leading-6 font-semibold">{title}</h1>
-        <p className="text-xs font-medium text-primary py-2 leading-3">
+      <div className="px-2 mt-1 flex flex-col justify-between cursor-pointer">
+        <h1 className="mt-2 text-lg leading-6 font-semibold cursor-pointer">
+          {title}
+        </h1>
+        <p className="text-xs font-medium text-primary py-2 leading-3 cursor-pointer">
           {pack}
         </p>
         {discount ? (
@@ -46,16 +51,14 @@ function Card({ product, isOnTrand }) {
         ) : (
           <p className="mt-3"></p>
         )}
-        <div className="flex  justify-between items-center mt-2">
-          <span className="flex gap-2 items-center">
-            <h1 className="text-xl text-primary font-medium">
+        <div className="flex justify-between items-center mt-2">
+          <span className="flex gap-2 items-center ">
+            <h1 className="text-xl text-primary font-medium cursor-pointer">
               &#x20B9; {price}
             </h1>
-            {
-              <span className=" sm:inline line-through text-gray-500 font-medium">
-                &#8377;{oldPrice || null}
-              </span>
-            }
+            <span className="sm:inline line-through text-gray-500 font-medium">
+              &#8377;{oldPrice || null}
+            </span>
           </span>
           {inStock ? (
             <AddToButton {...product} redirect={"/cart"} />

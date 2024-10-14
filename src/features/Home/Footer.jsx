@@ -46,16 +46,6 @@ function Footer() {
                 </Link>
               </li>
 
-              {/* <li>
-                <a href="#" className="hover:underline">
-                  Careers
-                </a>
-              </li> */}
-              {/* <li>
-                <a href="#" className="hover:underline">
-                  Blog
-                </a>
-              </li> */}
               <li>
                 <Link to={"FAQs"} className="hover:underline">
                   FAQ
@@ -86,13 +76,13 @@ function Footer() {
             <p className="text-sm mb-4">
               Email:{" "}
               <a href="mailto:talktous@Ladhidh.com" className="underline">
-                talktous@Ladhidh.com
+                contact@ladhidh.in
               </a>
             </p>
             <p className="text-sm">
               Have Security Concern? <br /> Mail us at:{" "}
               <a href="mailto:security@Ladhidh.com" className="underline">
-                security@Ladhidh.com
+                security@ladhidh.com
               </a>
             </p>
           </div>

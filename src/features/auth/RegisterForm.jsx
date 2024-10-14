@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { useRegister } from "./useRegister";
 import OTPForm from "./OTPForm";
+import { useVerifyOtp } from "./useVerifyOtp";
+import { useSelector } from "react-redux";
 
 function RegisterForm({ showRegistration }) {
   const { registerUser, isPending, isSuccess } = useRegister();
-  const [showOTPForm, setShowOTPForm] = useState(true)
+  const { otpToken } = useSelector((state) => state.auth);
+
+  const [showOTPForm, setShowOTPForm] = useState(true);
 
   useEffect(() => {
     if (isSuccess) {
@@ -29,11 +33,11 @@ function RegisterForm({ showRegistration }) {
 
   const handleVerify = (e) => {
     e.preventDefault();
-    registerUser(formData);
+    registerUser({ ...formData, otpToken });
   };
 
   if (showOTPForm) {
-    return <OTPForm fromLogin={false} />
+    return <OTPForm fromLogin={false} closeOtpForm={setShowOTPForm} />;
   }
 
   return (

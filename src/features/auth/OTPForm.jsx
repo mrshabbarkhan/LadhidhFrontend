@@ -1,20 +1,30 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { FaLess } from "react-icons/fa";
-import RegisterForm from "./RegisterForm";
+import { useOtp } from "./useOtp";
+import { useVerifyOtp } from "./useVerifyOtp";
+import { setNumber, setOtpToken } from "./authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import ResetPassword from "./ResetPassword";
 
-function OTPForm({ fromLogin }) {
+function OTPForm({ fromLogin, closeOtpForm }) {
+  const dispatch = useDispatch();
+  const { initialNumber } = useSelector((state) => state.auth);
+  const { fetchOtp, isPending, isSuccess, data } = useOtp();
+
   const [hasValidNumber, sethasValidNumber] = useState(false);
   const [showOTPForm, setShowOTPForm] = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
+  const [showResetPassword, setShowResetPasword] = useState(false);
 
-  const data = "123456"; // data will be otp
-  const isSuccess = false; // when success of fetch otp
+  const {
+    verifyOtpFn,
+    verfiyToken,
+    isSuccess: verifySuccess,
+    isPending: verifying,
+  } = useVerifyOtp();
 
   const [formData, setFormData] = useState({
     otp: "",
-    number: "",
-    password: "",
+    number: initialNumber || "",
   });
 
   const handleChange = (e) => {
@@ -37,22 +47,36 @@ function OTPForm({ fromLogin }) {
 
   useEffect(() => {
     if (isSuccess) {
-      setShowOTPForm(true); // if i get otp successfully
-    }
-    if (otp === data) {
-      // match with otp
-      toast.success("Otp matched");
-      // setShowRegister(true)     show Register form
+      setShowOTPForm(true);
     }
   }, [otp, isSuccess, data]);
 
+  useEffect(() => {
+    if (verifySuccess && !fromLogin) {
+      toast.success("Otp verify Successfully");
+      dispatch(setOtpToken(verfiyToken.otpToken));
+      closeOtpForm(false);
+    }
+    if (verifySuccess && fromLogin) {
+      toast.success("Otp verify Successfully");
+      dispatch(setOtpToken(verfiyToken.otpToken));
+      setShowResetPasword(true);
+    }
+  }, [verifySuccess]);
+
   const handleVerifyNumber = () => {
     if (!hasValidNumber) return toast.error("Invalid Number");
-    toast.success("OTP has been sended");
+    dispatch(setNumber(number));
+    fetchOtp(number);
   };
 
-  if (showRegister) {
-    return <RegisterForm />;
+  const handleVerifyOtp = () => {
+    if (!otp || !number) return;
+    verifyOtpFn({ otp, phone: number });
+  };
+
+  if (showResetPassword) {
+    return <ResetPassword closeOtpForm={closeOtpForm} />;
   }
 
   return (
@@ -75,32 +99,31 @@ function OTPForm({ fromLogin }) {
               className="transition-all mt-2 w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-1 focus:black/30 focus:black/30"
               required
             />
-            <p className="text-gray-300 text-sm float-end">Auto match *</p>
 
             <label
               className="block text-sm font-medium text-gray-700 mb-1 mt-2"
               htmlFor="password"
             >
-              New Password
+              Number
             </label>
             <input
-              id="password"
-              type="password"
-              value={formData.otp}
+              id="number"
+              type="tel"
+              value={formData.number}
               onChange={handleChange}
-              placeholder="Enter your new password"
+              minLength={10}
+              maxLength={10}
+              placeholder="Enter your mobile"
               className=" w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-1 focus:black/30 focus:black/30"
               required
             />
 
             <button
-              type="submit"
-              // style={{ cursor: isPending ? "not-allowed" : "pointer" }}
-              // disabled={isPending}
+              type="button"
+              onClick={handleVerifyOtp}
               className="mt-3 w-full py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition duration-300 font-semibold"
             >
-              {/* {isPending ? "Logging in..." : "Login"} */}
-              Login
+              {verifying ? "Verifying..." : "Continue"}
             </button>
           </>
         ) : (
@@ -125,7 +148,7 @@ function OTPForm({ fromLogin }) {
                   : "bg-primary-light cursor-not-allowed"
               }  text-white rounded-lg  transition duration-300 font-semibold`}
             >
-              Confirm
+              {isPending ? "Confirming..." : "Confirm"}
             </button>
           </>
         )}

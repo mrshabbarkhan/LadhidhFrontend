@@ -21,6 +21,7 @@ function AppLayout() {
     location.pathname === "/privacy-policy" && "privacy-policy";
   const pathname12 = location.pathname === "/FAQs" && "FAQs";
   const pathname13 = location.pathname === "/whyLadhidh" && "why we are Best";
+  const pathname14 = location.pathname === "/products" && "Products";
 
   return (
     <>
@@ -41,7 +42,8 @@ function AppLayout() {
               pathname10 ||
               pathname11 ||
               pathname12 ||
-              pathname13}
+              pathname13 ||
+              pathname14}
           </InnerNavbar>
         )}
 

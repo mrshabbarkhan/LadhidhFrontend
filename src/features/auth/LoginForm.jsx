@@ -4,8 +4,7 @@ import OTPForm from "./OTPForm";
 import { useLogin } from "./useLogin";
 
 const LoginForm = ({ showRegistration }) => {
-
-  const [showOTPForm, setShowOTPForm] = useState(false)
+  const [showOTPForm, setShowOTPForm] = useState(false);
 
   const navigate = useNavigate();
   const { loginUser, isPending, isSuccess } = useLogin();
@@ -15,7 +14,6 @@ const LoginForm = ({ showRegistration }) => {
       return navigate("/");
     }
   }, [isSuccess]);
-
 
   const [formData, setFormData] = useState({
     password: "",
@@ -36,7 +34,7 @@ const LoginForm = ({ showRegistration }) => {
   };
 
   if (showOTPForm) {
-    return <OTPForm fromLogin={true} />
+    return <OTPForm fromLogin={true} closeOtpForm={setShowOTPForm} />;
   }
 
   return (

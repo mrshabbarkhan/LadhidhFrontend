@@ -14,6 +14,7 @@ import TermsAndConditions from "./features/Policy/TermsAndConditions";
 import PrivacyPolicy from "./features/Policy/PrivacyPolicy";
 import FAQ from "./features/Policy/FAQ";
 import WhyLadhidh from "./features/Policy/WhyLadhidh";
+import AllProducts from "./features/Home/AllProducts";
 
 // Lazy loaded components
 const HomePage = lazy(() => import("./features/Home/HomePage"));
@@ -82,6 +83,7 @@ function RoutesWrapper() {
         { path: "/favorites", element: <FavoritesPage /> },
         { path: "/cart", element: <CartPage /> },
         { path: "/profile", element: <ProfilePage /> },
+        { path: "products", element: <AllProducts /> },
         { path: "/product-list/:id", element: <ProductListPage /> },
         { path: "/product-details/:id", element: <ProductDetails /> },
         { path: "/profile/orders", element: <OrderPage /> },

@@ -24,13 +24,13 @@ function SideBar({ on, setOn }) {
         onClick={() => setOn(!on)}
       ></div>
       <div
-        className={`fixed inset-y-0 left-0 h-[100vh] w-[260px] sm:w-[260px] z-[999999] transition-all duration-2000 ${
+        className={`fixed inset-y-0 left-0 h-[100vh] w-[260px] sm:w-[260px] z-[999999]  ${
           on ? "flex" : "hidden"
         } flex-col overflow-y-scroll bg-white`}
         onClick={() => setOn(!on)}
       >
         <Link to={"/profile"}>
-          <div className="author-box flex items-center bg-primary p-4">
+          <div className="author-box flex items-center bg-primary p-4 ">
             <div className="dz-media border-2 rounded-full h-10 w-12 overflow-hidden object-cover object-center mr-3">
               <img src={UserImage} alt="" className="rounded-full" />
             </div>
@@ -45,7 +45,7 @@ function SideBar({ on, setOn }) {
           </div>
         </Link>
 
-        <ul className="p-4 mb-7 pl-6">
+        <ul className="p-4 mb-7 pl-6 ">
           <li className="nav-label uppercase text-sm font-normal text-black/50">
             Main Menu
           </li>
@@ -59,7 +59,7 @@ function SideBar({ on, setOn }) {
             <li>
               <Link
                 to="/admin"
-                className="nav-link flex items-center text-black py-1 my-2 hover:px-2 hover:bg-gray-200 rounded-lg relative"
+                className="nav-link flex items-center text-black py-1 my-2 hover:px-2 hover:bg-gray-200 rounded-lg relative transition-padding transition-background-color duration-200"
               >
                 <span className=" mr-4 text-xl">
                   <MdOutlineAdminPanelSettings />
@@ -70,12 +70,12 @@ function SideBar({ on, setOn }) {
           )}
 
           {user && (
-            <li className="absolute bottom-5 px-2  border hover:bg-gray-50 rounded-lg">
+            <li className="absolute bottom-5 px-2  border hover:bg-gray-50 rounded-lg ">
               <button
-                className="nav-link flex items-center text-black py-1 hover:scale-95"
+                className="nav-link flex items-center text-black py-1 hover:scale-95 "
                 onClick={handleLogOut}
               >
-                <span className="dz-icon mr-4 text-xl">
+                <span className="dz-icon mr-4 text-xl transition-transform transition-background-color duration-200">
                   <MdLogout />
                 </span>
                 <span className="font-medium text-lg">Logout</span>

@@ -4,7 +4,6 @@ import RegisterForm from "./RegisterForm";
 import { useLocation } from "react-router-dom";
 import BackButton from "../../components/BackButton";
 import { HiOutlineUserCircle } from "react-icons/hi2";
-import OTPForm from "./OTPForm";
 import { MdCancel } from "react-icons/md";
 
 function AuthButton({ onClickOverlyHide = false }) {
@@ -18,7 +17,10 @@ function AuthButton({ onClickOverlyHide = false }) {
 
   const handleClick = (e) => {
     if (!onClickOverlyHide) {
-      if (e.target.className.includes("overley")) {
+      if (
+        typeof e.target.className === "string" &&
+        e.target.className.includes("overley")
+      ) {
         setShowForm(false);
       }
     }

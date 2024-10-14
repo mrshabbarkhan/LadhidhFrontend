@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 
 const NavItem = ({ to, icon: Icon, label }) => (
   <li>
-    <Link to={to} className="nav-link flex items-center text-black py-1 my-2 hover:px-2 hover:bg-gray-200 rounded-lg">
+    <Link
+      to={to}
+      className="nav-link flex items-center text-black py-1 my-2 hover:px-2 hover:bg-gray-200 rounded-lg transition-padding transition-background-color duration-200"
+    >
       <span className="dz-icon mr-4 text-xl">
         <Icon />
       </span>
@@ -11,4 +14,4 @@ const NavItem = ({ to, icon: Icon, label }) => (
   </li>
 );
 
-export default NavItem
+export default NavItem;

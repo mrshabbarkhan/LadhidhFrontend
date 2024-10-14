@@ -27,7 +27,7 @@ function SaleForYou() {
       ) : (
         <div
           data-aos="fade-up"
-          className="flex gap-5  overflow-x-auto overflow-y-hidden w-full mt-3"
+          className="flex gap-5 overflow-x-auto overflow-y-hidden w-full mt-3"
         >
           {ifProductsHaveDiscount.map((product) => (
             <Card

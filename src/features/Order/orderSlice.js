@@ -1,20 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const orderSlice = createSlice({
-    name: "order",
-    initialState: {
-        selectedOrder : null,
+  name: "order",
+  initialState: {
+    selectedOrder: null,
+  },
+  reducers: {
+    addToSelectedOrder: (state, action) => {
+      state.selectedOrder = action.payload;
     },
-    reducers: {
-        addToSelectedOrder: (state, action) => {
-            console.log(action.payload)
-            state.selectedOrder = action.payload
-        },
-        removeFromSelectedOrder: (state, action) => {
-            state.selectedOrder = null
-        }
-    }
-})
+    removeFromSelectedOrder: (state, action) => {
+      state.selectedOrder = null;
+    },
+  },
+});
 
-export default orderSlice.reducer
-export const {addToSelectedOrder, removeFromSelectedOrder} = orderSlice.actions
+export default orderSlice.reducer;
+export const { addToSelectedOrder, removeFromSelectedOrder } =
+  orderSlice.actions;

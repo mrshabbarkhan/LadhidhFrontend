@@ -10,7 +10,7 @@ export default defineConfig({
         // target: "https://ladhidhbackend.vercel.app",
         // target: "http://localhost:8014",
         // target : "https://ladhidhbackend.onrender.com",
-          target : "https://ladhidh.in",
+        target: "https://ladhidh.in",
         changeOrigin: "true",
         secure: false,
       },

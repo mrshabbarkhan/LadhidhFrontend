@@ -93,7 +93,7 @@ function Location() {
                   <li
                     onClick={() => handleLiClick(data.display_name)}
                     key={index}
-                    className="py-1 px-2 rounded-md font-medium mb-3"
+                    className="py-1 px-2 rounded-md font-medium mb-3 hover:bg-gray-200 transition-all duration-200 cursor-pointer"
                   >
                     {data.display_name}
                   </li>
