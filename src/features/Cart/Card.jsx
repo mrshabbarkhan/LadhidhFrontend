@@ -27,13 +27,13 @@ function Card({ product, isOnTrand }) {
   return (
     <section
       data-aos="fade-up"
-      onClick={handleClick}
       className={`max-w-[16rem] ${sectionStyle} m-auto mb-3 text-wrap rounded-xl p-4 pb-2 bg-white transition-all duration-300 hover:shadow-xl cursor-pointer`} // Adjust with hover effects
     >
       <div className="bg-red-50 rounded-xl cursor-pointer">
         <img
           src={img}
           alt={title}
+          onClick={handleClick}
           className={`object-cover object-center m-auto ${imgStyle} sm:w-40 sm:h-40 rounded-t-xl hover:scale-95 transition-transform duration-200`}
         />
       </div>

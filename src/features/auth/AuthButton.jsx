@@ -1,7 +1,7 @@
 import { useState } from "react";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import BackButton from "../../components/BackButton";
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import { MdCancel } from "react-icons/md";
@@ -9,7 +9,6 @@ import { MdCancel } from "react-icons/md";
 function AuthButton({ onClickOverlyHide = false }) {
   const [showForm, setShowForm] = useState(true);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
-  const [showOTPForm, setShowOTPForm] = useState(false);
 
   const location = useLocation();
   const isInCart = location.pathname == "/cart";
@@ -28,7 +27,6 @@ function AuthButton({ onClickOverlyHide = false }) {
 
   const resetStates = () => {
     setShowForm(!showForm);
-    setShowOTPForm(false);
     setShowRegisterForm(false);
   };
 
@@ -47,11 +45,14 @@ function AuthButton({ onClickOverlyHide = false }) {
         >
           <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-8 relative ">
             {!onClickOverlyHide && (
-              <div
-                onClick={resetStates}
-                className="text-black absolute right-8 top-5 hover:cursor-pointer"
-              >
-                <MdCancel className="text-xl" />
+              <div className="text-black absolute flex gap-2 items-center right-8 top-5 hover:cursor-pointer">
+                <Link
+                  to={"/dowanlod"}
+                  className="float-end text-sm hover:underline hover:text-blue-700"
+                >
+                  Downlod our app
+                </Link>
+                <MdCancel onClick={resetStates} className="text-xl" />
               </div>
             )}
             {(isInCart || isInProfile) && (
@@ -62,10 +63,7 @@ function AuthButton({ onClickOverlyHide = false }) {
             {showRegisterForm ? (
               <RegisterForm showRegistration={setShowRegisterForm} />
             ) : (
-              <LoginForm
-                showRegistration={setShowRegisterForm}
-                setOTP={setShowOTPForm}
-              />
+              <LoginForm showRegistration={setShowRegisterForm} />
             )}
           </div>
         </div>

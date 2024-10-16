@@ -35,10 +35,6 @@ function HomePage() {
           </Category>
         </Suspense>
 
-        {/* <Suspense fallback={<Loader />}>
-          <OfferForYou />
-        </Suspense> */}
-
         <Suspense fallback={<Loader />}>
           <SaleForYou />
         </Suspense>

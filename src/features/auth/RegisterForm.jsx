@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useRegister } from "./useRegister";
 import OTPForm from "./OTPForm";
-import { useVerifyOtp } from "./useVerifyOtp";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function RegisterForm({ showRegistration }) {
   const { registerUser, isPending, isSuccess } = useRegister();
-  const { otpToken } = useSelector((state) => state.auth);
+  const { otpToken, initialNumber } = useSelector((state) => state.auth);
 
   const [showOTPForm, setShowOTPForm] = useState(true);
 
@@ -16,9 +15,11 @@ function RegisterForm({ showRegistration }) {
     }
   }, [isSuccess]);
 
+  console.log();
+
   const [formData, setFormData] = useState({
     name: "",
-    number: "",
+    number: initialNumber || "",
     password: "",
     email: "",
   });
@@ -76,7 +77,7 @@ function RegisterForm({ showRegistration }) {
           <input
             id="number"
             type="number"
-            value={formData.contact}
+            value={formData.number}
             onChange={handleChange}
             placeholder="+91 1234567890"
             className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-1  focus:ring-black/30 focus:border-black/30"

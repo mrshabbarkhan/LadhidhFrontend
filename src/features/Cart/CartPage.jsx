@@ -6,9 +6,11 @@ import CheckOutFooter from "../../components/CheckOutFooter";
 import { useLocalStorage } from "../auth/LocalStorageContext";
 import { useCart } from "./useCart";
 import toast from "react-hot-toast";
+import { useSettings } from "../admin/page/settings/useSettings";
 
 function CartPage() {
-  const [updatedCart, setUpdatedCart] = useState([]); // Store updated quantities
+  const [updatedCart, setUpdatedCart] = useState([]);
+  const { settings } = useSettings();
 
   const { user } = useLocalStorage();
   const { cartItems, isPending: isLoading } = useCart();
@@ -71,6 +73,9 @@ function CartPage() {
     );
   }
 
+  const hasDeliveryCharge =
+    subtotal >= settings?.freeDeliveryOrderValue ? 0 : settings?.deliveryCharge;
+
   return (
     <section>
       {memoizedUpdatedCart}
@@ -83,18 +88,28 @@ function CartPage() {
         </div>
         <div className="flex justify-between">
           <p>Delivery Charge</p>
-          <h6 className="font-semibold">Free</h6>
+          <h6 className="font-semibold">
+            {hasDeliveryCharge ? `₹${hasDeliveryCharge}` : "Free"}
+          </h6>
         </div>
+        {settings?.handlingFee && (
+          <div className="flex justify-between">
+            <p>handle Fee</p>
+            <h6 className="font-semibold">&#x20B9;{settings?.handlingFee}</h6>
+          </div>
+        )}
         <div className="flex justify-between border-t mt-2">
           <h1 className="font-semibold text-lg">Total</h1>
-          <h1 className="font-semibold text-lg">&#x20B9;{subtotal}</h1>
+          <h1 className="font-semibold text-lg">
+            &#x20B9;{subtotal + hasDeliveryCharge + settings?.handlingFee}
+          </h1>
         </div>
       </div>
 
       <section className="w-full fixed bottom-0 left-0 md:px-24 lg:px-48 overflow-hidden text-xs sm:text-sm bg-white">
         <CheckOutFooter
           qty={updatedCart?.length}
-          total={subtotal}
+          total={subtotal + hasDeliveryCharge + settings?.handlingFee}
           cart={updatedCart}
         />
       </section>

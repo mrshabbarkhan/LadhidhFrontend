@@ -16,10 +16,7 @@ const OrderSuccess = ({ order }) => {
           Order ID: <span className="font-semibold">{order._id}</span>
         </p>
         <p>
-          Status:{" "}
-          <span className="font-semibold text-yellow-500">
-            {order.orderStatus}
-          </span>
+          Status: <span className="font-semibold text-yellow-500">Pending</span>
         </p>
 
         {/* Order Items */}

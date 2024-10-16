@@ -1,6 +1,5 @@
 import axios from "axios";
 import { getHeader } from "../../utils/headersUtils";
-import { useVerifyOtp } from "../auth/useVerifyOtp";
 
 const base_url = "/api/user/";
 
@@ -9,7 +8,6 @@ const getOtp = async (phoneNumber) => {
     const response = await axios.get(
       base_url + `otp?phone=${encodeURIComponent(phoneNumber)}`
     );
-    console.log(response);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -41,6 +39,7 @@ const resetPassword = async (formData) => {
 };
 
 const register = async (formData) => {
+  console.log(formData);
   const response = await axios.post(base_url + "register", formData);
   return response.data;
 };

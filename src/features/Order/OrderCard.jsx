@@ -1,10 +1,23 @@
 import { useState } from "react";
 import OrderBill from "./OrderBill";
+import CancelOrder from "./CancelOrder";
 
 function OrderCard({ order = {} }) {
   const [showBill, setShowBill] = useState(false);
-
+  const [showCancel, setShowCancel] = useState(false);
   const { orderItems, createdAt } = order;
+
+  const now = new Date();
+  const createdDate = new Date(createdAt);
+
+  // Calculate the time difference in milliseconds
+  const timeDifference = now - createdDate;
+  // Convert the time difference to days
+  const differenceInDays = timeDifference / (1000 * 3600 * 24);
+
+  if (showCancel) {
+    return <CancelOrder setShow={setShowCancel} order={order} />;
+  }
 
   return (
     <>
@@ -35,11 +48,22 @@ function OrderCard({ order = {} }) {
         </div>
         <div className="text-end space-y-5">
           <h3 className="text-primary font-semibold text-sm">
-            {new Date(createdAt).toLocaleDateString("en-GB")}
+            {createdDate.toLocaleDateString("en-GB")}
           </h3>
-          <button className="bg-red-200 text-primary-dark p-1 px-3 rounded-md text-sm hover:text-white hover:bg-primary">
-            Reorder
-          </button>
+
+          {/* Show 'Reorder' if less than 1 day has passed, otherwise show 'Cancel Order' */}
+          {differenceInDays > 1 ? (
+            <button className="bg-red-200 text-primary-dark p-1 px-3 rounded-md text-sm hover:text-white hover:bg-primary">
+              Reorder
+            </button>
+          ) : (
+            <button
+              onClick={() => setShowCancel(true)}
+              className="bg-gray-200 text-red-600 p-1 px-3 rounded-md text-sm hover:text-white hover:bg-red-600"
+            >
+              Cancel Order
+            </button>
+          )}
         </div>
       </section>
 

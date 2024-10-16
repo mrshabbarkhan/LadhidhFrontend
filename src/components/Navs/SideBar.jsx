@@ -32,7 +32,7 @@ function SideBar({ on, setOn }) {
         <Link to={"/profile"}>
           <div className="author-box flex items-center bg-primary p-4 ">
             <div className="dz-media border-2 rounded-full h-10 w-12 overflow-hidden object-cover object-center mr-3">
-              <img src={UserImage} alt="" className="rounded-full" />
+              <img src={UserImage} alt="profile" />
             </div>
             <div className="dz-info">
               <h5 className="name text-white mb-0 font-bold text-xl leading-5 line-clamp-1">

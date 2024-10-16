@@ -12,7 +12,6 @@ export function usePlacedOrder() {
     mutationFn: placeOrder,
     onSuccess: (data) => {
       toast.success("🎉 Order Placed Successfully");
-      console.log("🎉 Order Placed Successfully", data);
     },
     onError: (error) => {
       toast.error(

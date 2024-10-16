@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import SearchSvg from "../assets/ui/SearchSvg";
 import {
   setDebouncedTerm,
   setSearchTerm,
