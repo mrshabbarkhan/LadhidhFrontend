@@ -18,9 +18,9 @@ function TrendProducts() {
         </div>
         <Link
           to={"/products"}
-          className="mr-2 text-sm sm:text-base hover:underline line-clamp-1"
+          className="mr-2 text-sm sm:text-base hover:underline line-clamp-1 px-1 rounded-md bg-red-200 text-primary "
         >
-          View
+          View All
           {/* <FaArrowRightLong /> */}
         </Link>
       </div>

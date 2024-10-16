@@ -20,7 +20,7 @@ function Category({ children, heading, btn }) {
           {btn && (
             <button
               onClick={() => navigate("/category")}
-              className="text-sm sm:text-base hover:underline px-1 rounded-md line-clamp-1"
+              className=" sm:text-base hover:underline px-1 rounded-md line-clamp-1 bg-red-200 text-primary "
             >
               View All
             </button>

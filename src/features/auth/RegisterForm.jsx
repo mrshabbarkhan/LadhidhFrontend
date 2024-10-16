@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { useRegister } from "./useRegister";
 import OTPForm from "./OTPForm";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import useFormData from "../../hooks/useFormData";
+import useInputClass from "../../hooks/useInputClass";
 
 function RegisterForm({ showRegistration }) {
+  const navigate = useNavigate();
   const { registerUser, isPending, isSuccess } = useRegister();
   const { otpToken, initialNumber } = useSelector((state) => state.auth);
 
@@ -11,26 +15,22 @@ function RegisterForm({ showRegistration }) {
 
   useEffect(() => {
     if (isSuccess) {
-      return navigate("/");
+      navigate("/");
     }
-  }, [isSuccess]);
+  }, [isSuccess, navigate]);
 
-  console.log();
-
-  const [formData, setFormData] = useState({
+  const { formData, handleChange, setFormData } = useFormData({
     name: "",
-    number: initialNumber || "",
+    number: "",
     password: "",
     email: "",
   });
 
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [id]: value,
-    }));
-  };
+  useEffect(() => {
+    if (initialNumber) {
+      setFormData((prev) => ({ ...prev, number: initialNumber }));
+    }
+  }, [initialNumber]);
 
   const handleVerify = (e) => {
     e.preventDefault();
@@ -43,12 +43,12 @@ function RegisterForm({ showRegistration }) {
 
   return (
     <>
-      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
+      <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
         Sign up
       </h2>
 
       <form onSubmit={handleVerify}>
-        <div className="mb-4">
+        <div className="mb-3">
           <label
             className="block text-md font-medium 0  hover:under mb-1"
             htmlFor="name"
@@ -61,13 +61,13 @@ function RegisterForm({ showRegistration }) {
             value={formData.name}
             onChange={handleChange}
             placeholder="Full name"
-            className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-1  focus:ring-black/30 focus:border-black/30"
+            className={useInputClass()}
             required
-            autoComplete="off"
+            autoComplete="on"
           />
         </div>
 
-        <div className="mb-4">
+        <div className="mb-3">
           <label
             className="block text-md font-medium 0  hover:under mb-1"
             htmlFor="number"
@@ -80,14 +80,14 @@ function RegisterForm({ showRegistration }) {
             value={formData.number}
             onChange={handleChange}
             placeholder="+91 1234567890"
-            className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-1  focus:ring-black/30 focus:border-black/30"
+            className={useInputClass()}
             required
             maxLength={10}
             minLength={10}
           />
         </div>
 
-        <div className="mb-4">
+        <div className="mb-3">
           <label
             className="block text-md font-medium 0  hover:under mb-1"
             htmlFor="email"
@@ -100,9 +100,9 @@ function RegisterForm({ showRegistration }) {
             value={formData.email}
             onChange={handleChange}
             placeholder="Email here"
-            className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-1  focus:ring-black/30 focus:border-black/30"
+            className={useInputClass()}
             required
-            autoComplete="off"
+            autoComplete="on"
           />
         </div>
 
@@ -119,10 +119,10 @@ function RegisterForm({ showRegistration }) {
             value={formData.password}
             onChange={handleChange}
             placeholder="Enter your password"
-            className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-1  focus:ring-black/30 focus:border-black/30"
+            className={useInputClass()}
             required
             minLength={6}
-            autoComplete="off"
+            autoComplete="on"
           />
         </div>
 
@@ -130,9 +130,11 @@ function RegisterForm({ showRegistration }) {
           type="submit"
           style={{ cursor: isPending ? "not-allowed" : "pointer" }}
           disabled={isPending}
-          className="w-full py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition duration-300 font-semibold"
+          className={`w-full py-2  text-white rounded-lg font-semibold flex items-center justify-center gap-2 ${
+            isPending ? "bg-red-400" : "hover:bg-primary-dark bg-primary"
+          }`}
         >
-          {isPending ? "Submiting..." : "Register"}
+          {isPending && <Spinner className="border-white" />} Sign up
         </button>
       </form>
 

@@ -2,34 +2,38 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import OTPForm from "./OTPForm";
 import { useLogin } from "./useLogin";
+import useFormData from "../../hooks/useFormData";
+import Spinner from "../../components/Spinner";
+import useInputClass from "../../hooks/useInputClass";
 
 const LoginForm = ({ showRegistration }) => {
   const [showOTPForm, setShowOTPForm] = useState(false);
-
+  const [verifyNum, setVerifyNum] = useState(false);
   const navigate = useNavigate();
   const { loginUser, isPending, isSuccess } = useLogin();
 
+  const { formData, handleChange } = useFormData({
+    number: "",
+    password: "",
+  });
+
   useEffect(() => {
     if (isSuccess) {
-      return navigate("/");
+      navigate("/");
     }
   }, [isSuccess]);
 
-  const [formData, setFormData] = useState({
-    password: "",
-    number: "",
-  });
-
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [id]: value,
-    }));
-  };
+  useEffect(() => {
+    if (formData.number.length === 10) {
+      setVerifyNum(true);
+    } else {
+      setVerifyNum(false);
+    }
+  }, [formData.number]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!verifyNum) return;
     loginUser(formData);
   };
 
@@ -39,12 +43,12 @@ const LoginForm = ({ showRegistration }) => {
 
   return (
     <>
-      <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
+      <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
         Login
       </h2>
 
       <form onSubmit={handleSubmit}>
-        <div className="mb-4">
+        <div className="mb-2">
           <label className="block text-md  mb-1" htmlFor="email">
             Phone Number
           </label>
@@ -54,7 +58,9 @@ const LoginForm = ({ showRegistration }) => {
             value={formData.number}
             onChange={handleChange}
             placeholder="Enter your Number"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-700 focus:ring-1 focus:ring-black/30 focus:border-black/30"
+            className={useInputClass()}
+            minLength={10}
+            maxLength={10}
             required
           />
         </div>
@@ -70,25 +76,30 @@ const LoginForm = ({ showRegistration }) => {
             value={formData.password}
             onChange={handleChange}
             placeholder="Enter your password"
-            className="w-full px-4 py-1.5 border border-gray-300 rounded-lg text-gray-700 focus:ring-1 focus:ring-black/30 focus:border-black/30"
+            className={useInputClass()}
             required
           />
         </div>
 
-        {/* Submit Button */}
         <button
           type="submit"
           style={{ cursor: isPending ? "not-allowed" : "pointer" }}
           disabled={isPending}
-          className="w-full py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition duration-300 font-semibold"
+          className={
+            verifyNum
+              ? `w-full py-2  text-white rounded-lg font-semibold flex items-center justify-center gap-2 ${
+                  isPending ? "bg-red-400" : "hover:bg-primary-dark bg-primary"
+                }`
+              : "bg-red-400 w-full py-2  text-white rounded-lg font-semibold"
+          }
         >
-          {isPending ? "Logging in..." : "Login"}
+          {isPending && <Spinner className="border-white" />} Login
         </button>
       </form>
 
       <p
         onClick={() => setShowOTPForm(true)}
-        className="float-end leading-7 text-indigo-600 cursor-pointer"
+        className="float-end text-sm hover:underline leading-7 text-indigo-600 cursor-pointer"
       >
         Forget Password ?
       </p>
@@ -101,7 +112,7 @@ const LoginForm = ({ showRegistration }) => {
         Don't have an account?
         <button
           type="button"
-          className="text-indigo-600 hover:text-indigo-800 font-medium transition"
+          className="text-indigo-600 hover:text-indigo-800 font-medium transition hover:underline"
         >
           sign up
         </button>
