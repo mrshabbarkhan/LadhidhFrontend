@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import OTPForm from "./OTPForm";
 import { useLogin } from "./useLogin";
 import useFormData from "../../hooks/useFormData";
-import Spinner from "../../components/Spinner";
-import useInputClass from "../../hooks/useInputClass";
+import InputField from "../../components/InputField";
+import SubmitButton from "../../components/SubmitButton";
 
 const LoginForm = ({ showRegistration }) => {
   const [showOTPForm, setShowOTPForm] = useState(false);
@@ -48,53 +48,34 @@ const LoginForm = ({ showRegistration }) => {
       </h2>
 
       <form onSubmit={handleSubmit}>
-        <div className="mb-2">
-          <label className="block text-md  mb-1" htmlFor="email">
-            Phone Number
-          </label>
-          <input
-            id="number"
-            type="tel"
-            value={formData.number}
-            onChange={handleChange}
-            placeholder="Enter your Number"
-            className={useInputClass()}
-            minLength={10}
-            maxLength={10}
-            required
-          />
-        </div>
+        <InputField
+          id="number"
+          type="number"
+          value={formData.number}
+          handleChange={handleChange}
+          placeholder="Enter your Number"
+          required="true"
+          minLength={10}
+          maxLength={10}
+          label={"Phone Number"}
+        />
 
         {/* Password Field */}
-        <div className="mb-4">
-          <label className="block text-md font-medium  mb-1" htmlFor="password">
-            Password
-          </label>
-          <input
-            id="password"
-            type="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Enter your password"
-            className={useInputClass()}
-            required
-          />
-        </div>
+        <InputField
+          id="password"
+          type="password"
+          value={formData.password}
+          handleChange={handleChange}
+          placeholder="Enter your password"
+          required
+          label={"Password"}
+        />
 
-        <button
-          type="submit"
-          style={{ cursor: isPending ? "not-allowed" : "pointer" }}
-          disabled={isPending}
-          className={
-            verifyNum
-              ? `w-full py-2  text-white rounded-lg font-semibold flex items-center justify-center gap-2 ${
-                  isPending ? "bg-red-400" : "hover:bg-primary-dark bg-primary"
-                }`
-              : "bg-red-400 w-full py-2  text-white rounded-lg font-semibold"
-          }
-        >
-          {isPending && <Spinner className="border-white" />} Login
-        </button>
+        <SubmitButton
+          isPending={isPending}
+          label="Login"
+          isDisabled={!verifyNum || isPending}
+        />
       </form>
 
       <p

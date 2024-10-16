@@ -3,7 +3,7 @@ import { RxCrossCircled } from "react-icons/rx";
 function OrderBill({ order, showFn, showPickup = true }) {
   return (
     <section className="bg-black/20 flex justify-center h-[100vh] fixed top-0 left-0 right-0  ">
-      <div className="bg-gray-100 p-4 rounded-lg border border-gray-300 w-full max-w-3xl m-auto overflow-scroll relative">
+      <div className="bg-gray-50 p-4 rounded-lg border border-gray-300 w-full max-w-3xl m-auto overflow-scroll relative">
         <span
           onClick={() => showFn(false)}
           className="absolute right-8 text-xl cursor-pointer"

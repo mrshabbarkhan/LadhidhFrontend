@@ -3,6 +3,7 @@ import { useCategory } from "../Categories/useCategory";
 import { useUpdateProduct } from "./useUpdateProduct";
 import Spinner from "../../../../components/Spinner";
 import { RxCrossCircled } from "react-icons/rx";
+import InputField from "../../../../components/InputField";
 
 export default function EditProductPopup({ setShow, product }) {
   const [image, setImage] = useState(null);
@@ -104,34 +105,27 @@ export default function EditProductPopup({ setShow, product }) {
               </div>
 
               {/* Product Name */}
-              <div className="mb-4">
-                <label className="block text-gray-600 text-sm mb-1">
-                  Product Name
-                </label>
-                <input
-                  id="title"
-                  value={formData.title}
-                  onChange={handleChange}
-                  type="text"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
-                  required
-                />
-              </div>
 
-              <div className="mb-4">
-                <label className="block text-gray-600 text-sm mb-1">
-                  HSN No.
-                </label>
-                <input
-                  id="hsn"
-                  value={formData.hsn}
-                  onChange={handleChange}
-                  type="number"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
-                  required
-                  minLength={6}
-                />
-              </div>
+              <InputField
+                id={"title"}
+                value={formData.title}
+                handleChange={handleChange}
+                type={"text"}
+                required={true}
+                label={"Product Name"}
+                placeholder={"Product"}
+              />
+
+              <InputField
+                id={"hsn"}
+                value={formData.hsn}
+                handleChange={handleChange}
+                type={"number"}
+                required={true}
+                label={"HSN No."}
+                minLength={6}
+                placeholder={"HSN Number"}
+              />
 
               {/* Pack Type Dropdown */}
               <div className="mb-4">
@@ -151,67 +145,50 @@ export default function EditProductPopup({ setShow, product }) {
               </div>
 
               {/* Discount Field */}
-              <div className="mb-4">
-                <label className="block text-gray-600 text-sm mb-1">
-                  Discount (%)
-                </label>
-                <input
-                  id="discount"
-                  type="number"
-                  value={formData.discount}
-                  onChange={handleChange}
-                  placeholder="Discount in percent"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
-                  min="0"
-                  max="100"
-                />
-              </div>
+              <InputField
+                id={"discount"}
+                value={formData.discount}
+                handleChange={handleChange}
+                type={"number"}
+                required={true}
+                label={"Discount (%)"}
+                maxLength={10}
+                placeholder={"Discount in percent"}
+              />
 
               {/* Coupon Code Field (Conditional) */}
               {formData.discount > 0 && (
-                <div className="mb-4">
-                  <label className="block text-gray-600 text-sm mb-1">
-                    Coupon Code
-                  </label>
-                  <input
-                    id="code"
-                    value={formData.code}
-                    onChange={handleChange}
-                    type="text"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
-                    required
-                  />
-                </div>
+                <InputField
+                  id={"code"}
+                  value={formData.code}
+                  handleChange={handleChange}
+                  type={"text"}
+                  required={true}
+                  label={"Coupon Code"}
+                />
               )}
 
               {/* Price */}
-              <div className="mb-4">
-                <label className="block text-gray-600 text-sm mb-1">
-                  Price ($)
-                </label>
-                <input
-                  type="number"
-                  id="price"
-                  value={formData.price}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
-                  required
-                />
-              </div>
+              <InputField
+                id={"price"}
+                value={formData.price}
+                handleChange={handleChange}
+                type={"number"}
+                required={true}
+                label={"Price ₹"}
+              />
 
               {/* Product Description */}
-              <div className="mb-4">
-                <label className="block text-gray-600 text-sm mb-1">
-                  Product Description
-                </label>
-                <textarea
-                  id="description"
-                  value={formData.description}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
-                  rows="3"
-                />
-              </div>
+
+              <InputField
+                id={"description"}
+                value={formData.description}
+                handleChange={handleChange}
+                type={"text"}
+                required={true}
+                label={"Product Description"}
+                rows="3"
+              />
 
               {/* Category Dropdown */}
               <div className="mb-4">
@@ -236,20 +213,16 @@ export default function EditProductPopup({ setShow, product }) {
               </div>
 
               {/* Quantity */}
-              <div className="mb-4">
-                <label className="block text-gray-600 text-sm mb-1">
-                  Quantity
-                </label>
-                <input
-                  type="number"
-                  id="quantity"
-                  value={formData.quantity}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
-                  min="1"
-                  required
-                />
-              </div>
+
+              <InputField
+                id={"quantity"}
+                value={formData.quantity}
+                handleChange={handleChange}
+                type={"text"}
+                required={true}
+                label={"Quantity"}
+                minLength={1}
+              />
 
               <div className="flex justify-end">
                 <button

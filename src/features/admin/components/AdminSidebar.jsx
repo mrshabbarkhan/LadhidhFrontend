@@ -27,7 +27,7 @@ const AdminSidebar = () => {
       <ul className="flex flex-col  gap-4 text-left pl-5 pt-5 text-lg text-white">
         <NavLink
           to={"/"}
-          className=" w-full  py-1 rounded-l-lg text-black flex items-center text-white-600 "
+          className=" w-full  py-1 rounded-l-lg text-red-700 flex items-center text-white-600 "
         >
           <span className="flex items-center gap-2">
             <GoHomeFill />

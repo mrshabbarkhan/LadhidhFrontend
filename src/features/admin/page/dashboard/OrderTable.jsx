@@ -4,14 +4,15 @@ import { useOrders } from "../../../Order/useOrders";
 import { useAssignOrder } from "../../../Order/useAssignOrder";
 import { addToSelectedOrder } from "../../../Order/orderSlice";
 import OrderBill from "../../../Order/OrderBill";
+import Spinner from "../../../../components/Spinner";
 
 const OrderTable = () => {
   const dispatch = useDispatch();
 
   const [showBill, setShowBill] = useState(false);
-  const [selectedBillOrder, setSelectedBillOrder] = useState(null); 
+  const [selectedBillOrder, setSelectedBillOrder] = useState(null);
 
-  const { orders, isLoading, isError } = useOrders();
+  const { orders } = useOrders();
   const { selectedOrder } = useSelector((state) => state.order);
 
   const debouncedTerm = useSelector((state) => state.search.debouncedTerm);
@@ -31,8 +32,8 @@ const OrderTable = () => {
   };
 
   const handleViewOrder = (order) => {
-    setSelectedBillOrder(order); 
-    setShowBill(true); 
+    setSelectedBillOrder(order);
+    setShowBill(true);
   };
 
   return (
@@ -60,9 +61,11 @@ const OrderTable = () => {
                   </td>
                   <td
                     onClick={() => handleViewOrder(order)}
-                    className="px-4 py-2 cursor-pointer hover:underline"
+                    className="px-4 py-2 cursor-pointer hover:scale-95 text-red-500"
                   >
-                    View Order
+                    <span className="bg-red-200 px-2 rounded-md py-0.5">
+                      View
+                    </span>
                   </td>
                   <td className="px-4 py-2">
                     {order.createdAt
@@ -100,14 +103,9 @@ const OrderTable = () => {
               ))
               .reverse()
           ) : (
-            <tr>
-              <td
-                colSpan="7"
-                className="text-center py-4 text-red-600 font-medium"
-              >
-                No match found
-              </td>
-            </tr>
+            <div className="text-center w-full py-4 text-red-600 font-medium">
+              <Spinner />
+            </div>
           )}
         </tbody>
       </table>

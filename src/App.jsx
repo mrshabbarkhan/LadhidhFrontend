@@ -17,6 +17,7 @@ import WhyLadhidh from "./features/Policy/WhyLadhidh";
 import AllProducts from "./features/Home/AllProducts";
 import Settings from "./features/admin/page/settings/Settings";
 import DowanlodApp from "./components/DowanlodApp";
+import ToastProvider from "./components/ToastProvider";
 
 // Lazy loaded components
 const HomePage = lazy(() => import("./features/Home/HomePage"));
@@ -122,7 +123,7 @@ function App() {
       <Suspense fallback={<Loader className={"h-96"} />}>
         <RoutesWrapper />
       </Suspense>
-      <Toaster />
+      <ToastProvider />
     </Provider>
   );
 }

@@ -13,7 +13,7 @@ export function useOrders() {
   });
 
   if (isError) {
-    console.error("Error fetching orders:", error); 
+    console.error("Error fetching orders:", error);
   }
 
   return { orders, isLoading, isError };

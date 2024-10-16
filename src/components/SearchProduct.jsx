@@ -67,17 +67,21 @@ function SearchProduct({ className }) {
       </div>
       {searchTerm && (
         <ul className="transition-all overflow-auto z-20 rounded-b-md px-2 py-1 bg-white border border-t-0 shadow-lg absolute top-16 w-80 h-fit min-h-fit max-h-72">
-          {filteredProducts?.map((data, index) => (
-            <li
-              onClick={() => handleClick(data)}
-              key={index}
-              className="py-1 px-2 rounded-md text-left font-medium"
-            >
-              <h1 className="cursor-pointer rounded-md py-2 hover:bg-primary hover:px-2 hover:text-white">
-                {data.title}
-              </h1>
-            </li>
-          ))}
+          {filteredProducts.length ? (
+            filteredProducts?.map((data, index) => (
+              <li
+                onClick={() => handleClick(data)}
+                key={index}
+                className="py-1 px-2 rounded-md text-left font-medium"
+              >
+                <h1 className="cursor-pointer rounded-md py-2 hover:bg-primary hover:px-2 hover:text-white">
+                  {data.title}
+                </h1>
+              </li>
+            ))
+          ) : (
+            <li className="mb-5">No Product Found</li>
+          )}
         </ul>
       )}
     </div>

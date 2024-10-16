@@ -65,7 +65,7 @@ function OTPForm({ fromLogin, closeOtpForm }) {
   }, [verifySuccess]);
 
   const handleVerifyNumber = () => {
-    if (!hasValidNumber) return toast.error("Invalid Number");
+    if (!hasValidNumber) return toast.error("Please Fill Invalid Number");
     dispatch(setNumber(number));
     fetchOtp(number);
   };

@@ -8,6 +8,8 @@ import { useCart } from "./useCart";
 import toast from "react-hot-toast";
 import { useSettings } from "../admin/page/settings/useSettings";
 
+import emptyImg from "../../assets/empty-cart.gif";
+
 function CartPage() {
   const [updatedCart, setUpdatedCart] = useState([]);
   const { settings } = useSettings();
@@ -61,11 +63,7 @@ function CartPage() {
   if (!updatedCart?.length) {
     return (
       <>
-        <img
-          className="m-auto mt-10"
-          src="src/assets/empty-cart.gif"
-          alt="cart is empty"
-        />
+        <img className="m-auto mt-10" src={emptyImg} alt="cart is empty" />
         <h1 className="text-center mt-20 text-xl font-semibold">
           Your cart is empty
         </h1>
