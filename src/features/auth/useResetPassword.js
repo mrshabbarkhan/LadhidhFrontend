@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import authServices from "../services/apiAuthService";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 export function useResetPassword() {
   const {

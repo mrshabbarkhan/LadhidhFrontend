@@ -1,10 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addAddress } from "../services/apiAddress";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 export function useAddAddress() {
   const queryClient = useQueryClient();
-  const { mutate: addNewAddress, isPending: isLoading, isSuccess } = useMutation({
+  const {
+    mutate: addNewAddress,
+    isPending: isLoading,
+    isSuccess,
+  } = useMutation({
     mutationFn: addAddress,
     onSuccess: () => {
       queryClient.invalidateQueries({

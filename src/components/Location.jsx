@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useLocation } from "../utils/utils";
 import SearchSvg from "../assets/ui/SearchSvg";
 import { useGeoLocation } from "../hooks/useGeoLocation";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 function Location() {
   const [location, setLocation] = useState("Fetching location...");

@@ -83,6 +83,11 @@ p {
   background-color: #fe1313 !important;
 }
 
+/* Toast */
+.sonner-toast {
+  padding: 1rem; /* or use any value suitable for your design */
+}
+
 /* ////////////// Loader /////////////// */
 
 /* From Uiverse.io by G4b413l */

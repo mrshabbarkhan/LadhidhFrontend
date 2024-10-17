@@ -1,10 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { editCategory } from "../../../services/apiCategories";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 export function useUpdateCategory() {
   const queryClient = useQueryClient();
-  const { mutate: editSingleCategory, isPending, isSuccess } = useMutation({
+  const {
+    mutate: editSingleCategory,
+    isPending,
+    isSuccess,
+  } = useMutation({
     mutationFn: editCategory,
     onSuccess: () => {
       queryClient.invalidateQueries({

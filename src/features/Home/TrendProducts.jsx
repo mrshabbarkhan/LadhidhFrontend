@@ -3,9 +3,12 @@ import Card from "../Cart/Card";
 import Loader from "../../components/Loader";
 import { useProducts } from "../admin/page/products/useProducts";
 import { Link } from "react-router-dom";
+import { useAOS } from "../../hooks/useAOS";
 
 function TrendProducts() {
   const { products = [], isLoading } = useProducts();
+
+  useAOS(products);
 
   return (
     <section className="sm:mb-12 mb-6">
@@ -27,7 +30,10 @@ function TrendProducts() {
       {isLoading ? (
         <Loader className="h-40 w-full" />
       ) : (
-        <div className="flex gap-x-5   overflow-x-auto">
+        <div
+          data-aos="fade-up"
+          className="flex gap-x-5 overflow-y-hidden overflow-x-auto"
+        >
           {products.map((product) => (
             <Card key={product._id} product={product} isOnTrand={true} />
           ))}

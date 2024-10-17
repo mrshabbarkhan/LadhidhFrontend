@@ -103,9 +103,9 @@ const OrderTable = () => {
               ))
               .reverse()
           ) : (
-            <div className="text-center w-full py-4 text-red-600 font-medium">
+            <td className="text-center w-full py-4 text-red-600 font-medium">
               <Spinner />
-            </div>
+            </td>
           )}
         </tbody>
       </table>

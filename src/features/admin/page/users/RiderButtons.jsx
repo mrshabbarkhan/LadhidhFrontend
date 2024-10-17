@@ -3,7 +3,7 @@ import { useToggleRider } from "../RiderPage/useToggleRider";
 import { useAssignOrder } from "../../../Order/useAssignOrder";
 import Spinner from "../../../../components/Spinner";
 import { removeFromSelectedOrder } from "../../../Order/orderSlice";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 function RiderButtons({ user }) {
   const dispatch = useDispatch();

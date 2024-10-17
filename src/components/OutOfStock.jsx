@@ -1,7 +1,7 @@
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import { useAddRequest } from "../features/admin/page/requests/useAddRequest";
 
-function OutOfStock({ product }) {
+function OutOfStock({ product, className }) {
   const { addToRequsts, isError, isPending } = useAddRequest();
 
   function handleClick() {
@@ -19,7 +19,7 @@ function OutOfStock({ product }) {
   return (
     <button
       onClick={handleClick}
-      className={`border border-primary line-clamp-1 whitespace-nowrap text-sm font-semibold px-3 py-1 rounded-lg hover:text-white hover:scale-95 hover:bg-primary-dark transition flex justify-center`}
+      className={`border ${className} border-primary line-clamp-1 whitespace-nowrap text-sm font-semibold px-3 py-1 rounded-lg hover:text-white hover:scale-95 hover:bg-primary-dark transition flex justify-center`}
     >
       {isPending ? "Notify..." : "Notify"}
     </button>

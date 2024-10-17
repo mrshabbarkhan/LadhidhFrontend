@@ -9,9 +9,13 @@ import Loader from "../../components/Loader";
 import { FaRegClock } from "react-icons/fa6";
 import SaleForYou from "../Home/SaleForYou";
 import YouMight from "../../components/YouMight";
+import OutOfStock from "../../components/OutOfStock";
+import { useSettings } from "../admin/page/settings/useSettings";
 
 function ProductDetails() {
   const [tempQty, setTempQty] = useState(1);
+  const { settings } = useSettings();
+
   const navigate = useNavigate();
 
   const { id } = useParams();
@@ -75,11 +79,15 @@ function ProductDetails() {
             <span className="flex items-center gap-1">
               <StarSvg /> 4.6
             </span>
-            <span className="flex items-center border-x-2 px-2 gap-2">
+            {/* <span className="flex items-center border-x-2 px-2 gap-2">
               <FaRegClock className="text-primary" /> 6 - 7 min
-            </span>
+            </span> */}{" "}
+            |
             <span className="flex items-center text-primary gap-1">
-              <TbTruckDelivery className="text-lg" /> Free Delivery
+              <TbTruckDelivery className="text-lg" />{" "}
+              {settings?.deliveryCharge
+                ? `₹ ${settings?.deliveryCharge}`
+                : "Free Delivery"}
             </span>
           </div>
 
@@ -97,7 +105,7 @@ function ProductDetails() {
             <div className="flex items-center">
               <span
                 onClick={() => setTempQty(tempQty > 1 ? tempQty - 1 : tempQty)}
-                className="bg-primary cursor-pointer text-white px-3 font-semibold text-lg rounded-lg"
+                className="bg-primary cursor-pointer text-white px-3 font-semibold text-lg rounded-lg hover:scale-95"
               >
                 -
               </span>
@@ -106,7 +114,7 @@ function ProductDetails() {
               </span>
               <span
                 onClick={() => setTempQty(tempQty + 1)}
-                className="bg-primary cursor-pointer text-white px-2 font-semibold text-lg rounded-lg"
+                className="bg-primary cursor-pointer text-white px-2 font-semibold text-lg rounded-lg hover:scale-95"
               >
                 +
               </span>
@@ -119,12 +127,18 @@ function ProductDetails() {
 
       {/* Add to Cart Button */}
       <div className="w-full bg-white text-center z-30 px-2 py-3 fixed bottom-0 left-0 cursor-pointer">
-        <div
-          onClick={() => handleCart()}
-          className="z-30 bg-primary text-md font-semibold py-2 max-w-5xl rounded-xl m-auto text-white"
-        >
-          ADD TO CART
-        </div>
+        {product.inStock ? (
+          <div
+            onClick={() => handleCart()}
+            className="z-30 bg-primary text-md font-semibold py-2 max-w-5xl rounded-xl m-auto text-white hover:scale-95 transition-transform"
+          >
+            ADD TO CART
+          </div>
+        ) : (
+          <div className="z-30 bg-primary text-md font-semibold max-w-5xl rounded-xl flex justify-center m-auto text-white">
+            <OutOfStock className={"w-full py-2"} product={product} />
+          </div>
+        )}
       </div>
     </section>
   );

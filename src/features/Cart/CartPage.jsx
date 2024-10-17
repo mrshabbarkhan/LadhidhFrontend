@@ -5,7 +5,7 @@ import AuthButton from "../auth/AuthButton";
 import CheckOutFooter from "../../components/CheckOutFooter";
 import { useLocalStorage } from "../auth/LocalStorageContext";
 import { useCart } from "./useCart";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import { useSettings } from "../admin/page/settings/useSettings";
 
 import emptyImg from "../../assets/empty-cart.gif";

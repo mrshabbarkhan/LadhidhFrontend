@@ -58,10 +58,12 @@ function OrderCard({ order = {} }) {
             </button>
           ) : (
             <button
-              onClick={() => setShowCancel(true)}
+              onClick={
+                order.orderStatus === -1 ? undefined : () => setShowCancel(true)
+              }
               className="bg-gray-200 text-red-600 p-1 px-3 rounded-md text-sm hover:text-white hover:bg-red-600"
             >
-              Cancel Order
+              {order.orderStatus === -1 ? "Cancelled" : "Cancel Order"}
             </button>
           )}
         </div>

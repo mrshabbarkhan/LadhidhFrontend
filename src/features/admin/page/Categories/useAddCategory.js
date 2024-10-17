@@ -1,10 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addCategory } from "../../../services/apiCategories";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 export function useAddCategory() {
   const queryClient = useQueryClient();
-  const { mutate: addCategories, isPending , isSuccess} = useMutation({
+  const {
+    mutate: addCategories,
+    isPending,
+    isSuccess,
+  } = useMutation({
     mutationFn: addCategory,
     onSuccess: () => {
       queryClient.invalidateQueries({
@@ -17,5 +21,5 @@ export function useAddCategory() {
     },
   });
 
-  return { addCategories, isPending , isSuccess};
+  return { addCategories, isPending, isSuccess };
 }

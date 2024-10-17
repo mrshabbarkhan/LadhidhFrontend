@@ -10,7 +10,6 @@ const getOtp = async (phoneNumber) => {
     );
     return response.data;
   } catch (error) {
-    console.log(error);
     throw new Error("Otp error", error);
   }
 };
@@ -20,7 +19,6 @@ const verifyOtp = async (formData) => {
     const res = await axios.post("/api/user/verifyOtp", formData);
     return res.data;
   } catch (error) {
-    console.log(error);
     throw new Error(
       "verify otp failed",
       error.response.data.error || "Something went wrong"

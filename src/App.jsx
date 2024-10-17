@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import Loader from "./components/Loader";
 import PageNotFound from "./components/PageNotFound";
-import { Toaster } from "react-hot-toast";
+import { Toaster } from "sonner";
 import AppLayout from "./components/AppLayout";
 import AdminLayout from "./features/admin/components/AdminLayout";
 import ProtectedRoute from "./features/admin/components/ProtectedRoute";
@@ -17,7 +17,6 @@ import WhyLadhidh from "./features/Policy/WhyLadhidh";
 import AllProducts from "./features/Home/AllProducts";
 import Settings from "./features/admin/page/settings/Settings";
 import DowanlodApp from "./components/DowanlodApp";
-import ToastProvider from "./components/ToastProvider";
 
 // Lazy loaded components
 const HomePage = lazy(() => import("./features/Home/HomePage"));
@@ -123,7 +122,12 @@ function App() {
       <Suspense fallback={<Loader className={"h-96"} />}>
         <RoutesWrapper />
       </Suspense>
-      <ToastProvider />
+      <Toaster
+        richColors
+        toastOptions={{
+          className: "sonner-toast",
+        }}
+      />
     </Provider>
   );
 }

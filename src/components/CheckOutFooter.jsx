@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "../features/Cart/useCart";
 import { addLocalCart } from "../features/Cart/cartSlice";
 import { useDispatch } from "react-redux";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 

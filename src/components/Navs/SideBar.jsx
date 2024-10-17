@@ -24,21 +24,24 @@ function SideBar({ on, setOn }) {
         onClick={() => setOn(!on)}
       ></div>
       <div
-        className={`fixed inset-y-0 left-0 h-[100vh] w-[260px] sm:w-[260px] z-[999999]  ${
-          on ? "flex" : "hidden"
-        } flex-col overflow-y-scroll bg-white`}
-        onClick={() => setOn(!on)}
+        className={`fixed inset-y-0 left-0 h-[100vh] w-52 sm:w-64 z-[999999] transition-transform duration-1000  ${
+          on ? "translate-x-0" : "-translate-x-full"
+        } flex-col overflow-hidden bg-white`}
       >
         <Link to={"/profile"}>
-          <div className="author-box flex items-center bg-primary p-4 ">
-            <div className="dz-media border-2 rounded-full h-10 w-12 overflow-hidden object-cover object-center mr-3">
-              <img src={UserImage} alt="profile" />
+          <div className="flex items-center bg-primary p-4">
+            <div className="border-2 rounded-full w-10 h-10 min-w-10 bg-red-700 overflow-hidden mr-3 flex-shrink-0">
+              <img
+                src={UserImage}
+                alt="profile"
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div className="dz-info">
-              <h5 className="name text-white mb-0 font-bold text-xl leading-5 line-clamp-1">
+            <div className="w-32 sm:w-40">
+              <h5 className="text-white font-bold text-xl leading-5 line-clamp-1 w-full overflow-hidden">
                 {user?.name || "Logged in"}
               </h5>
-              <div className="text-white text-sm w-40 line-clamp-1">
+              <div className="text-white text-sm line-clamp-1 w-full overflow-hidden">
                 {user?.email || "No email found"}
               </div>
             </div>

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { removeAddress } from "../services/apiAddress";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 export function useDeleteAddress() {
   const queryClient = useQueryClient();

@@ -3,7 +3,7 @@ import { useDeleteCart } from "./useDeleteCart";
 import Spinner from "../../components/Spinner";
 import { useCart } from "./useCart";
 import { useAOS } from "../../hooks/useAOS";
-import { FaTrashArrowUp } from "react-icons/fa6";
+import { FaRegTrashCan, FaTrashArrowUp } from "react-icons/fa6";
 
 function CartList({ product, onQtyChange }) {
   const {
@@ -68,12 +68,12 @@ function CartList({ product, onQtyChange }) {
         </div>
         <div
           onClick={handleDelete}
-          className="border shadow w-fit  px-1 rounded-lg text-black hover:text-white hover:bg-primary  transition-size cursor-pointer"
+          className="border shadow w-fit hover:scale-95 px-1 rounded-lg text-black hover:text-white hover:bg-primary transition-size cursor-pointer"
         >
           {isPending ? (
             <Spinner className="my-1 border-black" />
           ) : (
-            <FaTrashArrowUp className="text-xl my-0.5" />
+            <FaRegTrashCan className="text-xl my-0.5" />
           )}
         </div>
       </div>

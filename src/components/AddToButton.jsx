@@ -2,9 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useAddCart } from "../features/Cart/useAddCart";
 import Spinner from "./Spinner";
 import { useLocalStorage } from "../features/auth/LocalStorageContext";
-import toast, { LoaderIcon } from "react-hot-toast";
-import { isPending } from "@reduxjs/toolkit";
-import { LuLoader2 } from "react-icons/lu";
+import { toast } from "sonner";
 
 function AddToButton({ redirect = "/cart", ...props }) {
   const navigate = useNavigate();

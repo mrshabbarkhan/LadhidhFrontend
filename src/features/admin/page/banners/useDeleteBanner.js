@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteBanner } from "../../../services/apiBanner";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 export function useDeleteBanner() {
   const queryClient = useQueryClient();
@@ -10,7 +10,7 @@ export function useDeleteBanner() {
       queryClient.invalidateQueries({
         queryKey: ["banners"],
       });
-      toast.success("Deleted Successfully")
+      toast.success("Deleted Successfully");
     },
   });
 

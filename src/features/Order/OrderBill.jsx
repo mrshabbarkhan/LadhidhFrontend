@@ -1,6 +1,20 @@
 import { RxCrossCircled } from "react-icons/rx";
 
 function OrderBill({ order, showFn, showPickup = true }) {
+  let orderStatusCheck;
+
+  if (order.orderStatus === 3) {
+    orderStatusCheck = "Delivered";
+  } else if (order.orderStatus === 2) {
+    orderStatusCheck = "Picked Up";
+  } else if (order.orderStatus === 1) {
+    orderStatusCheck = "Assinged";
+  } else if (order.orderStatus == -1) {
+    orderStatusCheck = "Cancelled";
+  } else {
+    orderStatusCheck = "Placed";
+  }
+
   return (
     <section className="bg-black/20 flex justify-center h-[100vh] fixed top-0 left-0 right-0  ">
       <div className="bg-gray-50 p-4 rounded-lg border border-gray-300 w-full max-w-3xl m-auto overflow-scroll relative">
@@ -16,8 +30,8 @@ function OrderBill({ order, showFn, showPickup = true }) {
         </p>
         <p>
           Status:
-          <span className="font-semibold text-red-500">
-            {order.paymentStatus.toLowerCase()}
+          <span className="font-semibold ml-2 text-red-500">
+            {orderStatusCheck}
           </span>
         </p>
 
@@ -48,7 +62,6 @@ function OrderBill({ order, showFn, showPickup = true }) {
                 <h1 className="mr-2">{item.product.title}</h1>
                 <span className="text-gray-400"> x {item.quantity}</span>
                 <span className="ml-2 text-gray-400">
-                  {" "}
                   HSN : {item?.product.hsn}
                 </span>
               </div>
@@ -57,9 +70,20 @@ function OrderBill({ order, showFn, showPickup = true }) {
               </div>
             </div>
           ))}
-        </div>
 
-        <hr className="border border-gray-200" />
+          <hr className="border border-gray-200 my-10" />
+
+          <div className="flex justify-between ">
+            <span>
+              <h1>Delivery Charger </h1>
+              <h1>Handling Fee </h1>
+            </span>
+            <div>
+              <h1 className="text-semibold">₹{order.deliveryCharge}</h1>
+              <h1 className="text-semibold">₹{order.handlingFee}</h1>
+            </div>
+          </div>
+        </div>
 
         {/* Payment and Total */}
         <div className="flex justify-between ">

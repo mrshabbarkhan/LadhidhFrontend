@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { cancelOrder } from "../services/apiOrders";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 export function useCancelOrder() {
   const queryClient = useQueryClient();
