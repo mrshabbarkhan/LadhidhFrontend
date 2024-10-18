@@ -1,6 +1,11 @@
 import { RxCrossCircled } from "react-icons/rx";
+import { useUser } from "../admin/page/users/useUser";
 
 function OrderBill({ order, showFn, showPickup = true }) {
+  const { users } = useUser();
+
+  const filterUser = users?.find((u) => u._id === order.user);
+
   let orderStatusCheck;
 
   if (order.orderStatus === 3) {
@@ -46,6 +51,11 @@ function OrderBill({ order, showFn, showPickup = true }) {
           {order.shippingAddress.state}, {order.shippingAddress.zipCode},{" "}
           {order.shippingAddress.country}
         </p>
+
+        <p className="font-semibold mt-5">User</p>
+        <p>Name : {filterUser.name}</p>
+        <p>Email : {filterUser.email}</p>
+        <p>Number : {filterUser.number}</p>
 
         {/* Order Items */}
         <div className="mt-4">
