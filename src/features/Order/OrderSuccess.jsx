@@ -7,7 +7,9 @@ const OrderSuccess = ({ order }) => {
         <h2 className="text-2xl font-semibold text-green-600">
           🎉 Order Placed Successfully!
         </h2>
-        <p className="text-gray-700">Thank you for your order!</p>
+        <p className="text-gray-700">
+          Your Delivery Password is * : {order.deliveryPassword}{" "}
+        </p>
       </div>
 
       <div className="bg-gray-100 p-4 rounded-lg border border-gray-300 w-full max-w-3xl">
@@ -15,6 +17,7 @@ const OrderSuccess = ({ order }) => {
         <p className="mt-2">
           Order ID: <span className="font-semibold">{order._id}</span>
         </p>
+        <h1>Delivery Password : {order.deliveryPassword}</h1>
         <p>
           Status: <span className="font-semibold text-yellow-500">Pending</span>
         </p>

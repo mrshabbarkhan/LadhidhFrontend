@@ -8,6 +8,7 @@ export function useUpdateCategory() {
     mutate: editSingleCategory,
     isPending,
     isSuccess,
+    reset,
   } = useMutation({
     mutationFn: editCategory,
     onSuccess: () => {
@@ -21,5 +22,5 @@ export function useUpdateCategory() {
     },
   });
 
-  return { editSingleCategory, isPending, isSuccess };
+  return { editSingleCategory, isPending, isSuccess, reset };
 }

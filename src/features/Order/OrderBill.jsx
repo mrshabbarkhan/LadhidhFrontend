@@ -36,6 +36,7 @@ function OrderBill({ order, showFn, showPickup = true }) {
         </p>
 
         {showPickup ? <p>Pickup Password : {order?.pickupPassword}</p> : null}
+        <h1>Delivery Password : {order.deliveryPassword}</h1>
 
         {/* Shipping Address */}
         <p className="mt-4">Shipping Address:</p>

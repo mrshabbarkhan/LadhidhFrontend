@@ -13,7 +13,7 @@ function OrderCard({ order = {} }) {
   // Calculate the time difference in milliseconds
   const timeDifference = now - createdDate;
   // Convert the time difference to days
-  const differenceInDays = timeDifference / (1000 * 3600 * 24);
+  const differenceInDays = timeDifference / (1000 * 60);
 
   if (showCancel) {
     return <CancelOrder setShow={setShowCancel} order={order} />;
@@ -52,10 +52,8 @@ function OrderCard({ order = {} }) {
           </h3>
 
           {/* Show 'Reorder' if less than 1 day has passed, otherwise show 'Cancel Order' */}
-          {differenceInDays > 1 ? (
-            <button className="bg-red-200 text-primary-dark p-1 px-3 rounded-md text-sm hover:text-white hover:bg-primary">
-              Reorder
-            </button>
+          {differenceInDays > 10 ? (
+            <button className="bg-red-200 text-primary-dark p-1 px-3 rounded-md text-sm hover:text-white hover:bg-primary"></button>
           ) : (
             <button
               onClick={

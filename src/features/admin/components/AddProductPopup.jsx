@@ -3,13 +3,17 @@ import { useCategory } from "../page/Categories/useCategory";
 import { useAddProduct } from "../page/products/useAddProduct";
 import Spinner from "../../../components/Spinner";
 import { MdCancel } from "react-icons/md";
+import { useSubCatById } from "../page/subCategory/useSubCatById";
+import { useSubCate } from "../page/subCategory/useSubCate";
 
 export default function AddProductPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [image, setImage] = useState(null);
+  const [categoryId, setCategoryId] = useState("");
 
   const { addNewProduct, isLoading, isSuccess } = useAddProduct();
   const { categories } = useCategory();
+  const { subCategoriesById, subCategoriesByIdFn } = useSubCatById();
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -25,6 +29,7 @@ export default function AddProductPopup() {
     quantity: "",
     description: "",
     hsn: "",
+    subCategoryId: "",
   });
 
   const handleImages = (e) => {
@@ -53,6 +58,7 @@ export default function AddProductPopup() {
     data.append("quantity", formData.quantity);
     data.append("description", formData.description);
     data.append("hsn", formData.hsn);
+    data.append("subCategoryId", formData.subCategoryId);
 
     addNewProduct(data);
 
@@ -74,6 +80,16 @@ export default function AddProductPopup() {
       togglePopup();
     }
   }, [isSuccess]);
+
+  useEffect(() => {
+    const filterCatId = categories?.find(
+      (cat) => cat.cat_id === formData.category
+    );
+
+    if (filterCatId) {
+      subCategoriesByIdFn(filterCatId._id);
+    }
+  }, [formData.category]);
 
   return (
     <>
@@ -238,6 +254,7 @@ export default function AddProductPopup() {
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
                     required
                   >
+                    <option value="">-- Please Select Category --</option>
                     {categories?.map((category) => (
                       <>
                         <option key={category._id} value={`${category.cat_id}`}>
@@ -247,6 +264,31 @@ export default function AddProductPopup() {
                     ))}
                   </select>
                 </div>
+
+                {/* Sub Category */}
+                {subCategoriesById?.length > 0 && (
+                  <div className="mb-4">
+                    <label className="block text-gray-600 text-sm mb-1">
+                      Sub Category
+                    </label>
+                    <select
+                      id="subCategoryId"
+                      value={formData.subCategoryId}
+                      onChange={handleChange}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+                      required
+                    >
+                      <option value="">-- Please Select Sub Category --</option>
+                      {subCategoriesById?.map((category) => (
+                        <>
+                          <option key={category._id} value={`${category._id}`}>
+                            {category.name}
+                          </option>
+                        </>
+                      ))}
+                    </select>
+                  </div>
+                )}
 
                 {/* Quantity */}
                 <div className="mb-4">

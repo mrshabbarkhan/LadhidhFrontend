@@ -12,6 +12,7 @@ import {
 import { LiaProductHunt } from "react-icons/lia";
 import { GoHomeFill } from "react-icons/go";
 import { TbBellSearch } from "react-icons/tb";
+import { MdOutlineChecklist } from "react-icons/md";
 
 const AdminSidebar = () => {
   const { logOutUser } = useLocalStorage();
@@ -81,6 +82,22 @@ const AdminSidebar = () => {
           <span className="flex items-center gap-2">
             <IoListOutline />
             Categories
+          </span>
+        </NavLink>
+
+        <NavLink
+          to={"/admin/subcategory"}
+          className={({ isActive }) =>
+            ` ${
+              isActive
+                ? "bg-white w-full px-2 py-1 rounded-l-xl flex items-center text-gray-900"
+                : "text-black"
+            }`
+          }
+        >
+          <span className="flex items-center gap-2">
+            <MdOutlineChecklist />
+            Sub Category
           </span>
         </NavLink>
 

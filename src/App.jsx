@@ -17,6 +17,7 @@ import WhyLadhidh from "./features/Policy/WhyLadhidh";
 import AllProducts from "./features/Home/AllProducts";
 import Settings from "./features/admin/page/settings/Settings";
 import DowanlodApp from "./components/DowanlodApp";
+import SubCategory from "./features/admin/page/subCategory/subCategory";
 
 // Lazy loaded components
 const HomePage = lazy(() => import("./features/Home/HomePage"));
@@ -70,6 +71,7 @@ function RoutesWrapper() {
             { path: "riders", element: <RiderPage /> },
             { path: "requests", element: <Requests /> },
             { path: "settings", element: <Settings /> },
+            { path: "subcategory", element: <SubCategory /> },
           ],
           errorElement: <PageNotFound />,
         },
@@ -88,6 +90,7 @@ function RoutesWrapper() {
         { path: "/profile", element: <ProfilePage /> },
         { path: "products", element: <AllProducts /> },
         { path: "/product-list/:id", element: <ProductListPage /> },
+        { path: "/product-list/:id/:subId", element: <ProductListPage /> },
         { path: "/product-details/:id", element: <ProductDetails /> },
         { path: "/profile/orders", element: <OrderPage /> },
         { path: "/profile/address", element: <UserAddress /> },

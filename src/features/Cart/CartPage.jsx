@@ -43,11 +43,7 @@ function CartPage() {
   const memoizedUpdatedCart = useMemo(() => {
     return updatedCart
       ?.map((product, index) => (
-        <CartList
-          product={product}
-          key={index}
-          onQtyChange={handleQtyChange} // Pass the handler
-        />
+        <CartList product={product} key={index} onQtyChange={handleQtyChange} />
       ))
       .reverse();
   }, [updatedCart]);
@@ -93,7 +89,9 @@ function CartPage() {
         {settings?.handlingFee && (
           <div className="flex justify-between">
             <p>handle Fee</p>
-            <h6 className="font-semibold">&#x20B9;{settings?.handlingFee}</h6>
+            <h6 className="font-semibold">
+              &#x20B9;{settings?.handlingFee || "Free"}
+            </h6>
           </div>
         )}
         <div className="flex justify-between border-t mt-2">

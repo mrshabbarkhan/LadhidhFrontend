@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import { useAddCategory } from "../page/Categories/useAddCategory";
 import Spinner from "../../../components/Spinner";
 import { MdCancel } from "react-icons/md";
+import { useCategory } from "../page/Categories/useCategory";
 
-function AddCategoryPopup() {
+function AddCategoryPopup({ handleAdd, isSuccess, isPending, isFromSubCat }) {
   const [isOpen, setIsOpen] = useState(false);
   const [image, setImage] = useState(null);
   const [categoryTitle, setCategoryTitle] = useState("");
+  const [categoryInput, setCategoryInput] = useState("");
 
-  const { addCategories, isPending, isSuccess } = useAddCategory();
+  const { categories } = useCategory();
 
   const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -27,24 +29,9 @@ function AddCategoryPopup() {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = new FormData();
-    data.append("img", image);
-    data.append("cat_id", crypto.randomUUID());
-    data.append("name", categoryTitle);
-
-    try {
-      addCategories(data);
-    } catch (error) {
-      console.error("Failed to add category:", error);
-    }
-
-    setCategoryTitle("");
-  };
-
   useEffect(() => {
     if (isSuccess) {
+      setCategoryTitle("");
       setIsOpen(!isOpen);
     }
   }, [isSuccess]);
@@ -75,7 +62,11 @@ function AddCategoryPopup() {
               >
                 <MdCancel className="text-xl" />
               </div>
-              <form onSubmit={handleSubmit}>
+              <form
+                onSubmit={(e) =>
+                  handleAdd(e, image, categoryTitle, categoryInput)
+                }
+              >
                 {/* Product Name */}
                 <div className="mb-4">
                   <label className="block text-gray-600 text-sm mb-1">
@@ -91,6 +82,29 @@ function AddCategoryPopup() {
                   />
                 </div>
 
+                {isFromSubCat && (
+                  <div className="mb-4">
+                    <label className="block text-gray-600 text-sm mb-1">
+                      Category
+                    </label>
+                    <select
+                      id="category"
+                      value={categoryInput}
+                      onChange={(e) => setCategoryInput(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+                      required
+                    >
+                      {categories?.map((category) => (
+                        <>
+                          <option key={category._id} value={`${category._id}`}>
+                            {category.name}
+                          </option>
+                        </>
+                      ))}
+                    </select>
+                  </div>
+                )}
+
                 {/* Image Upload */}
                 <div className="mb-4">
                   <label className="block text-gray-600 text-sm mb-1">
@@ -105,7 +119,6 @@ function AddCategoryPopup() {
                     required
                   />
                 </div>
-
                 <div className="flex justify-end">
                   <button
                     type="submit"

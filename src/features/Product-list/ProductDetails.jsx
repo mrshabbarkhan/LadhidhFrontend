@@ -31,7 +31,7 @@ function ProductDetails() {
     return <Loader className={"h-96"} />;
   }
 
-  const { price, discount, img } = product;
+  const { price, discount, img, description } = product;
 
   const oldPrice = Math.floor(price / (1 - discount / 100));
 
@@ -44,6 +44,8 @@ function ProductDetails() {
     addToCart(formData);
     navigate("/cart");
   }
+
+  console.log(product);
 
   return (
     <section className="">
@@ -65,23 +67,15 @@ function ProductDetails() {
           <h1 className="font-semibold text-xl mb-4">
             {product.tittle || product.title}
           </h1>
-          <p className="leading-6 mb-4 ">
-            Experience the premium quality and tenderness of our Fresh Chicken
-            Breast Fillets, perfect for your everyday cooking needs. Sourced
-            from healthy, farm-raised chickens, these boneless fillets are 100%
-            natural, antibiotic-free, and expertly cut to provide the best
-            flavor and texture in every bite. Whether you're grilling, baking,
-            or pan-frying, our chicken breast is versatile, lean, and packed
-            with protein to keep your meals healthy and delicious.
+          <p className="leading-6 mb-4" style={{ whiteSpace: "pre-wrap" }}>
+            {description ||
+              "Experience the premium quality and tenderness of our Fresh Chicken Breast Fillets, perfect for your everyday cooking needs. Sourced from healthy, farm-raised chickens, these boneless fillets are 100% natural, antibiotic-free, and expertly cut to provide the best flavor and texture in every bite. Whether you're grilling, baking, or pan-frying, our chicken breast is versatile, lean, and packed with protein to keep your meals healthy and delicious."}
           </p>
 
           <div className="flex items-center gap-3 font-semibold mb-4">
             <span className="flex items-center gap-1">
               <StarSvg /> 4.6
             </span>
-            {/* <span className="flex items-center border-x-2 px-2 gap-2">
-              <FaRegClock className="text-primary" /> 6 - 7 min
-            </span> */}{" "}
             |
             <span className="flex items-center text-primary gap-1">
               <TbTruckDelivery className="text-lg" />{" "}

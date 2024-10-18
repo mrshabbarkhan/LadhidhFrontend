@@ -5,6 +5,8 @@ import { useAssignOrder } from "../../../Order/useAssignOrder";
 import { addToSelectedOrder } from "../../../Order/orderSlice";
 import OrderBill from "../../../Order/OrderBill";
 import Spinner from "../../../../components/Spinner";
+import Loader from "../../../../components/Loader";
+import useOrderStatus from "../../../../hooks/useOrderStatus";
 
 const OrderTable = () => {
   const dispatch = useDispatch();
@@ -12,7 +14,7 @@ const OrderTable = () => {
   const [showBill, setShowBill] = useState(false);
   const [selectedBillOrder, setSelectedBillOrder] = useState(null);
 
-  const { orders } = useOrders();
+  const { orders, isLoading } = useOrders();
   const { selectedOrder } = useSelector((state) => state.order);
 
   const debouncedTerm = useSelector((state) => state.search.debouncedTerm);
@@ -21,10 +23,10 @@ const OrderTable = () => {
   );
 
   const statusColors = {
-    delivered: "bg-green-400 text-green-500",
-    pending: "bg-purple-700 text-white",
-    process: "bg-blue-400 text-white",
-    canceled: "bg-red-400 text-white",
+    Delivered: "bg-green-200 text-green-700",
+    Pending: "bg-purple-200 text-purple-700",
+    PickedUp: "bg-blue-200 text-blue-700",
+    Cancelled: "bg-red-200 text-red-700",
   };
 
   const handleSelect = (order) => {
@@ -35,6 +37,10 @@ const OrderTable = () => {
     setSelectedBillOrder(order);
     setShowBill(true);
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="overflow-x-auto rounded-md">
@@ -73,39 +79,46 @@ const OrderTable = () => {
                       : "N/A"}
                   </td>
                   <td className="px-4 py-2">
-                    <button
-                      onClick={() => handleSelect(order)}
-                      className="text-sm sm:text-base mr-2 rounded-md"
-                    >
-                      {selectedOrder?._id === order._id ? (
-                        <span className="bg-green-500 text-white px-5 rounded-md py-1 border">
-                          Selected
-                        </span>
-                      ) : (
-                        <span className="bg-gray-300 px-2 py-1 rounded-md">
-                          Select Order
-                        </span>
-                      )}
-                    </button>
+                    {useOrderStatus(order) === "Cancelled" ? (
+                      <button className="bg-red-200 text-red-700 px-4 rounded-md py-1 border">
+                        Cancelled
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleSelect(order)}
+                        className="text-sm sm:text-base mr-2 rounded-md"
+                      >
+                        {selectedOrder?._id === order._id ? (
+                          <span className="bg-green-500 text-white px-5 rounded-md py-1 border">
+                            Selected
+                          </span>
+                        ) : (
+                          <span className="bg-gray-300 px-2 py-1 rounded-md inline-block text-nowrap">
+                            Select Order
+                          </span>
+                        )}
+                      </button>
+                    )}
                   </td>
                   <td className="px-4 py-2">
                     <span
-                      className={`inline-block px-3 py-1 rounded-lg text-white ${
-                        statusColors[order.paymentStatus?.toLowerCase()] ||
-                        "bg-gray-300"
+                      className={`inline-block px-3 py-1 rounded-lg font-medium ${
+                        statusColors[useOrderStatus(order)] || "bg-gray-300"
                       }`}
                     >
-                      {order.paymentStatus?.toLowerCase() || "N/A"}
+                      {useOrderStatus(order) || "N/A"}
                     </span>
                   </td>
-                  <td className="px-4 py-2">₹{order.totalPrice || "0"}</td>
+                  <td className="px-4 py-2 font-semibold">
+                    ₹{order.totalPrice || "0"}
+                  </td>
                 </tr>
               ))
               .reverse()
           ) : (
-            <td className="text-center w-full py-4 text-red-600 font-medium">
-              <Spinner />
-            </td>
+            <tr className="text-center w-full py-4 text-red-600 font-medium">
+              <h1>No Data Found</h1>
+            </tr>
           )}
         </tbody>
       </table>

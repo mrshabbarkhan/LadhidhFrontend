@@ -48,14 +48,14 @@ function Requests() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 flex items-center">
                       <img
-                        src={request.product.img}
-                        alt={request.product.title}
+                        src={request?.product?.img}
+                        alt={"product"}
                         className="w-12 h-12 rounded-lg mr-4"
                       />
-                      <span>{request.product.title}</span>
+                      <span>{request?.product?.title}</span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {request.product.pack}
+                      {request?.product?.pack}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                       {new Date(request.createdAt).toLocaleDateString("en-GB")}

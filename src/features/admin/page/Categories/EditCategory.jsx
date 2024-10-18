@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
-import { useUpdateCategory } from "./useUpdateCategory";
 import Spinner from "../../../../components/Spinner";
 import { MdCancel } from "react-icons/md";
 
-function EditCategory({ title, id, setShowPopup, showPopup }) {
+function EditCategory({
+  title,
+  isSuccess,
+  isPending,
+  reset,
+  setShowPopup,
+  showPopup,
+  handleEdit,
+}) {
   const [image, setImage] = useState(null);
   const [categoryTitle, setCategoryTitle] = useState(title);
-
-  const { editSingleCategory, isPending, isSuccess } = useUpdateCategory();
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
@@ -17,24 +22,10 @@ function EditCategory({ title, id, setShowPopup, showPopup }) {
     setImage(e.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const data = new FormData();
-    data.append("img", image);
-    data.append("cat_id", id);
-    data.append("name", categoryTitle);
-
-    const formData = {
-      id,
-      data,
-    };
-
-    editSingleCategory(formData);
-  };
-
   useEffect(() => {
     if (isSuccess) {
-      setShowPopup(!showPopup);
+      setShowPopup(false);
+      reset();
     }
   }, [isSuccess]);
 
@@ -55,7 +46,7 @@ function EditCategory({ title, id, setShowPopup, showPopup }) {
             >
               <MdCancel className="text-xl" />
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e) => handleEdit(e, image, categoryTitle)}>
               {/* Product Name */}
               <div className="mb-4">
                 <label className="block text-gray-600 text-sm mb-1">
