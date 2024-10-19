@@ -42,17 +42,17 @@ function ProductListPage() {
   return (
     <section className="mb-20">
       {subCategoriesById?.length > 0 && (
-        <section className="flex flex-nowrap items-end gap-10 w-full overflow-x-auto p-5 rounded-md mb-5 bg-red-200">
+        <section className="flex items-end gap-10 w-full overflow-x-auto p-5 rounded-md mb-5 bg-red-200">
           <div
-            className="text-center"
+            className="text-center flex items-center justify-center flex-col min-w-[8rem] flex-shrink-0"
             onClick={() => navigate(`/product-list/${id}`)}
           >
             <img
-              className="w-24  object-cover hover:scale-90 cursor-pointer transition-transform duration-200"
+              className="w-20 object-cover hover:scale-90 cursor-pointer transition-transform duration-200 "
               src={filterSubCat.img}
               alt="Category"
             />
-            <h1 className="font-semibold">All</h1>
+            <h1 className="font-semibold text-center">All</h1>
           </div>
           {subCategoriesById?.map((sub) => (
             <SubCards key={sub._id} sub={sub} id={id} />

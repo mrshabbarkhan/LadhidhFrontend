@@ -46,12 +46,6 @@ function AuthButton({ onClickOverlyHide = false }) {
           <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-8 relative ">
             {!onClickOverlyHide && (
               <div className="text-black absolute flex gap-2 items-center right-8 top-5 hover:cursor-pointer">
-                <Link
-                  to={"/dowanlod"}
-                  className="float-end text-sm hover:underline hover:text-blue-700"
-                >
-                  Downlod our app
-                </Link>
                 <MdCancel onClick={resetStates} className="text-xl" />
               </div>
             )}

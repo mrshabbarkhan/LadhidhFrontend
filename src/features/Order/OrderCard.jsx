@@ -53,7 +53,7 @@ function OrderCard({ order = {} }) {
 
           {/* Show 'Reorder' if less than 1 day has passed, otherwise show 'Cancel Order' */}
           {differenceInDays > 10 ? (
-            <button className="bg-red-200 text-primary-dark p-1 px-3 rounded-md text-sm hover:text-white hover:bg-primary"></button>
+            <button></button>
           ) : (
             <button
               onClick={

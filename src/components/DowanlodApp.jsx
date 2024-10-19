@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import phoneImg from "/downalod.jpeg";
 import playStore from "/pngegg.png";
 import qr from "/qr.svg";
@@ -9,7 +10,7 @@ function DowanlodApp() {
         <img src={phoneImg} alt="logo" />
       </div>
       <div className="sm:w-1/2 ">
-        <h1 className="text-3xl text-center">Dowanlod</h1>
+        <h1 className="text-3xl text-center">Download</h1>
         <h3 className="text-2xl text-center mb-3">Our New App</h3>
         <p className="text-center sm:text-left">
           "Experience the taste of authenticity with Ladhidh – your go-to app
@@ -18,9 +19,14 @@ function DowanlodApp() {
           even order exclusive spices. Ladhidh brings the flavors of the world
           to your fingertips."
         </p>
-        <div className="flex items-center justify-center gap-10 mt-5">
-          <img className="h-20" src={qr} alt="" />
-          <img className="h-20" src={playStore} alt="" />
+        <div className="text-center bg-red-400 hover:scale-95 py-1 mt-2  rounded-md">
+          <a
+            href="/ladhidh.apk"
+            download={"ladhidh"}
+            className="text-sm text-white px-2 py-2 "
+          >
+            Downlod our app
+          </a>
         </div>
       </div>
     </section>

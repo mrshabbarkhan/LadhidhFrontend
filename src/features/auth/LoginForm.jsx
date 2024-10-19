@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import OTPForm from "./OTPForm";
 import { useLogin } from "./useLogin";
 import useFormData from "../../hooks/useFormData";
@@ -98,6 +98,12 @@ const LoginForm = ({ showRegistration }) => {
           sign up
         </button>
       </p>
+
+      <div className="text-center bg-red-200 py-1 mt-2  rounded-md">
+        <Link to={"/dowanlod"} className="text-sm text-red-700  px-2 py-2 ">
+          Downlod our app
+        </Link>
+      </div>
     </>
   );
 };

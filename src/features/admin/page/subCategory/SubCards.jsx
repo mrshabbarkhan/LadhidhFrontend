@@ -9,14 +9,14 @@ function SubCards({ sub, id }) {
   return (
     <div
       onClick={handleSubClick}
-      className="text-center flex flex-col justify-between items-center  px-1 rounded-md  border-primary w-32"
+      className="text-center flex flex-col justify-between items-center px-1 rounded-md border-primary min-w-[8rem] flex-shrink-0"
     >
       <img
-        className="w-24  object-cover hover:scale-90 cursor-pointer transition-transform duration-200"
+        className="w-20 object-cover hover:scale-90 cursor-pointer transition-transform duration-200 "
         src={sub.image}
         alt="Category"
       />
-      <h1 className="font-semibold">{sub.name}</h1>
+      <h1 className="font-semibold ">{sub.name}</h1>
     </div>
   );
 }

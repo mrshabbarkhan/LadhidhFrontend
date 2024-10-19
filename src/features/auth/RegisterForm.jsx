@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRegister } from "./useRegister";
 import OTPForm from "./OTPForm";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useFormData from "../../hooks/useFormData";
 import InputField from "../../components/InputField";
 import SubmitButton from "../../components/SubmitButton";
@@ -107,6 +107,12 @@ function RegisterForm({ showRegistration }) {
           login
         </button>
       </p>
+
+      <div className="text-center bg-red-200 py-1 mt-2  rounded-md">
+        <Link to={"/dowanlod"} className="text-sm text-red-700  px-2 py-2">
+          Downlod our app
+        </Link>
+      </div>
     </>
   );
 }

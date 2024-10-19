@@ -5,7 +5,7 @@ function OrderPage() {
   const { order } = useUserOrder();
 
   return (
-    <div className="relative">
+    <div className="relative mb-20">
       <h1 className="font-semibold">Your Recent Orders</h1>
 
       {Array.isArray(order) && order.length > 0 ? (
