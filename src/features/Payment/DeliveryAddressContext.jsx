@@ -6,11 +6,11 @@ import PageNotFound from "../../components/PageNotFound";
 const DeliveryAddressContext = createContext();
 
 export function DeliveryAddressProvider({ children }) {
+  const { user } = useLocalStorage();
+  const { cartItems } = useCart();
 
-  const { user } = useLocalStorage()
-  const { cartItems } = useCart()
-  
-  const isUserWithCart = user && cartItems?.length > 0 ? children : <PageNotFound/>
+  const isUserWithCart =
+    user && cartItems?.length > 0 ? children : <h1>Add item to Cart First</h1>;
 
   const [address, setAddress] = useState(null);
   const [isLoading, setIsLoading] = useState(false);

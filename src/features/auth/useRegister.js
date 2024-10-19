@@ -19,7 +19,7 @@ export function useRegister() {
       setUser(user);
     },
     onError: (err) => {
-      toast.error(err.response.data.error || "Something went wrong");
+      toast.error(err.response?.data.error || "Something went wrong");
       console.log(err);
     },
   });

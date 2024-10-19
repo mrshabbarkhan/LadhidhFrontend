@@ -1,24 +1,11 @@
 import { RxCrossCircled } from "react-icons/rx";
 import { useUser } from "../admin/page/users/useUser";
+import useOrderStatus from "../../hooks/useOrderStatus";
+import ShippingAddress from "./ShippingAddress";
 
 function OrderBill({ order, showFn, showPickup = true }) {
   const { users } = useUser();
-
   const filterUser = users?.find((u) => u._id === order.user);
-
-  let orderStatusCheck;
-
-  if (order.orderStatus === 3) {
-    orderStatusCheck = "Delivered";
-  } else if (order.orderStatus === 2) {
-    orderStatusCheck = "Picked Up";
-  } else if (order.orderStatus === 1) {
-    orderStatusCheck = "Assinged";
-  } else if (order.orderStatus == -1) {
-    orderStatusCheck = "Cancelled";
-  } else {
-    orderStatusCheck = "Placed";
-  }
 
   return (
     <section className="bg-black/20 flex justify-center h-[100vh] fixed top-0 left-0 right-0  ">
@@ -36,7 +23,7 @@ function OrderBill({ order, showFn, showPickup = true }) {
         <p>
           Status:
           <span className="font-semibold ml-2 text-red-500">
-            {orderStatusCheck}
+            {useOrderStatus(order)}
           </span>
         </p>
 
@@ -46,16 +33,17 @@ function OrderBill({ order, showFn, showPickup = true }) {
         {/* Shipping Address */}
         <p className="mt-4">Shipping Address:</p>
         <p className="font-semibold">
-          {order.shippingAddress.addressLine1},{" "}
-          {order.shippingAddress.addressLine2}, {order.shippingAddress.city},{" "}
-          {order.shippingAddress.state}, {order.shippingAddress.zipCode},{" "}
-          {order.shippingAddress.country}
+          <ShippingAddress order={order} />
         </p>
 
-        <p className="font-semibold mt-5">User</p>
-        <p>Name : {filterUser.name}</p>
-        <p>Email : {filterUser.email}</p>
-        <p>Number : {filterUser.number}</p>
+        {filterUser?.length > 0 && (
+          <>
+            <p className="font-semibold mt-5">User</p>
+            <p>Name : {filterUser.name}</p>
+            <p>Email : {filterUser.email}</p>
+            <p>Number : {filterUser.number}</p>
+          </>
+        )}
 
         {/* Order Items */}
         <div className="mt-4">
@@ -71,9 +59,9 @@ function OrderBill({ order, showFn, showPickup = true }) {
                   className="w-16 h-16 object-cover rounded-lg mr-4"
                 />
                 <h1 className="mr-2">{item.product.title}</h1>
-                <span className="text-gray-400"> x {item.quantity}</span>
-                <span className="ml-2 text-gray-400">
-                  HSN : {item?.product.hsn}
+                <span className=""> x {item.quantity}</span>
+                <span className="ml-2 text-gray-600">
+                  HSN Code : {item?.product.hsn}
                 </span>
               </div>
               <div className="float-end ">
@@ -90,7 +78,9 @@ function OrderBill({ order, showFn, showPickup = true }) {
               <h1>Handling Fee </h1>
             </span>
             <div>
-              <h1 className="text-semibold">₹{order.deliveryCharge}</h1>
+              <h1 className="text-semibold">
+                ₹{order.deliveryCharge === 0 ? "Free" : order.deliveryCharge}
+              </h1>
               <h1 className="text-semibold">₹{order.handlingFee}</h1>
             </div>
           </div>

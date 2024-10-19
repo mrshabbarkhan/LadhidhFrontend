@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { TbTruckDelivery } from "react-icons/tb";
 import { FiHeart } from "react-icons/fi";
 import { MdOutlineHelpOutline } from "react-icons/md";
+import { toast } from "sonner";
 
 function OrderActions() {
   return (
@@ -23,8 +24,14 @@ function OrderActions() {
         </Link>
       </span>
       <span>
-        <div className="w-fit p-1.5 sm:p-2 rounded-full text-white text-xl sm:text-2xl bg-primary m-auto">
-          <MdOutlineHelpOutline />
+        <div className="w-fit p-1.5 sm:p-2 rounded-full text-white text-xl sm:text-2xl bg-primary m-auto cursor-pointer">
+          <MdOutlineHelpOutline
+            onClick={() =>
+              toast.warning(
+                "Services will be available as soon as possible in your area"
+              )
+            }
+          />
         </div>
         <p className="text-sm sm:text-md">Support</p>
       </span>

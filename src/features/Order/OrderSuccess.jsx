@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import ShippingAddress from "./ShippingAddress";
 
 const OrderSuccess = ({ order }) => {
   return (
@@ -48,10 +49,7 @@ const OrderSuccess = ({ order }) => {
         {/* Shipping Address */}
         <p className="mt-4">Shipping Address:</p>
         <p className="font-semibold">
-          {order.shippingAddress.addressLine1},{" "}
-          {order.shippingAddress.addressLine2}, {order.shippingAddress.city},{" "}
-          {order.shippingAddress.state}, {order.shippingAddress.zipCode},{" "}
-          {order.shippingAddress.country}
+          <ShippingAddress order={order} />
         </p>
 
         {/* Payment and Total */}
