@@ -8,7 +8,7 @@ function OrderBill({ order, showFn, showPickup = true }) {
   const filterUser = users?.find((u) => u._id === order.user);
 
   return (
-    <section className="bg-black/20 flex justify-center h-[100vh] fixed top-0 left-0 right-0  ">
+    <section className="bg-black/20 flex justify-center h-[100vh] fixed top-0 left-0 right-0 z-[999999] ">
       <div className="bg-gray-50 p-4 rounded-lg border border-gray-300 w-full max-w-3xl m-auto overflow-scroll relative">
         <span
           onClick={() => showFn(false)}
@@ -36,12 +36,12 @@ function OrderBill({ order, showFn, showPickup = true }) {
           <ShippingAddress order={order} />
         </p>
 
-        {filterUser?.length > 0 && (
+        {showPickup && filterUser && (
           <>
             <p className="font-semibold mt-5">User</p>
-            <p>Name : {filterUser.name}</p>
-            <p>Email : {filterUser.email}</p>
-            <p>Number : {filterUser.number}</p>
+            <p>Name : {filterUser?.name}</p>
+            <p>Email : {filterUser?.email}</p>
+            <p>Number : {filterUser?.number}</p>
           </>
         )}
 
