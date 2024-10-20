@@ -7,7 +7,6 @@ import { useCategory } from "../admin/page/Categories/useCategory";
 import { useSubCatById } from "../admin/page/subCategory/useSubCatById";
 import SubCards from "../admin/page/subCategory/SubCards";
 import { useSubProduct } from "../admin/page/subCategory/useSubProduct";
-import Spinner from "../../components/Spinner";
 
 function ProductListPage() {
   const { fetchProducts, catProducts, isPending } = useCatProduct();

@@ -1,7 +1,4 @@
-import { Link } from "react-router-dom";
-import phoneImg from "/downalod.jpeg";
-import playStore from "/pngegg.png";
-import qr from "/qr.svg";
+import phoneImg from "/dowanlodR.png";
 
 function DowanlodApp() {
   return (
