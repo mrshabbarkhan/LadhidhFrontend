@@ -8,6 +8,7 @@ export function useSubProduct() {
     data: subProducts,
     isPending,
     isSuccess,
+    reset: clearSubProducts,
   } = useMutation({
     mutationFn: subCategories.getSubProducts,
     onError: () => {
@@ -15,5 +16,11 @@ export function useSubProduct() {
     },
   });
 
-  return { fetchSubProuct, subProducts, isPending, isSuccess };
+  return {
+    fetchSubProuct,
+    subProducts,
+    isPending,
+    isSuccess,
+    clearSubProducts,
+  };
 }

@@ -11,9 +11,9 @@ function Footer() {
               EXPERIENCE LADHIDH APP ON MOBILE
             </h2>
             <div className="flex flex-col">
-              <a href="#" className="mb-2 inline-block text-sm underline">
+              {/* <a href="#" className="mb-2 inline-block text-sm underline">
                 App Store
-              </a>
+              </a> */}
               <a href="#" className="inline-block text-sm underline">
                 Play Store
               </a>
@@ -21,7 +21,7 @@ function Footer() {
           </div>
 
           {/* Keep in Touch */}
-          <div>
+          {/* <div>
             <h2 className="font-semibold mb-4">KEEP IN TOUCH</h2>
             <div className="flex flex-col">
               <a href="#" className="mb-2 inline-block text-sm">
@@ -34,7 +34,7 @@ function Footer() {
                 Instagram
               </a>
             </div>
-          </div>
+          </div> */}
 
           {/* Useful Links */}
           <div>
@@ -69,8 +69,8 @@ function Footer() {
             <h2 className="font-semibold mb-4">CONTACT US</h2>
             <p className="text-sm mb-2">
               Call:{" "}
-              <a href="tel:18004190786" className="underline">
-                1800-4190-786
+              <a href="" className="underline">
+                +91 9227088655
               </a>
             </p>
             <p className="text-sm mb-4">
@@ -79,12 +79,12 @@ function Footer() {
                 contact@ladhidh.in
               </a>
             </p>
-            <p className="text-sm">
+            {/* <p className="text-sm">
               Have Security Concern? <br /> Mail us at:{" "}
               <a href="mailto:security@Ladhidh.com" className="underline">
                 security@ladhidh.com
               </a>
-            </p>
+            </p> */}
           </div>
 
           {/* Registered Office */}
@@ -92,10 +92,9 @@ function Footer() {
             <h2 className="font-semibold mb-4">REGISTERED OFFICE ADDRESS</h2>
             <address className="text-sm not-italic">
               Ladhidh Pvt Ltd <br />
-              Maruthi Infotech Center, 11/1, 12/1 B Wing, 1st Floor <br />
-              Amarjyothi Layout, Intermediate Ring Road, <br />
-              Domlur, BBMP East, <br />
-              Bangalore, Karnataka - 560071
+              Front of GIDC Bus Stand, <br />
+              Ankhleshwar, <br />
+              Gujrat <br />
             </address>
           </div>
         </div>

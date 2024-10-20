@@ -1,10 +1,8 @@
-// LocalStorageContext.jsx
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 const LocalStorageContext = createContext();
 
 export const LocalStorageProvider = ({ children }) => {
-
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem("user");
     return storedUser ? JSON.parse(storedUser) : null;
@@ -19,7 +17,7 @@ export const LocalStorageProvider = ({ children }) => {
   }, [user]);
 
   const logOutUser = () => {
-    localStorage.removeItem("user"); 
+    localStorage.removeItem("user");
     setUser(null);
   };
 
@@ -29,7 +27,6 @@ export const LocalStorageProvider = ({ children }) => {
     </LocalStorageContext.Provider>
   );
 };
-
 
 export const useLocalStorage = () => {
   return useContext(LocalStorageContext);

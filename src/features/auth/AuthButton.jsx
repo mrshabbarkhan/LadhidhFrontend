@@ -7,7 +7,7 @@ import { HiOutlineUserCircle } from "react-icons/hi2";
 import { MdCancel } from "react-icons/md";
 
 function AuthButton({ onClickOverlyHide = false }) {
-  const [showForm, setShowForm] = useState(true);
+  const [showForm, setShowForm] = useState(false);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
 
   const location = useLocation();

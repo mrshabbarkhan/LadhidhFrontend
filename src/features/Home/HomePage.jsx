@@ -4,6 +4,7 @@ import { useCategory } from "../admin/page/Categories/useCategory";
 import Loader from "../../components/Loader";
 import Features from "../../components/Features";
 import Testimonials from "../../components/Testimonials";
+import AppBanner from "../../components/AppBanner";
 const LandingPage = lazy(() => import("./LandingPage"));
 
 const NavigationBar = lazy(() => import("../../components/Navs/NavigationBar"));
@@ -27,6 +28,7 @@ function HomePage() {
 
   return (
     <>
+      <AppBanner />
       <LandingPage />
       <div className="pt-5 relative overflow-hidden">
         <Suspense fallback={<Loader />}>

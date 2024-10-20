@@ -7,11 +7,17 @@ import { useCategory } from "../admin/page/Categories/useCategory";
 import { useSubCatById } from "../admin/page/subCategory/useSubCatById";
 import SubCards from "../admin/page/subCategory/SubCards";
 import { useSubProduct } from "../admin/page/subCategory/useSubProduct";
+import Spinner from "../../components/Spinner";
 
 function ProductListPage() {
   const { fetchProducts, catProducts, isPending } = useCatProduct();
   const { subCategoriesById, subCategoriesByIdFn } = useSubCatById();
-  const { fetchSubProuct, subProducts } = useSubProduct();
+  const {
+    fetchSubProuct,
+    subProducts,
+    clearSubProducts,
+    isPending: isLoading,
+  } = useSubProduct(); // Ensure you have a clearSubProducts function
   const { categories } = useCategory();
   const { id, subId } = useParams();
   const filterSubCat = categories?.find((cat) => cat.cat_id === id);
@@ -20,22 +26,20 @@ function ProductListPage() {
   useEffect(() => {
     if (subId) {
       fetchSubProuct(subId);
-    }
-    if (id && !subId) {
+    } else if (id && !subId) {
       fetchProducts(id);
+      clearSubProducts(); // Clear subProducts when going back to main category
     }
     subCategoriesByIdFn(filterSubCat?._id);
   }, [id, subId, filterSubCat, navigate]);
 
   if (isPending || !id) {
-    return <Loader />;
+    return <Loader className={"h-96"} />;
   }
 
-  if (!catProducts?.length > 0) {
+  if (!catProducts?.length && !subProducts?.length) {
     return <h1 className="text-center text-lg">No Item Found</h1>;
   }
-
-  const allProduct = [...catProducts, ...(subProducts || [])];
 
   const isOnSub = subId ? true : false;
 
@@ -65,9 +69,11 @@ function ProductListPage() {
           <FavoriteList key={product._id} product={product} />
         ))
       ) : !isOnSub && catProducts?.length > 0 ? (
-        allProduct.map((product) => (
+        catProducts.map((product) => (
           <FavoriteList key={product._id} product={product} />
         ))
+      ) : isLoading ? (
+        <Loader className={"h-96"} />
       ) : (
         <h1 className="text-center text-lg">No Item Found</h1>
       )}

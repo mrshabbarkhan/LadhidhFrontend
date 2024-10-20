@@ -30,12 +30,8 @@ function SideBar({ on, setOn }) {
       >
         <Link to={"/profile"}>
           <div className="flex items-center bg-primary p-4">
-            <div className="border-2 rounded-full w-10 h-10 min-w-10 bg-red-700 overflow-hidden mr-3 flex-shrink-0">
-              <img
-                src={UserImage}
-                alt="profile"
-                className="w-full h-full object-cover"
-              />
+            <div className=" rounded-full w-12 h-12 min-w-12 text-white overflow-hidden mr-3 flex-shrink-0">
+              <HiOutlineUserCircle className="w-full h-full" />
             </div>
             <div className="w-32 sm:w-40">
               <h5 className="text-white font-bold text-xl leading-5 line-clamp-1 w-full overflow-hidden">

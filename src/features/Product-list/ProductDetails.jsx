@@ -45,8 +45,6 @@ function ProductDetails() {
     navigate("/cart");
   }
 
-  console.log(product);
-
   return (
     <section className="">
       <div
@@ -73,9 +71,9 @@ function ProductDetails() {
           </p>
 
           <div className="flex items-center gap-3 font-semibold mb-4">
-            <span className="flex items-center gap-1">
+            {/* <span className="flex items-center gap-1">
               <StarSvg /> 4.6
-            </span>
+            </span> */}
             |
             <span className="flex items-center text-primary gap-1">
               <TbTruckDelivery className="text-lg" />{" "}
