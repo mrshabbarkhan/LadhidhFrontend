@@ -8,6 +8,8 @@ function EditUserDetails({ user, seterFn }) {
   const navigate = useNavigate();
   const isInPaymentPage = pathname === "/payment";
 
+  console.log(user);
+
   const { updateUser, isPending, isSuccess } = useUpdateUser();
 
   const [formData, setFormData] = useState({
@@ -229,4 +231,3 @@ function EditUserDetails({ user, seterFn }) {
 }
 
 export default EditUserDetails;
-

@@ -15,6 +15,7 @@ function CartList({ product, onQtyChange }) {
     pack,
     discount,
     inStock,
+    quantity,
   } = product.product;
 
   const { cartItems } = useCart();
@@ -57,7 +58,11 @@ function CartList({ product, onQtyChange }) {
     >
       <div className="grow flex flex-col justify-between">
         <div>
-          <h1 className="mt-2 text-md  leading-6 font-medium">{title}</h1>
+          <h1 className="mt-2 text-md  leading-6 font-medium flex items-center gap-2">
+            {title}{" "}
+            <p className="text-sm border px-2 w-fit rounded-md">{quantity}</p>
+          </h1>
+
           <div className="flex items-center gap-2">
             <h1 className="text-xl text-primary font-semibold">
               &#x20B9; {price}

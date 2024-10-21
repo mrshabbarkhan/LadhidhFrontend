@@ -10,7 +10,7 @@ export function useDeleteCart() {
       queryClient.invalidateQueries({
         queryKey: ["cart"],
       });
-      toast.success("Cart Deleted Successfully");
+      toast.success("Product removed Successfully");
     },
   });
 

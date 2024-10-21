@@ -61,6 +61,7 @@ export default function AddProductPopup() {
     data.append("subCategoryId", formData.subCategoryId);
 
     addNewProduct(data);
+    // console.log(data);
 
     setFormData({
       pack: "single pack",
@@ -296,10 +297,11 @@ export default function AddProductPopup() {
                     Quantity
                   </label>
                   <input
-                    type="number"
+                    type="text"
                     id="quantity"
                     value={formData.quantity}
                     onChange={handleChange}
+                    placeholder="Enter your per pack quantity 500gm/6pcs"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
                     min="1"
                     required

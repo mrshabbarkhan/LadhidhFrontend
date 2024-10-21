@@ -3,9 +3,11 @@ import AddToButton from "../../components/AddToButton";
 
 import { useAOS } from "../../hooks/useAOS";
 import OutOfStock from "../../components/OutOfStock";
+import { GiSpoon } from "react-icons/gi";
 
 function Card({ product, isOnTrand }) {
-  const { img, pack, title, discount, code, price, inStock, _id } = product;
+  const { img, pack, title, discount, code, price, inStock, _id, quantity } =
+    product;
   const oldPrice = Math.floor(price / (1 - discount / 100));
 
   useAOS(product);
@@ -41,7 +43,10 @@ function Card({ product, isOnTrand }) {
         <h1 className="mt-2 text-lg leading-6 font-semibold cursor-pointer">
           {title}
         </h1>
-        <p className="text-xs font-medium text-primary py-2 leading-3 cursor-pointer">
+        <p className="flex items-center my-1 bg-gray-50 border text-sm w-fit gap-2 rounded-md px-2">
+          <GiSpoon className="text-xs" /> {quantity}
+        </p>
+        <p className="text-xs font-medium text-primary  pb-2 pt-1 leading-3 cursor-pointer">
           {pack}
         </p>
         {discount ? (

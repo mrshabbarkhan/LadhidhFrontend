@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
 import appBanner from "/appbanner.jpeg";
 import { MdCancel } from "react-icons/md";
+import { useLocalStorage } from "../features/auth/LocalStorageContext";
 
 function AppBanner() {
   const [showAd, setShowAd] = useState(false);
 
-  useEffect(() => {
-    // Check if the ad has been shown before
-    const adShown = localStorage.getItem("adShown");
+  const { user } = useLocalStorage();
 
-    // If the ad hasn't been shown, display it and store the flag
-    if (!adShown) {
-      setShowAd(true);
-      localStorage.setItem("adShown", "true");
-    }
-  }, []);
+  useEffect(() => {
+    if (user) {
+      setShowAd(false);
+    } else setShowAd(true);
+  }, [user]);
 
   return (
     <>

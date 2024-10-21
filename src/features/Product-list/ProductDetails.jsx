@@ -11,9 +11,11 @@ import SaleForYou from "../Home/SaleForYou";
 import YouMight from "../../components/YouMight";
 import OutOfStock from "../../components/OutOfStock";
 import { useSettings } from "../admin/page/settings/useSettings";
+import { GiSpoon } from "react-icons/gi";
 
 function ProductDetails() {
   const [tempQty, setTempQty] = useState(1);
+  const [readMore, setReadMore] = useState(false);
   const { settings } = useSettings();
 
   const navigate = useNavigate();
@@ -62,19 +64,31 @@ function ProductDetails() {
 
         {/* Text Section */}
         <section className="lg:w-1/2 bg-white p-4 rounded-lg shadow-lg">
-          <h1 className="font-semibold text-xl mb-4">
+          <h1 className="font-semibold text-xl">
             {product.tittle || product.title}
           </h1>
-          <p className="leading-6 mb-4" style={{ whiteSpace: "pre-wrap" }}>
+          <button className="flex border px-3 rounded-md bg-gray-50 gap-2 items-center mb-4 mt-2">
+            <GiSpoon /> {product?.quantity}
+          </button>
+          <p
+            className={`leading-6 ${readMore || "line-clamp-4"}`}
+            style={{ whiteSpace: "pre-wrap" }}
+          >
             {description ||
               "Experience the premium quality and tenderness of our Fresh Chicken Breast Fillets, perfect for your everyday cooking needs. Sourced from healthy, farm-raised chickens, these boneless fillets are 100% natural, antibiotic-free, and expertly cut to provide the best flavor and texture in every bite. Whether you're grilling, baking, or pan-frying, our chicken breast is versatile, lean, and packed with protein to keep your meals healthy and delicious."}
           </p>
+
+          <button
+            onClick={() => setReadMore(!readMore)}
+            className="mb-4 font-semibold text-sm border bg-gray-50 rounded-md px-2"
+          >
+            {readMore ? "Read less..." : "Read more..."}
+          </button>
 
           <div className="flex items-center gap-3 font-semibold mb-4">
             {/* <span className="flex items-center gap-1">
               <StarSvg /> 4.6
             </span> */}
-            |
             <span className="flex items-center text-primary gap-1">
               <TbTruckDelivery className="text-lg" />{" "}
               {settings?.deliveryCharge

@@ -2,6 +2,7 @@ import { lazy, Suspense, useMemo } from "react";
 import { useSelector } from "react-redux";
 import Loader from "../../../../components/Loader";
 import { useProducts } from "./useProducts";
+import useFilterBySearch from "../../../../hooks/useFilterBySearch";
 
 const SearchBar = lazy(() => import("../../components/SearchBar"));
 const ProductCard = lazy(() => import("./ProductCard"));
@@ -9,13 +10,8 @@ const AddProductPopup = lazy(() => import("../../components/AddProductPopup"));
 
 function ProductPage() {
   const { products, isLoading } = useProducts();
-  const debouncedTerm = useSelector((state) => state.search.debouncedTerm);
 
-  const filteredProducts = useMemo(() => {
-    return products?.filter((prod) =>
-      prod?.title?.toLowerCase().includes(debouncedTerm.toLowerCase())
-    );
-  }, [products, debouncedTerm]);
+  const { filteredProducts } = useFilterBySearch(products, "title");
 
   if (isLoading) {
     return <Loader className={"h-96"} />;

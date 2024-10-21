@@ -17,7 +17,7 @@ import WhyLadhidh from "./features/Policy/WhyLadhidh";
 import AllProducts from "./features/Home/AllProducts";
 import Settings from "./features/admin/page/settings/Settings";
 import DowanlodApp from "./components/DowanlodApp";
-import SubCategory from "./features/admin/page/subCategory/subCategory";
+import SubCategory from "./features/admin/page/subCategory/SubCategory";
 
 // Lazy loaded components
 const HomePage = lazy(() => import("./features/Home/HomePage"));
