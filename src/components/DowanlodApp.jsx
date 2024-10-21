@@ -19,7 +19,7 @@ function DowanlodApp() {
         <div className="text-center bg-red-400 hover:scale-95 py-1 mt-2  rounded-md">
           <a
             href="/ladhidh.apk"
-            download={"ladhidh"}
+            download={"ladhidh.apk"}
             className="text-sm text-white px-2 py-2 "
           >
             Downlod our app
