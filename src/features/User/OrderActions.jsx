@@ -27,7 +27,7 @@ function OrderActions() {
         <div className="w-fit p-1.5 sm:p-2 rounded-full text-white text-xl sm:text-2xl bg-primary m-auto cursor-pointer">
           <MdOutlineHelpOutline
             onClick={() =>
-              toast.warning(
+              toast(
                 "Services will be available as soon as possible in your area"
               )
             }

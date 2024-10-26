@@ -16,7 +16,6 @@ export const addAddress = async (formData) => {
 };
 
 export const editAddress = async (formData) => {
-  console.log(formData);
   const options = getHeader();
   const res = await axios.post(base_url + "EditAddress", formData, options);
   return res.data;

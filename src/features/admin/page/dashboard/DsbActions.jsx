@@ -4,6 +4,11 @@ import { RxCrossCircled } from "react-icons/rx";
 import { SlRefresh } from "react-icons/sl";
 import { PiCurrencyInr } from "react-icons/pi";
 import useOrderStatus from "../../../../hooks/useOrderStatus";
+import { MdOutlineDeliveryDining } from "react-icons/md";
+import { IoCheckmarkDoneOutline, IoCheckmarkDoneSharp } from "react-icons/io5";
+import { BsCurrencyRupee } from "react-icons/bs";
+import { FaRegClock } from "react-icons/fa";
+import { ImCancelCircle } from "react-icons/im";
 
 function DsbActions() {
   const { orders } = useOrders();
@@ -16,8 +21,12 @@ function DsbActions() {
     (order) => useOrderStatus(order) == "Cancelled"
   ).length;
 
-  const lengthOfProcess = orders?.filter(
+  const lengthOfAssigned = orders?.filter(
     (order) => useOrderStatus(order) == "Assigned"
+  ).length;
+
+  const lengthOfDelivered = orders?.filter(
+    (order) => useOrderStatus(order) == "Delivered"
   ).length;
 
   const totalIncome = orders
@@ -32,7 +41,7 @@ function DsbActions() {
           <h1 className="font-bold text-xl">{lengthOfPending}</h1>
         </span>
         <div className="bg-white/30 text-2xl p-2 rounded-full">
-          <GoClock />
+          <FaRegClock />
         </div>
       </div>
       <div className="bg-red-500  flex items-center justify-between grow md:grow-0 w-52 rounded-lg text-white p-2 Favorites_List">
@@ -41,25 +50,36 @@ function DsbActions() {
           <h1 className="font-bold text-xl">{lengthOfCancel}</h1>
         </span>
         <div className="bg-white/30 text-2xl p-2 rounded-full">
-          <RxCrossCircled />
+          <ImCancelCircle />
         </div>
       </div>
       <div className="bg-blue-500  flex items-center justify-between grow md:grow-0 w-52 rounded-lg text-white p-2 Favorites_List">
         <span>
-          <p>ORDER PROCESS</p>
-          <h1 className="font-bold text-xl">{lengthOfProcess}</h1>
+          <p>ORDER ASSIGNED</p>
+          <h1 className="font-bold text-xl">{lengthOfAssigned}</h1>
         </span>
         <div className="bg-white/30 text-2xl p-2 rounded-full">
-          <SlRefresh />
+          <MdOutlineDeliveryDining />
         </div>
       </div>
+
+      <div className="bg-green-500  flex items-center justify-between grow md:grow-0 w-52 rounded-lg text-white p-2 Favorites_List">
+        <span>
+          <p>ORDER DELIVERED</p>
+          <h1 className="font-bold text-xl">{lengthOfDelivered}</h1>
+        </span>
+        <div className="bg-white/30 text-2xl p-2 rounded-full">
+          <IoCheckmarkDoneSharp />
+        </div>
+      </div>
+
       <div className="bg-green-500  flex items-center justify-between grow md:grow-0 w-52 rounded-lg text-white p-2 Favorites_List">
         <span>
           <p>TOTAL INCOME</p>
           <h1 className="font-bold text-xl">&#8377; {totalIncome}</h1>
         </span>
         <div className="bg-white/30 text-2xl p-2 rounded-full">
-          <PiCurrencyInr />
+          <BsCurrencyRupee />
         </div>
       </div>
     </section>

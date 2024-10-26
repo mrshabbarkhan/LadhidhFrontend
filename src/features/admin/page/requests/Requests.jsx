@@ -12,23 +12,23 @@ function Requests() {
         <table className="min-w-full table-auto bg-white shadow-md rounded-lg">
           <thead>
             <tr className="bg-gray-100">
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-sm font-medium  uppercase tracking-wider">
                 User Name
               </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-sm font-medium  uppercase tracking-wider">
                 Email
               </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-sm font-medium  uppercase tracking-wider">
                 Phone
               </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-sm font-medium  uppercase tracking-wider">
                 Product
               </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-sm font-medium  uppercase tracking-wider">
                 Pack
               </th>
-              <th className="px-6 py-3 text-left text-sm font-medium text-gray-500 uppercase tracking-wider">
-                Requested At
+              <th className="px-6 py-3 text-left text-sm font-medium  uppercase tracking-wider">
+                Date
               </th>
             </tr>
           </thead>
@@ -37,16 +37,16 @@ function Requests() {
               allRequests
                 .map((request) => (
                   <tr key={request._id} className="bg-white border-b">
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    <td className="px-6 py-4 whitespace-nowrap  font-medium ">
                       {request.user.name}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap ">
                       {request.user.email}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap  ">
                       {request.user.number}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 flex items-center">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm overflow-x-auto flex items-center">
                       <img
                         src={request?.product?.img}
                         alt={"product"}
@@ -54,10 +54,10 @@ function Requests() {
                       />
                       <span>{request?.product?.title}</span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm ">
                       {request?.product?.pack}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm ">
                       {new Date(request.createdAt).toLocaleDateString("en-GB")}
                     </td>
                   </tr>

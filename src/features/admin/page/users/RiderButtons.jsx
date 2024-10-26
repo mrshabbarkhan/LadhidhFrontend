@@ -4,6 +4,7 @@ import { useAssignOrder } from "../../../Order/useAssignOrder";
 import Spinner from "../../../../components/Spinner";
 import { removeFromSelectedOrder } from "../../../Order/orderSlice";
 import { toast } from "sonner";
+import { Link } from "react-router-dom";
 
 function RiderButtons({ user }) {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ function RiderButtons({ user }) {
 
   const handleAssingOrder = () => {
     if (!selectedOrder || !user)
-      return toast.error("Please Select Product First");
+      return toast.error("Please Select Order First");
     const order = {
       order: selectedOrder._id,
       user: user._id,
@@ -32,30 +33,33 @@ function RiderButtons({ user }) {
   };
 
   return (
-    <div className="mt-4">
+    <div className="mt-4 transition-all">
       {user?.isRider ? (
         <>
           <button
             onClick={() => handleAssingOrder()}
-            className="border p-1 text-sm sm:text-base px-2 hover:bg-green-500 hover:text-white mr-2 "
+            className="border p-1 text-sm rounded-md px-2 transition-colors hover:bg-green-500 hover:text-white mr-2 "
           >
             {isPending ? <Spinner /> : "Assing Order"}
           </button>
           <button
             onClick={() => handleChangeRole(user._id)}
-            className="border p-1 text-sm sm:text-base px-2 text-white mr-2 bg-primary-dark hover:bg-primary-light"
+            className="border p-1 text-sm rounded-md px-2 text-white mr-2 transition-all bg-primary hover:bg-primary-dark"
           >
             {isLoading ? <Spinner /> : "Remove Rider"}
           </button>
         </>
       ) : (
         <>
-          <button className="border p-1 text-sm sm:text-base px-2 bg-gray-50 mr-2 hover:bg-gray-200">
-            View Details
-          </button>
+          <Link
+            to={`${user._id}`}
+            className="border rounded-md p-1 text-sm  px-2  mr-2 hover:bg-gray-50"
+          >
+            View Orders
+          </Link>
           <button
             onClick={() => handleChangeRole(user._id)}
-            className="border p-1 text-sm sm:text-base px-2 bg-gray-50 hover:bg-gray-200"
+            className="border rounded-md p-1 text-sm  px-2  hover:bg-gray-200 hover:rounded-none transition-transform"
           >
             {isLoading ? <Spinner /> : "Make Rider"}
           </button>

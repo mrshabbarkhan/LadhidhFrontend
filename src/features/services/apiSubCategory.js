@@ -8,9 +8,7 @@ const getSubCategory = async () => {
     const options = getHeader();
     const res = await axios.get(base_url, options);
     return res.data;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 const getSuCatByCat = async (id) => {
@@ -18,9 +16,7 @@ const getSuCatByCat = async (id) => {
     const options = getHeader();
     const res = await axios.get(base_url + "/" + id, options);
     return res.data;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 const getSubProducts = async (subCategoryId) => {
@@ -35,9 +31,7 @@ const getSubProducts = async (subCategoryId) => {
       options
     );
     return res.data;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 const removeSubCatById = async (id) => {
@@ -45,9 +39,7 @@ const removeSubCatById = async (id) => {
     const options = getHeader();
     const res = await axios.delete(base_url + "/" + id, options);
     return res.data;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 const addSubCat = async (formData) => {
@@ -60,7 +52,6 @@ const addSubCat = async (formData) => {
     );
     return res.data;
   } catch (error) {
-    console.log(error);
     throw new Error("Something wrong adding category");
   }
 };
@@ -75,7 +66,6 @@ const editSubCat = async (formData) => {
     );
     return res.data;
   } catch (error) {
-    console.log(error);
     throw new Error("Something wrong edit category");
   }
 };

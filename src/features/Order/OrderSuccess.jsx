@@ -51,6 +51,9 @@ const OrderSuccess = ({ order }) => {
         <p className="font-semibold">
           <ShippingAddress order={order} />
         </p>
+        <p className="font-semibold text-gray-700 mb-2">
+          Order Note: " {order.orderNotes} "
+        </p>
 
         {/* Payment and Total */}
         <p className="mt-4">

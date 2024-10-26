@@ -20,7 +20,6 @@ export function useRegister() {
     },
     onError: (err) => {
       toast.error(err.response?.data.error || "Something went wrong");
-      console.log(err);
     },
   });
 

@@ -26,11 +26,11 @@ export default function SearchBar({ placeholder }) {
   };
 
   return (
-    <div className="relative w-full max-w-lg ml-5 ">
+    <div className="relative w-full max-w-lg ">
       <input
         type="text"
         className={`w-full py-1.5 px-4 bg-white text-gray-900 rounded-full shadow-md border 
-                    focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all`}
+                    focus:outline-none  focus:ring-gray-500 focus:border-gray-500 transition-all`}
         placeholder={`${placeholder}`}
         value={searchTerm}
         onChange={handleInputChange}
@@ -38,7 +38,7 @@ export default function SearchBar({ placeholder }) {
       {searchTerm && (
         <button
           onClick={handleClear}
-          className="absolute top-5 right-4 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+          className="absolute top-5 right-4 transform -translate-y-1/2  focus:outline-none"
         >
           <MdOutlineCancel className="text-lg cursor-pointer" />
         </button>

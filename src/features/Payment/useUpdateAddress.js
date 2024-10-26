@@ -17,7 +17,7 @@ export function useUpdateAddress() {
       toast.success("Address updated");
     },
     onError: (err) => {
-      toast.error("Please Try Later..."), console.log(err);
+      toast.error("Please Try Later...");
     },
   });
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import OrderBill from "./OrderBill";
 import CancelOrder from "./CancelOrder";
+import useOrderStatus from "../../hooks/useOrderStatus";
 
 function OrderCard({ order = {} }) {
   const [showBill, setShowBill] = useState(false);
@@ -52,7 +53,26 @@ function OrderCard({ order = {} }) {
           </h3>
 
           {/* Show 'Reorder' if less than 1 day has passed, otherwise show 'Cancel Order' */}
-          {differenceInDays > 10 ? (
+          {useOrderStatus(order) === "Pending" ? (
+            <button
+              onClick={() => {
+                if (useOrderStatus(order) === "Pending") {
+                  setShowCancel(true);
+                }
+              }}
+              className="bg-gray-200 text-red-600 p-1 px-3 rounded-md text-sm hover:text-white hover:bg-red-600"
+            >
+              {useOrderStatus(order) === "Cancelled"
+                ? "Cancelled"
+                : "Cancel Order"}
+            </button>
+          ) : (
+            <button className="bg-green-200 text-green-600 p-1 px-3 rounded-md text-sm ">
+              {useOrderStatus(order)}
+            </button>
+          )}
+
+          {/* {differenceInDays > 10 ? (
             <button></button>
           ) : (
             <button
@@ -61,9 +81,9 @@ function OrderCard({ order = {} }) {
               }
               className="bg-gray-200 text-red-600 p-1 px-3 rounded-md text-sm hover:text-white hover:bg-red-600"
             >
-              {order.orderStatus === -1 ? "Cancelled" : "Cancel Order"}
+              {useOrderStatus(order) === "" ? "Cancelled" : "Cancel Order"}
             </button>
-          )}
+          )} */}
         </div>
       </section>
 

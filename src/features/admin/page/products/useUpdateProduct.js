@@ -18,7 +18,6 @@ export function useUpdateProduct() {
     },
     onError: (err) => {
       toast.error("something went wrong");
-      console.log(err);
     },
   });
 

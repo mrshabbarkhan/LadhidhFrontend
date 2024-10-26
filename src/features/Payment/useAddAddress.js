@@ -17,7 +17,7 @@ export function useAddAddress() {
       toast.success("Address Added");
     },
     onError: (err) => {
-      toast.error("oops something went wrong"), console.log(err);
+      toast.error("oops something went wrong");
     },
   });
 

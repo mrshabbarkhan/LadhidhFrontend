@@ -1,3 +1,4 @@
+import { useAOS } from "../hooks/useAOS";
 import img1 from "/01.png";
 import img2 from "/02.png";
 import img3 from "/04.png";
@@ -7,8 +8,9 @@ import img5 from "/06.png";
 const data = [img1, img2, img3, img4, img5];
 
 function Testimonials() {
+  useAOS();
   return (
-    <div className="mb-5">
+    <div className="mb-5" data-aos="fade-up">
       <h1 className=" text-xl sm:text-2xl font-semibold pb-5 font-serif">
         You Need to Know
       </h1>

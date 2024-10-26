@@ -17,7 +17,7 @@ export function useDeleteAddress() {
       toast.success("Address deleted");
     },
     onError: (err) => {
-      toast.error("oops something went wrong"), console.log(err);
+      toast.error("oops something went wrong");
     },
   });
 

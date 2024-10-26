@@ -56,7 +56,6 @@ export const toggleStock = async (id) => {
     );
     return response.data;
   } catch (error) {
-    console.log(error);
     throw new Error(error);
   }
 };

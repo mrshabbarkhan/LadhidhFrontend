@@ -100,17 +100,17 @@ function CartList({ product, onQtyChange }) {
 
         <div className="flex justify-between">
           <button
-            onClick={handleIncrease}
-            className="border border-primary px-2 rounded-lg hover:text-white hover:bg-primary hover:scale-90 transition font-semibold"
-          >
-            +
-          </button>
-          <h1 className="font-semibold">{tempQty}</h1>
-          <button
             onClick={handleDecrease}
             className="border border-primary px-2 rounded-lg hover:text-white hover:bg-primary hover:scale-90 transition font-semibold"
           >
             -
+          </button>
+          <h1 className="font-semibold">{tempQty}</h1>
+          <button
+            onClick={handleIncrease}
+            className="border border-primary px-2 rounded-lg hover:text-white hover:bg-primary hover:scale-90 transition font-semibold"
+          >
+            +
           </button>
         </div>
       </div>

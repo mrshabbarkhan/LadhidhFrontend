@@ -12,7 +12,7 @@ function Navbar() {
   return (
     <section className="glassmorphism fixed right-0 left-0 top-0 z-20">
       <header className="bg-cover w-full h-14 sm:h-20 shadow-md">
-        <div className="absolute top-0 right-0 w-full pt-3 sm:pt-4 px-2 md:px-24 lg:px-60">
+        <div className="absolute top-0 right-0 w-full pt-3 sm:pt-4 px-2 md:px-24 lg:px-48">
           <div className="flex items-center  w-full relative  sm:gap-10 ">
             <img className="h-6 sm:h-8" src={logoImage} alt="" />
             <div className="ml-2 flex items-center justify-between w-full">

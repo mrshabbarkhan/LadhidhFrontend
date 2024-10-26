@@ -17,7 +17,6 @@ const updateSettings = async (formData) => {
     const res = await axios.post("/api/settings", formData, options);
     return res.data;
   } catch (error) {
-    console.log(error);
     throw new Error("update setting", error);
   }
 };

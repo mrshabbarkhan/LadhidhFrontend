@@ -31,13 +31,11 @@ const resetPassword = async (formData) => {
     const res = await axios.post(base_url + "resetPassword", formData);
     return res.data;
   } catch (error) {
-    console.log(error);
     throw new Error("Error: Reset Pass", error);
   }
 };
 
 const register = async (formData) => {
-  console.log(formData);
   const response = await axios.post(base_url + "register", formData);
   return response.data;
 };
@@ -55,7 +53,6 @@ const editUser = async (newForm) => {
     const response = await axios.put(`${base_url}${_id}`, rest, options);
     return response.data;
   } catch (error) {
-    console.log("Error updating user:", error);
     throw error;
   }
 };

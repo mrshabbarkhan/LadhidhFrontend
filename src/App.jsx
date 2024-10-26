@@ -18,6 +18,7 @@ import AllProducts from "./features/Home/AllProducts";
 import Settings from "./features/admin/page/settings/Settings";
 import DowanlodApp from "./components/DowanlodApp";
 import SubCategory from "./features/admin/page/subCategory/SubCategory";
+import ViewDetails from "./features/admin/page/users/ViewDetails";
 
 // Lazy loaded components
 const HomePage = lazy(() => import("./features/Home/HomePage"));
@@ -67,6 +68,7 @@ function RoutesWrapper() {
             { path: "products", element: <ProductPage /> },
             { path: "category", element: <CategoriesPage /> },
             { path: "users", element: <UsersPage /> },
+            { path: "users/:id", element: <ViewDetails /> },
             { path: "banners", element: <BannerPage /> },
             { path: "riders", element: <RiderPage /> },
             { path: "requests", element: <Requests /> },

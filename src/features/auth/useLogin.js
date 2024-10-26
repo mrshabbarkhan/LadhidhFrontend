@@ -20,7 +20,6 @@ export function useLogin() {
       setUser(user);
     },
     onError: (err) => {
-      console.log(err);
       toast.error("invalid credentials");
     },
   });

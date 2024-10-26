@@ -19,7 +19,6 @@ export function useAddSubCat() {
       toast.success("Category Added Successfully");
     },
     onError: (error) => {
-      console.log(error);
       toast.error("Something went wrong");
     },
   });

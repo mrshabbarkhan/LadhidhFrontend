@@ -3,7 +3,7 @@ import Loader from "../../components/Loader";
 import { useNavigate } from "react-router-dom";
 import { useCategory } from "../admin/page/Categories/useCategory";
 
-function Category({ children, heading, btn }) {
+function Category({ children, heading }) {
   const navigate = useNavigate();
   const { isPending } = useCategory();
 
@@ -17,14 +17,6 @@ function Category({ children, heading, btn }) {
             </h1>
             <p className="line-clamp-1">Freshest meats and much more!</p>
           </div>
-          {btn && (
-            <button
-              onClick={() => navigate("/category")}
-              className=" sm:text-base hover:underline px-1 rounded-md line-clamp-1 bg-red-200 text-primary "
-            >
-              View All
-            </button>
-          )}
         </div>
       )}
       {isPending ? (

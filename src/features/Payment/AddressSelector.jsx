@@ -8,29 +8,29 @@ function AddressSelector() {
   const [selectedAddressIndex, setSelectedAddressIndex] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [editableAddress, setEditableAddress] = useState(null);
-  
-    const { updateAddress } = useDeliveryAddress();
-    const { deleteAddress, isPending } = useDeleteAddress();
-  
-    const {address} = useAddress()
-    const {addresses=[]} = address || [];
-  
-    const handleAddressChange = (e) => {
-      const selectedIndex = parseInt(e.target.value);
-      const selected = addresses[selectedIndex];
-      setSelectedAddressIndex(selectedIndex);
-      updateAddress(selected);
-    };
-  
-    const handleEdit = (index) => {
-      setEditableAddress(addresses[index]);
-      setShowForm(true);
-    };
-  
-    const handleNewAddress = () => {
-      setEditableAddress(null);
-      setShowForm(true);
-    };
+
+  const { updateAddress } = useDeliveryAddress();
+  const { deleteAddress, isPending } = useDeleteAddress();
+
+  const { address } = useAddress();
+  const { addresses = [] } = address || [];
+
+  const handleAddressChange = (e) => {
+    const selectedIndex = parseInt(e.target.value);
+    const selected = addresses[selectedIndex];
+    setSelectedAddressIndex(selectedIndex);
+    updateAddress(selected);
+  };
+
+  const handleEdit = (index) => {
+    setEditableAddress(addresses[index]);
+    setShowForm(true);
+  };
+
+  const handleNewAddress = () => {
+    setEditableAddress(null);
+    setShowForm(true);
+  };
 
   return (
     <div className="overflow-auto max-h-96 min-h-40">
@@ -41,7 +41,7 @@ function AddressSelector() {
             key={address._id}
             className={`my-2 p-3 rounded-lg border ${
               selectedAddressIndex === index
-                ? "bg-slate-100"
+                ? "shadow-md"
                 : "bg-white border-gray-300"
             }`}
           >
@@ -67,7 +67,7 @@ function AddressSelector() {
               <button
                 type="button"
                 onClick={() => deleteAddress(address._id)}
-                style={{ cursor: isPending ? "not-allowed" : "pointer"}}
+                style={{ cursor: isPending ? "not-allowed" : "pointer" }}
                 className="sm:mb-0 sm:ml-5 border px-2 py-0.5 font-medium bg-primary-dark text-white rounded hover:scale-90 hover:bg-primary-dark hover:text-white transition-colors"
               >
                 Delete

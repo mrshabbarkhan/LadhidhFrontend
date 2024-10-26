@@ -115,7 +115,7 @@ export const Categories_Items = [
 export const NavItems = [
   {
     path: "/",
-    class : "house",
+    class: "house",
     tittle: "Home",
   },
   {
@@ -159,12 +159,9 @@ export async function useLocation() {
 
     return data.display_name;
   } catch (error) {
-    console.error("Error fetching location:", error);
     return "Could not retrieve location";
   }
 }
-
-
 
 export function debounce(func, delay) {
   let timeoutId;
@@ -176,17 +173,13 @@ export function debounce(func, delay) {
   };
 }
 
-
 export async function searchByLocation(searchQry) {
   try {
     const response = await fetch(
       `https://geocode.maps.co/search?q=${searchQry}&api_key=66d5874d2c283371371612jlg24937f`
     );
     const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error("Error fetching location:", error);
-  }
+  } catch (error) {}
 }
 
 export const debouncedSearchByLocation = debounce(searchByLocation, 300);

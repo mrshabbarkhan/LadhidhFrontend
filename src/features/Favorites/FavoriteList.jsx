@@ -20,7 +20,7 @@ function FavoriteList({ product }) {
             {title}
           </h1>
           {discount && (
-            <p className="text-xs mt-2 text-orange-500">
+            <p className="text-xs mt-2 text-green-500">
               FLAT {discount} off Code: {code}
             </p>
           )}

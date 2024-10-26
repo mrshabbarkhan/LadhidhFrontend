@@ -34,9 +34,9 @@ function ProductPage() {
       <div className="flex justify-center sm:justify-start gap-5 flex-wrap mt-10">
         <Suspense fallback={<Loader />}>
           {filteredProducts?.length ? (
-            filteredProducts.map((dts, index) => (
-              <ProductCard key={index} info={dts} />
-            ))
+            filteredProducts
+              .map((dts, index) => <ProductCard key={index} info={dts} />)
+              .reverse()
           ) : (
             <h1 className="text-center text-xl text-red-600 font-medium">
               No match found

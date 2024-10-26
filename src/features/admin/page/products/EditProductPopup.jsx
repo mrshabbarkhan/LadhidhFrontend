@@ -180,15 +180,18 @@ export default function EditProductPopup({ setShow, product }) {
 
               {/* Product Description */}
 
-              <InputField
-                id={"description"}
-                value={formData.description}
-                handleChange={handleChange}
-                type={"text"}
-                required={true}
-                label={"Product Description"}
-                rows="3"
-              />
+              <div className="mb-4">
+                <label className="block text-sm mb-1">
+                  Product Description
+                </label>
+                <textarea
+                  id="description"
+                  value={formData.description}
+                  onChange={handleChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300"
+                  rows="3"
+                />
+              </div>
 
               {/* Category Dropdown */}
               <div className="mb-4">

@@ -5,10 +5,13 @@ import { useLogin } from "./useLogin";
 import useFormData from "../../hooks/useFormData";
 import InputField from "../../components/InputField";
 import SubmitButton from "../../components/SubmitButton";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { IoEyeOutline } from "react-icons/io5";
 
 const LoginForm = ({ showRegistration }) => {
   const [showOTPForm, setShowOTPForm] = useState(false);
   const [verifyNum, setVerifyNum] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { loginUser, isPending, isSuccess } = useLogin();
 
@@ -61,15 +64,25 @@ const LoginForm = ({ showRegistration }) => {
         />
 
         {/* Password Field */}
-        <InputField
-          id="password"
-          type="password"
-          value={formData.password}
-          handleChange={handleChange}
-          placeholder="Enter your password"
-          required
-          label={"Password"}
-        />
+        <div className="flex items-center grow relative">
+          <span className="grow">
+            <InputField
+              id="password"
+              type={showPassword ? "text" : "password"}
+              value={formData.password}
+              handleChange={handleChange}
+              placeholder="Enter your password"
+              required
+              label={"Password"}
+            />
+          </span>
+          <span
+            onClick={() => setShowPassword(!showPassword)}
+            className="translate-y-1/2 absolute right-5 cursor-pointer"
+          >
+            {showPassword ? <IoEyeOutline /> : <FaRegEyeSlash />}
+          </span>
+        </div>
 
         <SubmitButton
           isPending={isPending}

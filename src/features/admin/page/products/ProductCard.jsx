@@ -27,6 +27,8 @@ function ProductCard({ info }) {
   const [localInStock, setLocalInStock] = useState(inStock);
 
   const handleDelete = (id) => {
+    const sure = confirm("Do you want to delete product this may cause error");
+    if (!sure) return;
     removeProduct(id);
   };
 
@@ -46,13 +48,13 @@ function ProductCard({ info }) {
       <img
         src={img}
         alt={img}
-        className="object-cover object-center w-40 h-40 m-auto rounded-t-xl"
+        className="object-cover object-center  m-auto rounded-t-xl"
       />
       <div className="px-2 mt-1">
-        <p className="text-xs font-medium text-primary-dark">{pack}</p>
         <h1 className="text-md text-gray-800 leading-6 font-medium">{title}</h1>
+        <p className="text-xs font-medium text-gray-800">{pack}</p>
         {discount > 0 && (
-          <p className="text-xs mt-2 text-orange-500">
+          <p className="text-xs mt-2 text-green-500">
             FLAT {discount} off Code: {code}
           </p>
         )}

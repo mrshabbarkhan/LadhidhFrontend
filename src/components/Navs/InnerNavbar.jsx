@@ -53,7 +53,7 @@ function InnerNavbar({ children }) {
 
   return (
     <nav
-      className={`glassmorphism shadow-md flex justify-between w-full py-4 px-4 sm:px-2 pr-4 md:px-24 lg:px-60 fixed left-0 top-0 z-30 ${
+      className={`glassmorphism shadow-md flex justify-between w-full py-4 px-4 sm:px-2 pr-4 md:px-24 lg:px-48 fixed left-0 top-0 z-30 ${
         pathName5 ? "" : "opacity-100 bg-white border-b"
       }`}
     >

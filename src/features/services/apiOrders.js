@@ -55,7 +55,6 @@ export const cancelOrder = async (formData) => {
     const res = await axios.post(base_url + "/cancelOrder", formData, options);
     return res.data;
   } catch (error) {
-    console.log(error);
     throw new Error(error);
   }
 };

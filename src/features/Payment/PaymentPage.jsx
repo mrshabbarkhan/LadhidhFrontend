@@ -5,9 +5,11 @@ import { useAddress } from "./useAddress";
 import { usePlacedOrder } from "../Order/usePlacedOrder";
 import OrderSuccess from "../Order/OrderSuccess";
 import { useSelector } from "react-redux";
+import useInputClass from "../../hooks/useInputClass";
 
 function PaymentPage() {
   const { address } = useDeliveryAddress();
+  const [orderNotes, setOrderNotes] = useState("");
   const { localCart } = useSelector((state) => state.cart);
 
   const {} = useAddress();
@@ -40,6 +42,7 @@ function PaymentPage() {
         productId: c.product._id,
         quantity: c.quantity.toString(),
       })),
+      orderNotes,
     };
 
     if (address) {
@@ -70,12 +73,24 @@ function PaymentPage() {
             <div className="w-full bg-white text-center z-30 px-2 py-3 fixed bottom-0 left-0">
               <div
                 onClick={handleSubmit}
-                className="z-30 bg-primary hover:bg-primary-dark cursor-pointer text-md font-semibold py-2 max-w-5xl rounded-xl m-auto text-white"
+                className="z-30 bg-primary hover:bg-primary-dark cursor-pointer text-md font-semibold py-2 max-w-7xl rounded-xl m-auto text-white"
               >
                 {isPending ? "Placing your Order..." : "Checkout"}
               </div>
             </div>
           )}
+
+          <div>
+            <label className="block" htmlFor="note">
+              Add Note for your order (optional){" "}
+            </label>
+            <input
+              type="text"
+              className={useInputClass()}
+              value={orderNotes}
+              onChange={(e) => setOrderNotes(e.target.value)}
+            />
+          </div>
         </>
       )}
     </div>

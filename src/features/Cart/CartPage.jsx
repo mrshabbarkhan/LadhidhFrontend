@@ -86,14 +86,14 @@ function CartPage() {
             {hasDeliveryCharge ? `₹${hasDeliveryCharge}` : "Free"}
           </h6>
         </div>
-        {settings?.handlingFee && (
-          <div className="flex justify-between">
-            <p>handle Fee</p>
-            <h6 className="font-semibold">
-              &#x20B9;{settings?.handlingFee || "Free"}
-            </h6>
-          </div>
-        )}
+
+        <div className="flex justify-between">
+          <p>handle Fee</p>
+          <h6 className="font-semibold">
+            {settings?.handlingFee ? `₹${settings.handlingFee}` : "Free"}
+          </h6>
+        </div>
+
         <div className="flex justify-between border-t mt-2">
           <h1 className="font-semibold text-lg">Total</h1>
           <h1 className="font-semibold text-lg">

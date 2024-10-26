@@ -32,7 +32,7 @@ function HomePage() {
       <LandingPage />
       <div className="pt-5 relative overflow-hidden">
         <Suspense fallback={<Loader />}>
-          <Category heading={"Shop by Categories"} btn={"view all"}>
+          <Category heading={"Shop by Categories"}>
             {memoizedCategories}
           </Category>
         </Suspense>
@@ -49,9 +49,9 @@ function HomePage() {
           <NavigationBar />
         </Suspense>
 
-        <Suspense fallback={<Loader />}>
+        {/* <Suspense fallback={<Loader />}>
           <Testimonials />
-        </Suspense>
+        </Suspense> */}
 
         <Suspense fallback={<Loader />}>
           <Features />

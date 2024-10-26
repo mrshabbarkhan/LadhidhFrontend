@@ -21,18 +21,18 @@ function AddressForm({ editableAddress, showFn }) {
       setFormData({
         addressLine1: editableAddress.addressLine1 || "",
         addressLine2: editableAddress.addressLine2 || "",
-        city: editableAddress.city || "",
-        state: editableAddress.state || "",
-        zipCode: editableAddress.zipCode || "Gujrat",
+        city: getCity(editableAddress.zipCode),
+        state: "Gujrat",
+        zipCode: editableAddress.zipCode || "",
       });
     } else {
       // Reset the form for adding a new address
       setFormData({
         addressLine1: "",
         addressLine2: "",
-        city: "",
-        state: "" || "Gujrat",
         zipCode: "",
+        city: getCity(formData.zipCode),
+        state: "Gujrat",
       });
     }
   }, [editableAddress, isUpdated, isSuccess]);
@@ -48,6 +48,7 @@ function AddressForm({ editableAddress, showFn }) {
     setFormData((prev) => ({
       ...prev,
       [name]: value,
+      ...(name === "zipCode" && { city: getCity(value) }),
     }));
   };
 
@@ -56,9 +57,22 @@ function AddressForm({ editableAddress, showFn }) {
     if (editableAddress) {
       updateAddress({ ...formData, addressId: editableAddress._id });
     } else {
-      addNewAddress({ ...formData, country: "india" });
+      addNewAddress({
+        ...formData,
+        country: "india",
+      });
     }
   };
+
+  function getCity(pin) {
+    let city;
+    if (pin === "393001") return (city = "Ankleshwar");
+    if (pin === "393002") return (city = "Vadodara");
+    if (pin === "393010") return (city = "Bharuch");
+    if (!pin) return (city = "---");
+
+    return city;
+  }
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
@@ -112,6 +126,31 @@ function AddressForm({ editableAddress, showFn }) {
 
           <div className="sm:col-span-2">
             <label
+              htmlFor="zipCode"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
+              ZIP / Postal Code
+            </label>
+            <div className="mb-2">
+              <select
+                name="zipCode"
+                id="zipCode"
+                value={formData.zipCode}
+                onChange={handleChange}
+                required
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 accent-primary placeholder:text-gray-400 focus:ring-2  focus:ring-black/30 focus:border-black/30 sm:text-sm sm:leading-6"
+              >
+                <option value="">Select ZIP Code</option>{" "}
+                {/* Placeholder option */}
+                <option value="393001">393001</option>
+                <option value="393002">393002</option>
+                <option value="393010">393010</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="sm:col-span-2">
+            <label
               htmlFor="city"
               className="block text-sm font-medium leading-6 text-gray-900"
             >
@@ -123,7 +162,8 @@ function AddressForm({ editableAddress, showFn }) {
                 name="city"
                 id="city"
                 value={formData.city}
-                onChange={handleChange}
+                readOnly
+                // onChange={handleChange}
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2  focus:ring-black/30 focus:border-black/30 sm:text-sm sm:leading-6"
               />
@@ -147,31 +187,6 @@ function AddressForm({ editableAddress, showFn }) {
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2  focus:ring-black/30 focus:border-black/30 sm:text-sm sm:leading-6"
               />
-            </div>
-          </div>
-
-          <div className="sm:col-span-2">
-            <label
-              htmlFor="zipCode"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              ZIP / Postal Code
-            </label>
-            <div className="mb-2">
-              <select
-                name="zipCode"
-                id="zipCode"
-                value={formData.zipCode}
-                onChange={handleChange}
-                required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 accent-primary placeholder:text-gray-400 focus:ring-2  focus:ring-black/30 focus:border-black/30 sm:text-sm sm:leading-6"
-              >
-                <option value="">Select ZIP Code</option>{" "}
-                {/* Placeholder option */}
-                <option value="393001">393001</option>
-                <option value="393002">393002</option>
-                <option value="393010">393010</option>
-              </select>
             </div>
           </div>
 

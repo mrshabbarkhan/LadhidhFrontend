@@ -6,12 +6,15 @@ import { Link, useNavigate } from "react-router-dom";
 import useFormData from "../../hooks/useFormData";
 import InputField from "../../components/InputField";
 import SubmitButton from "../../components/SubmitButton";
+import { IoEyeOutline } from "react-icons/io5";
+import { FaRegEyeSlash } from "react-icons/fa";
 
 function RegisterForm({ showRegistration }) {
   const navigate = useNavigate();
   const { registerUser, isPending, isSuccess } = useRegister();
   const { otpToken, initialNumber } = useSelector((state) => state.auth);
   const [showOTPForm, setShowOTPForm] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (isSuccess) {
@@ -77,7 +80,29 @@ function RegisterForm({ showRegistration }) {
           required
           label={"Email"}
         />
-        <InputField
+
+        <div className="flex items-center grow relative">
+          <span className="grow">
+            <InputField
+              id="password"
+              type={showPassword ? "text" : "password"}
+              value={formData.password}
+              handleChange={handleChange}
+              placeholder="Password"
+              required
+              label={"Password"}
+              minLength={6}
+            />
+          </span>
+          <span
+            onClick={() => setShowPassword(!showPassword)}
+            className="translate-y-1/2 absolute right-5 cursor-pointer"
+          >
+            {showPassword ? <IoEyeOutline /> : <FaRegEyeSlash />}
+          </span>
+        </div>
+
+        {/* <InputField
           id="password"
           type="password"
           value={formData.password}
@@ -86,7 +111,7 @@ function RegisterForm({ showRegistration }) {
           required
           minLength={6}
           label={"Password"}
-        />
+        /> */}
 
         <SubmitButton
           isPending={isPending}

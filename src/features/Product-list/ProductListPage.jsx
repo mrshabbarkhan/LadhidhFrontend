@@ -45,7 +45,7 @@ function ProductListPage() {
   return (
     <section className="mb-20">
       {subCategoriesById?.length > 0 && (
-        <section className="flex items-end gap-10 w-full overflow-x-auto p-5 rounded-md mb-5 bg-red-200">
+        <section className="flex items-end gap-10 w-full overflow-x-auto p-5 rounded-md mb-5 shadow-md bg-red-50">
           <div
             className="text-center flex items-center justify-center flex-col min-w-[8rem] flex-shrink-0"
             onClick={() => navigate(`/product-list/${id}`)}

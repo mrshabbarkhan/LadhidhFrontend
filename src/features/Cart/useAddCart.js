@@ -15,7 +15,6 @@ export function useAddCart() {
     onError: (err) => {
       const error = err.response?.data?.message || "Try Again Later";
       toast.error(error);
-      console.log(err);
     },
   });
 

@@ -23,7 +23,7 @@ function AddToButton({ redirect = "/cart", ...props }) {
         },
       });
     } else {
-      return toast.error("Please log in first");
+      return toast("Logged in to continue.");
     }
   };
 

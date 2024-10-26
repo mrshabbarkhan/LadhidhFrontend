@@ -1,13 +1,9 @@
-import { useEffect, useState } from "react";
-import StarSvg from "../../assets/ui/StarSvg";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Suspense, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAddCart } from "../Cart/useAddCart";
 import { TbTruckDelivery } from "react-icons/tb";
 import { useSingleProduct } from "../admin/page/products/useSingleProduct";
 import Loader from "../../components/Loader";
-import { FaRegClock } from "react-icons/fa6";
-import SaleForYou from "../Home/SaleForYou";
 import YouMight from "../../components/YouMight";
 import OutOfStock from "../../components/OutOfStock";
 import { useSettings } from "../admin/page/settings/useSettings";
@@ -51,15 +47,17 @@ function ProductDetails() {
     <section className="">
       <div
         data-aos="fade-up"
-        className="rounded-lg flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10 mb-10 bg-red-100 px-0 sm:p-6"
+        className="rounded-lg flex flex-col lg:flex-row items-center  justify-between gap-10 mb-10 bg-red-100 px-0 sm:p-6"
       >
         {/* Image Section */}
         <div className="lg:w-1/3">
-          <img
-            className="w-full h-auto drop-shadow-2xl object-cover"
-            src={img}
-            alt="product-details"
-          />
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <img
+              className="w-full rounded-md h-auto drop-shadow-2xl object-cover"
+              src={img}
+              alt="product-details"
+            />
+          </Suspense>
         </div>
 
         {/* Text Section */}
@@ -91,9 +89,9 @@ function ProductDetails() {
             </span> */}
             <span className="flex items-center text-primary gap-1">
               <TbTruckDelivery className="text-lg" />{" "}
-              {settings?.deliveryCharge
-                ? `₹ ${settings?.deliveryCharge}`
-                : "Free Delivery"}
+              {price > settings?.freeDeliveryOrderValue
+                ? "Free Delivery"
+                : `₹ ${settings?.deliveryCharge}`}
             </span>
           </div>
 

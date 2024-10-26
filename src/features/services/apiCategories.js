@@ -12,7 +12,6 @@ export const getAllCategory = async () => {
     const response = await axios.get(base_url + "category");
     return response.data;
   } catch (error) {
-    console.log(error);
     throw new Error("Error Getting CatProd", error);
   }
 };

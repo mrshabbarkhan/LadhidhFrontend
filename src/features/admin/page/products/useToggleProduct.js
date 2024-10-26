@@ -14,7 +14,6 @@ export function useToggleProduct() {
     },
     onError: (error) => {
       toast.error("Something happens wrong");
-      console.log("Toggle Error", error);
     },
   });
 

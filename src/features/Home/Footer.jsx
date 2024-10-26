@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="bg-slate-50 text-black py-8 sm:py-12 mb-10 sm:mb-0 rounded-md">
+    <footer className="text-black py-8 sm:py-12 mb-10 sm:mb-0 rounded-md mt-5">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-8">
           {/* Experience Ladhidh App */}
@@ -12,7 +12,7 @@ function Footer() {
             </h2>
             <div className="flex flex-col">
               {/* <a href="#" className="mb-2 inline-block text-sm underline">
-                App Store
+                App Store 
               </a> */}
               <a href="#" className="inline-block text-sm underline">
                 Play Store
@@ -91,7 +91,7 @@ function Footer() {
           <div>
             <h2 className="font-semibold mb-4">REGISTERED OFFICE ADDRESS</h2>
             <address className="text-sm not-italic">
-              Ladhidh Pvt Ltd <br />
+              Ladhidh ,<br />
               Front of GIDC Bus Stand, <br />
               Ankhleshwar, <br />
               Gujrat <br />
@@ -99,22 +99,22 @@ function Footer() {
           </div>
         </div>
 
-        <hr className="my-8 border-gray-600" />
+        <hr className="my-8 border-primary border-t" />
 
         {/* Footer Bottom */}
         <div className="text-center text-sm space-y-4">
-          <p>&copy; 2024 Ladhidh Pvt Ltd. All Rights Reserved.</p>
-          <p className="text-sm text-gray-400">
-            "Crafted by{" "}
+          <p>&copy; 2024 Ladhidh All Rights Reserved.</p>
+          <p className="text-sm ">
+            Powered by{" "}
             <a
               href="http://aimfortech.com/"
               target="_blank"
               className="bg-primary p-1 text-white rounded-md"
             >
               Aimfortech
-            </a>{" "}
-            , delivering a delicious e-commerce experience that brings fresh
-            flavors to your doorstep with cutting-edge technology."
+            </a>
+            {/* , delivering a delicious e-commerce experience that brings fresh
+            flavors to your doorstep with cutting-edge technology." */}
           </p>
         </div>
       </div>

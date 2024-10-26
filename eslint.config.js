@@ -1,8 +1,8 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import react from 'eslint-plugin-react'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
+import js from "@eslint/js";
+import globals from "globals";
+import react from "eslint-plugin-react";
+import reactHooks from "eslint-plugin-react-hooks";
+import reactRefresh from "eslint-plugin-react-refresh";
 
 export default [
   {
@@ -17,14 +17,10 @@ export default [
         sourceType: "module",
       },
     },
-    settings: { react: { version: "18.3" } },
-    plugins: {
-      react,
-      "react-hooks": reactHooks,
-      "react-refresh": reactRefresh,
-    },
+    settings: { react: { version: "18.2" } }, // Correct version of React.
+    plugins: ["react", "react-hooks", "react-refresh"],
     rules: {
-      "react/prop-types": "off",
+      "react/prop-types": "off", // Disable prop-types warnings.
       ...js.configs.recommended.rules,
       ...react.configs.recommended.rules,
       ...react.configs["jsx-runtime"].rules,
@@ -34,6 +30,10 @@ export default [
         "warn",
         { allowConstantExport: true },
       ],
+      // Additional rules for better prop-handling
+      "react/jsx-no-duplicate-props": "warn", // Warn for duplicate props in JSX.
+      "react/no-unused-prop-types": "off", // Disable unused prop-types warnings.
+      "react/require-default-props": "off", // Disable warnings for missing defaultProps.
     },
   },
 ];

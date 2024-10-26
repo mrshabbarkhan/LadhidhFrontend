@@ -5,12 +5,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import { Autoplay, Pagination,  } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { useBanners } from "../admin/page/banners/useBanners";
 import Loader from "../../components/Loader";
 
 function LandingPage() {
-
   const { banners, isPending } = useBanners();
 
   return (
@@ -22,6 +21,7 @@ function LandingPage() {
           delay: 2500,
           disableOnInteraction: false,
         }}
+        speed={"1000"}
         pagination={{
           clickable: true,
         }}
@@ -33,7 +33,11 @@ function LandingPage() {
         ) : (
           banners.map((banner) => (
             <SwiperSlide key={banner._id}>
-              <img className=" m-auto object-center object-cover h-36 sm:h-[50vh]" src={banner.Img} alt="" />
+              <img
+                className=" m-auto object-center object-cover h-36 sm:h-[50vh]"
+                src={banner.Img}
+                alt=""
+              />
             </SwiperSlide>
           ))
         )}

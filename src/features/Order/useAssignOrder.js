@@ -11,7 +11,6 @@ export function useAssignOrder() {
     mutationFn: assignOrder,
     onSuccess: (data) => {
       toast.success("order assign success");
-      console.log(data);
     },
   });
 

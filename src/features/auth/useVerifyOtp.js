@@ -1,5 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import authServices from "../services/apiAuthService";
+import { toast } from "sonner";
 
 export function useVerifyOtp() {
   const {
@@ -10,7 +11,7 @@ export function useVerifyOtp() {
   } = useMutation({
     mutationFn: authServices.verifyOtp,
     onError: (error) => {
-      console.log(error);
+      toast.error("Enter valid OTP");
     },
   });
 

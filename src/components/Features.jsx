@@ -18,7 +18,7 @@ function Features() {
   ];
 
   return (
-    <section className="grid grid-cols-1 sm:grid-cols-3 gap-x-5 bg-red-100 py-10 px-3 rounded-md mb-2">
+    <section className="grid grid-cols-1 sm:grid-cols-3 gap-x-5 Favorites_List  py-10 px-3 rounded-md mb-2">
       {data.map((dt, idx) => (
         <div key={idx} className="mb-2">
           <div className="bg-primary w-10 h-1 rounded-xl"></div>

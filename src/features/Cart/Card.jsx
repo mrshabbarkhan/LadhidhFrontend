@@ -1,16 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import AddToButton from "../../components/AddToButton";
-
 import { useAOS } from "../../hooks/useAOS";
 import OutOfStock from "../../components/OutOfStock";
 import { GiSpoon } from "react-icons/gi";
 
-function Card({ product, isOnTrand }) {
+function Card({ product }) {
   const { img, pack, title, discount, code, price, inStock, _id, quantity } =
     product;
-  const oldPrice = Math.floor(price / (1 - discount / 100));
+  const oldPrice = discount ? Math.floor(price / (1 - discount / 100)) : null;
 
-  useAOS(product);
+  useAOS();
 
   const navigate = useNavigate();
 
@@ -18,58 +17,76 @@ function Card({ product, isOnTrand }) {
     navigate(`/product-details/${_id}`);
   };
 
-  const sectionStyle = isOnTrand
-    ? "sm:min-w-[14rem] min-w-[14rem]  " // Use responsive sizes
-    : "sm:min-w-[14rem] min-w-[14rem]"; // Smaller width for regular cards
-
-  const imgStyle = isOnTrand
-    ? "h-28 w-28 sm:h-28 sm:w-28" // Responsive image size
-    : "h-28 w-28 sm:h-28 sm:w-28";
-
   return (
-    <section
-      data-aos="fade-up"
-      className={`max-w-[16rem] ${sectionStyle} m-auto mb-3 text-wrap rounded-xl p-4 pb-2 bg-white transition-all duration-300 hover:shadow-xl cursor-pointer`} // Adjust with hover effects
-    >
-      <div className="bg-red-50 rounded-xl cursor-pointer">
-        <img
-          src={img}
-          alt={title}
-          onClick={handleClick}
-          className={`object-cover object-center m-auto ${imgStyle} sm:w-40 sm:h-40 rounded-t-xl hover:scale-95 transition-transform duration-200`}
-        />
+    <section className="min-w-60  m-auto mb-4 p-3 bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer">
+      {/* Image */}
+      <div className="relative rounded-lg w-full h-32 mb-3 overflow-hidden">
+        {img ? (
+          <img
+            src={img}
+            alt={title}
+            onClick={handleClick}
+            className="object-cover  h-full w-full transition-transform duration-300 transform hover:scale-105"
+          />
+        ) : (
+          <div className="h-full w-full flex items-center justify-center bg-gray-100">
+            <span>No Image Available</span>
+          </div>
+        )}
       </div>
-      <div className="px-2 mt-1 flex flex-col justify-between cursor-pointer">
-        <h1 className="mt-2 text-lg leading-6 font-semibold cursor-pointer">
-          {title}
+
+      {/* Product Details */}
+      <div className="px-2 flex flex-col justify-between">
+        {/* Title */}
+        <h1 className="text-base font-medium mb-1 text-gray-800 hover:text-gray-900 transition-colors line-clamp-1">
+          {title || <span className="text-gray-400">No title available</span>}
         </h1>
-        <p className="flex items-center my-1 bg-gray-50 border text-sm w-fit gap-2 rounded-md px-2">
-          <GiSpoon className="text-xs" /> {quantity}
+
+        {/* Quantity */}
+        <p className="flex items-center mb-1 bg-gray-50 shadow-sm text-xs rounded-md px-2 py-1">
+          <GiSpoon className="text-sm text-gray-600" />
+          {quantity ? (
+            <span className="text-gray-700 ml-2">{quantity}</span>
+          ) : (
+            <span className="text-gray-400 ml-2">N/A</span>
+          )}
         </p>
-        <p className="text-xs font-medium text-primary  pb-2 pt-1 leading-3 cursor-pointer">
-          {pack}
+
+        {/* Pack */}
+        <p className="text-xs font-medium text-gray-600 mb-1">
+          {pack || <span className="text-gray-400">N/A</span>}
         </p>
+
+        {/* Discount (conditionally rendered) */}
         {discount ? (
-          <p className="text-xs leading-3">
-            FLAT {discount}% off Code: {code}
+          <p className="text-xs font-medium text-green-600 mb-1">
+            FLAT {discount}% off Code: {code || "No code"}
           </p>
         ) : (
-          <p className="mt-3"></p>
+          <p className="h-4"></p>
         )}
-        <div className="flex justify-between items-center mt-2">
-          <span className="flex gap-2 items-center ">
-            <h1 className="text-xl text-primary font-medium cursor-pointer">
-              &#x20B9; {price}
+
+        {/* Price & Button */}
+        <div className="flex items-center justify-between mt-2">
+          <div className="flex items-center gap-2">
+            <h1 className="text-lg font-bold text-gray-800">
+              &#x20B9; {price || "N/A"}
             </h1>
-            <span className="sm:inline line-through text-gray-500 font-medium">
-              &#8377;{oldPrice || null}
-            </span>
-          </span>
-          {inStock ? (
-            <AddToButton {...product} redirect={"/cart"} />
-          ) : (
-            <OutOfStock product={product} />
-          )}
+            {oldPrice && (
+              <span className="line-through text-gray-400 text-xs">
+                &#8377;{oldPrice}
+              </span>
+            )}
+          </div>
+
+          {/* Stock & Add to Cart Button */}
+          <div>
+            {inStock ? (
+              <AddToButton {...product} redirect="/cart" />
+            ) : (
+              <OutOfStock product={product} />
+            )}
+          </div>
         </div>
       </div>
     </section>

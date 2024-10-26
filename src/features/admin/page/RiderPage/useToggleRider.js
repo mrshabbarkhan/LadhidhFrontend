@@ -18,7 +18,6 @@ export function useToggleRider() {
     },
     onError: (err) => {
       toast.error("Something went wrong");
-      console.log(err);
     },
   });
 

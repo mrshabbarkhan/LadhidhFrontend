@@ -61,7 +61,6 @@ export default function AddProductPopup() {
     data.append("subCategoryId", formData.subCategoryId);
 
     addNewProduct(data);
-    // console.log(data);
 
     setFormData({
       pack: "single pack",

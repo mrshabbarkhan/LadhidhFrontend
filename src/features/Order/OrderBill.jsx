@@ -7,8 +7,6 @@ function OrderBill({ order, showFn, showPickup = true }) {
   const { users } = useUser();
   const filterUser = users?.find((u) => u._id === order.user);
 
-  console.log(order);
-
   return (
     <section className="bg-black/50 flex justify-center items-center fixed inset-0 z-[999999]">
       {/* Modal Container */}
@@ -73,6 +71,11 @@ function OrderBill({ order, showFn, showPickup = true }) {
           <div className="text-gray-700">
             <ShippingAddress order={order} />
           </div>
+          {order?.orderNotes && (
+            <p className=" font-semibold text-gray-700 mb-2">
+              Order Note: " {order?.orderNotes} "
+            </p>
+          )}
         </div>
 
         {/* User Information */}
@@ -99,7 +102,7 @@ function OrderBill({ order, showFn, showPickup = true }) {
             >
               <div className="flex items-center">
                 <img
-                  src={item.product.img}
+                  src={item.product?.img}
                   alt={"product"}
                   className="w-16 h-16 object-cover rounded-lg mr-4"
                 />
@@ -135,7 +138,10 @@ function OrderBill({ order, showFn, showPickup = true }) {
                   ? "Free"
                   : `₹${order.deliveryCharge}`}
               </p>
-              <p className="font-semibold">₹{order.handlingFee}</p>
+              <p className="font-semibold">
+                {" "}
+                {order?.handlingFee ? `₹${order.handlingFee}` : "Free"}
+              </p>
             </div>
           </div>
         </div>

@@ -8,10 +8,9 @@ export function useCancelOrder() {
     mutationFn: cancelOrder,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["userorders"],
+        queryKey: ["userorders", "orders"],
       });
-
-      toast.success("Order will be updated");
+      toast.success("Order Cancelled");
     },
   });
 

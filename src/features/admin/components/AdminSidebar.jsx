@@ -25,7 +25,7 @@ const AdminSidebar = () => {
 
   return (
     <nav className="author-box h-screen w-52 bg-gray-100 relative overflow-hidden ">
-      <ul className="flex flex-col  gap-4 text-left pl-5 pt-5 text-lg text-white">
+      <ul className="flex flex-col  gap-4 text-left pl-5 pt-5 text-lg text-white transition-all">
         <NavLink
           to={"/"}
           className=" w-full  py-1 rounded-l-lg text-red-700 flex items-center text-white-600 "
@@ -192,7 +192,7 @@ const AdminSidebar = () => {
 
         <NavLink
           to={"/"}
-          className="bg-primary-dark w-full px-2 py-1 rounded-l-lg flex items-center text-white-600 absolute bottom-5"
+          className="bg-primary w-full px-2 py-1 rounded-l-lg flex items-center text-white-600 absolute bottom-5"
         >
           <li>
             <div className="nav-link flex items-center " onClick={handleLogout}>

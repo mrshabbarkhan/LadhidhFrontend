@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useOrders } from "../../../Order/useOrders";
-import { useAssignOrder } from "../../../Order/useAssignOrder";
 import { addToSelectedOrder } from "../../../Order/orderSlice";
 import OrderBill from "../../../Order/OrderBill";
-import Spinner from "../../../../components/Spinner";
 import Loader from "../../../../components/Loader";
 import useOrderStatus from "../../../../hooks/useOrderStatus";
+import useFilterBySearch from "../../../../hooks/useFilterBySearch";
+import useFilterBy from "./useFilterBy";
 
 const OrderTable = () => {
   const dispatch = useDispatch();
@@ -17,16 +17,18 @@ const OrderTable = () => {
   const { orders, isLoading } = useOrders();
   const { selectedOrder } = useSelector((state) => state.order);
 
-  const debouncedTerm = useSelector((state) => state.search.debouncedTerm);
-  const filterOrderById = orders?.filter((order) =>
-    order._id?.toLowerCase().includes(debouncedTerm.toLowerCase())
+  const { filteredProducts: filterOrderById } = useFilterBySearch(
+    orders,
+    "_id"
   );
+
+  const filteredOrder = useFilterBy(filterOrderById);
 
   const statusColors = {
     Delivered: "bg-green-200 text-green-700",
     Pending: "bg-purple-200 text-purple-700",
-    PickedUp: "bg-blue-200 text-blue-700",
     Cancelled: "bg-red-200 text-red-700",
+    Assigned: "bg-blue-200 text-blue-700",
   };
 
   const handleSelect = (order) => {
@@ -57,11 +59,11 @@ const OrderTable = () => {
           </tr>
         </thead>
         <tbody>
-          {filterOrderById?.length ? (
-            filterOrderById
+          {filteredOrder?.length ? (
+            filteredOrder
               .map((order, index) => (
                 <tr key={index} className="text-center">
-                  <td className="py-2 border">{index + 1}</td>
+                  <td className="py-2 ">{index + 1}.</td>
                   <td className="px-4 py-2 line-clamp-1">
                     {order._id || "N/A"}
                   </td>
@@ -79,9 +81,24 @@ const OrderTable = () => {
                       : "N/A"}
                   </td>
                   <td className="px-4 py-2">
-                    {useOrderStatus(order) === "Cancelled" ? (
-                      <button className="bg-red-200 text-red-700 px-4 rounded-md py-1 border">
-                        Cancelled
+                    {useOrderStatus(order) === "Cancelled" ||
+                    useOrderStatus(order) === "Delivered" ||
+                    useOrderStatus(order) === "Assigned" ? (
+                      <button
+                        className={` ${
+                          useOrderStatus(order) === "Delivered" &&
+                          "text-green-700 bg-green-200"
+                        } ${
+                          useOrderStatus(order) === "Cancelled" &&
+                          "text-red-700 bg-red-200"
+                        } ${
+                          useOrderStatus(order) === "Assigned" &&
+                          "text-blue-700 bg-blue-200"
+                        }  px-4 rounded-md py-1 border`}
+                      >
+                        {useOrderStatus(order) === "Cancelled" && "Cancelled"}
+                        {useOrderStatus(order) === "Delivered" && "Delivered"}
+                        {useOrderStatus(order) === "Assigned" && "Assigned"}
                       </button>
                     ) : (
                       <button

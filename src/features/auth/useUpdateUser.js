@@ -18,7 +18,6 @@ export function useUpdateUser() {
     },
     onError: (err) => {
       toast.error("Something went wrong");
-      console.log("update error", err);
     },
   });
 
