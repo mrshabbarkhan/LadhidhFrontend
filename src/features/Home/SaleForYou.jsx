@@ -8,9 +8,15 @@ function SaleForYou() {
   const { products = [], isLoading } = useProducts();
 
   const showOnlyGreaterDisc = 14;
+
   const ifProductsHaveDiscount = products.filter(
     (product) => product.discount > showOnlyGreaterDisc
   );
+
+  const sortedProducts = ifProductsHaveDiscount?.sort((a, b) => {
+    if (a.inStock === b.inStock) return 0; // Same stock status
+    return a.inStock ? -1 : 1; // If a is in stock, it comes first
+  });
 
   useAOS();
 
@@ -26,7 +32,7 @@ function SaleForYou() {
         <Loader className="h-40 w-full" />
       ) : (
         <div className="flex gap-5 sm:gap-12 overflow-x-auto overflow-y-hidden w-full mt-3">
-          {ifProductsHaveDiscount.map((product) => (
+          {sortedProducts.map((product) => (
             <Card
               key={product._id}
               product={product}

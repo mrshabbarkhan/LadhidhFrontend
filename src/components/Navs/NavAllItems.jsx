@@ -1,15 +1,11 @@
 import { NavLink } from "react-router-dom";
 import { NavItems } from "../../utils/utils";
 import { GiChickenLeg } from "react-icons/gi";
-import { HiOutlineSquare3Stack3D, HiOutlineUserCircle } from "react-icons/hi2";
-import { LuHeart } from "react-icons/lu";
-import { BsBagX } from "react-icons/bs";
-import { MdOutlineShoppingBag } from "react-icons/md";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { RxStack } from "react-icons/rx";
+import { HiOutlineUserCircle } from "react-icons/hi";
 
 function NavAllItems() {
-
   const iconMap = {
     house: <GiChickenLeg />,
     box: <RxStack />,

@@ -1,5 +1,5 @@
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function BackButton({ children }) {
   const navigate = useNavigate();

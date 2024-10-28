@@ -10,7 +10,7 @@ export default function SearchBar({ placeholder }) {
   useEffect(() => {
     const handler = setTimeout(() => {
       dispatch(setDebouncedTerm(searchTerm));
-    }, 300); // 300ms debounce
+    }, 300);
 
     return () => {
       clearTimeout(handler);

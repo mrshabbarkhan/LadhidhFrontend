@@ -19,6 +19,7 @@ import Settings from "./features/admin/page/settings/Settings";
 import DowanlodApp from "./components/DowanlodApp";
 import SubCategory from "./features/admin/page/subCategory/SubCategory";
 import ViewDetails from "./features/admin/page/users/ViewDetails";
+import DeleteUser from "./features/DeleteUser/DeleteUser";
 
 // Lazy loaded components
 const HomePage = lazy(() => import("./features/Home/HomePage"));
@@ -96,6 +97,7 @@ function RoutesWrapper() {
         { path: "/product-details/:id", element: <ProductDetails /> },
         { path: "/profile/orders", element: <OrderPage /> },
         { path: "/profile/address", element: <UserAddress /> },
+        { path: "/delete-user", element: <DeleteUser /> },
         { path: "/terms-and-conditions", element: <TermsAndConditions /> },
         { path: "/privacy-policy", element: <PrivacyPolicy /> },
         { path: "/FAQs", element: <FAQ /> },

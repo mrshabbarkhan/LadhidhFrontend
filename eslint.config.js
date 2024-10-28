@@ -17,10 +17,14 @@ export default [
         sourceType: "module",
       },
     },
-    settings: { react: { version: "18.2" } }, // Correct version of React.
-    plugins: ["react", "react-hooks", "react-refresh"],
+    settings: { react: { version: "18.2" } },
+    plugins: {
+      react,
+      "react-hooks": reactHooks,
+      "react-refresh": reactRefresh,
+    },
     rules: {
-      "react/prop-types": "off", // Disable prop-types warnings.
+      "react/prop-types": "off", // Disable prop-types validation
       ...js.configs.recommended.rules,
       ...react.configs.recommended.rules,
       ...react.configs["jsx-runtime"].rules,
@@ -30,10 +34,9 @@ export default [
         "warn",
         { allowConstantExport: true },
       ],
-      // Additional rules for better prop-handling
-      "react/jsx-no-duplicate-props": "warn", // Warn for duplicate props in JSX.
-      "react/no-unused-prop-types": "off", // Disable unused prop-types warnings.
-      "react/require-default-props": "off", // Disable warnings for missing defaultProps.
+      "react/jsx-no-duplicate-props": "warn",
+      "react/no-unused-prop-types": "off",
+      "react/require-default-props": "off",
     },
   },
 ];

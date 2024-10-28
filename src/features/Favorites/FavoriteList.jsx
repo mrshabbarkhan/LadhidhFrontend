@@ -12,6 +12,8 @@ function FavoriteList({ product }) {
     navigate(`/product-details/${_id}`);
   };
 
+  console.log(product);
+
   return (
     <div className="mb-5 Favorites_List drop-shadow-lg flex p-2 rounded-lg">
       <div className="grow flex flex-col justify-between">
@@ -19,7 +21,7 @@ function FavoriteList({ product }) {
           <h1 className="mt-2 text-md text-gray-800 leading-6 font-medium">
             {title}
           </h1>
-          {discount && (
+          {discount > 0 && (
             <p className="text-xs mt-2 text-green-500">
               FLAT {discount} off Code: {code}
             </p>

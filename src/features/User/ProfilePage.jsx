@@ -1,11 +1,7 @@
-import { useSelector } from "react-redux";
 import OrderActions from "./OrderActions";
 import UserAvatar from "./UserAvatar";
 import UserDetails from "./UserDetails";
 import UserFooter from "./UserFooter";
-// import AuthForm from "../auth/AuthForm";
-import RegisterForm from "../auth/RegisterForm";
-import LoginForm from "../auth/LoginForm";
 import { useState } from "react";
 import EditUserDetails from "./EditUserDetails";
 import AuthButton from "../auth/AuthButton";
@@ -13,7 +9,6 @@ import { useLocalStorage } from "../auth/LocalStorageContext";
 
 function ProfilePage() {
   const { user } = useLocalStorage();
-  const [showRegisterForm, setShowRegisterForm] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
 
   if (user && showEditForm) {
@@ -24,7 +19,7 @@ function ProfilePage() {
     <div>
       {user ? (
         <>
-          <div className="flex flex-col gap-5 items-center sm:items-start sm:flex-row">
+          <div className="flex flex-col gap-5 items-center sm:flex-row">
             <UserAvatar />
             <UserDetails seterFn={setShowEditForm} user={user} />
           </div>

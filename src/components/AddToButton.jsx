@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 import { useAddCart } from "../features/Cart/useAddCart";
 import Spinner from "./Spinner";
 import { useLocalStorage } from "../features/auth/LocalStorageContext";
 import { toast } from "sonner";
 
-function AddToButton({ redirect = "/cart", ...props }) {
+function AddToButton({ ...props }) {
   const navigate = useNavigate();
 
   const { addToCart, isLoading } = useAddCart();

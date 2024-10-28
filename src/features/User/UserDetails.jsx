@@ -6,7 +6,7 @@ function UserDetails({ seterFn, user }) {
   const { name, email, number } = user;
 
   return (
-    <div className="flex justify-between grow">
+    <div className="flex justify-between grow w-full">
       <div>
         <h1 className="text-xl font-medium line-clamp-1 mb-2">{name}</h1>
         <span className="flex items-center gap-1">

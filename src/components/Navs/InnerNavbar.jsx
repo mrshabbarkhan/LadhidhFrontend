@@ -8,10 +8,9 @@ import {
 } from "../../features/Favorites/favoriteSlice";
 import { useLocalStorage } from "../../features/auth/LocalStorageContext";
 import { MdLogout } from "react-icons/md";
-import { useProducts } from "../../features/admin/page/products/useProducts";
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
 import { useSingleProduct } from "../../features/admin/page/products/useSingleProduct";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 function InnerNavbar({ children }) {
   const location = useLocation();
@@ -21,8 +20,7 @@ function InnerNavbar({ children }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { product, singleProduct, isPending, isSuccess, isIdle } =
-    useSingleProduct();
+  const { product, singleProduct, isSuccess } = useSingleProduct();
   const { id } = useParams();
 
   const { favoriteProducts } = useSelector((state) => state.favoriteProducts);
@@ -32,7 +30,7 @@ function InnerNavbar({ children }) {
     if (id) {
       singleProduct(id);
     }
-  }, [id]);
+  }, [id, singleProduct]);
 
   const isInFavoriteProduct =
     favoriteProducts.length > 0 &&

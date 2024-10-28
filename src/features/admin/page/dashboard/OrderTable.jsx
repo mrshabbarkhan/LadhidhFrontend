@@ -29,6 +29,7 @@ const OrderTable = () => {
     Pending: "bg-purple-200 text-purple-700",
     Cancelled: "bg-red-200 text-red-700",
     Assigned: "bg-blue-200 text-blue-700",
+    Pickup: "bg-blue-200 text-blue-700",
   };
 
   const handleSelect = (order) => {
@@ -83,6 +84,7 @@ const OrderTable = () => {
                   <td className="px-4 py-2">
                     {useOrderStatus(order) === "Cancelled" ||
                     useOrderStatus(order) === "Delivered" ||
+                    useOrderStatus(order) === "Pickup" ||
                     useOrderStatus(order) === "Assigned" ? (
                       <button
                         className={` ${
@@ -94,11 +96,15 @@ const OrderTable = () => {
                         } ${
                           useOrderStatus(order) === "Assigned" &&
                           "text-blue-700 bg-blue-200"
+                        } ${
+                          useOrderStatus(order) === "Pickup" &&
+                          "text-blue-700 bg-blue-200"
                         }  px-4 rounded-md py-1 border`}
                       >
                         {useOrderStatus(order) === "Cancelled" && "Cancelled"}
                         {useOrderStatus(order) === "Delivered" && "Delivered"}
                         {useOrderStatus(order) === "Assigned" && "Assigned"}
+                        {useOrderStatus(order) === "Pickup" && "Picked Up"}
                       </button>
                     ) : (
                       <button

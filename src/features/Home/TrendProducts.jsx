@@ -4,11 +4,15 @@ import Loader from "../../components/Loader";
 import { useProducts } from "../admin/page/products/useProducts";
 import { Link } from "react-router-dom";
 import { useAOS } from "../../hooks/useAOS";
-import { FaArrowRightLong } from "react-icons/fa6";
 import { MdOutlineArrowRightAlt } from "react-icons/md";
 
 function TrendProducts() {
   const { products = [], isLoading } = useProducts();
+
+  const sortedProducts = products?.sort((a, b) => {
+    if (a.inStock === b.inStock) return 0; // Same stock status
+    return a.inStock ? -1 : 1; // If a is in stock, it comes first
+  });
 
   useAOS();
 
@@ -33,7 +37,7 @@ function TrendProducts() {
         <Loader className="h-40 w-full" />
       ) : (
         <div className="flex gap-x-5 sm:gap-12 overflow-y-hidden overflow-x-auto">
-          {products.map((product) => (
+          {sortedProducts?.map((product) => (
             <Card key={product._id} product={product} isOnTrand={true} />
           ))}
         </div>

@@ -1,4 +1,3 @@
-import UserImage from "../../assets/images/avatar/5.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocalStorage } from "../../features/auth/LocalStorageContext";
 import { GiChickenLeg } from "react-icons/gi";

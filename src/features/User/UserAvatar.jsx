@@ -1,5 +1,4 @@
 import { HiOutlineUserCircle } from "react-icons/hi2";
-import UserImage from "../../assets/images/avatar/5.jpg";
 
 function UserAvatar() {
   return (

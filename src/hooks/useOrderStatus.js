@@ -4,7 +4,7 @@ function useOrderStatus(order) {
   if (order.orderStatus === 3) {
     orderStatusCheck = "Delivered";
   } else if (order.orderStatus === 2) {
-    orderStatusCheck = "Picked Up";
+    orderStatusCheck = "Pickup";
   } else if (order.orderStatus === 1) {
     orderStatusCheck = "Assigned";
   } else if (order.orderStatus == -1) {
@@ -12,7 +12,6 @@ function useOrderStatus(order) {
   } else {
     orderStatusCheck = "Pending";
   }
-
   return orderStatusCheck;
 }
 
