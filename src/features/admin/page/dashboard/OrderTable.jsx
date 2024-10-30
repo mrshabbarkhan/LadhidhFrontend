@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useOrders } from "../../../Order/useOrders";
 import { addToSelectedOrder } from "../../../Order/orderSlice";
@@ -10,7 +10,6 @@ import useFilterBy from "./useFilterBy";
 
 const OrderTable = () => {
   const dispatch = useDispatch();
-
   const [showBill, setShowBill] = useState(false);
   const [selectedBillOrder, setSelectedBillOrder] = useState(null);
 
@@ -62,85 +61,94 @@ const OrderTable = () => {
         <tbody>
           {filteredOrder?.length ? (
             filteredOrder
-              .map((order, index) => (
-                <tr key={index} className="text-center">
-                  <td className="py-2 ">{index + 1}.</td>
-                  <td className="px-4 py-2 line-clamp-1">
-                    {order._id || "N/A"}
-                  </td>
-                  <td
-                    onClick={() => handleViewOrder(order)}
-                    className="px-4 py-2 cursor-pointer hover:scale-95 text-red-500"
-                  >
-                    <span className="bg-red-200 px-2 rounded-md py-0.5">
-                      View
-                    </span>
-                  </td>
-                  <td className="px-4 py-2">
-                    {order.createdAt
-                      ? new Date(order.createdAt).toLocaleDateString()
-                      : "N/A"}
-                  </td>
-                  <td className="px-4 py-2">
-                    {useOrderStatus(order) === "Cancelled" ||
-                    useOrderStatus(order) === "Delivered" ||
-                    useOrderStatus(order) === "Pickup" ||
-                    useOrderStatus(order) === "Assigned" ? (
-                      <button
-                        className={` ${
-                          useOrderStatus(order) === "Delivered" &&
-                          "text-green-700 bg-green-200"
-                        } ${
-                          useOrderStatus(order) === "Cancelled" &&
-                          "text-red-700 bg-red-200"
-                        } ${
-                          useOrderStatus(order) === "Assigned" &&
-                          "text-blue-700 bg-blue-200"
-                        } ${
-                          useOrderStatus(order) === "Pickup" &&
-                          "text-blue-700 bg-blue-200"
-                        }  px-4 rounded-md py-1 border`}
-                      >
-                        {useOrderStatus(order) === "Cancelled" && "Cancelled"}
-                        {useOrderStatus(order) === "Delivered" && "Delivered"}
-                        {useOrderStatus(order) === "Assigned" && "Assigned"}
-                        {useOrderStatus(order) === "Pickup" && "Picked Up"}
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => handleSelect(order)}
-                        className="text-sm sm:text-base mr-2 rounded-md"
-                      >
-                        {selectedOrder?._id === order._id ? (
-                          <span className="bg-green-500 text-white px-5 rounded-md py-1 border">
-                            Selected
-                          </span>
-                        ) : (
-                          <span className="bg-gray-300 px-2 py-1 rounded-md inline-block text-nowrap">
-                            Select Order
-                          </span>
-                        )}
-                      </button>
-                    )}
-                  </td>
-                  <td className="px-4 py-2">
-                    <span
-                      className={`inline-block px-3 py-1 rounded-lg font-medium ${
-                        statusColors[useOrderStatus(order)] || "bg-gray-300"
-                      }`}
+              .map((order, index) => {
+                const orderStatus = useOrderStatus(order);
+
+                return (
+                  <tr key={index} className="text-center">
+                    <td className="py-2">{index + 1}.</td>
+                    <td className="px-4 py-2 line-clamp-1">
+                      {order._id || "N/A"}
+                    </td>
+                    <td
+                      onClick={() => handleViewOrder(order)}
+                      className="px-4 py-2 cursor-pointer hover:scale-95 text-red-500"
                     >
-                      {useOrderStatus(order) || "N/A"}
-                    </span>
-                  </td>
-                  <td className="px-4 py-2 font-semibold">
-                    ₹{order.totalPrice || "0"}
-                  </td>
-                </tr>
-              ))
+                      <span className="bg-red-200 px-2 rounded-md py-0.5">
+                        View
+                      </span>
+                    </td>
+                    <td className="px-4 py-2">
+                      {order.createdAt
+                        ? new Date(order.createdAt).toLocaleDateString()
+                        : "N/A"}
+                    </td>
+                    <td className="px-4 py-2">
+                      {[
+                        "Cancelled",
+                        "Delivered",
+                        "Pickup",
+                        "Assigned",
+                      ].includes(orderStatus) ? (
+                        <button
+                          className={`${
+                            orderStatus === "Delivered"
+                              ? "text-green-700 bg-green-200"
+                              : ""
+                          } ${
+                            orderStatus === "Cancelled"
+                              ? "text-red-700 bg-red-200"
+                              : ""
+                          } ${
+                            (orderStatus === "Assigned" ||
+                              orderStatus === "Pickup") &&
+                            "text-blue-700 bg-blue-200"
+                          } px-4 rounded-md py-1 border`}
+                        >
+                          {orderStatus === "Cancelled"
+                            ? "Cancelled"
+                            : orderStatus === "Delivered"
+                            ? "Delivered"
+                            : orderStatus === "Assigned"
+                            ? "Assigned"
+                            : "Picked Up"}
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => handleSelect(order)}
+                          className="text-sm sm:text-base mr-2 rounded-md"
+                        >
+                          {selectedOrder?._id === order._id ? (
+                            <span className="bg-green-500 text-white px-5 rounded-md py-1 border">
+                              Selected
+                            </span>
+                          ) : (
+                            <span className="bg-gray-300 px-2 py-1 rounded-md inline-block text-nowrap">
+                              Select Order
+                            </span>
+                          )}
+                        </button>
+                      )}
+                    </td>
+                    <td className="px-4 py-2">
+                      <span
+                        className={`inline-block px-3 py-1 rounded-lg font-medium ${
+                          statusColors[orderStatus] || "bg-gray-300"
+                        }`}
+                      >
+                        {orderStatus || "N/A"}
+                      </span>
+                    </td>
+                    <td className="px-4 py-2 font-semibold">
+                      ₹{order.totalPrice || "0"}
+                    </td>
+                  </tr>
+                );
+              })
               .reverse()
           ) : (
             <tr className="text-center w-full py-4 text-red-600 font-medium">
-              <h1>No Data Found</h1>
+              <td colSpan="7">No Data Found</td>
             </tr>
           )}
         </tbody>

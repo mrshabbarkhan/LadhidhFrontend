@@ -31,7 +31,7 @@ function CartList({ product, onQtyChange }) {
       const filterd = cartItems.find((item) => item.product._id == id);
       return filterd ? filterd.quantity : qty;
     });
-  }, [cartItems]);
+  }, [cartItems, id, qty]);
 
   const handleIncrease = () => {
     const newQty = tempQty + 1;
@@ -73,7 +73,7 @@ function CartList({ product, onQtyChange }) {
         </div>
         <div
           onClick={handleDelete}
-          className="border shadow w-fit hover:scale-95 px-1 rounded-lg text-black hover:text-white hover:bg-primary transition-size cursor-pointer"
+          className="mt-4 border shadow w-fit hover:scale-95 px-1 rounded-lg text-black hover:text-white hover:bg-primary transition-size cursor-pointer"
         >
           {isPending ? (
             <Spinner className="my-1 border-black" />

@@ -8,7 +8,7 @@ import { useCart } from "./useCart";
 import { toast } from "sonner";
 import { useSettings } from "../admin/page/settings/useSettings";
 
-import emptyImg from "../../assets/empty-cart.gif";
+import emptyImg from "/empty-cart.gif";
 
 function CartPage() {
   const [updatedCart, setUpdatedCart] = useState([]);
@@ -20,12 +20,6 @@ function CartPage() {
   useEffect(() => {
     setUpdatedCart(cartItems);
   }, [cartItems]);
-
-  useEffect(() => {
-    if (!user) {
-      toast.error("Please log in");
-    }
-  }, [user]);
 
   const handleQtyChange = (id, newQty) => {
     setUpdatedCart((prevCart) =>
@@ -53,7 +47,8 @@ function CartPage() {
   }
 
   if (!user) {
-    return <AuthButton onClickOverlyHide="true" />;
+    toast.error("Please log in");
+    return <AuthButton onClickOverlyHide="true" initial="true" />;
   }
 
   if (!updatedCart?.length) {

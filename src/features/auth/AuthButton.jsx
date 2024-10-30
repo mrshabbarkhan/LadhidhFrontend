@@ -6,8 +6,8 @@ import BackButton from "../../components/BackButton";
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import { MdCancel } from "react-icons/md";
 
-function AuthButton({ onClickOverlyHide = false }) {
-  const [showForm, setShowForm] = useState(false);
+function AuthButton({ onClickOverlyHide = false, initial = false }) {
+  const [showForm, setShowForm] = useState(initial);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
 
   const location = useLocation();

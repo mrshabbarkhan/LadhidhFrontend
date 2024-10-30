@@ -7,10 +7,10 @@ function Requests() {
 
   return (
     <div className="container mx-auto p-6">
-      <div className="space-x-5 mb-5">
+      <div className="sm:space-x-5 space-y-5 mb-5 transition-all">
         <button
           onClick={() => setShowRequest(true)}
-          className={`px-2 py-.5 border rounded-md ${
+          className={`px-2 py-1 border rounded-md ${
             showRequest ? "bg-primary text-white" : "text-black"
           } `}
         >
@@ -18,7 +18,7 @@ function Requests() {
         </button>
         <button
           onClick={() => setShowRequest(false)}
-          className={`px-2 py-.5 border rounded-md ${
+          className={`px-2 py-1 border rounded-md ${
             showRequest ? "text-black" : "bg-primary  text-white"
           }`}
         >

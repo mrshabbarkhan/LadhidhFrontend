@@ -14,7 +14,7 @@ function Location() {
   const debounceRef = useRef(null);
   const [searchData, setSearchData] = useState(null);
 
-  const { data, isPending, error } = useGeoLocation();
+  const { data, error } = useGeoLocation();
 
   useEffect(() => {
     if (manualLocation) {

@@ -31,7 +31,7 @@ function ProfilePage() {
           </section>
         </>
       ) : (
-        <AuthButton onClickOverlyHide="true" />
+        <AuthButton onClickOverlyHide="true" initial="true" />
       )}
     </div>
   );

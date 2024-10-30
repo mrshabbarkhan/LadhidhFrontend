@@ -33,7 +33,7 @@ const DeleteUser = () => {
     );
     if (!confirmation || !isNumberValid) return;
 
-    // Delete user logic, e.g., API call
+    // Delete user
     raiseDeleteAcc(formData);
   };
 

@@ -9,7 +9,7 @@ function DashboardPage() {
       <h1 className="text-2xl  font-bold mb-3">Dashboard</h1>
       <DsbActions />
       <div className="my-7 sm:flex justify-between">
-        <SearchBar placeholder={"search by Order id..."} />
+        <SearchBar placeholder={"Search by order id..."} />
         <FilterBy />
       </div>
       <div className="mt-5">
