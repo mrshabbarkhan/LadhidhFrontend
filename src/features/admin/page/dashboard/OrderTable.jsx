@@ -55,7 +55,7 @@ const OrderTable = () => {
             <th className="px-4 py-2">Order Date</th>
             <th className="px-4 py-2">Assign Rider</th>
             <th className="px-4 py-2">Status</th>
-            <th className="px-4 py-2">Total</th>
+            <th className="px-4 py-2">Amount</th>
           </tr>
         </thead>
         <tbody>
