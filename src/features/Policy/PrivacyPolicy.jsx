@@ -98,10 +98,10 @@ const PrivacyPolicy = () => {
         at:
       </p>
       <p className="mb-4">
-        <strong>Email:</strong> support@ladhidhmeatshop.com
+        <strong>Email:</strong> contact@ladhidh.in
       </p>
       <p>
-        <strong>Phone:</strong> +1-234-567-890
+        <strong>Phone:</strong> +91 9227088655
       </p>
     </div>
   );
