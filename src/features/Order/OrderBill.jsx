@@ -2,8 +2,10 @@ import { RxCrossCircled } from "react-icons/rx";
 import { useUser } from "../admin/page/users/useUser";
 import useOrderStatus from "../../hooks/useOrderStatus";
 import ShippingAddress from "./ShippingAddress";
+import { p } from "framer-motion/client";
 
 function OrderBill({ order, showFn, showPickup = true }) {
+  console.log(order);
   const { users } = useUser();
   const filterUser = users?.find((u) => u._id === order.user);
 
@@ -53,6 +55,11 @@ function OrderBill({ order, showFn, showPickup = true }) {
           </div>
         </div>
 
+        <div className="text-sm ">
+          <p>Delivery Password : {order?.deliveryPassword}</p>
+          {showPickup && <p>Pickup Password :{order?.pickupPassword}</p>}
+        </div>
+
         {/* Shipping Address */}
         <div className="border-t pt-4 mb-6">
           <h4 className="text-lg font-semibold text-gray-800 mb-2">
@@ -60,6 +67,8 @@ function OrderBill({ order, showFn, showPickup = true }) {
           </h4>
           <ShippingAddress order={order} />
         </div>
+
+        {order?.orderNotes && <p>{order.orderNotes}</p>}
 
         {/* User Info */}
         {showPickup && filterUser && (
@@ -123,6 +132,15 @@ function OrderBill({ order, showFn, showPickup = true }) {
               {order?.handlingFee ? `₹${order.handlingFee}` : "Free"}
             </p>
           </div>
+
+          {order?.couponCode && order.couponCode.discount > 0 && (
+            <div className="flex justify-between text-sm text-gray-600 mt-2">
+              <p>Coupan Code : {`"${order.couponCode.code}"`}</p>
+              <p className="font-semibold">
+                - {`₹${order.couponCode.discount}`}
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Payment & Total */}

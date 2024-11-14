@@ -1,10 +1,9 @@
-import "aos/dist/aos.css";
 import Card from "../Cart/Card";
 import Loader from "../../components/Loader";
 import { useProducts } from "../admin/page/products/useProducts";
 import { Link } from "react-router-dom";
-import { useAOS } from "../../hooks/useAOS";
 import { MdOutlineArrowRightAlt } from "react-icons/md";
+import { motion } from "framer-motion";
 
 function TrendProducts() {
   const { products = [], isLoading } = useProducts();
@@ -14,10 +13,13 @@ function TrendProducts() {
     return a.inStock ? -1 : 1; // If a is in stock, it comes first
   });
 
-  useAOS();
-
   return (
-    <section className="sm:mb-12 mb-6" data-aos="fade-up">
+    <motion.section
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+      className="sm:mb-12 mb-6"
+    >
       <div className="mt-10 mb-5 flex justify-between items-start">
         <div>
           <h1 className=" font-semibold text-xl sm:text-2xl  text-gray-800 leading-7">
@@ -36,13 +38,13 @@ function TrendProducts() {
       {isLoading ? (
         <Loader className="h-40 w-full" />
       ) : (
-        <div className="flex gap-x-5 sm:gap-12 overflow-y-hidden overflow-x-auto">
+        <motion.div className="flex gap-x-5 sm:gap-12 overflow-y-hidden overflow-x-auto">
           {sortedProducts?.map((product) => (
             <Card key={product._id} product={product} isOnTrand={true} />
           ))}
-        </div>
+        </motion.div>
       )}
-    </section>
+    </motion.section>
   );
 }
 

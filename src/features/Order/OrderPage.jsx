@@ -6,7 +6,7 @@ function OrderPage() {
 
   return (
     <div className="relative mb-20">
-      <h1 className="font-semibold">Your Recent Orders</h1>
+      <h1 className="font-semibold mt-5 sm:mt-0">Your Recent Orders</h1>
 
       {Array.isArray(order) && order.length > 0 ? (
         order.map((singleOrder) => (

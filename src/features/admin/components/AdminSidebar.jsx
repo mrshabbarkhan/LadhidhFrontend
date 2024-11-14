@@ -12,6 +12,7 @@ import { LiaProductHunt } from "react-icons/lia";
 import { GoHomeFill } from "react-icons/go";
 import { TbBellSearch } from "react-icons/tb";
 import { MdOutlineChecklist } from "react-icons/md";
+import { motion } from "framer-motion";
 
 const AdminSidebar = () => {
   const { logOutUser } = useLocalStorage();
@@ -40,8 +41,13 @@ const AdminSidebar = () => {
   ];
 
   return (
-    <nav className="h-screen w-52 bg-gray-100 shadow-lg relative">
-      <ul className="flex flex-col gap-4 pt-5 text-lg text-gray-800">
+    <motion.nav
+      initial={{ translateX: -270 }}
+      animate={{ translateX: 0 }}
+      transition={{ duration: 0.5, ease: "anticipate" }}
+      className="h-screen w-52 bg-gray-100 shadow-lg relative"
+    >
+      <ul className="flex flex-col gap-2 pt-5 text-lg text-gray-800">
         {links.map(({ to, icon: Icon, label }, index) => (
           <NavLink
             key={index}
@@ -69,7 +75,7 @@ const AdminSidebar = () => {
           <span>Logout</span>
         </div>
       </ul>
-    </nav>
+    </motion.nav>
   );
 };
 

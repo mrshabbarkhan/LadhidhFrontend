@@ -1,3 +1,4 @@
+import Badge from "../../../../components/Badge";
 import Loader from "../../../../components/Loader";
 import useDeleteUser from "./useDeleteUser";
 import useUserReq from "./useUserReq";
@@ -22,8 +23,8 @@ function UserDelReq() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold mb-4">
-        User Account deletion Requests
+      <h1 className="text-2xl font-semibold mb-4 relative w-fit">
+        User Account deletion Requests <Badge data={userRequests} />
       </h1>
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto bg-white shadow-md rounded-lg">

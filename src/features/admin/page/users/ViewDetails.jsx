@@ -11,7 +11,7 @@ function ViewDetails() {
     <section>
       <BackButton>Orders</BackButton>
       <div className="mt-10">
-        {filteredOrder.length > 0 ? (
+        {filteredOrder?.length > 0 ? (
           filteredOrder
             ?.map((order) => <OrderCard key={order._id} order={order} />)
             .reverse()

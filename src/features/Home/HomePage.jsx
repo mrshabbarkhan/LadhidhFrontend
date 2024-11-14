@@ -1,16 +1,14 @@
 import { lazy, Suspense, useMemo } from "react";
 import { useCategory } from "../admin/page/Categories/useCategory";
 
-import Loader from "../../components/Loader";
-import Features from "../../components/Features";
-import Testimonials from "../../components/Testimonials";
 import AppBanner from "../../components/AppBanner";
+import Features from "../../components/Features";
+import Loader from "../../components/Loader";
 const LandingPage = lazy(() => import("./LandingPage"));
 
 const NavigationBar = lazy(() => import("../../components/Navs/NavigationBar"));
 const Categories = lazy(() => import("../Category/Categories"));
 const Category = lazy(() => import("../Category/Category"));
-const OfferForYou = lazy(() => import("./OfferForYou"));
 const SaleForYou = lazy(() => import("./SaleForYou"));
 const TrendProducts = lazy(() => import("./TrendProducts"));
 const Footer = lazy(() => import("./Footer"));

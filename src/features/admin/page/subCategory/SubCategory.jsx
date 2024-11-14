@@ -6,6 +6,7 @@ import { useDeleteSubCat } from "./useDeleteProduct";
 import { useSubCate } from "./useSubCate";
 import Loader from "../../../../components/Loader";
 import { useAddSubCat } from "./useAddSubCat";
+import Badge from "../../../../components/Badge";
 
 function SubCategory() {
   const { subCategory, isLoading } = useSubCate();
@@ -43,7 +44,7 @@ function SubCategory() {
     <section>
       <div className="mb-5 mt-3 flex justify-center items-center sm:justify-between">
         <h1 className="font-bold text-2xl text-center tracking-wide absolute top-5 sm:relative sm:top-0">
-          Sub Category
+          Sub Category <Badge data={subCategory} />
         </h1>
         <div className="mt-10 px-5 sm:mt-0 flex w-full sm:w-fit items-center gap-3 absolute right-2 sm:right-14 top-6 ">
           <SearchBar placeholder={"search by category..."} />

@@ -1,3 +1,4 @@
+import Badge from "../../../../components/Badge";
 import { useRequest } from "./useRequest";
 
 function ProductReq() {
@@ -5,8 +6,8 @@ function ProductReq() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold mb-4">
-        Product Notification Requests
+      <h1 className="text-2xl font-semibold mb-4 relative w-fit">
+        Product Notification Requests <Badge data={allRequests} />
       </h1>
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto bg-white shadow-md rounded-lg">

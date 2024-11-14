@@ -1,7 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import "aos/dist/aos.css";
-import { useAOS } from "../../hooks/useAOS";
-import React, { Suspense } from "react";
+import { motion } from "framer-motion";
 
 function Categories({ product }) {
   const navigate = useNavigate();
@@ -12,26 +10,28 @@ function Categories({ product }) {
       ? "h-12 w-12 min-h-12 min-w-12"
       : "h-20 w-20 min-h-20 min-w-20";
 
-  useAOS();
-
   return (
-    <div
+    <motion.div
       className="cursor-pointer"
       onClick={() => navigate(`/product-list/${product.cat_id}`)}
-      data-aos="fade-up"
-      data-aos-anchor="#example-anchor"
-      data-aos-duration="1000"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
     >
-      <img
-        className={`${isInCategoryPage}  h-16 w-16 min-h-16 min-w-16 rounded-full overflow-visible sm:h-24 sm:w-24 object-center m-auto sm:min-h-24 sm:min-w-24 drop-shadow-xl`}
+      <motion.img
+        className={`${isInCategoryPage} h-16 w-16 min-h-16 min-w-16 rounded-full overflow-visible sm:h-24 sm:w-24 object-center m-auto sm:min-h-24 sm:min-w-24 drop-shadow-xl`}
         src={product?.img}
         alt={product?.name}
       />
-
-      <p className="font-medium text-center text-sm sm:text-lg line-clamp-1">
+      <motion.p
+        className="font-medium text-center text-sm sm:text-lg line-clamp-1"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
         {product?.name}
-      </p>
-    </div>
+      </motion.p>
+    </motion.div>
   );
 }
 

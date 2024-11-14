@@ -64,7 +64,7 @@ function Location() {
     <div>
       <p
         onClick={() => setToggle(true)}
-        className="font-semibold text-sm line-clamp-2 cursor-pointer"
+        className="font-semibold tracking-wide text-sm line-clamp-2 cursor-pointer"
       >
         {location}
       </p>

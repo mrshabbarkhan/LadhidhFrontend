@@ -24,11 +24,11 @@ const OrderTable = () => {
   const filteredOrder = useFilterBy(filterOrderById);
 
   const statusColors = {
-    Delivered: "bg-green-200 text-green-700",
-    Pending: "bg-purple-200 text-purple-700",
-    Cancelled: "bg-red-200 text-red-700",
-    Assigned: "bg-blue-200 text-blue-700",
-    Pickup: "bg-blue-200 text-blue-700",
+    Delivered: " text-green-700",
+    Pending: " text-purple-700",
+    Cancelled: " text-red-700",
+    Assigned: " text-blue-700",
+    Pickup: " text-blue-700",
   };
 
   const handleSelect = (order) => {
@@ -46,9 +46,9 @@ const OrderTable = () => {
 
   return (
     <div className="overflow-x-auto rounded-md">
-      <table className="min-w-full table-auto border-collapse">
+      <table className="min-w-full table-auto  border-collapse ">
         <thead>
-          <tr className="bg-red-100">
+          <tr className="shadow-md ">
             <th className="py-2">S.No</th>
             <th className="px-4 py-2">OrderId</th>
             <th className="px-4 py-2">View Details</th>
@@ -70,11 +70,11 @@ const OrderTable = () => {
                     <td className="px-4 py-2 line-clamp-1">
                       {order._id || "N/A"}
                     </td>
-                    <td
-                      onClick={() => handleViewOrder(order)}
-                      className="px-4 py-2 cursor-pointer hover:scale-95 text-red-500"
-                    >
-                      <span className="bg-red-200 px-2 rounded-md py-0.5">
+                    <td className="px-4 py-2 cursor-pointer ">
+                      <span
+                        onClick={() => handleViewOrder(order)}
+                        className="border shadow-sm px-2 hover:shadow-md rounded-md py-0.5"
+                      >
                         View
                       </span>
                     </td>
@@ -91,27 +91,9 @@ const OrderTable = () => {
                         "Assigned",
                       ].includes(orderStatus) ? (
                         <button
-                          className={`${
-                            orderStatus === "Delivered"
-                              ? "text-green-700 bg-green-200"
-                              : ""
-                          } ${
-                            orderStatus === "Cancelled"
-                              ? "text-red-700 bg-red-200"
-                              : ""
-                          } ${
-                            (orderStatus === "Assigned" ||
-                              orderStatus === "Pickup") &&
-                            "text-blue-700 bg-blue-200"
-                          } px-4 rounded-md py-1 border`}
+                          className={` shadow-sm ${statusColors[orderStatus]} px-4 rounded-md py-1 border`}
                         >
-                          {orderStatus === "Cancelled"
-                            ? "Cancelled"
-                            : orderStatus === "Delivered"
-                            ? "Delivered"
-                            : orderStatus === "Assigned"
-                            ? "Assigned"
-                            : "Picked Up"}
+                          {orderStatus}
                         </button>
                       ) : (
                         <button
@@ -119,11 +101,14 @@ const OrderTable = () => {
                           className="text-sm sm:text-base mr-2 rounded-md"
                         >
                           {selectedOrder?._id === order._id ? (
-                            <span className="bg-green-500 text-white px-5 rounded-md py-1 border">
+                            <span
+                              className="bg-green-500 text-white
+                            border shadow-md px-5 rounded-md py-1 "
+                            >
                               Selected
                             </span>
                           ) : (
-                            <span className="bg-gray-300 px-2 py-1 rounded-md inline-block text-nowrap">
+                            <span className="border bg-slate-200 shadow-sm px-2 py-1 rounded-md inline-block text-nowrap">
                               Select Order
                             </span>
                           )}
@@ -132,7 +117,7 @@ const OrderTable = () => {
                     </td>
                     <td className="px-4 py-2">
                       <span
-                        className={`inline-block px-3 py-1 rounded-lg font-medium ${
+                        className={`inline-block px-3 py-1 rounded-lg font-medium shadow-sm border ${
                           statusColors[orderStatus] || "bg-gray-300"
                         }`}
                       >

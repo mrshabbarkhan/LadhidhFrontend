@@ -12,8 +12,6 @@ function FavoriteList({ product }) {
     navigate(`/product-details/${_id}`);
   };
 
-  console.log(product);
-
   return (
     <div className="mb-5 Favorites_List drop-shadow-lg flex p-2 rounded-lg">
       <div className="grow flex flex-col justify-between">
@@ -22,7 +20,7 @@ function FavoriteList({ product }) {
             {title}
           </h1>
           {discount > 0 && (
-            <p className="text-xs mt-2 text-green-500">
+            <p className="text-xs mt-2 text-orange-500">
               FLAT {discount} off Code: {code}
             </p>
           )}
@@ -37,12 +35,12 @@ function FavoriteList({ product }) {
           <p className="text-xs font-medium text-primary-dark">{pack}</p>
         </div>
 
-        <button
+        {/* <button
           onClick={handleViewDetails}
           className="text-sm underline-offset-4 opacity-70 hover:scale-90 w-fit rounded-md hover:underline p-1 text-orange-500"
         >
           see more
-        </button>
+        </button> */}
       </div>
       <div className="flex flex-col gap-2">
         <img

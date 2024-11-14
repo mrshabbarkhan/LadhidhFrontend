@@ -42,6 +42,17 @@ const OrderSuccess = ({ order }) => {
                   </span>
                 </p>
               </div>
+
+              <div>
+                {item?.couponCode && item.couponCode.discount > 0 && (
+                  <div className="flex justify-between text-sm text-gray-600 mt-2">
+                    <p>Coupan Code : {`"${item.couponCode.code}"`}</p>
+                    <p className="font-semibold">
+                      - {`₹${item.couponCode.discount}`}
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
           ))}
         </div>

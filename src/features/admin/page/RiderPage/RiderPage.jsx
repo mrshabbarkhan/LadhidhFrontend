@@ -1,10 +1,10 @@
-import { useSelector } from "react-redux";
 import Loader from "../../../../components/Loader";
 import SearchBar from "../../components/SearchBar";
 import { useRider } from "./useRider";
 import RiderButtons from "../users/RiderButtons";
 import SelectedOrder from "./SelectedOrder";
 import useFilterBySearch from "../../../../hooks/useFilterBySearch";
+import Badge from "../../../../components/Badge";
 
 function RiderPage() {
   const { riders, isLoading } = useRider();
@@ -20,7 +20,9 @@ function RiderPage() {
   return (
     <div className="container mx-auto py-8 px-4">
       <div className="flex flex-wrap justify-center sm:justify-between mb-5">
-        <h1 className="text-3xl font-semibold text-center mb-8">Riders List</h1>
+        <h1 className="text-3xl font-semibold text-center mb-8 relative">
+          Riders List <Badge data={riders} />
+        </h1>
         <SearchBar placeholder={"Search by number...."} />
       </div>
 

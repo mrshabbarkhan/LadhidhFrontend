@@ -93,7 +93,7 @@ const LoginForm = ({ showRegistration }) => {
 
       <p
         onClick={() => setShowOTPForm(true)}
-        className="float-end text-sm hover:underline leading-7 text-indigo-600 cursor-pointer"
+        className="float-end text-sm hover:underline leading-7cursor-pointer"
       >
         Forget Password ?
       </p>
@@ -106,14 +106,14 @@ const LoginForm = ({ showRegistration }) => {
         Don't have an account?
         <button
           type="button"
-          className="text-indigo-600 hover:text-indigo-800 font-medium transition hover:underline"
+          className=" font-medium transition hover:underline"
         >
           sign up
         </button>
       </p>
 
       <div className="text-center bg-red-200 py-1 mt-2  rounded-md">
-        <Link to={"/dowanlod"} className="text-sm text-red-700  px-2 py-2 ">
+        <Link to={"/download"} className="text-sm text-red-700  px-2 py-2 ">
           Downlod our app
         </Link>
       </div>

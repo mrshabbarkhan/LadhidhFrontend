@@ -18,8 +18,8 @@ function DowanlodApp() {
         </p>
         <div className="text-center bg-red-400 hover:scale-95 py-1 mt-2  rounded-md">
           <a
-            href="/ladhidh.apk"
-            download={"ladhidh.apk"}
+            href="https://play.google.com/store/apps/details?id=com.ladhidh"
+            target="_blank"
             className="text-sm text-white px-2 py-2 "
           >
             Downlod our app

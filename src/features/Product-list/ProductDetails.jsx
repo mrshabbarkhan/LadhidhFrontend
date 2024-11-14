@@ -8,6 +8,7 @@ import YouMight from "../../components/YouMight";
 import OutOfStock from "../../components/OutOfStock";
 import { useSettings } from "../admin/page/settings/useSettings";
 import { GiSpoon } from "react-icons/gi";
+import { motion } from "framer-motion";
 
 function ProductDetails() {
   const [tempQty, setTempQty] = useState(1);
@@ -23,7 +24,7 @@ function ProductDetails() {
 
   useEffect(() => {
     singleProduct(id);
-  }, [id]);
+  }, [id, singleProduct]);
 
   if (!isSuccess) {
     return <Loader className={"h-96"} />;
@@ -45,8 +46,10 @@ function ProductDetails() {
 
   return (
     <section className="">
-      <div
-        data-aos="fade-up"
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, ease: "linear" }}
         className="rounded-lg flex flex-col lg:flex-row items-center  justify-between gap-10 mb-10 bg-red-100 px-0 sm:p-6"
       >
         {/* Image Section */}
@@ -84,9 +87,6 @@ function ProductDetails() {
           </button>
 
           <div className="flex items-center gap-3 font-semibold mb-4">
-            {/* <span className="flex items-center gap-1">
-              <StarSvg /> 4.6
-            </span> */}
             <span className="flex items-center text-primary gap-1">
               <TbTruckDelivery className="text-lg" />{" "}
               {price > settings?.freeDeliveryOrderValue
@@ -125,7 +125,7 @@ function ProductDetails() {
             </div>
           </div>
         </section>
-      </div>
+      </motion.div>
 
       <YouMight />
 

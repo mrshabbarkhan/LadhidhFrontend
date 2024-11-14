@@ -40,7 +40,7 @@ function AddCategoryPopup({ handleAdd, isSuccess, isPending, isFromSubCat }) {
     <>
       <button
         onClick={togglePopup}
-        className="px-4 py-1.5  bg-primary font-medium text-white rounded-full hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-blue-300"
+        className="px-4 py-1.5 border font-medium shadow-md hover:text-white rounded-md hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-blue-300"
       >
         Add
       </button>

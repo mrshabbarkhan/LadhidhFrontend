@@ -1,4 +1,8 @@
 import { Link } from "react-router-dom";
+import twitterLogo from "/twitter.avif";
+import instaLogo from "/instaLogo.png";
+import fbLogo from "/fbLogo.webp";
+import whatsaapLogo from "/whatsaap.png";
 
 function Footer() {
   return (
@@ -14,7 +18,11 @@ function Footer() {
               {/* <a href="#" className="mb-2 inline-block text-sm underline">
                 App Store 
               </a> */}
-              <a href="#" className="inline-block text-sm underline">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.ladhidh"
+                target="_blank"
+                className="inline-block text-sm underline"
+              >
                 Play Store
               </a>
             </div>
@@ -24,13 +32,21 @@ function Footer() {
           {/* <div>
             <h2 className="font-semibold mb-4">KEEP IN TOUCH</h2>
             <div className="flex flex-col">
-              <a href="#" className="mb-2 inline-block text-sm">
+              <a
+                target="_blank"
+                href="https://x.com/ladhidheasy"
+                className="mb-2 inline-block text-sm"
+              >
                 Twitter
               </a>
               <a href="#" className="mb-2 inline-block text-sm">
                 Facebook
               </a>
-              <a href="#" className="inline-block text-sm">
+              <a
+                target="_blank"
+                href="https://www.instagram.com/ladhidh_easy/"
+                className="inline-block text-sm"
+              >
                 Instagram
               </a>
             </div>
@@ -102,7 +118,21 @@ function Footer() {
         <hr className="my-8 border-primary border-t" />
 
         {/* Footer Bottom */}
+
         <div className="text-center text-sm space-y-4">
+          <div className="flex gap-5">
+            <a target="_blank" href="https://x.com/ladhidheasy">
+              <img className="size-7" src={twitterLogo} alt="" />
+            </a>{" "}
+            <a target="_blank" href="https://www.instagram.com/ladhidh_easy/">
+              <img className="size-7" src={instaLogo} alt="" />
+            </a>
+            <a target="_blank" href="https://wa.link/ojpi94">
+              <img className="size-7" src={whatsaapLogo} alt="" />
+            </a>
+            {/* <img className="size-7" src={fbLogo} alt="" /> */}
+          </div>
+
           <p>&copy; 2024 Ladhidh All Rights Reserved.</p>
           <p className="text-sm ">
             Powered by{" "}

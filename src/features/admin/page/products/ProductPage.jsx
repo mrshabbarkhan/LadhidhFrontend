@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Loader from "../../../../components/Loader";
 import { useProducts } from "./useProducts";
 import useFilterBySearch from "../../../../hooks/useFilterBySearch";
+import Badge from "../../../../components/Badge";
 
 const SearchBar = lazy(() => import("../../components/SearchBar"));
 const ProductCard = lazy(() => import("./ProductCard"));
@@ -21,7 +22,7 @@ function ProductPage() {
     <section>
       <div className="mb-5 mt-3 flex justify-center items-center sm:justify-between">
         <h1 className="font-bold text-2xl text-center tracking-wide absolute top-5 sm:relative sm:top-0">
-          Products
+          Products <Badge data={products} />
         </h1>
         <div className="mt-10 px-5 sm:mt-0 flex w-full sm:w-fit items-center gap-3 absolute right-2 sm:right-14 top-6">
           <Suspense fallback={<Loader />}>

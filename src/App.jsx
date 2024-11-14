@@ -15,11 +15,11 @@ import PrivacyPolicy from "./features/Policy/PrivacyPolicy";
 import FAQ from "./features/Policy/FAQ";
 import WhyLadhidh from "./features/Policy/WhyLadhidh";
 import AllProducts from "./features/Home/AllProducts";
-import Settings from "./features/admin/page/settings/Settings";
 import DowanlodApp from "./components/DowanlodApp";
 import SubCategory from "./features/admin/page/subCategory/SubCategory";
 import ViewDetails from "./features/admin/page/users/ViewDetails";
 import DeleteUser from "./features/DeleteUser/DeleteUser";
+import SettingsLayout from "./features/admin/page/settings/SettingsLayout";
 
 // Lazy loaded components
 const HomePage = lazy(() => import("./features/Home/HomePage"));
@@ -73,7 +73,7 @@ function RoutesWrapper() {
             { path: "banners", element: <BannerPage /> },
             { path: "riders", element: <RiderPage /> },
             { path: "requests", element: <Requests /> },
-            { path: "settings", element: <Settings /> },
+            { path: "settings", element: <SettingsLayout /> },
             { path: "subcategory", element: <SubCategory /> },
           ],
           errorElement: <PageNotFound />,
@@ -102,7 +102,7 @@ function RoutesWrapper() {
         { path: "/privacy-policy", element: <PrivacyPolicy /> },
         { path: "/FAQs", element: <FAQ /> },
         { path: "/whyLadhidh", element: <WhyLadhidh /> },
-        { path: "/dowanlod", element: <DowanlodApp /> },
+        { path: "/download", element: <DowanlodApp /> },
         {
           path: "/payment",
           element: (

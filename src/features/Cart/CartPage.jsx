@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion";
 import CartList from "./CartList";
 import { useEffect, useMemo, useState } from "react";
 import Loader from "../../components/Loader";
@@ -7,13 +8,13 @@ import { useLocalStorage } from "../auth/LocalStorageContext";
 import { useCart } from "./useCart";
 import { toast } from "sonner";
 import { useSettings } from "../admin/page/settings/useSettings";
-
 import emptyImg from "/empty-cart.gif";
+import ApplyCoupan from "./ApplyCoupan";
 
 function CartPage() {
   const [updatedCart, setUpdatedCart] = useState([]);
+  const [coupanDiscount, setCoupanDiscount] = useState(null);
   const { settings } = useSettings();
-
   const { user } = useLocalStorage();
   const { cartItems, isPending: isLoading } = useCart();
 
@@ -35,11 +36,13 @@ function CartPage() {
   );
 
   const memoizedUpdatedCart = useMemo(() => {
-    return updatedCart
-      ?.map((product, index) => (
-        <CartList product={product} key={index} onQtyChange={handleQtyChange} />
-      ))
-      .reverse();
+    return updatedCart?.map((product) => (
+      <CartList
+        product={product}
+        key={product.product._id}
+        onQtyChange={handleQtyChange}
+      />
+    ));
   }, [updatedCart]);
 
   if (isLoading) {
@@ -66,10 +69,22 @@ function CartPage() {
     subtotal >= settings?.freeDeliveryOrderValue ? 0 : settings?.deliveryCharge;
 
   return (
-    <section>
-      {memoizedUpdatedCart}
+    <section className="mb-20">
+      <AnimatePresence>
+        {memoizedUpdatedCart.map((product) => (
+          <motion.div
+            key={product.key}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.5 }}
+          >
+            {product}
+          </motion.div>
+        ))}
+      </AnimatePresence>
 
-      <div className="p-3 rounded-lg border-2 border-dashed border-primary mb-20">
+      <div className="p-3 rounded-lg border-2 border-dashed border-primary ">
         <h1 className="font-semibold text-lg">Bill Details</h1>
         <div className="flex justify-between">
           <p>Subtotal</p>
@@ -83,24 +98,42 @@ function CartPage() {
         </div>
 
         <div className="flex justify-between">
-          <p>handle Fee</p>
+          <p>Handle Fee</p>
           <h6 className="font-semibold">
             {settings?.handlingFee ? `₹${settings.handlingFee}` : "Free"}
           </h6>
         </div>
 
+        {coupanDiscount > 0 && (
+          <div className="flex justify-between">
+            <p>Coupan Discount </p>
+            <h6 className="font-semibold">- ₹{coupanDiscount}</h6>
+          </div>
+        )}
+
         <div className="flex justify-between border-t mt-2">
           <h1 className="font-semibold text-lg">Total</h1>
           <h1 className="font-semibold text-lg">
-            &#x20B9;{subtotal + hasDeliveryCharge + settings?.handlingFee}
+            &#x20B9;
+            {subtotal +
+              hasDeliveryCharge +
+              settings?.handlingFee -
+              coupanDiscount}
           </h1>
         </div>
       </div>
 
+      <ApplyCoupan setCoupan={setCoupanDiscount} />
+
       <section className="w-full fixed bottom-0 left-0 md:px-24 lg:px-48 overflow-hidden text-xs sm:text-sm bg-white">
         <CheckOutFooter
           qty={updatedCart?.length}
-          total={subtotal + hasDeliveryCharge + settings?.handlingFee}
+          total={
+            subtotal +
+            hasDeliveryCharge +
+            settings?.handlingFee -
+            coupanDiscount
+          }
           cart={updatedCart}
         />
       </section>

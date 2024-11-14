@@ -1,20 +1,15 @@
 import { useState } from "react";
 import OrderBill from "./OrderBill";
 import CancelOrder from "./CancelOrder";
-import useOrderStatus from "../../hooks/useOrderStatus";
+import TrackOrder from "./TrackOrder";
 
 function OrderCard({ order = {} }) {
   const [showBill, setShowBill] = useState(false);
   const [showCancel, setShowCancel] = useState(false);
+  const [showTrack, setShowTrack] = useState(false);
   const { orderItems, createdAt } = order;
 
-  const now = new Date();
   const createdDate = new Date(createdAt);
-
-  // Calculate the time difference in milliseconds
-  const timeDifference = now - createdDate;
-  // Convert the time difference to days
-  const differenceInDays = timeDifference / (1000 * 60);
 
   if (showCancel) {
     return <CancelOrder setShow={setShowCancel} order={order} />;
@@ -41,7 +36,7 @@ function OrderCard({ order = {} }) {
             <span className="mt-1 mr-2">{orderItems?.length} Items</span>{" "}
             <span
               onClick={() => setShowBill(true)}
-              className="hover:underline cursor-pointer"
+              className=" cursor-pointer hover:bg-gray-100 px-2"
             >
               View Bill
             </span>
@@ -52,44 +47,34 @@ function OrderCard({ order = {} }) {
             {createdDate.toLocaleDateString("en-GB")}
           </h3>
 
-          {/* Show 'Reorder' if less than 1 day has passed, otherwise show 'Cancel Order' */}
-          {useOrderStatus(order) === "Pending" ? (
+          {/* Order Status */}
+
+          {/* {orderStatus === "Pending" ? (
             <button
-              onClick={() => {
-                if (useOrderStatus(order) === "Pending") {
-                  setShowCancel(true);
-                }
-              }}
+              onClick={() => setShowCancel(true)}
               className="bg-gray-200 text-red-600 p-1 px-3 rounded-md text-sm hover:text-white hover:bg-red-600"
             >
-              {useOrderStatus(order) === "Cancelled"
-                ? "Cancelled"
-                : "Cancel Order"}
+              {orderStatus === "Cancelled" ? "Cancelled" : "Cancel Order"}
             </button>
           ) : (
             <button className="bg-green-200 text-green-600 p-1 px-3 rounded-md text-sm ">
-              {useOrderStatus(order)}
-            </button>
-          )}
-
-          {/* {differenceInDays > 10 ? (
-            <button></button>
-          ) : (
-            <button
-              onClick={
-                order.orderStatus === -1 ? undefined : () => setShowCancel(true)
-              }
-              className="bg-gray-200 text-red-600 p-1 px-3 rounded-md text-sm hover:text-white hover:bg-red-600"
-            >
-              {useOrderStatus(order) === "" ? "Cancelled" : "Cancel Order"}
+              {orderStatus}
             </button>
           )} */}
+
+          <button
+            onClick={() => setShowTrack((prev) => !prev)}
+            className="block ml-auto sm:w-full px-2 py-1 border border-gray-300 bg-white rounded-md shadow-sm hover:bg-gray-100 focus:outline-none text-sm transition ease-in-out duration-200 cursor-pointer"
+          >
+            {showTrack ? "Hide Tracking" : "Track Order"}
+          </button>
         </div>
       </section>
 
       {showBill && (
         <OrderBill order={order} showFn={setShowBill} showPickup={false} />
       )}
+      {showTrack && <TrackOrder order={order} />}
     </>
   );
 }

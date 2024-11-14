@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllOrders } from "../services/apiOrders";
+import { toast } from "sonner";
 
 export function useOrders() {
   const {
@@ -13,7 +14,7 @@ export function useOrders() {
   });
 
   if (isError) {
-    console.error("Error fetching orders:", error);
+    toast.error(error.response?.data?.Expired || "Something went wrong");
   }
 
   return { orders, isLoading, isError };

@@ -134,7 +134,7 @@ function RegisterForm({ showRegistration }) {
       </p>
 
       <div className="text-center bg-red-200 py-1 mt-2  rounded-md">
-        <Link to={"/dowanlod"} className="text-sm text-red-700  px-2 py-2">
+        <Link to={"/download"} className="text-sm text-red-700  px-2 py-2">
           Downlod our app
         </Link>
       </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import appBanner from "/appbanner.jpeg";
 import { MdCancel } from "react-icons/md";
 import { useLocalStorage } from "../features/auth/LocalStorageContext";
+import { Link } from "react-router-dom";
 
 function AppBanner() {
   const [showAd, setShowAd] = useState(false);
@@ -23,7 +24,9 @@ function AppBanner() {
               <MdCancel onClick={() => setShowAd(false)} className="text-xl" />
             </div>
 
-            <img src={appBanner} alt="banner" />
+            <Link to={"download"}>
+              <img src={appBanner} alt="banner" />
+            </Link>
           </div>
         </div>
       )}

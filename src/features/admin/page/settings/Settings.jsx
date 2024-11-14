@@ -27,7 +27,7 @@ function Settings() {
 
   return (
     <section>
-      <h1 className="text-xl font-semibold">Settings</h1>
+      {/* <h1 className="text-xl font-semibold">Settings</h1> */}
 
       <form onSubmit={handleSubmit}>
         <div className="mt-4">

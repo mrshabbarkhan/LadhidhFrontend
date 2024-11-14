@@ -31,11 +31,15 @@ function AddToButton({ ...props }) {
   return (
     <button
       onClick={handleClick}
-      className={`border border-primary ${
+      className={`border ${
         isLoading && "bg-primary-dark"
-      } text-sm font-semibold px-3 py-1 rounded-lg  hover:text-white hover:scale-95 hover:bg-primary-dark transition flex justify-center`}
+      } text-sm shadow-sm hover:shadow-md border border-primary font-semibold px-3 py-0.5 rounded-lg items-center flex justify-center`}
     >
-      {isLoading ? <Spinner className="border-white" /> : "Add"}
+      {isLoading ? (
+        <Spinner className="border-primary hover:border-white" />
+      ) : (
+        <span className="mt-0.5">ADD</span>
+      )}
     </button>
   );
 }

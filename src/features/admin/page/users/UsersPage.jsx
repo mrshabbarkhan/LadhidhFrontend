@@ -1,10 +1,11 @@
-import React from "react";
 import SearchBar from "../../components/SearchBar";
 import { useUser } from "./useUser";
 import Loader from "../../../../components/Loader";
 import RiderButtons from "./RiderButtons";
 import SelectedOrder from "../RiderPage/SelectedOrder";
 import useFilterBySearch from "../../../../hooks/useFilterBySearch";
+import ExportUserData from "../../components/ExportUserData";
+import Badge from "../../../../components/Badge";
 
 export default function UsersPage() {
   const { users, isLoading } = useUser();
@@ -17,20 +18,21 @@ export default function UsersPage() {
   return (
     <>
       <div className="container mx-auto py-8 sm:px-4">
-        {/* Header section */}
         <div className="flex flex-wrap justify-items-center sm:justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold text-center w-full sm:w-fit mb-10 sm:mb-6">
-            Customer List
+          <h1 className="text-2xl font-bold text-center w-full relative sm:w-fit mb-10 sm:mb-6">
+            Customer List <Badge data={users} />
           </h1>
-          <div className="w-full sm:w-auto -translate-y-1/2">
-            <SearchBar placeholder="Search by phone number..." />
+          <div className="w-full  sm:w-auto sm:flex mt-2 gap-5 space-y-2 sm:space-y-0 sm:gap-2 items-center -translate-y-1/2">
+            <span className="">
+              <ExportUserData />
+            </span>
+            <SearchBar placeholder="Phone number..." />
           </div>
         </div>
 
         {/* Selected Order section */}
         <SelectedOrder />
 
-        {/* Users list */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {users &&
             filteredUser?.map((customer) => (

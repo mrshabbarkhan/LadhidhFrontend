@@ -4,12 +4,10 @@ import { useAddProduct } from "../page/products/useAddProduct";
 import Spinner from "../../../components/Spinner";
 import { MdCancel } from "react-icons/md";
 import { useSubCatById } from "../page/subCategory/useSubCatById";
-import { useSubCate } from "../page/subCategory/useSubCate";
 
 export default function AddProductPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [image, setImage] = useState(null);
-  const [categoryId, setCategoryId] = useState("");
 
   const { addNewProduct, isLoading, isSuccess } = useAddProduct();
   const { categories } = useCategory();
@@ -95,7 +93,7 @@ export default function AddProductPopup() {
     <>
       <button
         onClick={togglePopup}
-        className="px-4 py-1.5  bg-primary font-medium text-white rounded-full hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-blue-300"
+        className="px-4 py-1.5  font-medium text-black hover:text-white shadow-md border rounded-md hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-blue-300"
       >
         Add
       </button>

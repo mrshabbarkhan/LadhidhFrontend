@@ -10,7 +10,7 @@ import useInputClass from "../../hooks/useInputClass";
 function PaymentPage() {
   const { address } = useDeliveryAddress();
   const [orderNotes, setOrderNotes] = useState("");
-  const { localCart } = useSelector((state) => state.cart);
+  const { localCart, appliedCoupan } = useSelector((state) => state.cart);
 
   const {} = useAddress();
   const {
@@ -43,7 +43,12 @@ function PaymentPage() {
         quantity: c.quantity.toString(),
       })),
       orderNotes,
+      couponCode: appliedCoupan
+        ? { code: appliedCoupan.code, discount: appliedCoupan.discountAmount }
+        : "",
     };
+
+    console.log(formData);
 
     if (address) {
       postOrder(formData);

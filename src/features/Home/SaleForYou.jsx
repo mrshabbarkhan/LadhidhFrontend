@@ -1,7 +1,7 @@
 import Card from "../Cart/Card";
 import Loader from "../../components/Loader";
 import { useProducts } from "../admin/page/products/useProducts";
-import { useAOS } from "../../hooks/useAOS";
+import { motion } from "framer-motion";
 
 function SaleForYou() {
   const navigateToProductList = "/product-details";
@@ -18,10 +18,13 @@ function SaleForYou() {
     return a.inStock ? -1 : 1; // If a is in stock, it comes first
   });
 
-  useAOS();
-
   return (
-    <section className="mt-3 sm:mt-6  w-full" data-aos="fade-up">
+    <motion.section
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      className="mt-3 sm:mt-6  w-full"
+    >
       <div className="mb-2 py-1 relative sm:py-3">
         <h1 className=" font-semibold text-xl sm:text-2xl  text-gray-800 leading-5">
           Sale for you
@@ -41,7 +44,7 @@ function SaleForYou() {
           ))}
         </div>
       )}
-    </section>
+    </motion.section>
   );
 }
 

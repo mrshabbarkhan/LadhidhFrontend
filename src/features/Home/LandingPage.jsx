@@ -1,4 +1,3 @@
-import "aos/dist/aos.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -13,7 +12,7 @@ function LandingPage() {
   const { banners, isPending } = useBanners();
 
   return (
-    <section className="relative ">
+    <section id="home" className="relative">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

@@ -4,8 +4,8 @@ import { useBanners } from "./useBanners";
 import { useDeleteBanner } from "./useDeleteBanner";
 import Spinner from "../../../../components/Spinner";
 import { useAddBaner } from "./useAddBanner";
-import { IoMdTrash } from "react-icons/io";
 import { FaTrashCan } from "react-icons/fa6";
+import Badge from "../../../../components/Badge";
 
 function BannerPage() {
   const { banners, isPending } = useBanners();
@@ -36,7 +36,9 @@ function BannerPage() {
 
   return (
     <>
-      <span className="text-2xl font-medium">Banners</span>
+      <span className="text-2xl font-medium relative w-fit mr-3 ">
+        Banners <Badge data={banners} className={"left-20 ml-2"} />
+      </span>
       <input
         type="file"
         accept="image/*"
@@ -47,7 +49,7 @@ function BannerPage() {
       />
       <label
         htmlFor="fileInput"
-        className="bg-primary inline-flex items-center px-3 py-0.5 mx-2 rounded-full hover:bg-primary-dark text-white cursor-pointer"
+        className=" inline-flex  items-center px-3 py-0.5 mx-2 shadow-md border rounded-md hover:bg-primary-dark hover:text-white cursor-pointer"
       >
         {addingBanner ? <Spinner className="border-white" /> : "Add"}
       </label>
