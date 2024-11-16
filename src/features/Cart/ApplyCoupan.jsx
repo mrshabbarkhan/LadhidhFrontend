@@ -1,26 +1,55 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useCoupan from "../admin/page/settings/useCoupan";
 import { useDispatch } from "react-redux";
 import { addToApplidCoupan } from "./cartSlice";
+import useValidCoupan from "../admin/page/settings/useValidCoupan";
+import { useLocalStorage } from "../auth/LocalStorageContext";
+import Spinner from "../../components/Spinner";
 
-function ApplyCoupan({ setCoupan }) {
+function ApplyCoupan({ coupan, setCoupan }) {
   const [code, setCode] = useState("");
-  const [applied, setApplied] = useState(false);
-  const [msg, setMsg] = useState("");
-  const { data: coupans } = useCoupan();
+  // const [msg, setMsg] = useState("");
+  const [matchCoupan, setMatchCoupan] = useState(null);
+  // const [varified, setVarified] = useState(false);
+  let disable = code === matchCoupan?.code;
+
   const dispatch = useDispatch();
+  const { user } = useLocalStorage();
+
+  const { data: coupans } = useCoupan();
+  const {
+    mutate: validCoupanFn,
+    isPending,
+    isSuccess,
+    reset,
+  } = useValidCoupan();
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(addToApplidCoupan(matchCoupan));
+      // setMsg("Coupon applied successfully!");
+      setCoupan(matchCoupan?.discountAmount);
+      // setVarified(true);
+    } else {
+      // setMsg("Invalid Coupon Code");
+      setCoupan(0);
+      // setVarified(false);
+    }
+  }, [isSuccess, matchCoupan, dispatch, reset]);
 
   const handleApplyCoupon = () => {
     const foundCoupon = coupans?.find((c) => c.code === code);
     if (foundCoupon) {
-      dispatch(addToApplidCoupan(foundCoupon));
-      setMsg("Coupon applied successfully!");
-      setCoupan(foundCoupon.discountAmount);
-      setApplied(true);
+      setMatchCoupan(foundCoupon);
+      validCoupanFn({
+        userId: user._id,
+        couponCode: foundCoupon.code,
+      });
     } else {
-      setMsg("Invalid Coupon Code");
+      setMatchCoupan("");
       setCoupan(0);
-      setApplied(false);
+      // setMsg("Invalid Coupon Code");
+      // setVarified(false);
     }
   };
 
@@ -30,24 +59,30 @@ function ApplyCoupan({ setCoupan }) {
         <input
           type="text"
           value={code.toUpperCase()}
-          onChange={(e) => setCode(e.target.value)}
+          onChange={(e) => setCode(e.target.value.toUpperCase())}
           placeholder="Enter coupon code"
           className="flex-grow px-2 border-none outline-none focus:ring-0 bg-transparent text-gray-700"
         />
         <button
           onClick={handleApplyCoupon}
-          className="px-3 py-0.5 text-sm border shadow-md text-black font-semibold rounded-md"
+          disabled={disable}
+          className={`px-3 py-0.5 text-sm border  ${
+            disable ? "bg-slate-200 cursor-not-allowed" : "shadow - md"
+          } text-black  font-semibold rounded-md`}
         >
-          {applied ? "Applied" : "Apply"}
+          {isPending ? <Spinner /> : disable ? "Applied" : "Apply"}
         </button>
       </div>
-      <p
-        className={`mt-2 text-sm font-medium ${
-          applied ? "text-green-600" : "text-red-600"
-        }`}
-      >
-        {msg}
-      </p>
+
+      {code?.length > 0 && (
+        <p
+          className={`mt-3 text-sm font-medium ${
+            coupan ? "text-green-600" : "text-red-600"
+          }`}
+        >
+          {coupan ? "coupan applied successfully!" : "Invalid coupan code"}
+        </p>
+      )}
     </div>
   );
 }

@@ -1,13 +1,13 @@
-import { form } from "framer-motion/m";
 import useFormData from "../../../../hooks/useFormData";
 import useCreateCoupan from "./useCreateCoupan";
 import Spinner from "../../../../components/Spinner";
+import { useState } from "react";
 
 function SetCoupan() {
   const { mutate: createCoupanFn, isPending } = useCreateCoupan();
+  const [inputCode, setInputCode] = useState("");
 
   const { formData, handleChange } = useFormData({
-    code: "",
     discountAmount: "",
     expiryDate: "",
     totalUsageLimit: "",
@@ -16,7 +16,7 @@ function SetCoupan() {
 
   const handleCreate = (e) => {
     e.preventDefault();
-    createCoupanFn(formData);
+    createCoupanFn({ ...formData, code: inputCode });
   };
 
   return (
@@ -28,8 +28,8 @@ function SetCoupan() {
           </label>
           <input
             id="code"
-            value={formData.code}
-            onChange={handleChange}
+            value={inputCode}
+            onChange={(e) => setInputCode(e.target.value.toUpperCase())}
             type="text"
             placeholder="eg. NEW10"
             className="max-w-sm w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-700 focus:ring-1 focus:ring-black/30 focus:border-black/30"
@@ -39,16 +39,18 @@ function SetCoupan() {
 
         <div className="mt-4">
           <label className="block text-md mb-1" htmlFor="discountOnCoupan">
-            Discount on coupan
+            Discount on coupan (%)
           </label>
           <input
             id="discountAmount"
             value={formData.discountAmount}
             onChange={handleChange}
             type="number"
-            placeholder="discount in rupee eg. 100"
+            placeholder="discount in percent"
             className="max-w-sm w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-700 focus:ring-1 focus:ring-black/30 focus:border-black/30"
             required
+            min={1}
+            max={100}
           />
         </div>
 
@@ -75,15 +77,12 @@ function SetCoupan() {
           <input
             id="totalUsageLimit"
             value={formData.totalUsageLimit}
-            min={1}
-            onChange={(e) => {
-              const value = Math.max(1, parseInt(e.target.value) || 1);
-              handleChange({ target: { id: "totalUsageLimit", value } });
-            }}
+            onChange={handleChange}
             type="number"
             placeholder="Number of Persons can use"
             className="max-w-sm w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-700 focus:ring-1 focus:ring-black/30 focus:border-black/30"
             required
+            min={1}
           />
         </div>
 
@@ -94,21 +93,18 @@ function SetCoupan() {
           <input
             id="userUsageLimit"
             value={formData.userUsageLimit}
-            min={1}
-            onChange={(e) => {
-              const value = Math.max(1, parseInt(e.target.value) || 1);
-              handleChange({ target: { id: "userUsageLimit", value } });
-            }}
+            onChange={handleChange}
             type="number"
             placeholder="Per person use limit"
             className="max-w-sm w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-700 focus:ring-1 focus:ring-black/30 focus:border-black/30"
             required
+            min={1}
           />
         </div>
 
         <button
           type="submit"
-          className="float-end bg-primary text-white px-3 py-1 mt-5 rounded-lg"
+          className="float-end bg-primary text-white px-3 py-1 my-5 rounded-lg"
         >
           {isPending ? <Spinner className="border-white m-1" /> : "Add"}
         </button>

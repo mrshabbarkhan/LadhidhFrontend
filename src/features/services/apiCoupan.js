@@ -26,3 +26,12 @@ export const deleteCoupan = async (id) => {
     console.log(error);
   }
 };
+
+export const validCoupan = async (formData) => {
+  try {
+    const { data } = await axios.post(`/api/user/coupan/applyCoupan`, formData);
+    return data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "something happans wrong");
+  }
+};

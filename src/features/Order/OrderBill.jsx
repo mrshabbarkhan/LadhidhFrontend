@@ -2,12 +2,17 @@ import { RxCrossCircled } from "react-icons/rx";
 import { useUser } from "../admin/page/users/useUser";
 import useOrderStatus from "../../hooks/useOrderStatus";
 import ShippingAddress from "./ShippingAddress";
-import { p } from "framer-motion/client";
 
 function OrderBill({ order, showFn, showPickup = true }) {
-  console.log(order);
   const { users } = useUser();
   const filterUser = users?.find((u) => u._id === order.user);
+
+  console.log(order);
+
+  const discountedAmount = order?.orderItems?.reduce(
+    (acc, item) => Math.floor(((acc + item.price) * 40) / 100),
+    0
+  );
 
   return (
     <section className="bg-black/60 flex justify-center items-center fixed inset-0 z-[9999]">
@@ -106,7 +111,7 @@ function OrderBill({ order, showFn, showPickup = true }) {
                 />
                 <div>
                   <p className="text-sm font-semibold text-gray-800">
-                    {item.product.title}
+                    {item.product?.title}
                   </p>
                   <p className="text-xs text-gray-600">Qty: {item.quantity}</p>
                 </div>
@@ -119,7 +124,15 @@ function OrderBill({ order, showFn, showPickup = true }) {
         </div>
 
         {/* Charges */}
+
         <div className="border-t pt-4 mb-6">
+          {order?.couponCode && order.couponCode.discount > 0 && (
+            <div className="flex justify-between text-sm text-gray-600 my-2">
+              <p>Coupan Code : {`"${order.couponCode.code}"`}</p>
+              <p className="font-semibold">- ₹ {`${discountedAmount}`}</p>
+            </div>
+          )}
+
           <div className="flex justify-between text-sm text-gray-600">
             <p>Delivery Charge</p>
             <p className="font-semibold">
@@ -132,15 +145,6 @@ function OrderBill({ order, showFn, showPickup = true }) {
               {order?.handlingFee ? `₹${order.handlingFee}` : "Free"}
             </p>
           </div>
-
-          {order?.couponCode && order.couponCode.discount > 0 && (
-            <div className="flex justify-between text-sm text-gray-600 mt-2">
-              <p>Coupan Code : {`"${order.couponCode.code}"`}</p>
-              <p className="font-semibold">
-                - {`₹${order.couponCode.discount}`}
-              </p>
-            </div>
-          )}
         </div>
 
         {/* Payment & Total */}

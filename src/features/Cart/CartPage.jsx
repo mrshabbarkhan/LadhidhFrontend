@@ -90,6 +90,16 @@ function CartPage() {
           <p>Subtotal</p>
           <h1 className="font-semibold">&#x20B9;{subtotal}</h1>
         </div>
+
+        {coupanDiscount > 0 && (
+          <div className="flex justify-between">
+            <p>Coupan Discount </p>
+            <h6 className="font-semibold">
+              - ₹{Math.floor((subtotal * (coupanDiscount || 0)) / 100)}
+            </h6>
+          </div>
+        )}
+
         <div className="flex justify-between">
           <p>Delivery Charge</p>
           <h6 className="font-semibold">
@@ -104,26 +114,19 @@ function CartPage() {
           </h6>
         </div>
 
-        {coupanDiscount > 0 && (
-          <div className="flex justify-between">
-            <p>Coupan Discount </p>
-            <h6 className="font-semibold">- ₹{coupanDiscount}</h6>
-          </div>
-        )}
-
         <div className="flex justify-between border-t mt-2">
           <h1 className="font-semibold text-lg">Total</h1>
           <h1 className="font-semibold text-lg">
             &#x20B9;
             {subtotal +
               hasDeliveryCharge +
-              settings?.handlingFee -
-              coupanDiscount}
+              (settings?.handlingFee || 0) -
+              Math.floor((subtotal * (coupanDiscount || 0)) / 100)}
           </h1>
         </div>
       </div>
 
-      <ApplyCoupan setCoupan={setCoupanDiscount} />
+      <ApplyCoupan setCoupan={setCoupanDiscount} coupan={coupanDiscount} />
 
       <section className="w-full fixed bottom-0 left-0 md:px-24 lg:px-48 overflow-hidden text-xs sm:text-sm bg-white">
         <CheckOutFooter
@@ -131,8 +134,8 @@ function CartPage() {
           total={
             subtotal +
             hasDeliveryCharge +
-            settings?.handlingFee -
-            coupanDiscount
+            (settings?.handlingFee || 0) -
+            Math.floor((subtotal * (coupanDiscount || 0)) / 100)
           }
           cart={updatedCart}
         />

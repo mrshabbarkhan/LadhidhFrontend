@@ -130,7 +130,13 @@ function Footer() {
             <a target="_blank" href="https://wa.link/ojpi94">
               <img className="size-7" src={whatsaapLogo} alt="" />
             </a>
-            {/* <img className="size-7" src={fbLogo} alt="" /> */}
+            <a
+              href="https://www.facebook.com/profile.php?id=100081195777574"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img className="size-7" src={fbLogo} alt="" />
+            </a>{" "}
           </div>
 
           <p>&copy; 2024 Ladhidh All Rights Reserved.</p>
