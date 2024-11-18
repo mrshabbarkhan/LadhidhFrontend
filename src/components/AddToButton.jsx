@@ -36,7 +36,7 @@ function AddToButton({ ...props }) {
       } text-sm shadow-sm hover:shadow-md border border-primary font-semibold px-3 py-0.5 rounded-lg items-center flex justify-center`}
     >
       {isLoading ? (
-        <Spinner className="border-primary hover:border-white" />
+        <Spinner className="border hover:border-white" />
       ) : (
         <span className="mt-0.5">ADD</span>
       )}
