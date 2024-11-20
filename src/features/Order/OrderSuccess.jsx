@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import ShippingAddress from "./ShippingAddress";
 
 const OrderSuccess = ({ order }) => {
+  console.log(order);
   return (
     <div className="flex flex-col items-center justify-center p-6 bg-white shadow-lg rounded-lg border border-gray-200">
       <div className="mb-4 text-center">
@@ -62,15 +63,44 @@ const OrderSuccess = ({ order }) => {
         <p className="font-semibold">
           <ShippingAddress order={order} />
         </p>
-        <p className="font-semibold text-gray-700 mb-2">
-          Order Note: " {order.orderNotes} "
-        </p>
+        {order?.orderNotes && (
+          <p className="font-semibold text-gray-700 mb-2">
+            Order Note: " {order.orderNotes} "
+          </p>
+        )}
 
         {/* Payment and Total */}
         <p className="mt-4">
           Payment Method:{" "}
           <span className="font-semibold">{order.paymentMethod}</span>
         </p>
+
+        {/* Charges */}
+
+        <div className="border-t pt-4 mb-6">
+          {order?.discountedPrice && order.discountedPrice.discount > 0 && (
+            <div className="flex justify-between text-sm text-gray-600 my-2">
+              <p>Coupan Code : {`"${order.discountedPrice.code}"`}</p>
+              <p className="font-semibold">
+                - ₹ {`${order.discountedPrice.discount}`}
+              </p>
+            </div>
+          )}
+
+          <div className="flex justify-between text-sm text-gray-600">
+            <p>Delivery Charge</p>
+            <p className="font-semibold">
+              {order.deliveryCharge === 0 ? "Free" : `₹${order.deliveryCharge}`}
+            </p>
+          </div>
+          <div className="flex justify-between text-sm text-gray-600 mt-2">
+            <p>Handling Fee</p>
+            <p className="font-semibold">
+              {order?.handlingFee ? `₹${order.handlingFee}` : "Free"}
+            </p>
+          </div>
+        </div>
+
         <p className="mt-4">
           Total Price:{" "}
           <span className="font-semibold"> ₹{order.totalPrice.toFixed(2)}</span>

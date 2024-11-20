@@ -12,7 +12,7 @@ function PaymentPage() {
   const [orderNotes, setOrderNotes] = useState("");
   const { localCart, appliedCoupan } = useSelector((state) => state.cart);
 
-  const {} = useAddress();
+  useAddress();
   const {
     postOrder,
     isPending,
@@ -37,18 +37,16 @@ function PaymentPage() {
   const handleSubmit = () => {
     const formData = {
       shippingAddress: address,
-      paymentMethod: "Cod",
+      paymentMethod: "COD",
       products: localCart.map((c) => ({
         productId: c.product._id,
         quantity: c.quantity.toString(),
       })),
       orderNotes,
-      couponCode: appliedCoupan
+      coupanCode: appliedCoupan
         ? { code: appliedCoupan.code, discount: appliedCoupan.discountAmount }
         : "",
     };
-
-    console.log(formData);
 
     if (address) {
       postOrder(formData);

@@ -95,7 +95,7 @@ function CartPage() {
           <div className="flex justify-between">
             <p>Coupan Discount </p>
             <h6 className="font-semibold">
-              - ₹{Math.floor((subtotal * (coupanDiscount || 0)) / 100)}
+              - ₹{(subtotal * (coupanDiscount || 0)) / 100}
             </h6>
           </div>
         )}
@@ -121,7 +121,7 @@ function CartPage() {
             {subtotal +
               hasDeliveryCharge +
               (settings?.handlingFee || 0) -
-              Math.floor((subtotal * (coupanDiscount || 0)) / 100)}
+              (subtotal * (coupanDiscount || 0)) / 100}
           </h1>
         </div>
       </div>
@@ -135,7 +135,7 @@ function CartPage() {
             subtotal +
             hasDeliveryCharge +
             (settings?.handlingFee || 0) -
-            Math.floor((subtotal * (coupanDiscount || 0)) / 100)
+            (subtotal * (coupanDiscount || 0)) / 100
           }
           cart={updatedCart}
         />

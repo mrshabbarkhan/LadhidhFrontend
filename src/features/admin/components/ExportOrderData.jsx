@@ -29,7 +29,7 @@ function ExportOrderData() {
   return (
     <button
       onClick={exportToExcel}
-      className="block ml-auto sm:w-full h-9 text-white  border border-gray-300 bg-primary rounded-md shadow-lg hover:bg-red-500 focus:outline-none text-sm transition ease-in-out duration-200 cursor-pointer"
+      className="block ml-auto w-full h-9 text-white  border border-gray-300 bg-primary rounded-md shadow-lg hover:bg-red-500 focus:outline-none text-sm transition ease-in-out duration-200 cursor-pointer"
     >
       Export
     </button>

@@ -18,7 +18,7 @@ function Requests() {
         </button>
         <button
           onClick={() => setShowRequest(false)}
-          className={`px-2 py-1 border rounded-md ${
+          className={`px-2 py-1 border rounded-md text-nowrap ${
             showRequest ? "text-black" : "bg-primary  text-white"
           }`}
         >

@@ -11,7 +11,7 @@ function DashboardPage() {
       <DsbActions />
       <div className="my-7 sm:flex justify-between ">
         <SearchBar placeholder={"Search by order id..."} />
-        <span className="flex items-start space-x-2 ">
+        <span className="flex items-start space-x-2 mt-5 sm:mt-0">
           <ExportOrderData />
           <FilterBy />
         </span>

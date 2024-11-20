@@ -8,9 +8,7 @@ import Spinner from "../../components/Spinner";
 
 function ApplyCoupan({ coupan, setCoupan }) {
   const [code, setCode] = useState("");
-  // const [msg, setMsg] = useState("");
   const [matchCoupan, setMatchCoupan] = useState(null);
-  // const [varified, setVarified] = useState(false);
   let disable = code === matchCoupan?.code;
 
   const dispatch = useDispatch();
@@ -27,29 +25,24 @@ function ApplyCoupan({ coupan, setCoupan }) {
   useEffect(() => {
     if (isSuccess) {
       dispatch(addToApplidCoupan(matchCoupan));
-      // setMsg("Coupon applied successfully!");
       setCoupan(matchCoupan?.discountAmount);
-      // setVarified(true);
     } else {
-      // setMsg("Invalid Coupon Code");
       setCoupan(0);
-      // setVarified(false);
     }
   }, [isSuccess, matchCoupan, dispatch, reset]);
 
   const handleApplyCoupon = () => {
-    const foundCoupon = coupans?.find((c) => c.code === code);
-    if (foundCoupon) {
-      setMatchCoupan(foundCoupon);
+    const foundCoupan = coupans?.find((c) => c.code === code);
+    if (foundCoupan) {
+      setMatchCoupan(foundCoupan);
       validCoupanFn({
         userId: user._id,
-        couponCode: foundCoupon.code,
+        coupanCode: foundCoupan.code,
       });
     } else {
       setMatchCoupan("");
       setCoupan(0);
-      // setMsg("Invalid Coupon Code");
-      // setVarified(false);
+      setCode("");
     }
   };
 
@@ -66,7 +59,7 @@ function ApplyCoupan({ coupan, setCoupan }) {
         <button
           onClick={handleApplyCoupon}
           disabled={disable}
-          className={`px-3 py-0.5 text-sm border  ${
+          className={`px-3 hover:scale-95 py-0.5 text-sm border  ${
             disable ? "bg-slate-200 cursor-not-allowed" : "shadow - md"
           } text-black  font-semibold rounded-md`}
         >

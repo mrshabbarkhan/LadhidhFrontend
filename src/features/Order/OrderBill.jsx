@@ -7,13 +7,6 @@ function OrderBill({ order, showFn, showPickup = true }) {
   const { users } = useUser();
   const filterUser = users?.find((u) => u._id === order.user);
 
-  console.log(order);
-
-  const discountedAmount = order?.orderItems?.reduce(
-    (acc, item) => Math.floor(((acc + item.price) * 40) / 100),
-    0
-  );
-
   return (
     <section className="bg-black/60 flex justify-center items-center fixed inset-0 z-[9999]">
       <div className="bg-white rounded-lg shadow-lg border border-gray-200 w-full max-w-3xl max-h-[90vh] overflow-y-auto mx-4 p-6">
@@ -126,10 +119,12 @@ function OrderBill({ order, showFn, showPickup = true }) {
         {/* Charges */}
 
         <div className="border-t pt-4 mb-6">
-          {order?.couponCode && order.couponCode.discount > 0 && (
+          {order?.discountedPrice && order.discountedPrice.discount > 0 && (
             <div className="flex justify-between text-sm text-gray-600 my-2">
-              <p>Coupan Code : {`"${order.couponCode.code}"`}</p>
-              <p className="font-semibold">- ₹ {`${discountedAmount}`}</p>
+              <p>Coupan Code : {`"${order.discountedPrice.code}"`}</p>
+              <p className="font-semibold">
+                - ₹ {`${order.discountedPrice.discount}`}
+              </p>
             </div>
           )}
 

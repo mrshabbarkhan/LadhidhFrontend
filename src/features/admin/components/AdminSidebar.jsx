@@ -47,7 +47,7 @@ const AdminSidebar = () => {
       transition={{ duration: 0.5, ease: "anticipate" }}
       className="h-screen w-52 bg-gray-100 shadow-lg relative"
     >
-      <ul className="flex flex-col gap-2 pt-5 text-lg text-gray-800">
+      <ul className="flex flex-col gap-2 pt-5 text-lg text-gray-800 overflow-y-auto">
         {links.map(({ to, icon: Icon, label }, index) => (
           <NavLink
             key={index}

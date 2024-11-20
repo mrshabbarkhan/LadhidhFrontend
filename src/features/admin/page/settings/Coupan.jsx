@@ -11,9 +11,11 @@ function Coupan() {
       {isPending ? (
         <Loader />
       ) : (
-        <div className="flex flex-wrap gap-5 justify-start">
+        <div className="flex flex-wrap gap-5 justify-start overflow-y-scroll h-screen pb-20">
           {coupans?.length > 0 &&
-            coupans.map((cpn) => <CoupanCard key={cpn._id} cpn={cpn} />)}
+            coupans
+              .map((cpn) => <CoupanCard key={cpn._id} cpn={cpn} />)
+              .reverse()}
         </div>
       )}
     </section>

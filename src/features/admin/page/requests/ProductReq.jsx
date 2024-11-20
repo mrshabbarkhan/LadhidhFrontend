@@ -6,7 +6,7 @@ function ProductReq() {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold mb-4 relative w-fit">
+      <h1 className="sm:text-2xl font-semibold mb-4 relative w-fit">
         Product Notification Requests <Badge data={allRequests} />
       </h1>
       <div className="overflow-x-auto">
